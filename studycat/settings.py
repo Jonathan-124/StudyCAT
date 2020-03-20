@@ -25,7 +25,8 @@ SECRET_KEY = 'b5!t*c6umi77erbxl@v@tafkip14sm108#=m55os()si%b%965'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# TO CHANGE BEFORE PRODUCTION
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,12 +38,34 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    # 3rd party
+    'rest_framework',
+    'rest_framework.authtoken',
+    'crispy_forms',
+    'corsheaders',
+
+    # Local
     'users.apps.UsersConfig',
     'userprofiles.apps.UserprofilesConfig',
     'skills.apps.SkillsConfig',
     'questions.apps.QuestionsConfig',
     'lessons.apps.LessonsConfig',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
+
+CORS_ORIGIN_ALLOW_ALL = True
+# instead of CORS_ORIGIN_ALLOW_ALL = True, in production change to tuple of whitelisted sites; careful with popper cdn!
+# i.e. CORS_ORIGIN_WHITELIST = ('127.0.0.1:8000')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -132,4 +155,9 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 AUTH_USER_MODEL = 'users.CustomUser'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+SITE_ID = 1
