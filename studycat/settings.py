@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'userprofiles.apps.UserprofilesConfig',
     'skills.apps.SkillsConfig',
     'questions.apps.QuestionsConfig',
+    'lessons.apps.LessonsConfig',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +59,8 @@ ROOT_URLCONF = 'studycat.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'),
+                 os.path.join(BASE_DIR, 'media/lessons')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
