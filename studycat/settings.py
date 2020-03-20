@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'skills.apps.SkillsConfig',
     'questions.apps.QuestionsConfig',
     'lessons.apps.LessonsConfig',
+    'pages.apps.PagesConfig',
 ]
 
 REST_FRAMEWORK = {

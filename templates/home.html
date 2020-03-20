@@ -1,0 +1,301 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Math Site{% endblock title %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    Hi {{ user.username }}! Welcome back. Click here (INSERT LINK HERE) to go to your current lesson.
+<p><a href="{% url 'logout' %}">Log Out</a></p>
+
+{% else %}
+    <div class="container">
+        <h2>Welcome to MathCAT!</h2><br>
+            <p>
+            MathCAT is a free tool that uses a Computerized Adaptive Teaching (CAT) algorithm to help you learn math.<br>
+            If you are a returning user, please log in.<br>
+            If you are a new user, feel free to read the site introduction below and experiment with the demo!
+            </p>
+        <br>
+      <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#about">How it Works</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#demo">Demo</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#rationale">Rationale</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#roadmap">Roadmap</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#faq">FAQ</a>
+        </li>
+    </ul>
+
+      <!-- Tab panes -->
+    <div class="tab-content">
+        <div id="about" class="container tab-pane active"><br>
+            <p>MathCAT uses a 3 step process to help you learn math:
+                <ol>
+                    <li>First, you complete a short quiz to tell the algorithm how much you already know.</li>
+                    <li>The algorithm gives you lessons and questions on topics based on your current knowledge.</li>
+                    <li>The algorithm then analyzes your answers, and gives you new lessons and questions based on your personal progress.</li>
+                </ol>
+            Because the algorithm delivers lessons and questions based on an estimate of your personal math knowledge and adjusts it based on your responses, MathCAT requires you to create an account so your progress can be tracked.
+            If you are still unsure of how MathCat estimates your math knowledge, you can try out the demo in the 'Demo' tab without creating an account.
+            </p>
+        </div>
+        <div id="demo" class="container tab-pane fade"><br>
+            <p id="instructions">This is a short 3 question demonstration of how MathCAT estimates how much you know.
+                No calculators are allowed, and please choose "I don't know" instead of guessing to accurately assess your knowledge.</p>
+            <button id="start" class="btn btn-outline-primary">Start Demo!</button>
+            <div id="test" class="d-none">
+                <p id="question-prompt"></p>
+                <div id="answerbox"></div>
+                <br>
+                <p id="feedback"></p>
+                <br>
+                <button name="submit_answer" type="submit" class="btn btn-outline-primary">Submit</button>
+            </div>
+
+        </div>
+        <div id="rationale" class="container tab-pane"><br>
+            <p>
+            The typical classroom has one universal characteristic — one teacher teaches a group of students.
+            While this educational model has existed for millennia, there are two inherent problems with this paradigm:
+                <ol>
+                    <li>The quality of education heavily depends on the skill of the teacher.</li>
+                    <li>Each student cannot receive personalized instruction in the classroom.</li>
+                </ol>
+            Addressing the first point, although most teachers usually receive higher education prior to teaching, the quality of teaching is still highly variable among teachers.
+            This results in the unfortunate case where the students' quality of education is limited by the abilities of the teacher.
+            <br><br>
+            With regards to the second point, since there is only one teacher among many students, the teacher must teach material at an "average" pace.
+            Even though students in a class might have different levels of prior knowledge, the teacher must teach material that is at the "average" level of the class.
+            Even though students in a class might learn at different speeds, the teacher must teach each lesson to their class at the same speed.
+            Three common solutions to this problem are ability grouping (where students are split into classes based on their levels), small class sizes, or hiring tutors.
+            However, these options are usually only available at better schools and for students with higher socioeconomic status.
+            <br><br>
+            Bearing these two concerns in mind, MathCAT was created (and is being developed) with these 3 guiding tenets in mind:
+                <ol>
+                    <li>Every student deserves an education of high quality.</li>
+                    <li>Every student should have access to education.</li>
+                    <li>Every student should receive personalized instruction.</li>
+                </ol>
+            <br>
+            All else follows.
+            <br>
+            </p>
+        </div>
+        <div id="roadmap" class="container tab-pane fade"><br>
+            <p>Thank you very much for visiting MathCAT!<br><br>
+            This has been a personal project of mine since 2018. As the website is still in pre-alpha, there are still a lot of errors, bugs, and missing content, so please use the site at your own discretion.
+            If you have any comments, concerns, or bug reports, please do not hesitate to contact me.<br><br>
+            In the near future, high-priority tasks include:
+                <ul>
+                <li>Bug fixes</li>
+                <li>UI improvements (answer input fixes, CSS styling, etc.)</li>
+                <li>Database model improvements (questions, answers, pictures etc.)</li>
+                <li>Algorithm optimization (false positives/negatives, item calibration, graph traversal and optimization etc.)</li>
+                <li>Lesson and question improvements</li>
+                </ul>
+            In the long term, future tasks might involve:
+                <ul>
+                <li>Incorporating various other math curricula, such as IB, A-levels</li>
+                <li>Support for teachers' ability to model students' progress</li>
+                <li>Including other subjects such as Physics, Chemistry, etc.</li>
+                <li>Localization to other languages</li>
+                </ul>
+            Other suggestions are always welcome. Happy learning!
+            </p>
+        </div>
+        <div id="faq" class="container tab-pane fade"><br>
+            <h5>I am a teacher. How should I use this website?</h5>
+            <p>
+                The testing algorithm is well suited for formative assessment. Note that because some answer evaluation is done client-side, the answering process is not secure and therefore should not be used for summative assessment.
+                Curriculum alignment is a future goal that, when implemented, you can use see how much your students know relative to the curriculum.
+            </p>
+            <h5>How can I contribute?</h5>
+            <p>
+             If you are a user, you can help just by using the site! Data on response patterns is very useful for calibration, and your bug reports and written feedback always help improve the site.
+             If you have expertise in CAT (Computerized Adaptive Testing), Bayesian networks or IRT (Item Response Theory), please contact me directly as I would immensely appreciate your input.
+            </p>
+            <h5>More details on the algorithm?</h5>
+            <p>Mathematical concepts are arranged in a skill tree (directed acyclic graph), where fundamental skills must be learned before more complicated ones.
+                These dependencies are modelled via networks, where each node is a concept and connections between nodes represent strengths of their relationships.
+                Each question tests the user's proficiency at a certain node, and the ability of a user is updated depending on their response to the question.
+            </p>
+            <h5>Technical details of the website?</h5>
+            <p>Database: PostgreSQL.<br>
+                Backend: Django and Django REST Framework.<br>
+                Frontend: Django, with a heavy reliance on AJAX requests and jQuery for responsive elements. Bootstrap CSS.<br>
+                Special thanks to the Guppy math editor (daniel3735928559), math-expressions (kisonecat), and KaTeX libraries!
+            </p>
+        </div>
+    </div>
+
+    <div class="container">
+        <a href="{% url 'login' %}">Log In</a> | <a href="{% url 'signup' %}">Sign Up</a>
+    </div>
+</div>
+
+<script>
+
+    const q1 = [{prompt: "Compute $$cos((2 pi )/(3))$$.",
+                answers: [{answer: "-(1)/(2)", response: 1, next_id: 1},
+                          {answer: "(1 / 2)", response: 2, next_id: 2},
+                          {answer: "(1 / squareroot(2))", response: 2, next_id: 2},
+                          {answer: "neg((1 / squareroot(2)))", response: 2, next_id:2},
+                          {answer: "(squareroot(3) / 2)", response: 2, next_id: 2},
+                          {answer: "neg((squareroot(3) / 2))", response: 2, next_id: 2},
+                          {answer: "0", response: 2, next_id: 2},
+                          {answer: "1", response: 2, next_id: 2},
+                          {answer: "neg(1)", response: 2, next_id: 2}],
+                default: 0,
+                responses: ["Your answer suggests that you have not yet learned about trigonometric functions, or need some review.",
+                            "You entered the correct answer $$-(1)/(2)$$ for the question, which suggests that you are proficient with trigonometric functions and their common angles.",
+                            "Although your answer was incorrect, it is one of the common outputs for trigonometric functions with 'nice' angles. This suggests that you have learned some trigonometry before, but might need some review."
+                           ]
+                }
+               ];
+    const q2 = [{prompt: "Let $$y=3x+4$$. If $$y=1$$, calculate $$x$$.",
+                 answers : [{answer: "-1", response: 1, next_id: 1},
+                            {answer: "1", response: 2, next_id: 0},
+                            {answer: "7", response: 2, next_id: 0}],
+                 default: 0,
+                 responses: ["Your response shows it is likely that you have not yet learned about variables, or need some review.",
+                             "You have entered the correct answer, meaning that you have a good grasp of what variables are and how to manipulate equations.",
+                             "You have entered an incorrect answer, but the answer you entered shows some understanding of variables, so you probably need some practice in manipulating equations."
+                            ]
+                 },
+                {prompt: "Compute $$(d)/(dx)((x)^(3)+ cos(x))$$.",
+                answers: [{answer: "((3 * (x^2)) - sin(x))", response: 1, next_id: 3},
+                          {answer: "((3 * (x^2)) + sin(x))", response: 2, next_id: 3},
+                          {answer: "((3 * (x^3)) - sin(x))", response: 3, next_id: 2},
+                          {answer: "((3 * x) - sin(x))", response: 3, next_id: 2},
+                          {answer: "((3 * (x^2)) + cos(x))", response: 3, next_id: 2}
+                         ],
+                default: 4,
+                responses: ["Your response shows that you have not yet learned about calculus.",
+                            "You have entered the correct answer, showing understanding of both the power rule and the derivative of the cosine function.",
+                            "You have entered an incorrect answer, however your answer suggests that you have an understanding of the power rule and perhaps could use some practice on differentiating the cosine function.",
+                            "Although you have successfully differentiated the sine function, your answer shows that you could use some review regarding the power rule.",
+                           ]
+                },
+                {prompt: "Let $$f * (x) = (e^(x + 2))$$. Calculate $$((f^neg(1)) * (x))$$.",
+                 answers : [{answer: "(ln(x) - 2)", response: 1, next_id: 2},
+                            {answer: "(ln(y) - 2)", response: 2, next_id: 4},
+                            {answer: "(ln(x) + 2)", response: 2, next_id: 4},
+                            {answer: "(log(x) - 2)", response: 2, next_id: 4},
+                            {answer: "(ln(x - 2))", response: 2, next_id: 4},
+                            {answer: "(ln(x + 2))", response: 2, next_id: 4},
+                            {answer: "(log(x - 2))", response: 2, next_id: 4},
+                            {answer: "(log(x - 2))", response: 2, next_id: 4},
+                            {answer: "(1 / (e^(x + 2)))", response: 3, next_id: 4},
+                           ],
+                 default: 1,
+                 responses: ["Your response shows that you might not have learned about function inverses yet, or could use some review.",
+                             "You have entered the correct answer, meaning that you have a very good understanding of function inverses, exponents, and logarithms.",
+                             "You have entered an incorrect answer, but the answer you entered shows some understanding of function inverses, so you probably need some review.",
+                             "You have entered the multiplicative inverse, suggesting that you might not have learned about function inverses yet."
+                            ]
+                 }
+               ];
+    const q3 = [{prompt: "What is $$4*5$$?",
+                 answers : [{answer: "20", response: 1, next_id: 0}],
+                 responses: ["Your response shows you could use some review in multiplication.",
+                             "You have entered the correct answer, meaning that you have a good understanding of multiplication."
+                            ]
+                 },
+                 {prompt: "Let $$f(x)=3x-1$$. Calculate $$f(5)$$.",
+                 answers : [{answer: "14", response: 1, next_id: 0},
+                            {answer: "2", response: 2, next_id: 0},
+                            {answer: "15x-5", response: 3, next_id: 0},
+                            {answer: "15x-1", response: 3, next_id: 0}
+                            ],
+                 responses: ["Your response shows it is likely that you have not yet learned about functions, or could use some review.",
+                             "You have entered the correct answer, meaning that you have a good grasp of what functions are and how to calculate the output given a function and an input.",
+                             "You have entered an incorrect answer, but the answer you entered shows some understanding of function inverses, so you probably need some review.",
+                             "You attempted to multiply the function by $$5$$, indicating that you have not yet learned about function notation, or could use some review."
+                            ]
+                 },
+                {prompt: "Compute $$((d / (d * x)) * (2x^4)$$. ",
+                 answers : [{answer: "(8 * (x^3))", response: 1, next_id: 0},
+                            {answer: "(6 * (x^3))", response: 2, next_id: 0},
+                           ],
+                 responses: ["Your response shows that you haven't yet learned about derivatives and the power rule, could use some review.",
+                             "You have entered the correct answer, showing knowledge of the power rule.",
+                             "This answer shows an incorrect understanding of the power rule, but does show that you have some basic notion of derivatives."
+                            ]
+                 },
+                 {prompt: "Compute $$defintegral(1,2,(x / ((x^2) + 1)),x)$$. ",
+                 answers : [{answer: "(((1 / 2) * ln(5)) - ((1 / 2) * ln(2)))", response: 1, next_id: 0},
+                            {answer: "(((1 / 2) * ln(2)) - ((1 / 2) * ln(5)))", response: 2, next_id: 0},
+                            {answer: "(((1 / 2) * ln(2)) + ((1 / 2) * ln(5)))", response: 3, next_id: 0},
+                            {answer: "(ln(5) - ln(2))", response: 4, next_id: 0},
+                            {answer: "(2 * (ln(5) - ln(2)))", response: 4, next_id: 0},
+                            {answer: "ln(2)", response: 5, next_id: 0}],
+                 responses: ["Your response shows it is likely that you have not yet learned about u-substitution integration, or could use some review.",
+                             "You have entered the correct answer, showing proficiency in integration techniques such as u-substitution.",
+                             "This answer is has the correct limits switched, showing that you have learned about integration and u-substitution but need some review.",
+                             "This answer has the indicates correct calculation of the integral but a mistake in signs when computing the definite integral, suggesting that you have learned about integration and u-substitution but need some review.",
+                             "This answer shows some understanding of the u-substitution technique, but you did not correctly take into account the factor of $$1/2$$ when substituting.",
+                             "This answer shows understanding of the u-substitution integration technique, however the integral was evaluated with incorrect limits in terms of $$x$$ instead of $$u$$.",
+                            ]
+                 },
+                 {prompt: "Let $$f(x)= ((2 * x) + 1)$$ and $$g(x)=(x^2)$$. Calculate $$f(g(x))$$.",
+                 answers : [{answer: "((2 * (x^2)) + 1)", response: 1, next_id: 0},
+                            {answer: "(((2 * x) + 1)^2)", response: 2, next_id: 0},
+                           ],
+                 responses: ["Your response shows it is likely that you have not yet learned about composed functions, or could use some review.",
+                             "You have entered the correct answer, showing knowledge of computing composed functions.",
+                             "You have computed $$g(f(x))$$, showing some knowledge of composed functions, but you could use some review."
+                            ]
+                 },
+               ];
+
+    $(document).ready(function(){
+        $("#question-prompt").text(q1[0].prompt);
+        new Guppy("answerbox");
+        let current_question = 1;
+        let next_id;
+        $("button[name='submit_answer']").on('click', function(e){
+            e.preventDefault();
+                let attempt = Guppy("answerbox").asciimath();
+                try {
+                    const parsed_attempt = MathExpression.fromText(attempt);
+                    let matched = q1[0].answers.find(checkAnswer);
+                    function checkAnswer(value, index, array) {
+                        return MathExpression.fromText(attempt).equals(MathExpression.fromText(value.answer));
+                    }
+                    if (typeof matched === "undefined"){
+                        next_id = 0;
+                        $("#feedback").text(q1[0].responses[0]);
+                    } else {
+                        response_index = matched.response;
+                        $("#feedback").text(q1[0].responses[response_index]);
+                        next_id = matched.next_id;
+                    }
+                    current_question = current_question + 1
+                }
+                catch(err){
+                    next_id = 0;
+                    $("#feedback").text(q1[0].responses[0])
+            }
+            $("#question-prompt").text(q2[next_id].prompt);
+            Guppy.render_all("text", "$$", document.getElementById("test"))
+        });
+        $("#start").click(function(){
+            $("#start").remove();
+            $("#instructions").remove();
+            $("#test").attr("class", "d-block");
+        });
+    });
+</script>
+
+{% endif %}
+{% endblock content %}
