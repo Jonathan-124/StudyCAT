@@ -47,22 +47,16 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
-    # Receives Skill object, return user's skill level of the Skill object
-    def get_skill_level(self, skillobj):
-        skillfulness = self.user_skillfulness.get(skill=skillobj)
-        return skillfulness.skill_level
-
     # Receives skill_id, return user's skill level of Skill object with id=skill_id
-    # Perhaps defunct?
-    def get_skill(self, num):
+    def get_skill_level(self, num):
         skillobj = Skill.objects.get(id=num)
         skillfulness = self.user_skillfulness.get(skill=skillobj)
         return skillfulness.skill_level
 
-    # Receives Skill object and n [0, 1], updates user skill proficiency of Skill object to new level
-    def change_skill_level(self, skillobj, n):
+    # Receives skill_id and n [0, 1], updates user skill proficiency of Skill object to new level
+    def change_skill_level(self, skill_id, n):
         newlevel = n
-        skillfulness = self.user_skillfulness.get(skill=skillobj)
+        skillfulness = self.user_skillfulness.get(skill__id=skill_id)
         if newlevel < 0:
             newlevel = 0
         elif newlevel > 1:
@@ -72,12 +66,13 @@ class UserProfile(models.Model):
         setattr(skillfulness, 'skill_level', newlevel)
         skillfulness.save()
 
-    # Receives Skill object, returns int that indicates whether user is ready to learn skill
+    # Receives skill_id, returns int that indicates whether user is ready to learn skill
     # Return 2 (already learned) if user's skill_level for >= 0.5
     # Return 1 (ready to learn) if all skill_level of parent skills >= 0.5
     # Return 0 (not ready to learn) if some skill_level of parent skills < 0.5
     # to un-hardcode threshold!
-    def ready_to_learn_skill(self, skillobj):
+    def ready_to_learn_skill(self, skill_id):
+        skillobj = Skill.objects.get(id=skill_id)
         skillfulness = self.user_skillfulness.get(skill=skillobj)
         if Decimal(skillfulness.skill_level) >= 0.5:
             return 2

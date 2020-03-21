@@ -2,10 +2,11 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import Skill
+from questions.models import Question
 from questions.serializers import QuestionSerializer
 
 
-# Receives get request with kwarg argument 'pk', retrieves random question with skill_id = pk
+# Receives get request with kwarg 'pk', retrieves random question with skill_id = pk
 # Returns response of JSON object containing serialized question (JSON) and user_skill (decimal [0, 1])
 @api_view()
 def skill_based_randomizer(request, *args, **kwargs):
@@ -13,15 +14,14 @@ def skill_based_randomizer(request, *args, **kwargs):
         return Response({"message": "You are not logged in"}, status=status.HTTP_403_FORBIDDEN)
     else:
         user_profile = request.user.profile
-        skill = Skill.objects.get(id=kwargs.get('pk'))
-        user_skill_lvl = user_profile.get_skill_level(skill)
-        random_question = skill.questions.random()
+        user_skill_lvl = user_profile.get_skill_level(kwargs.get('pk'))
+        random_question = Question.objects.filter(skill__id=kwargs.get('pk')).random()
         serialized_question = QuestionSerializer(random_question).data
         return Response({"question": serialized_question,
                          "user_skill": user_skill_lvl})
 
 
-# Receives get request with kwarg argument 'pk', retrieves num random questions with skill_id = pk
+# Receives get request with kwarg 'pk', retrieves num random questions with skill_id = pk
 # Returns response of JSON object containing serialized questions (list length num) and user_skill (decimal [0, 1])
 @api_view()
 def skill_question_pack(request, num=3, *args, **kwargs):
@@ -29,9 +29,8 @@ def skill_question_pack(request, num=3, *args, **kwargs):
         return Response({"message": "You are not logged in"}, status=status.HTTP_403_FORBIDDEN)
     else:
         user_profile = request.user.profile
-        skill = Skill.objects.get(id=kwargs.get('pk'))
-        user_skill_lvl = user_profile.get_skill_level(skill)
-        questions = skill.questions.random_questions(num)
+        user_skill_lvl = user_profile.get_skill_level(kwargs.get('pk'))
+        questions = Question.objects.filter(skill__id=kwargs.get('pk')).random_questions(num)
         pack = []
         for i in questions:
             serialized_question = QuestionSerializer(i).data
@@ -39,7 +38,7 @@ def skill_question_pack(request, num=3, *args, **kwargs):
         return Response({"questions": pack, "user_skill": user_skill_lvl})
 
 
-# Receives get request with kwarg argument 'pk', retrieves one question for each parent skill of skill whose id=pk
+# Receives get request with kwarg 'pk', retrieves one question for each parent skill of skill whose id=pk
 # Returns response of JSON object containing JSON objects of parent skill_ids and serialized questions
 @api_view()
 def parent_skill_question_pack(request, *args, **kwargs):
@@ -56,7 +55,7 @@ def parent_skill_question_pack(request, *args, **kwargs):
         return Response({"questions": pack})
 
 
-# Receives get request with kwarg argument 'pk', retrieves one question for each child skill of skill whose id=pk
+# Receives get request with kwarg 'pk', retrieves one question for each child skill of skill whose id=pk
 # Returns response of JSON object containing JSON objects of child skill_ids and serialized questions
 @api_view()
 def children_skill_question_pack(request, *args, **kwargs):
