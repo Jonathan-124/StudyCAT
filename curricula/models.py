@@ -1,48 +1,49 @@
 from django.db import models
+from units.models import Unit
+from skills.models import Skill
 from django.utils.text import slugify
-from django.contrib.postgres.fields import JSONField
 from django.db.models.signals import m2m_changed
 from django.dispatch import receiver
-from lessons.models import Lesson
+from django.contrib.postgres.fields import JSONField
 import json
 
 
-# Each unit contains lessons related to a broad concept; each lesson may belong to multiple units
-class Unit(models.Model):
-    # name - charfield of name of unit
+# Each Curriculum object contains units related to a broad curriculum; each unit may belong to multiple curricula
+class Curriculum(models.Model):
+    # name - charfield of Curriculum name
     # slug - name uniquely slugified, populated after save() is called
-    # lessons - m2m field of lessons that are related to each unit
-    # start_skills - list of Skill object ids stored in JSON format; these are the root skills of the unit
-    # end_skills - list of Skill object ids stored in JSON format; these are the end-node skills of the unit
+    # units - m2m field of units that are related to each curriculum
+    # start_skills - list of Skill object ids stored in JSON format; these are the root skills of the curriculum
+    # end_skills - list of Skill object ids stored in JSON format; these are the end-node skills of the curriculum
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
-    lessons = models.ManyToManyField(Lesson, related_name='units')
+    units = models.ManyToManyField(Unit, related_name="curricula")
     start_skills = JSONField(blank=True, null=True)
     end_skills = JSONField(blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = 'curricula'
 
     def __str__(self):
         return self.name
 
-    # Populates slug field with slugified unit name after save() is called
+    # Populates slug field with slugified curriculum name after save() is called
     def save(self, *args, **kwargs):
         if not self.id:
             self.slug = slugify(self.name)
-        super(Unit, self).save(*args, **kwargs)
+        super(Curriculum, self).save(*args, **kwargs)
 
 
-# Called when Unit-Lesson m2m relationship added or removed
-# Populates Unit object start_skills and end_skills fields by traversing the DAG
-@receiver(m2m_changed, sender=Unit.lessons.through)
-def lesson_unit_relation_changed(sender, instance, action, reverse, **kwargs):
-    # Acts when signal is in forward direction (instance is Unit obj) and action that caused signal was add/remove
+# Called when Curriculum-Unit m2m relationship added or removed
+'''To also call when unit-lesson m2m relationship changed!'''
+# Populates Curriculum object start_skills and end_skills fields by traversing the DAG
+@receiver(m2m_changed, sender=Curriculum.units.through)
+def curriculum_unit_relation_changed(sender, instance, action, reverse, **kwargs):
+    # Acts when signal is in forward direction (instance is Curricula obj) and action that caused signal was add/remove
     if not reverse and action == "post_add" or "post_remove":
-        # lessons - QuerySet of all lessons in Unit object that sent the signal
-        # skills - list of all Skill objects associated with the lessons
         start_skill_set = set()
         end_skill_set = set()
-        '''See curricula signal on how to dunder query skills'''
-        lessons = instance.lessons.all()
-        skills = list(map(lambda x: x.skill, lessons))
+        skills = Skill.objects.filter(lesson__units__curricula=instance)
         for i in skills:
             # Retrieve parents and children Skill objects for each i in skills object list
             # If i has no parents or if some parents are not in the skills object list, add i.id to start_skill_set
