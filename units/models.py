@@ -4,6 +4,7 @@ from django.contrib.postgres.fields import JSONField
 from django.db.models.signals import m2m_changed
 from django.dispatch import receiver
 from lessons.models import Lesson
+from skills.models import Skill
 import json
 
 
@@ -40,9 +41,7 @@ def lesson_unit_relation_changed(sender, instance, action, reverse, **kwargs):
         # skills - list of all Skill objects associated with the lessons
         start_skill_set = set()
         end_skill_set = set()
-        '''See curricula signal on how to dunder query skills'''
-        lessons = instance.lessons.all()
-        skills = list(map(lambda x: x.skill, lessons))
+        skills = Skill.objects.filter(lesson__units=instance)
         for i in skills:
             # Retrieve parents and children Skill objects for each i in skills object list
             # If i has no parents or if some parents are not in the skills object list, add i.id to start_skill_set
