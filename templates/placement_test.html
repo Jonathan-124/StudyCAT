@@ -1,0 +1,348 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Placement Test{% endblock title %}
+
+{% block content %}
+<p id="question-prompt"></p>
+<div>
+    <div id="answerbox" class="">
+        <div id="inputbox"></div>
+        <br>
+        <button name="submit_answer" class="btn btn-outline-primary">Check Answer</button>
+    </div>
+    <div id="feedback" class="d-none">
+        <p id="feedback-text"></p>
+    </div>
+</div>
+<hr/>
+
+<script>
+    $(document).ready(function(){
+        // KaTeX function to render math elements
+        renderKatex(document.body);
+        function renderKatex(DOM) {
+            renderMathInElement(DOM, {
+            delimiters: [
+                          {left: "$$", right: "$$", display: true},
+                          {left: "\\(", right: "\\)", display: false},
+                          {left: "\\[", right: "\\]", display: true}
+                        ]
+            });
+        }
+
+        // Gets cookie w/ name attribute
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== ''){
+                let cookies = document.cookie.split(';');
+                for (i = 0; i < cookies.length; i++){
+                    let cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')){
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        const csrftoken = getCookie('csrftoken');
+
+        // These HTTP methods do not require CSRF protection
+        function csrfSafeMethod(method) {
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+
+        // Setting up ajax headers to include csrftoken
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+
+        // storing DOM elements for manipulation
+        const prompt = document.getElementById("question-prompt");
+        const answerbox = document.getElementById("answerbox");
+        const inputbox = document.getElementById("inputbox");
+        const feedbackbox = document.getElementById("feedback");
+
+        // Initializing vars
+        // Stage 0: test start_skill_ids of indicated terminal curriculum
+        // Stage 1: test end_skill_ids of indicated terminal curriculum
+        // Stage 2: test potential_incorrect_skill_ids (and parents)
+        // Stage 3: test potential_correct_skill_ids (and children)
+        // Stage 4: test final_check_dds
+        let testing_stage = 0;
+        let currentQ;
+        let potential_incorrect_skill_ids = [];
+        let potential_correct_skill_ids = [];
+        let confirmed_correct_skill_ids = [];
+        let confirmed_incorrect_skill_ids = [];
+
+        // Stage 0 and 1 vars
+        let start_question_pack = [];
+        let end_question_pack = [];
+
+        // Stage 2 and 3 vars
+        let sibling_question_pack = [];
+        let related_skill_id;
+        const parents_pack_url = "http://127.0.0.1:8000/skills/parents-pack/"
+        const children_pack_url = "http://127.0.0.1:8000/skills/children-pack/"
+
+        // Stage 4 vars
+        let final_check_ids = [];
+        const final_check_url = "http://127.0.0.1:8000/skills/random/";
+
+        // Retrieve start and end question packs for user-indicated terminal curriculum
+        // Call tester() to start the testing process
+        $.get("http://127.0.0.1:8000/curricula/placement-test/initial-questions/", function(data, status){
+            start_question_pack = data.start_skills_questions;
+            end_question_pack = data.end_skills_questions;
+            tester();
+        });
+
+        function tester(){
+            switch (testing_stage){
+                case 0:
+                    if (start_question_pack.length > 0){
+                        currentQ = start_question_pack.pop()
+                        presentQuestion();
+                    } else if (potential_incorrect_skill_ids.length > 1) {
+                        // proceed directly to stage 2 if not enough start questions are answered correctly
+                        // to change from length to %
+                        testing_stage = 2;
+                        tester();
+                    } else {
+                        // note that potential lists are cleared if user correctly answers enough questions in stage 0
+                        potential_incorrect_skill_ids = [];
+                        potential_correct_skill_ids = [];
+                        testing_stage = 1;
+                        tester();
+                    }
+                    break;
+                case 1:
+                    if (end_question_pack.length > 0) {
+                        currentQ = end_question_pack.pop()
+                        presentQuestion();
+                    } else {
+                        testing_stage = 2;
+                        tester();
+                    }
+                    break;
+                case 2:
+                    // for id in potential_incorrect_skill_ids, set it as related_skill_id and test its parents
+                    // parent questions are retrieved and stored in sibling_question_pack
+                    // after all parents of related_skill_id tested, set related_skill_id to new id in potential_incorrect_skill_ids
+                    if (potential_incorrect_skill_ids.length > 0 || sibling_question_pack.length > 0){
+                        if (sibling_question_pack.length == 0){
+                            related_skill_id = potential_incorrect_skill_ids.pop();
+                            $.get(parents_pack_url.concat(related_skill_id), function(data, status){
+                                sibling_question_pack = data.questions;
+                                tester()
+                            });
+                        } else {
+                            currentQ = sibling_question_pack.pop();
+                            presentQuestion();
+                        }
+                    // after all potential_incorrect_skill_ids tested, start testing potential_correct_skill_ids
+                    } else {
+                        testing_stage = 3;
+                        tester();
+                    }
+                    break;
+                case 3:
+                    // for id in potential_correct_skill_ids, set it as related_skill_id and test its children
+                    // children questions are retrieved and stored in sibling_question_pack
+                    // after all children of related_skill_id tested, set related_skill_id to new id in potential_correct_skill_ids
+                    if (potential_correct_skill_ids.length > 0 || sibling_question_pack.length > 0){
+                        if (sibling_question_pack.length == 0){
+                            related_skill_id = potential_correct_skill_ids.pop();
+                            $.get(children_pack_url.concat(related_skill_id), function(data, status){
+                                sibling_question_pack = data.questions;
+                                tester();
+                            });
+                        } else {
+                            currentQ = sibling_question_pack.pop();
+                            presentQuestion();
+                        }
+                    } else {
+                        testing_stage = 4;
+                        tester();
+                    }
+                    break;
+                case 4:
+                    // Final tests of skill_ids at user's terminal skill level
+                    // Ajax POST once final checks are done
+                    if (final_check_ids.length > 0){
+                        final_id = final_check_ids.pop();
+                        $.get(final_check_url.concat(final_id), function(data, status){
+                            console.log(data);
+                            currentQ = data;
+                            presentQuestion();
+                        });
+                    } else {
+                        response = {confirmed_correct_skill_ids: confirmed_correct_skill_ids}
+                        $.ajax({
+                            type: "POST",
+                            url: "http://127.0.0.1:8000/profiles/posttest-update/",
+                            data: JSON.stringify(response),
+                            dataType: "json",
+                            contentType: "application/json",
+                            error: function(data){console.log("an error occurred")},
+                            success: function(data){
+                                prompt.innerHTML = "test complete to add redirect"
+                                // call redirect function here
+                            }
+                        });
+                    }
+                    break;
+            }
+        }
+
+        function presentQuestion(){
+            prompt.innerHTML = currentQ.question.question_prompt;
+            renderKatex(prompt);
+            switch (currentQ.question.question_type){
+                case "MC":
+                    // Multiple Choice case
+                    let mc_inputbox = document.createElement("form");
+                    mc_inputbox.setAttribute("id", "mc_inputbox");
+                    inputbox.appendChild(mc_inputbox);
+                    currentQ.question.answers.forEach(answer_iterator);
+
+                    function answer_iterator(value, index, array){
+                        let choicebox = document.createElement("div");
+                        choicebox.setAttribute("class", "custom-control custom-radio");
+
+                        let input = document.createElement("input");
+                        input.setAttribute("type", "radio");
+                        input.setAttribute("id", index);
+                        input.setAttribute("name", "answer_choice");
+                        input.setAttribute("value", value.answer_correctness);
+                        input.setAttribute("class", "custom-control-input");
+                        choicebox.appendChild(input);
+
+                        let label = document.createElement("label");
+                        label.setAttribute("class", "custom-control-label");
+                        label.setAttribute("for", index);
+                        label.innerHTML = value.answer_text;
+                        choicebox.appendChild(label);
+
+                        mc_inputbox.appendChild(choicebox);
+                    }
+                    renderKatex(mc_inputbox);
+                    break;
+                case "NI":
+                    // Numerical Input case
+                    let guppybox = document.createElement("div");
+                    guppybox.setAttribute("id", "guppybox");
+                    inputbox.appendChild(guppybox);
+                    new Guppy("guppybox");
+                    break;
+                default:
+                    $("#inputbox").text("No such question type found.");
+            }
+        }
+
+        // On "submit_answer" button click
+        $("button[name='submit_answer']").on('click', function(e){
+            e.preventDefault();
+            let a_correctness;
+            let q_type = currentQ.question.question_type;
+            // Different ways of retrieving "a_correctness" dependent on question type
+            switch(q_type) {
+                case "MC":
+                    a_correctness = $('input[name="answer_choice"]:checked', '#mc_inputbox').val();
+                    break;
+                case "NI":
+                    let attempt = Guppy("guppybox").asciimath();
+                    symbols_used = Guppy("guppybox").symbols_used()
+                    try {
+                        const parsed_attempt = MathExpression.fromText(attempt);
+                        let matched = currentQ.question.answers.find(checkAnswer);
+                        function checkAnswer(value, index, array) {
+                            return MathExpression.fromText(attempt).equals(MathExpression.fromText(value.answer_text));
+                        }
+                        if (symbols_used.length > 0){
+                            a_correctness = "0";
+                            console.log("used prohibited functions for NI problem");
+                        } else if (typeof matched === "undefined") {
+                            a_correctness = "0";
+                        } else {
+                            a_correctness = matched.answer_correctness;
+                        }
+                    }
+                    catch(err){
+                        $("#feedback").text("Invalid Input");
+                        a_correctness = "0";
+                    }
+                    break;
+            }
+
+            if (a_correctness > 0.8){
+                switch (testing_stage){
+                    case 0:
+                    case 1:
+                        // add skill_id to list of potential correct skills
+                        potential_correct_skill_ids.push(currentQ.skill_id);
+                        break;
+                    case 2:
+                        // add current_skill (skill being tested) to confirmed correct id list
+                        // add related_skill (child skill of skill being tested) to final_check_ids list
+                        confirmed_correct_skill_ids.push(currentQ.skill_id);
+                        final_check_ids.push(related_skill_id);
+                        break;
+                    case 3:
+                        // add related_skill (parent skill of skill being tested) to confirmed correct id list
+                        // add current_skill (skill being tested) to potential_correct_skill_ids
+                        confirmed_correct_skill_ids.push(related_skill_id);
+                        potential_correct_skill_ids.push(currentQ.skill_id);
+                        break;
+                    case 4:
+                        // add current_skill to confirmed_correct_skill_ids
+                        confirmed_correct_skill_ids.push(currentQ.skill_id);
+                        break;
+                }
+            } else {
+                switch (testing_stage) {
+                    case 0:
+                    case 1:
+                        // add skill_id to list of potential incorrect skills
+                        potential_incorrect_skill_ids.push(currentQ.skill_id);
+                        break;
+                    case 2:
+                        // add related_skill (child skill of skill being tested) to confirmed_incorrect_skill_ids
+                        // add current_skill (skill being tested) to potential incorrect id list
+                        confirmed_incorrect_skill_ids.push(related_skill_id);
+                        potential_incorrect_skill_ids.push(currentQ.skill_id);
+                        break;
+                    case 3:
+                        // add current_skill (skill being tested) to confirmed incorrect id list
+                        // add related_skill (parent skill of skill being tested) to final_check_ids list
+                        confirmed_incorrect_skill_ids(currentQ.skill_id);
+                        final_check_ids.push(related_skill_id);
+                        break;
+                    case 4:
+                        // add current_skill to confirmed_incorrect_skill_ids
+                        confirmed_incorrect_skill_ids.push(currentQ.skill_id);
+                        break;
+                }
+            }
+
+            // Remove all DOM children of prompt and inputbox
+            while (prompt.firstChild) {
+                prompt.removeChild(prompt.firstChild);
+            }
+            while (inputbox.firstChild) {
+                inputbox.removeChild(inputbox.firstChild);
+            }
+
+            tester();
+        });
+    });
+</script>
+{% endblock content%}

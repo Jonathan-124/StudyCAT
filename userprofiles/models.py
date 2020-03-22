@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from skills.models import Skill
 from users.models import CustomUser
 from units.models import Unit
-'''from curricula.models import Curriculum'''
+from curricula.models import Curriculum
 from decimal import Decimal
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -16,7 +16,6 @@ class SkillfulnessManager(models.Manager):
         self.filter(user_profile=userprofile)
 
 
-'''To add back currently_studying field after Curriculum app created and to create form'''
 # UserProfile are additional attributes to the user model not used for authentication
 class UserProfile(models.Model):
     # user - one-to-one relationship to CustomUser model
@@ -43,7 +42,7 @@ class UserProfile(models.Model):
     ]
     user_type = models.CharField(max_length=2, choices=USER_TYPES, default=SELF_STUDY)
     skills = models.ManyToManyField(Skill, through='Skillfulness', through_fields=('user_profile', 'skill'))
-    '''currently_studying = models.OneToOneField(Curriculum, on_delete=models.CASCADE, blank=True, null=True)'''
+    currently_studying = models.OneToOneField(Curriculum, on_delete=models.CASCADE, blank=True, null=True)
     test_date = models.DateField(blank=True, null=True)
 
     def __str__(self):

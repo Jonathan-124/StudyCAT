@@ -116,7 +116,7 @@
                     let mc_inputbox = document.createElement("form");
                     mc_inputbox.setAttribute("id", "mc_inputbox");
                     inputbox.appendChild(mc_inputbox);
-                    q.answers.forEach(answer_iterator);
+                    q.question.answers.forEach(answer_iterator);
 
                     function answer_iterator(value, index, array){
                         let choicebox = document.createElement("div");
@@ -207,7 +207,7 @@
                     symbols_used = Guppy("guppybox").symbols_used()
                     try {
                         const parsed_attempt = MathExpression.fromText(attempt);
-                        let matched = currentQ.answers.find(checkAnswer);
+                        let matched = currentQ.question.answers.find(checkAnswer);
                         function checkAnswer(value, index, array) {
                             return MathExpression.fromText(attempt).equals(MathExpression.fromText(value.answer_text));
                         }
