@@ -1,0 +1,257 @@
+{% extends 'base.html' %}
+
+
+{% block title %}{{ lesson.lesson_title}} Test{% endblock title %}
+
+{% block content %}
+    <p id="question-prompt"></p>
+    <div>
+        <div id="answerbox" class="">
+            <div id="inputbox"></div>
+            <br>
+            <button name="submit_answer" type="submit" class="btn btn-outline-primary d-none">Check Answer</button>
+        </div>
+        <div id="feedback" class="d-none">
+            <p id="feedback-text"></p>
+            <button id="next" class="btn btn-outline-primary">Next</button>
+        </div>
+    </div>
+    <hr/>
+
+    <script>
+    $(document).ready(function(){
+        // KaTeX function to render math elements
+        renderKatex(document.body);
+        function renderKatex(DOM) {
+            renderMathInElement(DOM, {
+            delimiters: [
+                          {left: "$$", right: "$$", display: true},
+                          {left: "\\(", right: "\\)", display: false},
+                          {left: "\\[", right: "\\]", display: true}
+                        ]
+            });
+        }
+
+        // Gets cookie w/ name attribute
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== ''){
+                let cookies = document.cookie.split(';');
+                for (i = 0; i < cookies.length; i++){
+                    let cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')){
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        const csrftoken = getCookie('csrftoken');
+
+        // These HTTP methods do not require CSRF protection
+        function csrfSafeMethod(method) {
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+
+        // Setting up ajax headers to include csrftoken
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+
+        // URLs - to un-hardcode in the future
+        const get_question_pack = "http://127.0.0.1:8000/skills/random-pack/{{ lesson.skill.pk }}/"
+        const skill_level_update_url = "http://127.0.0.1:8000/skills/update/{{ lesson.skill.pk }}/"
+
+        // storing DOM elements for manipulation
+        const prompt = document.getElementById("question-prompt");
+        const answerbox = document.getElementById("answerbox");
+        const inputbox = document.getElementById("inputbox");
+        const feedbackbox = document.getElementById("feedback");
+
+        // Initializing variables related to questions and data
+        let user_skill_level;
+        let question_pack_data;
+        let currentQ;
+        let data_list = [];
+
+        // Retrieves user proficiency data; stores user skill and question data
+        $.get(get_question_pack, function(data, status){
+            user_skill_level = data.user_skill;
+            question_pack_data = data.questions;
+            console.log(user_skill_level);
+            console.log(question_pack_data);
+            tester(question_pack_data);
+        });
+
+        // Top level function that starts the testing process
+        function tester(question_pack) {
+            if (question_pack.length > 0) {
+                // sets currentQ to the next question in question_pack_data list; calls presentQuestion
+                currentQ = question_pack.pop()
+                presentQuestion(currentQ);
+            } else {
+                // if no more questions to test, display success msg; calls sendResponseData
+                prompt.innerHTML = "Congrats! You have completed the lesson.";
+                sendResponseData(data_list);
+                console.log(data_list);
+            }
+        }
+
+        // Takes currentQ obj, changes DOM to present the question
+        function presentQuestion(q) {
+            // displays question prompt text
+            prompt.innerHTML = q.question.question_prompt;
+            renderKatex(prompt);
+
+            switch (q.question.question_type){
+                case "MC":
+                    // Multiple Choice case
+                    let mc_inputbox = document.createElement("form");
+                    mc_inputbox.setAttribute("id", "mc_inputbox");
+                    inputbox.appendChild(mc_inputbox);
+                    q.answers.forEach(answer_iterator);
+
+                    function answer_iterator(value, index, array){
+                        let choicebox = document.createElement("div");
+                        choicebox.setAttribute("class", "custom-control custom-radio");
+
+                        let input = document.createElement("input");
+                        input.setAttribute("type", "radio");
+                        input.setAttribute("id", index);
+                        input.setAttribute("name", "answer_choice");
+                        input.setAttribute("value", value.answer_correctness);
+                        input.setAttribute("class", "custom-control-input");
+                        choicebox.appendChild(input);
+
+                        let label = document.createElement("label");
+                        label.setAttribute("class", "custom-control-label");
+                        label.setAttribute("for", index);
+                        label.innerHTML = value.answer_text;
+                        choicebox.appendChild(label);
+
+                        mc_inputbox.appendChild(choicebox);
+                    }
+                    renderKatex(mc_inputbox);
+                    break;
+                case "NI":
+                    // Numerical Input case
+                    let guppybox = document.createElement("div");
+                    guppybox.setAttribute("id", "guppybox");
+                    inputbox.appendChild(guppybox);
+                    new Guppy("guppybox");
+                    break;
+                default:
+                    $("#inputbox").text("No such question type found.");
+            }
+            // Displays "submit answer" button
+            $("button[name='submit_answer']").attr("class", "btn btn-outline-primary");
+        }
+
+        // Sends list as AJAX post response
+        function sendResponseData(list){
+            for (i of list) {
+                q_difficulty = i.q_difficulty;
+                a_correctness = i.a_correctness;
+                delta = q_difficulty * (a_correctness - 0.5);
+                user_skill_level += delta;
+            }
+            if (user_skill_level < 0){
+                user_skill_level = 0;
+            } else if (user_skill_level > 1) {
+                user_skill_level = 1;
+            } else {
+                // pass
+            }
+            response = {new_skill_level: user_skill_level}
+            $.ajax({
+                type: "POST",
+                // To create new url api for this bulk send in backend
+                url: skill_level_update_url,
+                data: JSON.stringify(response),
+                dataType: "json",
+                contentType: "application/json",
+                error: function(data){console.log("an error occurred")},
+                success: function(data){
+                    // call some success function here
+                }
+            });
+        }
+
+        // On "submit_answer" button click
+        $("button[name='submit_answer']").on('click', function(e){
+            e.preventDefault();
+
+            // Hides "submit answer" button
+            $("button[name='submit_answer']").attr("class", "btn btn-outline-primary d-none");
+
+            // Initializes variables to be appended to response
+            let q_id = currentQ.question.id;
+            let q_type = currentQ.question.question_type;
+            let q_difficulty = currentQ.question.difficulty;
+            let a_correctness;
+
+            // Different ways of retrieving "a_correctness" dependent on question type
+            switch(q_type) {
+                case "MC":
+                    a_correctness = $('input[name="answer_choice"]:checked', '#mc_inputbox').val();
+                    break;
+                case "NI":
+                    let attempt = Guppy("guppybox").asciimath();
+                    symbols_used = Guppy("guppybox").symbols_used()
+                    try {
+                        const parsed_attempt = MathExpression.fromText(attempt);
+                        let matched = currentQ.answers.find(checkAnswer);
+                        function checkAnswer(value, index, array) {
+                            return MathExpression.fromText(attempt).equals(MathExpression.fromText(value.answer_text));
+                        }
+                        if (symbols_used.length > 0){
+                            a_correctness = "0";
+                            console.log("used prohibited functions for NI problem");
+                        } else if (typeof matched === "undefined") {
+                            a_correctness = "0";
+                        } else {
+                            a_correctness = matched.answer_correctness;
+                        }
+                    }
+                    catch(err){
+                        $("#feedback").text("Invalid Input");
+                        a_correctness = "0";
+                    }
+                    break;
+            }
+            // Aggregates data, appends everything to data_list
+            let data = {};
+            data.q_id = q_id;
+            data.q_type = q_type;
+            data.q_difficulty = q_difficulty;
+            data.a_correctness = a_correctness;
+            data_list.push(data);
+
+            // Note: to add feedback text implementation in the future
+            feedbackbox.setAttribute("class", "");
+        });
+
+        // On clicking "next" button, kills DOM nodes,calls tester()
+        $("#next").on('click', function(e){
+            e.preventDefault();
+            // to kill all children in feedbackbox
+            feedbackbox.setAttribute("class", "d-none");
+            // Removing children from question-prompt and inputbox DOM
+            while (prompt.firstChild) {
+                prompt.removeChild(prompt.firstChild);
+            }
+            while (inputbox.firstChild) {
+                inputbox.removeChild(inputbox.firstChild);
+            }
+            tester(question_pack_data);
+        });
+    });
+    </script>
+{% endblock content %}

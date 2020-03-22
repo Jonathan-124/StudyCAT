@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ lesson.lesson_title }}{% endblock title %}
+
+{% block content %}
+
+<h2>{{ lesson.lesson_title }}</h2>
+
+{% include lesson.html_filename %}
+
+<br>
+<p>Take the <a href="{% url 'exit-test' lesson.slug %}">exit test</a> to see if you learned all the concepts and save your progress!</p>
+
+<script>
+$(document).ready(function(){
+    function renderKatex(DOM) {
+        renderMathInElement(DOM, {
+        delimiters: [
+                      {left: "$$", right: "$$", display: true},
+                      {left: "\\(", right: "\\)", display: false},
+                      {left: "\\[", right: "\\]", display: true}
+                    ]
+        });
+    }
+
+    renderKatex(document.body);
+});
+</script>
+{% endblock content %}
