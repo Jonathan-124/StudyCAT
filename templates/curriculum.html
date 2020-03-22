@@ -16,7 +16,48 @@
 <div id="not-yet-ready">
     <h5>In the future I will learn about...</h5>
 </div>
+
 <script>
-    // To add JS here... see unit.html template!
+$(document).ready(function(){
+    const curriculum_readiness_url = "http://127.0.0.1:8000/curricula/readiness/{{ curriculum.id }}/";
+    const units_url = "http://127.0.0.1:8000/units/"
+    let learned =  document.getElementById("learned");
+    let ready_to_learn =  document.getElementById("ready-to-learn");
+    let not_yet_ready =  document.getElementById("not-yet-ready");
+
+    // Retrieve user readiness status for each lesson in the unit
+    // Append lesson url to one of the three respective divs depending on user readiness status
+    $.get(curriculum_readiness_url, function(data, status){
+        console.log(data);
+        data.units_readiness.forEach(statusIterator);
+        function statusIterator(value, index, array){
+            let linebreak = document.createElement("br");
+            let unit_slug = value.unit_slug;
+            let unit_name = value.unit_name
+            let readiness = value.readiness;
+            let unit_link = document.createElement("a");
+            unit_link.setAttribute("id", unit_slug);
+            unit_link.setAttribute("href", units_url.concat(unit_slug));
+            unit_link.innerHTML = unit_name;
+            switch (readiness) {
+                case 0:
+                    lesson_link.setAttribute("class", "text-muted");
+                    not_yet_ready.appendChild(unit_link);
+                    not_yet_ready.appendChild(linebreak);
+                    break;
+                case 1:
+                    lesson_link.setAttribute("class", "text-warning");
+                    ready_to_learn.appendChild(unit_link);
+                    ready_to_learn.appendChild(linebreak);
+                    break;
+                case 2:
+                    lesson_link.setAttribute("class", "text-primary");
+                    learned.appendChild(unit_link);
+                    learned.appendChild(linebreak);
+                    break;
+            }
+        }
+    });
+});
 </script>
 {% endblock content %}

@@ -7,6 +7,7 @@ from curricula.models import Curriculum
 from decimal import Decimal
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+import json
 
 
 # Additional manager methods for Skillfulness model QuerySets
@@ -109,6 +110,27 @@ class UserProfile(models.Model):
                     readiness = 1
             data.append({"lesson_slug": skill.lesson.slug, "lesson_title": skill.lesson.name, "readiness": readiness})
         return data
+
+    # Receives curriculum id, returns list of dicts of unit slug, name, and user readiness for all units in curriculum
+    def ready_to_learn_curriculum_units(self, curriculum_id):
+        data = []
+        units = Curriculum.objects.get(id=curriculum_id).units.all()
+        for unit in units:
+            readiness = 0
+            start_skill_id_list = json.loads(unit.start_skills)
+            start_status = min(set(map(self.ready_to_learn_skill, start_skill_id_list)))
+            if start_status == 0:
+                pass
+            else:
+                end_skill_id_list = json.loads(unit.end_skills)
+                end_status = min(set(map(self.ready_to_learn_skill, end_skill_id_list)))
+                if end_status == 2:
+                    readiness = 2
+                else:
+                    readiness = 1
+            data.append({"unit_slug": unit.slug, "unit_name": unit.name, "readiness": readiness})
+        return data
+
 
 # Creates UserProfile object when CustomUser is created
 @receiver(post_save, sender=CustomUser, dispatch_uid='create_user_profile')
