@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ unit.name }}{% endblock title %}
+
+{% block content %}
+
+<h2>{{ unit.name }}</h2>
+<br>
+<div id="learned">
+    <h5>I have already learned about...</h5>
+</div>
+<br>
+<div id="ready-to-learn">
+    <h5>I can now learn about...</h5>
+</div>
+<br>
+<div id="not-yet-ready">
+    <h5>In the future I will learn about...</h5>
+</div>
+
+<script>
+$(document).ready(function(){
+    const unit_readiness_url = "http://127.0.0.1:8000/units/readiness/{{ unit.id }}/";
+    const lessons_url = "http://127.0.0.1:8000/lessons/"
+    let learned =  document.getElementById("learned");
+    let ready_to_learn =  document.getElementById("ready-to-learn");
+    let not_yet_ready =  document.getElementById("not-yet-ready");
+
+    // Retrieve user readiness status for each lesson in the unit
+    // Append lesson url to one of the three respective divs depending on user readiness status
+    $.get(unit_readiness_url, function(data, status){
+        console.log(data);
+        data.lessons_readiness.forEach(statusIterator);
+        function statusIterator(value, index, array){
+            let linebreak = document.createElement("br");
+            let lesson_slug = value.lesson_slug;
+            let lesson_title = value.lesson_title
+            let readiness = value.readiness;
+            let lesson_link = document.createElement("a");
+            lesson_link.setAttribute("id", lesson_slug);
+            lesson_link.setAttribute("href", lessons_url.concat(lesson_slug));
+            lesson_link.innerHTML = lesson_title;
+            switch (readiness) {
+                case 0:
+                    lesson_link.setAttribute("class", "text-muted");
+                    not_yet_ready.appendChild(lesson_link);
+                    not_yet_ready.appendChild(linebreak);
+                    break;
+                case 1:
+                    lesson_link.setAttribute("class", "text-warning");
+                    ready_to_learn.appendChild(lesson_link);
+                    ready_to_learn.appendChild(linebreak);
+                    break;
+                case 2:
+                    lesson_link.setAttribute("class", "text-primary");
+                    learned.appendChild(lesson_link);
+                    learned.appendChild(linebreak);
+                    break;
+            }
+        }
+    });
+});
+</script>
+
+{% endblock content %}
+

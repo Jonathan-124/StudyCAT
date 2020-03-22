@@ -2,17 +2,18 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from skills.models import Skill
 from users.models import CustomUser
+from units.models import Unit
 '''from curricula.models import Curriculum'''
 from decimal import Decimal
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-USER_TYPES = [
-    ('CS', 'Current Student'),
-    ('CR', 'Career Related'),
-    ('MI', 'Mathematics Instructor'),
-    ('SS', 'Self Study'),
-]
+
+# Additional manager methods for Skillfulness model QuerySets
+class SkillfulnessManager(models.Manager):
+    # Receives userprofile object and list of skill_ids, returns user readiness to learn each skill in list
+    def unit_readiness(self, userprofile, skill_id_list):
+        self.filter(user_profile=userprofile)
 
 
 '''To add back currently_studying field after Curriculum app created and to create form'''
@@ -33,6 +34,7 @@ class UserProfile(models.Model):
     CAREER_RELATED = 'CR'
     MATHEMATICS_INSTRUCTOR = 'MI'
     SELF_STUDY = 'SS'
+
     USER_TYPES = [
         (CURRENT_STUDENT, 'Current Student'),
         (CAREER_RELATED, 'Career Related'),
@@ -86,6 +88,28 @@ class UserProfile(models.Model):
                 return 0
             else:
                 return 1
+
+    # Receives unit id, returns list of dicts of lesson slug, name, and user readiness for all lessons in unit
+    def ready_to_learn_unit_lessons(self, unit_id):
+        data = []
+        skills = Unit.objects.get(id=unit_id).lessons.select_related('skill').all()
+        for skill in skills:
+            skillfulness = self.user_skillfulness.get(skill=skill)
+            readiness = 0
+            if Decimal(skillfulness.skill_level) >= 0.5:
+                readiness = 2
+            else:
+                parent_skills = skill.get_parent_skills()
+                incomplete = list(
+                    filter(lambda x: (x.user_skillfulness.get(user_profile=self.user_profile).skill_level < 0.5),
+                           parent_skills)
+                )
+                if incomplete:
+                    pass
+                else:
+                    readiness = 1
+            data.append({"lesson_slug": skill.lesson.slug, "lesson_title": skill.lesson.name, "readiness": readiness})
+        return data
 
 # Creates UserProfile object when CustomUser is created
 @receiver(post_save, sender=CustomUser, dispatch_uid='create_user_profile')
