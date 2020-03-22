@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ curriculum.name }}{% endblock title %}
+
+{% block content %}
+<h2>{{ unit.name }}</h2>
+<br>
+<div id="learned">
+    <h5>I have already learned about...</h5>
+</div>
+<br>
+<div id="ready-to-learn">
+    <h5>I can now learn about...</h5>
+</div>
+<br>
+<div id="not-yet-ready">
+    <h5>In the future I will learn about...</h5>
+</div>
+<script>
+    // To add JS here... see unit.html template!
+</script>
+{% endblock content %}
