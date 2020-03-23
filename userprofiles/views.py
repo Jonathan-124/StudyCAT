@@ -2,8 +2,9 @@ from rest_framework import status
 from rest_framework.decorators import api_view, parser_classes
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
-from .forms import UserProfilePretestForm
 from django.views.generic.edit import FormView
+from django.urls import reverse_lazy
+from .forms import UserProfilePretestForm
 from .models import Skillfulness
 from skills.models import Skill
 
@@ -11,7 +12,7 @@ from skills.models import Skill
 class PretestFormView(FormView):
     template_name = 'pretest_questionnaire.html'
     form_class = UserProfilePretestForm
-    success_url = '/home/'
+    success_url = reverse_lazy('placement')
 
 
 # Receives get request with kwarg pk and returns JSON response of user's skill_level of skill with id=pk
