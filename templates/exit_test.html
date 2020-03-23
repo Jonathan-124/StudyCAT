@@ -66,8 +66,8 @@
         });
 
         // URLs - to un-hardcode in the future
-        const get_question_pack = "http://127.0.0.1:8000/skills/random-pack/{{ lesson.skill.pk }}/"
-        const skill_level_update_url = "http://127.0.0.1:8000/skills/update/{{ lesson.skill.pk }}/"
+        const get_question_pack = "{% url 'skill_question_pack' lesson.skill.pk %}";
+        const skill_level_update_url = "{% url 'update_skill_level' lesson.skill.pk %}";
 
         // storing DOM elements for manipulation
         const prompt = document.getElementById("question-prompt");

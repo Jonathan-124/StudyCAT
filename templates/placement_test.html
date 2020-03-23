@@ -90,16 +90,16 @@
         // Stage 2 and 3 vars
         let sibling_question_pack = [];
         let related_skill_id;
-        const parents_pack_url = "http://127.0.0.1:8000/skills/parents-pack/"
-        const children_pack_url = "http://127.0.0.1:8000/skills/children-pack/"
+        const parents_pack_url = "{% url 'parent_skill_question_pack' %}";
+        const children_pack_url = "{% url 'children_skill_question_pack' %}";
 
         // Stage 4 vars
         let final_check_ids = [];
-        const final_check_url = "http://127.0.0.1:8000/skills/random/";
+        const final_check_url = "{% url 'skill_based_randomizer' %}";
 
         // Retrieve start and end question packs for user-indicated terminal curriculum
         // Call tester() to start the testing process
-        $.get("http://127.0.0.1:8000/curricula/placement-test/initial-questions/", function(data, status){
+        $.get("{% url 'placement_initial_questions' %}", function(data, status){
             start_question_pack = data.start_skills_questions;
             end_question_pack = data.end_skills_questions;
             tester();
@@ -188,7 +188,7 @@
                         response = {confirmed_correct_skill_ids: confirmed_correct_skill_ids}
                         $.ajax({
                             type: "POST",
-                            url: "http://127.0.0.1:8000/profiles/posttest-update/",
+                            url: "{% url 'posttest_update' %}",
                             data: JSON.stringify(response),
                             dataType: "json",
                             contentType: "application/json",

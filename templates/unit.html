@@ -20,8 +20,8 @@
 
 <script>
 $(document).ready(function(){
-    const unit_readiness_url = "http://127.0.0.1:8000/units/readiness/{{ unit.id }}/";
-    const lessons_url = "http://127.0.0.1:8000/lessons/"
+    const unit_readiness_url = "{% url 'unit_readiness' unit.id %}";
+    const lessons_url = "{% url 'lessons' %}";
     let learned =  document.getElementById("learned");
     let ready_to_learn =  document.getElementById("ready-to-learn");
     let not_yet_ready =  document.getElementById("not-yet-ready");

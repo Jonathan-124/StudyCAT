@@ -2,17 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4f20b07-5da7-447c-bce7-dc551de39b8d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/curricula/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/curricula/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/curricula/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/curricula/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/questions/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/questions/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/questions/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/questions/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/skills/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/skills/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/skills/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/skills/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/curricula/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/curricula/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/skills/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/skills/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/studycat/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/studycat/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/curriculum.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curriculum.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/units/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/units/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userprofiles/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/userprofiles/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userprofiles/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/userprofiles/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/exit_test.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/exit_test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/lesson.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/lesson.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/placement_test.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/placement_test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/unit.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/unit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/units/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/units/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userprofiles/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/userprofiles/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,44 +21,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/questions/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="29" column="29" lean-forward="true" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/skills/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="68" column="33" lean-forward="true" selection-start-line="68" selection-start-column="33" selection-end-line="68" selection-end-column="33" />
-              <folding>
-                <element signature="e#0#33#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/curricula/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="55" lean-forward="true" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -83,6 +46,9 @@
       <find>answers</find>
       <find>initial</find>
       <find>lesson</find>
+      <find>url</find>
+      <find>parents_pac</find>
+      <find>127</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -105,40 +71,40 @@
         <option value="$PROJECT_DIR$/curricula/models.py" />
         <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/questions/serializers.py" />
-        <option value="$PROJECT_DIR$/skills/urls.py" />
         <option value="$PROJECT_DIR$/userprofiles/forms.py" />
         <option value="$PROJECT_DIR$/userprofiles/views.py" />
         <option value="$PROJECT_DIR$/studycat/settings.py" />
         <option value="$PROJECT_DIR$/lessons/views.py" />
-        <option value="$PROJECT_DIR$/lessons/urls.py" />
-        <option value="$PROJECT_DIR$/templates/lesson.html" />
         <option value="$PROJECT_DIR$/units/models.py" />
         <option value="$PROJECT_DIR$/units/views.py" />
-        <option value="$PROJECT_DIR$/units/urls.py" />
-        <option value="$PROJECT_DIR$/templates/unit.html" />
-        <option value="$PROJECT_DIR$/studycat/urls.py" />
-        <option value="$PROJECT_DIR$/userprofiles/urls.py" />
         <option value="$PROJECT_DIR$/pages/views.py" />
         <option value="$PROJECT_DIR$/pages/urls.py" />
-        <option value="$PROJECT_DIR$/templates/placement_test.html" />
-        <option value="$PROJECT_DIR$/templates/exit_test.html" />
-        <option value="$PROJECT_DIR$/curricula/urls.py" />
         <option value="$PROJECT_DIR$/templates/home.html" />
         <option value="$PROJECT_DIR$/skills/admin.py" />
         <option value="$PROJECT_DIR$/userprofiles/admin.py" />
         <option value="$PROJECT_DIR$/units/admin.py" />
         <option value="$PROJECT_DIR$/curricula/admin.py" />
         <option value="$PROJECT_DIR$/questions/admin.py" />
-        <option value="$PROJECT_DIR$/templates/curriculum.html" />
         <option value="$PROJECT_DIR$/userprofiles/models.py" />
         <option value="$PROJECT_DIR$/questions/models.py" />
         <option value="$PROJECT_DIR$/skills/views.py" />
         <option value="$PROJECT_DIR$/curricula/views.py" />
+        <option value="$PROJECT_DIR$/skills/urls.py" />
+        <option value="$PROJECT_DIR$/units/urls.py" />
+        <option value="$PROJECT_DIR$/templates/exit_test.html" />
+        <option value="$PROJECT_DIR$/templates/unit.html" />
+        <option value="$PROJECT_DIR$/templates/curriculum.html" />
+        <option value="$PROJECT_DIR$/studycat/urls.py" />
+        <option value="$PROJECT_DIR$/templates/lesson.html" />
+        <option value="$PROJECT_DIR$/lessons/urls.py" />
+        <option value="$PROJECT_DIR$/curricula/urls.py" />
+        <option value="$PROJECT_DIR$/userprofiles/urls.py" />
+        <option value="$PROJECT_DIR$/templates/placement_test.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="86" />
+    <option name="x" value="154" />
     <option name="y" value="33" />
     <option name="width" value="1389" />
     <option name="height" value="968" />
@@ -159,7 +125,27 @@
             <path>
               <item name="studycat" type="b2602c69:ProjectViewProjectNode" />
               <item name="studycat" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="curricula" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="studycat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="studycat" type="462c0819:PsiDirectoryNode" />
+              <item name="skills" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="studycat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="studycat" type="462c0819:PsiDirectoryNode" />
+              <item name="studycat" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="studycat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="studycat" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="studycat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="studycat" type="462c0819:PsiDirectoryNode" />
+              <item name="units" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -203,8 +189,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="86" y="33" width="1389" height="968" extended-state="0" />
-    <editor active="true" />
+    <frame x="154" y="33" width="1389" height="968" extended-state="0" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24981189" />
@@ -348,23 +333,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lessons/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="65" selection-start-line="5" selection-start-column="65" selection-end-line="5" selection-end-column="65" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/lesson.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="59" lean-forward="true" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/studycat/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1360">
@@ -379,90 +347,6 @@
           <folding>
             <element signature="e#0#34#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/pretest_questionnaire.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/skills/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="10" lean-forward="true" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/studycat/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-          <folding>
-            <element signature="e#632#664#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/exit_test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-281">
-          <caret line="117" column="47" lean-forward="true" selection-start-line="117" selection-start-column="47" selection-end-line="117" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userprofiles/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/curricula/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/placement_test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/units/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="6" selection-end-column="55" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/unit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="21" selection-start-line="21" selection-end-line="61" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -556,20 +440,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/curriculum.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="53" column="29" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/userprofiles/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-454">
@@ -617,19 +487,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/questions/models.py">
+    <entry file="file://$PROJECT_DIR$/curricula/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="29" column="29" lean-forward="true" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+        <state relative-caret-position="272">
+          <caret line="16" column="11" lean-forward="true" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/skills/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
+        <state relative-caret-position="606">
           <caret line="68" column="33" lean-forward="true" selection-start-line="68" selection-start-column="33" selection-end-line="68" selection-end-column="33" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
@@ -637,12 +507,127 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/curricula/views.py">
+    <entry file="file://$PROJECT_DIR$/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="55" lean-forward="true" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
+        <state relative-caret-position="-153">
+          <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/units/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="76" selection-start-line="6" selection-start-column="62" selection-end-line="6" selection-end-column="76" />
           <folding>
-            <element signature="e#0#43#0" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/exit_test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="69" column="88" selection-start-line="69" selection-start-column="88" selection-end-line="69" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/unit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/studycat/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="53" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="53" />
+          <folding>
+            <element signature="e#632#664#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/pretest_questionnaire.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/curriculum.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="36" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/lesson.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lessons/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="65" selection-start-line="5" selection-start-column="65" selection-end-line="5" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/curricula/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="116" selection-start-line="6" selection-start-column="89" selection-end-line="6" selection-end-column="116" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skills/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="81" selection-start-line="4" selection-start-column="59" selection-end-line="4" selection-end-column="81" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/placement_test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2063">
+          <caret line="188" column="32" lean-forward="true" selection-start-line="188" selection-start-column="32" selection-end-line="188" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/userprofiles/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="78" selection-start-line="5" selection-start-column="63" selection-end-line="5" selection-end-column="78" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/questions/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-221">
+          <caret line="11" column="22" lean-forward="true" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
