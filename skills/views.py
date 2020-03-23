@@ -13,9 +13,10 @@ def skill_based_randomizer(request, *args, **kwargs):
     if request.user.is_anonymous:
         return Response({"message": "You are not logged in"}, status=status.HTTP_403_FORBIDDEN)
     else:
+        skill_id = kwargs.get('pk')
         user_profile = request.user.profile
-        user_skill_lvl = user_profile.get_skill_level(kwargs.get('pk'))
-        random_question = Question.objects.filter(skill__id=kwargs.get('pk')).random()
+        user_skill_lvl = user_profile.get_skill_level(skill_id)
+        random_question = Question.objects.random(skill_id)
         serialized_question = QuestionSerializer(random_question).data
         return Response({"question": serialized_question,
                          "user_skill": user_skill_lvl})
@@ -28,9 +29,10 @@ def skill_question_pack(request, num=3, *args, **kwargs):
     if request.user.is_anonymous:
         return Response({"message": "You are not logged in"}, status=status.HTTP_403_FORBIDDEN)
     else:
+        skill_id = kwargs.get('pk')
         user_profile = request.user.profile
-        user_skill_lvl = user_profile.get_skill_level(kwargs.get('pk'))
-        questions = Question.objects.filter(skill__id=kwargs.get('pk')).random_questions(num)
+        user_skill_lvl = user_profile.get_skill_level(skill_id)
+        questions = Question.objects.random_questions(skill_id, num)
         pack = []
         for i in questions:
             serialized_question = QuestionSerializer(i).data
@@ -49,7 +51,7 @@ def parent_skill_question_pack(request, *args, **kwargs):
         pack = []
         for i in parent_skills:
             skill_id = i.id
-            question = i.questions.random()
+            question = i.questions.random(skill_id)
             serialized_question = QuestionSerializer(question).data
             pack.append({"skill_id": skill_id, "question": serialized_question})
         return Response({"questions": pack})
@@ -66,7 +68,7 @@ def children_skill_question_pack(request, *args, **kwargs):
         pack = []
         for i in children_skills:
             skill_id = i.id
-            question = i.questions.random()
+            question = i.questions.random(skill_id)
             serialized_question = QuestionSerializer(question).data
             pack.append({"skill_id": skill_id, "question": serialized_question})
         return Response({"questions": pack})

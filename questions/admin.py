@@ -8,6 +8,7 @@ class AnswerInline(admin.TabularInline):
 
 
 class QuestionAdmin(admin.ModelAdmin):
+    readonly_fields = ['pseudochance', 'discrimination']
     inlines = [
         AnswerInline,
     ]

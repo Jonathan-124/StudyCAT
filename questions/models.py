@@ -15,19 +15,21 @@ class Image(models.Model):
 
 # Additional manager methods for Question model QuerySets
 class QuestionManager(models.Manager):
-    # Retrieves random question from QuerySet
-    def random(self):
-        count = self.aggregate(count=Count('id'))['count']
+    # Retrieves random question related to skill with skill_id
+    def random(self, skill_id):
+        queryset = self.filter(skill__id=skill_id)
+        count = queryset.aggregate(count=Count('id'))['count']
         random_index = randint(0, count - 1)
-        return self.all()[random_index]
+        return queryset.all()[random_index]
 
-    # Retrieves num random questions from QuerySet
-    def random_questions(self, num):
-        count = self.aggregate(count=Count('id'))['count']
+    # Retrieves num random questions related to skill with skill_id
+    def random_questions(self, skill_id, num):
+        queryset = self.filter(skill__id=skill_id)
+        count = queryset.aggregate(count=Count('id'))['count']
         random_index_list = sample(range(0, count), num)
         random_questions = []
         for i in random_index_list:
-            random_questions.append(self.all()[i])
+            random_questions.append(queryset.all()[i])
         return random_questions
 
 

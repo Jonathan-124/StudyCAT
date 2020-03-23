@@ -81,7 +81,7 @@ class UserProfile(models.Model):
         else:
             parent_skills = skillobj.get_parent_skills()
             incomplete = list(
-                filter(lambda x: (x.user_skillfulness.get(user_profile=self.user_profile).skill_level < 0.5),
+                filter(lambda x: (x.user_skillfulness.get(user_profile=self).skill_level < 0.5),
                        parent_skills)
             )
             if incomplete:
@@ -92,8 +92,9 @@ class UserProfile(models.Model):
     # Receives unit id, returns list of dicts of lesson slug, name, and user readiness for all lessons in unit
     def ready_to_learn_unit_lessons(self, unit_id):
         data = []
-        skills = Unit.objects.get(id=unit_id).lessons.select_related('skill').all()
-        for skill in skills:
+        lessons = Unit.objects.get(id=unit_id).lessons.select_related('skill').all()
+        for lesson in lessons:
+            skill = lesson.skill
             skillfulness = self.user_skillfulness.get(skill=skill)
             readiness = 0
             if Decimal(skillfulness.skill_level) >= 0.5:
@@ -101,14 +102,14 @@ class UserProfile(models.Model):
             else:
                 parent_skills = skill.get_parent_skills()
                 incomplete = list(
-                    filter(lambda x: (x.user_skillfulness.get(user_profile=self.user_profile).skill_level < 0.5),
+                    filter(lambda x: (x.user_skillfulness.get(user_profile=self).skill_level < 0.5),
                            parent_skills)
                 )
                 if incomplete:
                     pass
                 else:
                     readiness = 1
-            data.append({"lesson_slug": skill.lesson.slug, "lesson_title": skill.lesson.name, "readiness": readiness})
+            data.append({"lesson_slug": lesson.slug, "lesson_title": lesson.lesson_title, "readiness": readiness})
         return data
 
     # Receives curriculum id, returns list of dicts of unit slug, name, and user readiness for all units in curriculum
@@ -117,12 +118,12 @@ class UserProfile(models.Model):
         units = Curriculum.objects.get(id=curriculum_id).units.all()
         for unit in units:
             readiness = 0
-            start_skill_id_list = json.loads(unit.start_skills)
+            start_skill_id_list = json.loads(unit.start_skills)['skill_id_list']
             start_status = min(set(map(self.ready_to_learn_skill, start_skill_id_list)))
             if start_status == 0:
                 pass
             else:
-                end_skill_id_list = json.loads(unit.end_skills)
+                end_skill_id_list = json.loads(unit.end_skills)['skill_id_list']
                 end_status = min(set(map(self.ready_to_learn_skill, end_skill_id_list)))
                 if end_status == 2:
                     readiness = 2

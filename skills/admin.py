@@ -12,11 +12,7 @@ class SkillAdmin(admin.ModelAdmin):
     model = Skill
     exclude = ('related_skills', )
     inlines = (SkillEdgeInline, )
-
-
-class SkillEdgeAdmin(admin.ModelAdmin):
-    model = SkillEdge
+    readonly_fields = ['topological_order']
 
 
 admin.site.register(Skill, SkillAdmin)
-admin.site.register(SkillEdge, SkillEdgeAdmin)

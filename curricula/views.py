@@ -26,11 +26,11 @@ def get_placement_initial_question_pack(request, *args, **kwargs):
         start_pack = []
         end_pack = []
         for i in start_skills_id_list:
-            random_question = Skill.objects.get(id=i).questions.random()
+            random_question = Skill.questions.random(i)
             serialized_question = QuestionSerializer(random_question).data
             start_pack.append({"skill_id": i, "question": serialized_question})
         for i in end_skills_id_list:
-            random_question = Skill.objects.get(id=i).questions.random()
+            random_question = Skill.questions.random(i)
             serialized_question = QuestionSerializer(random_question).data
             end_pack.append({"skill_id": i, "question": serialized_question})
         return Response({"start_skills_questions": start_pack, "end_skills_questions": end_pack, })

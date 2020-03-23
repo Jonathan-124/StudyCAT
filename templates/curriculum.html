@@ -25,8 +25,8 @@ $(document).ready(function(){
     let ready_to_learn =  document.getElementById("ready-to-learn");
     let not_yet_ready =  document.getElementById("not-yet-ready");
 
-    // Retrieve user readiness status for each lesson in the unit
-    // Append lesson url to one of the three respective divs depending on user readiness status
+    // Retrieve user readiness status for each unit in the curriculum
+    // Append unit url to one of the three respective divs depending on user readiness status
     $.get(curriculum_readiness_url, function(data, status){
         console.log(data);
         data.units_readiness.forEach(statusIterator);
@@ -41,17 +41,17 @@ $(document).ready(function(){
             unit_link.innerHTML = unit_name;
             switch (readiness) {
                 case 0:
-                    lesson_link.setAttribute("class", "text-muted");
+                    unit_link.setAttribute("class", "text-muted");
                     not_yet_ready.appendChild(unit_link);
                     not_yet_ready.appendChild(linebreak);
                     break;
                 case 1:
-                    lesson_link.setAttribute("class", "text-warning");
+                    unit_link.setAttribute("class", "text-warning");
                     ready_to_learn.appendChild(unit_link);
                     ready_to_learn.appendChild(linebreak);
                     break;
                 case 2:
-                    lesson_link.setAttribute("class", "text-primary");
+                    unit_link.setAttribute("class", "text-primary");
                     learned.appendChild(unit_link);
                     learned.appendChild(linebreak);
                     break;
