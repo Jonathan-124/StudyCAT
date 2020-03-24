@@ -6,7 +6,7 @@ class AnswerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Answer
-        fields = ('answer_text', 'answer_explanation', 'answer_correctness', )
+        fields = ('answer_text', 'answer_explanation', 'answer_correctness', 'answer_image')
 
 
 class QuestionSerializer(serializers.ModelSerializer):
@@ -14,4 +14,4 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields = ('id', 'question_type', 'question_prompt', 'answers')
+        fields = ('id', 'question_type', 'question_prompt', 'answers', 'prompt_image')

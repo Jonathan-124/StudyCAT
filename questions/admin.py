@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Question, Answer, Image
+from .models import Question, Answer
 
 
 class AnswerInline(admin.TabularInline):
@@ -14,9 +14,4 @@ class QuestionAdmin(admin.ModelAdmin):
     ]
 
 
-class ImageAdmin(admin.ModelAdmin):
-    model = Image
-
-
 admin.site.register(Question, QuestionAdmin)
-admin.site.register(Image, ImageAdmin)

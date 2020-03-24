@@ -16,6 +16,10 @@ class SkillfulnessManager(models.Manager):
     def unit_readiness(self, userprofile, skill_id_list):
         self.filter(user_profile=userprofile)
 
+    # Receives userprofile object, returns list of terminus skills that user has learned
+    def terminus_skills(self, userprofile):
+        self.filter(user_profile=userprofile)
+
 
 # UserProfile are additional attributes to the user model not used for authentication
 class UserProfile(models.Model):

@@ -5,14 +5,6 @@ from django.db.models.aggregates import Count
 from random import sample, randint
 
 
-class Image(models.Model):
-    image = models.ImageField(null=False, blank=False, upload_to='images/')
-    description = models.CharField(null=False, blank=False, max_length=63)
-
-    def __str__(self):
-        return self.description
-
-
 # Additional manager methods for Question model QuerySets
 class QuestionManager(models.Manager):
     # Retrieves random question related to skill with skill_id
@@ -31,6 +23,16 @@ class QuestionManager(models.Manager):
         for i in random_index_list:
             random_questions.append(queryset.all()[i])
         return random_questions
+
+
+# Image will be uploaded to MEDIA_ROOT/question_images/question.id
+def prompt_image_directory_path(instance, filename):
+    return 'question_images/{0}/'.format(instance.id, filename)
+
+
+# Image will be uploaded to MEDIA_ROOT/question_images/question.id/answer_images/answer.id
+def answer_image_directory_path(instance, filename):
+    return 'question_images/{0}/answer_images/{1}/'.format(instance.question.id, instance.id)
 
 
 class Question(models.Model):
@@ -60,7 +62,7 @@ class Question(models.Model):
                               related_name='questions')
     question_type = models.CharField(max_length=2, choices=QUESTION_TYPES)
     question_prompt = models.TextField()
-    prompt_image = models.ForeignKey(Image, on_delete=models.PROTECT, null=True, blank=True)
+    prompt_image = models.ImageField(null=True, blank=True, upload_to=prompt_image_directory_path)
     is_mastery = models.BooleanField(default=False)
     discrimination = models.DecimalField(decimal_places=3,
                                          max_digits=4,
@@ -81,7 +83,7 @@ class Question(models.Model):
         super(Question, self).save(*args, **kwargs)
 
     def __str__(self):
-        return str(self.skill.id) + ' ' + self.question_prompt
+        return str(self.skill.id) + '-' + self.question_prompt
 
 
 class Answer(models.Model):
@@ -91,7 +93,7 @@ class Answer(models.Model):
     # answer_explanation - (if exists) plaintext explanation of answer input that includes KaTeX delimiters
     # answer_correctness - decimal [0, 1] of how correct the associated answer object is
     answer_text = models.TextField()
-    answer_image = models.ForeignKey(Image, on_delete=models.PROTECT, null=True, blank=True)
+    answer_image = models.ImageField(null=True, blank=True, upload_to=answer_image_directory_path)
     question = models.ForeignKey(
         Question,
         on_delete=models.CASCADE,

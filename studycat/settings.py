@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'lessons.apps.LessonsConfig',
     'units.apps.UnitsConfig',
     'curricula.apps.CurriculaConfig',
+    'subjects.apps.SubjectsConfig',
     'pages.apps.PagesConfig',
 ]
 
