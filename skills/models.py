@@ -88,10 +88,10 @@ def update_topological_order(sender, instance, **kwargs):
     # Only works if the different DAGs are disconnected (i.e. subject areas different for parent/child of edge)
     # edges - all SkillEdge objects in the instance subject DAG
     # root_nodes - all Skill objects in the subject area with no parents
-    subject = instance.parent_skill.subject_area
-    edges = list(SkillEdge.objects.filter(parent_skill__subject_area=subject))
+    subject = instance.parent_skill.subject
+    edges = list(SkillEdge.objects.filter(parent_skill__subject=subject))
     root_nodes = []
-    for i in Skill.objects.filter(subject_area=subject):
+    for i in Skill.objects.filter(subject=subject):
         if not i.get_parent_skills():
             root_nodes.append(i)
     j = 1
@@ -109,3 +109,4 @@ def update_topological_order(sender, instance, **kwargs):
                 edges_with_child = parent_edges_of_child(child, edges)
                 if not edges_with_child:
                     root_nodes.append(child)
+    subject.repopulate_dependency_matrix()

@@ -161,6 +161,9 @@ class Skillfulness(models.Model):
                                       max_digits=4,
                                       default=0)
 
+    class Meta:
+        order_with_respect_to = 'skill'
+
     def __str__(self):
         return self.skill.name
 
