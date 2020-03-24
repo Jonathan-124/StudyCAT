@@ -15,6 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+# Imports for serving media images during development...
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -27,4 +30,4 @@ urlpatterns = [
     path('curricula/', include('curricula.urls')),
     path('admin/', admin.site.urls),
     path('', include('pages.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # serving images during development

@@ -25,14 +25,13 @@ class QuestionManager(models.Manager):
         return random_questions
 
 
-# Image will be uploaded to MEDIA_ROOT/question_images/question.id
 def prompt_image_directory_path(instance, filename):
-    return 'question_images/{0}/'.format(instance.id, filename)
+    return '{0}/question_images/{1}/{2}'.format(instance.skill.subject.name, instance.id, filename)
 
 
-# Image will be uploaded to MEDIA_ROOT/question_images/question.id/answer_images/answer.id
 def answer_image_directory_path(instance, filename):
-    return 'question_images/{0}/answer_images/{1}/'.format(instance.question.id, instance.id)
+    return '{0}/question_images/{1}/answer_images/{2}/{3}/'.format(instance.question.skill.subject.name,
+                                                               instance.question.id, instance.id, filename)
 
 
 class Question(models.Model):
