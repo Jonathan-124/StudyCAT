@@ -9,7 +9,7 @@
 {% include lesson.html_filename %}
 
 <br>
-<p>Take the <a href="{% url 'exit_test' lesson.slug %}">exit test</a> to see if you learned all the concepts and save your progress!</p>
+<p>Take the <a href="{% url 'lessons:exit_test' lesson.slug %}">exit test</a> to see if you learned all the concepts and save your progress!</p>
 
 <script>
 $(document).ready(function(){

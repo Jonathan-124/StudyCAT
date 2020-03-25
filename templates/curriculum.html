@@ -20,7 +20,7 @@
 <script>
 $(document).ready(function(){
     const curriculum_readiness_url = "{% url 'curriculum_readiness' curriculum.id %}";
-    const units_url = "{% url 'units' %}";
+    const units_url = "http://127.0.0.1:8000/units/";
     let learned =  document.getElementById("learned");
     let ready_to_learn =  document.getElementById("ready-to-learn");
     let not_yet_ready =  document.getElementById("not-yet-ready");

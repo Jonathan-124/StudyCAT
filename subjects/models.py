@@ -21,11 +21,11 @@ class Subject(models.Model):
     def repopulate_dependency_matrix(self):
         dependency_matrix = []
         num_skills = self.skills.count()
-        for skill in self.skills:
+        for skill in self.skills.all():
             parent_ids = skill.get_parent_skills().values_list('topological_order', flat=True)
-            adjacency_row = [0] * (num_skills - 1)
+            adjacency_row = [0] * num_skills
             for i in parent_ids:
                 adjacency_row[i - 1] = 1
             dependency_matrix.append(adjacency_row)
-        setattr(self.dependencies, 'topological_order', dependency_matrix)
+        setattr(self, 'dependencies', dependency_matrix)
         self.save()

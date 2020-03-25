@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 from .forms import UserProfilePretestForm
 from .models import Skillfulness
 from skills.models import Skill
+from subjects.models import Subject
 
 
 class PretestFormView(FormView):
@@ -24,6 +25,18 @@ def get_skill_level(request, *args, **kwargs):
         user_profile = request.user.profile
         level = user_profile.get_skill_level(kwargs.get("pk"))
         return Response({"lvl": level})
+
+
+# Receives slug of subject, returns list of user skill levels for that subject in topological order
+@api_view()
+def get_subject_skills(request, *args, **kwargs):
+    if request.user.is_anonymous:
+        return Response({"message": "You are not logged in"}, status=status.HTTP_403_FORBIDDEN)
+    else:
+        slug = kwargs.get("slug")
+        adjacency_matrix = Subject.objects.get(slug=slug).dependencies
+        skill_level_list = request.user.profile.get_subject_skills(slug)
+        return Response({"adjacency_matrix": adjacency_matrix, "skill_level_list": skill_level_list})
 
 
 # Receives post request with kwarg pk and JSON with "new_skill_level" (decimal)

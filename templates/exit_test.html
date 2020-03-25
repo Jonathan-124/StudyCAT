@@ -66,8 +66,8 @@
         });
 
         // URLs - to un-hardcode in the future
-        const get_question_pack = "{% url 'skill_question_pack' lesson.skill.pk %}";
-        const skill_level_update_url = "{% url 'update_skill_level' lesson.skill.pk %}";
+        const get_question_pack = "{% url 'skills:skill_question_pack' lesson.skill.pk %}";
+        const skill_level_update_url = "{% url 'userprofiles:update_skill_level' lesson.skill.pk %}";
 
         // storing DOM elements for manipulation
         const prompt = document.getElementById("question-prompt");

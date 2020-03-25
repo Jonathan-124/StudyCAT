@@ -23,11 +23,12 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('users/', include('users.urls')),
     path('users/', include('django.contrib.auth.urls')),
-    path('profiles/', include('userprofiles.urls'), name='profiles'),
-    path('skills/', include('skills.urls')),
-    path('lessons/', include('lessons.urls'), name='lessons'),
-    path('units/', include('units.urls'), name='units'),
+    path('profiles/', include(('userprofiles.urls', 'userprofiles'), namespace='userprofiles')),
+    path('skills/', include(('skills.urls', 'skills'), namespace='skills')),
+    path('lessons/', include(('lessons.urls', 'lessons'), namespace='lessons')),
+    path('units/', include(('units.urls', 'units'), namespace='units')),
     path('curricula/', include('curricula.urls')),
+    path('subjects/', include(('subjects.urls', 'subjects'), namespace='subjects')),
     path('admin/', admin.site.urls),
     path('', include('pages.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # serving images during development
