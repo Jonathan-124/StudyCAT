@@ -72,3 +72,14 @@ def children_skill_question_pack(request, *args, **kwargs):
             serialized_question = QuestionSerializer(question).data
             pack.append({"skill_id": skill_id, "question": serialized_question})
         return Response({"questions": pack})
+
+
+# Receives two lists of topological orders, returns lesson data response
+@api_view()
+def get_lesson_data_from_topological_order(request, *args, **kwargs):
+    if request.user.is_anonymous:
+        return Response({"message": "You are not logged in"}, status=status.HTTP_403_FORBIDDEN)
+    else:
+        terminal_lessons_data = Skill.objects.get_lesson_data(request.query_params.get("terminal_ids"))
+        next_lessons_data = Skill.objects.get_lesson_data(request.query_params.get("next_skills"))
+        return Response({"terminal_lessons_data": terminal_lessons_data, "next_lessons_data": next_lessons_data})

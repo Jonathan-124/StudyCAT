@@ -59,28 +59,6 @@ $(document).ready(function(){
             }
         }
     });
-
-    const get_user_skills_url = "{% url 'userprofiles:get_subject_skills' 'mathematics' %}";
-
-    let adjacency_matrix;
-    let user_skill_vector;
-    let user_skill_matrix;
-    $.get(get_user_skills_url, function(data, status){
-        console.log(data);
-        user_skill_vector = data.skill_level_list;
-        adjacency_matrix = data.adjacency_matrix;
-        user_skill_matrix = matrixVectorMultiplication(adjacency_matrix, user_skill_vector);
-        console.log(user_skill_matrix);
-    });
-
-    function matrixVectorMultiplication(matrix, vector){
-        answer = [];
-        for ( i = 0; i < vector.length; i++){
-            skill_level = vector[i];
-            answer.push(matrix[i].map(x => x * skill_level));
-        }
-        return answer;
-    }
 });
 </script>
 

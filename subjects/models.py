@@ -25,7 +25,7 @@ class Subject(models.Model):
             parent_ids = skill.get_parent_skills().values_list('topological_order', flat=True)
             adjacency_row = [0] * num_skills
             for i in parent_ids:
-                adjacency_row[i - 1] = 1
+                adjacency_row[i] = 1
             dependency_matrix.append(adjacency_row)
         setattr(self, 'dependencies', dependency_matrix)
         self.save()

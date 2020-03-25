@@ -1,6 +1,7 @@
 from os.path import basename
 from django.db import models
 from django.utils.text import slugify
+from django.urls import reverse
 from skills.models import Skill
 
 
@@ -19,6 +20,9 @@ class Lesson(models.Model):
 
     def __str__(self):
         return self.lesson_title
+
+    def get_absolute_url(self):
+        return reverse('lessons:lesson', args=[self.slug])
 
     # populates slug field with slugified lesson_title after save() is called
     def save(self, *args, **kwargs):

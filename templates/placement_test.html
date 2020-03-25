@@ -4,7 +4,9 @@
 {% block title %}Placement Test{% endblock title %}
 
 {% block content %}
-<p id="question-prompt"></p>
+<div id="questionbox">
+    <p id="question-prompt"></p>
+</div>
 <div>
     <div id="answerbox" class="">
         <div id="inputbox"></div>
@@ -90,12 +92,12 @@
         // Stage 2 and 3 vars
         let sibling_question_pack = [];
         let related_skill_id;
-        const parents_pack_url = "{% url 'parent_skill_question_pack' %}";
-        const children_pack_url = "{% url 'children_skill_question_pack' %}";
+        const parents_pack_url = "http://127.0.0.1:8000/skills/parents-pack/";
+        const children_pack_url = "http://127.0.0.1:8000/skills/children-pack/";;
 
         // Stage 4 vars
         let final_check_ids = [];
-        const final_check_url = "{% url 'skill_based_randomizer' %}";
+        const final_check_url = "http://127.0.0.1:8000/skills/random";
 
         // Retrieve start and end question packs for user-indicated terminal curriculum
         // Call tester() to start the testing process
@@ -185,10 +187,11 @@
                             presentQuestion();
                         });
                     } else {
-                        response = {confirmed_correct_skill_ids: confirmed_correct_skill_ids}
+                        response = {confirmed_correct_skill_ids: confirmed_correct_skill_ids};
+                        console.log(response);
                         $.ajax({
                             type: "POST",
-                            url: "{% url 'posttest_update' %}",
+                            url: "{% url 'userprofiles:posttest_update' %}",
                             data: JSON.stringify(response),
                             dataType: "json",
                             contentType: "application/json",

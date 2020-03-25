@@ -17,6 +17,14 @@ class SkillManager(models.Manager):
             id_set.update(set(preceding_skill_ids))
         return list(prerequisite_skills_id_set)
 
+    # Receives list of topological order ids, returns list of dicts of lesson info
+    def get_lesson_data(self, topological_order_list):
+        lesson_data = []
+        for i in topological_order_list:
+            lesson = self.get(topological_order=i).lesson
+            lesson_data.append({"lesson_title": lesson.lesson_title, "lesson_url": lesson.get_absolute_url()})
+        return lesson_data
+
 
 # Skills represent nodes of the DAG
 class Skill(models.Model):
@@ -94,7 +102,7 @@ def update_topological_order(sender, instance, **kwargs):
     for i in Skill.objects.filter(subject=subject):
         if not i.get_parent_skills():
             root_nodes.append(i)
-    j = 1
+    j = 0
 
     # Assigning topological order
     while root_nodes:

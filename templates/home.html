@@ -4,9 +4,102 @@
 {% block title %}Math Site{% endblock title %}
 
 {% block content %}
+
 {% if user.is_authenticated %}
-    Welcome back {{ user.username }}! Click here (INSERT LINK HERE) to go to your current lesson.
-<p><a href="{% url 'logout' %}">Log Out</a></p>
+<p>Welcome back {{ user.username }}! Click here (INSERT LINK HERE) to go to your current lesson.</p>
+<p><a href="{% url 'logout' %}">Log Out</a>
+<script>
+$(document).ready(function(){
+    // initializing variables to be retrieved from server
+    const get_user_skills_url = "{% url 'userprofiles:get_subject_skills' 'mathematics' %}";
+    let parent_adjacency_matrix;
+    let child_adjacency_matrix;
+    let user_skill_vector;
+
+    // initializing variables to be populated client-side
+    let to_test = [];
+    let terminal_ids = new Set();
+    let potential_next_skills = new Set();
+    let next_skills = [];
+
+    $.get(get_user_skills_url, function(data, status){
+        // Retrieves user skill level array (topological order) and parent adjacency matrix from server
+        // child adjacency matrix is the transpose of parent adjacency matrix
+        user_skill_vector = data.skill_level_list;
+        parent_adjacency_matrix = data.adjacency_matrix;
+        child_adjacency_matrix = parent_adjacency_matrix[0].map((col, i) => parent_adjacency_matrix.map(row => row[i]));
+
+        // populates to_test with root nodes of the graph
+        // ### EDGE CASE - ROOT NODES NOT READY ###
+        parent_adjacency_matrix.forEach(function(value, index, array){
+            if (value == array[0]){
+                to_test.push(index);
+            }
+        });
+
+        while (to_test.length > 0){
+            // for each check_index in to_test, get child topological order id list
+            check_index = to_test.pop();
+            child_ids = [];
+            child_adjacency_matrix[check_index].forEach(function(value, index, array){
+                if (value == 1){
+                    child_ids.push(index);
+                }
+            });
+            // for each child of check_index...
+            // if user skill < 0.5 add check_index to terminal_ids set, add child to potential_next_skills set
+            // else add child topological order to to_test
+            for (x of child_ids){
+                if (user_skill_vector[x] < 0.5){
+                    terminal_ids.add(check_index);
+                    potential_next_skills.add(x);
+                } else {
+                    to_test.push(x);
+                }
+            }
+        }
+
+        for (x of potential_next_skills){
+            // for x in potential_next_skills, get its parent topolotical order ids as a set
+            // if all parents are in the terminal_ids set, x is pushed to the true next_skills list
+            parent_ids = new Set();
+            parent_adjacency_matrix[x].forEach(function(value, index, array){
+                if (value == 1){
+                    parent_ids.add(index)
+                }
+            });
+            if (isSuperset(terminal_ids, parent_ids)){
+                next_skills.push(x);
+            }
+            function isSuperset(set, subset) {
+                for (let elem of subset) {
+                    if (!set.has(elem)) {
+                        return false
+                    }
+                }
+                return true
+            }
+        }
+        terminal_ids = Array.from(terminal_ids);
+
+        data_url = "{% url 'skills:homepage-data' %}"
+        terminal_id_string = "?";
+        next_skills_string = "";
+        for (i = 0; i < terminal_ids.length; i++){
+            terminal_id_string += "terminal_ids=" + terminal_ids[i] + "&";
+        }
+        for (i = 0; i < next_skills.length; i++){
+            next_skills_string += "next_skills=" + next_skills[i] + "&";
+        }
+        $.get(data_url.concat(terminal_id_string, next_skills_string), function(data, status){
+            terminal_lessons_data = data.terminal_lessons_data;
+            next_lessons_data = data.next_lessons_data;
+            console.log(terminal_lessons_data);
+            console.log(next_lessons_data);
+        });
+    });
+});
+</script>
 
 {% else %}
     <div class="container">

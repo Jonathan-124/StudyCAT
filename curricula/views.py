@@ -1,6 +1,6 @@
 from django.views.generic import DetailView
 from .models import Curriculum
-from skills.models import Skill
+from questions.models import Question
 from questions.serializers import QuestionSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -26,11 +26,11 @@ def get_placement_initial_question_pack(request, *args, **kwargs):
         start_pack = []
         end_pack = []
         for i in start_skills_id_list:
-            random_question = Skill.questions.random(i)
+            random_question = Question.objects.random(i)
             serialized_question = QuestionSerializer(random_question).data
             start_pack.append({"skill_id": i, "question": serialized_question})
         for i in end_skills_id_list:
-            random_question = Skill.questions.random(i)
+            random_question = Question.objects.random(i)
             serialized_question = QuestionSerializer(random_question).data
             end_pack.append({"skill_id": i, "question": serialized_question})
         return Response({"start_skills_questions": start_pack, "end_skills_questions": end_pack, })

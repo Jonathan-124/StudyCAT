@@ -4,7 +4,10 @@
 {% block title %}{{ lesson.lesson_title}} Test{% endblock title %}
 
 {% block content %}
-    <p id="question-prompt"></p>
+    <div id="questionbox">
+        <p id="question-prompt" class=""></p>
+    </div>
+    <br>
     <div>
         <div id="answerbox" class="">
             <div id="inputbox"></div>
@@ -109,6 +112,14 @@
             // displays question prompt text
             prompt.innerHTML = q.question.question_prompt;
             renderKatex(prompt);
+
+            // displays question prompt image if present
+            if (q.question.image_url){
+                let prompt_image = document.createElement("img");
+                prompt_image.setAttribute("class", "img-fluid");
+                prompt_image.setAttribute("src", q.question.image_url);
+                document.getElementById("questionbox").appendChild(prompt_image);
+            }
 
             switch (q.question.question_type){
                 case "MC":
@@ -243,7 +254,10 @@
             e.preventDefault();
             // to kill all children in feedbackbox
             feedbackbox.setAttribute("class", "d-none");
-            // Removing children from question-prompt and inputbox DOM
+            // Removing children from questionbox and inputbox DOM
+            if (currentQ.question.image_url){
+                document.getElementById("questionbox").removeChild(prompt_image);
+            }
             while (prompt.firstChild) {
                 prompt.removeChild(prompt.firstChild);
             }
