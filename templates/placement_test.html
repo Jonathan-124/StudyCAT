@@ -4,17 +4,16 @@
 {% block title %}Placement Test{% endblock title %}
 
 {% block content %}
-<div id="questionbox">
-    <p id="question-prompt"></p>
-</div>
-<div>
-    <div id="answerbox" class="">
-        <div id="inputbox"></div>
-        <br>
-        <button name="submit_answer" class="btn btn-outline-primary">Check Answer</button>
+<div class="jumbotron">
+    <div id="questionbox">
+        <p id="question-prompt"></p>
     </div>
-    <div id="feedback" class="d-none">
-        <p id="feedback-text"></p>
+    <div>
+        <div id="answerbox" class="">
+            <div id="inputbox"></div>
+            <br>
+            <button name="submit_answer" class="btn btn-outline-primary">Check Answer</button>
+        </div>
     </div>
 </div>
 <hr/>
@@ -70,7 +69,6 @@
         const prompt = document.getElementById("question-prompt");
         const answerbox = document.getElementById("answerbox");
         const inputbox = document.getElementById("inputbox");
-        const feedbackbox = document.getElementById("feedback");
 
         // Initializing vars
         // Stage 0: test start_skill_ids of indicated terminal curriculum
@@ -195,10 +193,11 @@
                             data: JSON.stringify(response),
                             dataType: "json",
                             contentType: "application/json",
-                            error: function(data){console.log("an error occurred")},
+                            error: function(data){
+                                "Oops! It seems like something went wrong when sending your data to the server. Click <a href=\"{% url 'home' %}\">here</a> to go back to the homepage.";
+                            },
                             success: function(data){
-                                prompt.innerHTML = "test complete to add redirect"
-                                // call redirect function here
+                                prompt.innerHTML = "Congrats! You have completed the placement test. Click <a href=\"{% url 'home' %}\">here</a> to go back to the homepage.";
                             }
                         });
                     }
@@ -280,7 +279,6 @@
                         }
                     }
                     catch(err){
-                        $("#feedback").text("Invalid Input");
                         a_correctness = "0";
                     }
                     break;

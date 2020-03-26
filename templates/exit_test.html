@@ -4,22 +4,25 @@
 {% block title %}{{ lesson.lesson_title}} Test{% endblock title %}
 
 {% block content %}
-    <div id="questionbox">
-        <p id="question-prompt" class=""></p>
-    </div>
-    <br>
-    <div>
+    <div class="jumbotron">
+        <div id="questionbox">
+            <p id="question-prompt" class=""></p>
+        </div>
+        <br>
         <div id="answerbox" class="">
             <div id="inputbox"></div>
             <br>
-            <button name="submit_answer" type="submit" class="btn btn-outline-primary d-none">Check Answer</button>
+            <button name="submit_answer" type="submit" class="d-none">Check Answer</button>
+            <br>
         </div>
         <div id="feedback" class="d-none">
             <p id="feedback-text"></p>
-            <button id="next" class="btn btn-outline-primary">Next</button>
+            <button id="next" class="btn btn-outline-primary float-right">Next</button>
+            <br>
         </div>
     </div>
     <hr/>
+
 
     <script>
     $(document).ready(function(){
@@ -68,7 +71,7 @@
             }
         });
 
-        // URLs - to un-hardcode in the future
+        // URLs - get question pack related to lesson, and skill level update endpoint
         const get_question_pack = "{% url 'skills:skill_question_pack' lesson.skill.pk %}";
         const skill_level_update_url = "{% url 'userprofiles:update_skill_level' lesson.skill.pk %}";
 
@@ -88,47 +91,46 @@
         $.get(get_question_pack, function(data, status){
             user_skill_level = data.user_skill;
             question_pack_data = data.questions;
-            console.log(user_skill_level);
-            console.log(question_pack_data);
-            tester(question_pack_data);
+            tester();
         });
 
         // Top level function that starts the testing process
-        function tester(question_pack) {
-            if (question_pack.length > 0) {
+        function tester() {
+            if (question_pack_data.length > 0) {
                 // sets currentQ to the next question in question_pack_data list; calls presentQuestion
-                currentQ = question_pack.pop()
-                presentQuestion(currentQ);
+                currentQ = question_pack_data.pop()
+                presentQuestion();
             } else {
-                // if no more questions to test, display success msg; calls sendResponseData
-                prompt.innerHTML = "Congrats! You have completed the lesson.";
+                // if no more questions to test, calls sendResponseData
                 sendResponseData(data_list);
-                console.log(data_list);
             }
         }
 
-        // Takes currentQ obj, changes DOM to present the question
-        function presentQuestion(q) {
+        // When called, changes DOM to present currentQ
+        function presentQuestion() {
             // displays question prompt text
-            prompt.innerHTML = q.question.question_prompt;
+            prompt.innerHTML = currentQ.question.question_prompt;
             renderKatex(prompt);
 
             // displays question prompt image if present
-            if (q.question.image_url){
+            if (currentQ.question.image_url){
                 let prompt_image = document.createElement("img");
                 prompt_image.setAttribute("class", "img-fluid");
-                prompt_image.setAttribute("src", q.question.image_url);
+                prompt_image.setAttribute("src", currentQ.question.image_url);
                 document.getElementById("questionbox").appendChild(prompt_image);
             }
 
-            switch (q.question.question_type){
+            switch (currentQ.question.question_type){
                 case "MC":
                     // Multiple Choice case
+                    // Create mc_inputbox form element, append to inputbox as child
                     let mc_inputbox = document.createElement("form");
                     mc_inputbox.setAttribute("id", "mc_inputbox");
                     inputbox.appendChild(mc_inputbox);
-                    q.question.answers.forEach(answer_iterator);
 
+                    // For each answer choice, create choicebox, append radio input and label to choicebox
+                    // Append choicebox to mc_inputbox
+                    currentQ.question.answers.forEach(answer_iterator);
                     function answer_iterator(value, index, array){
                         let choicebox = document.createElement("div");
                         choicebox.setAttribute("class", "custom-control custom-radio");
@@ -153,6 +155,7 @@
                     break;
                 case "NI":
                     // Numerical Input case
+                    // Create guppy isntance with id "guppybox", append to inputbox
                     let guppybox = document.createElement("div");
                     guppybox.setAttribute("id", "guppybox");
                     inputbox.appendChild(guppybox);
@@ -162,17 +165,18 @@
                     $("#inputbox").text("No such question type found.");
             }
             // Displays "submit answer" button
-            $("button[name='submit_answer']").attr("class", "btn btn-outline-primary");
+            $("button[name='submit_answer']").attr("class", "btn btn-outline-primary float-right");
         }
 
-        // Sends list as AJAX post response
+        // When called with list of dicts, sends new user skill level as AJAX post response
         function sendResponseData(list){
-            for (i of list) {
-                q_difficulty = i.q_difficulty;
-                a_correctness = i.a_correctness;
-                delta = q_difficulty * (a_correctness - 0.5);
-                user_skill_level += delta;
+            delta = 0;
+            for (i of list){
+                delta += i.a_correctness;
             }
+            delta /= list.length
+            user_skill_level += delta - 0.5;
+
             if (user_skill_level < 0){
                 user_skill_level = 0;
             } else if (user_skill_level > 1) {
@@ -188,9 +192,11 @@
                 data: JSON.stringify(response),
                 dataType: "json",
                 contentType: "application/json",
-                error: function(data){console.log("an error occurred")},
+                error: function(data){
+                    prompt.innerHTML = "Oops! It seems like something went wrong when sending your data to the server. Click <a href=\"{% url 'home' %}\">here</a> to go back to the homepage."
+                },
                 success: function(data){
-                    // call some success function here
+                    prompt.innerHTML = "Congrats! You have completed the lesson. Click <a href=\"{% url 'home' %}\">here</a> to go back to the homepage.";
                 }
             });
         }
@@ -205,13 +211,13 @@
             // Initializes variables to be appended to response
             let q_id = currentQ.question.id;
             let q_type = currentQ.question.question_type;
-            let q_difficulty = currentQ.question.difficulty;
             let a_correctness;
 
             // Different ways of retrieving "a_correctness" dependent on question type
             switch(q_type) {
                 case "MC":
-                    a_correctness = $('input[name="answer_choice"]:checked', '#mc_inputbox').val();
+                    a_correctness = parseFloat($('input[name="answer_choice"]:checked', '#mc_inputbox').val());
+                    feedback_text = currentQ.question.answers[$('input[name="answer_choice"]:checked', '#mc_inputbox').attr('id')].answer_explanation
                     break;
                 case "NI":
                     let attempt = Guppy("guppybox").asciimath();
@@ -223,30 +229,44 @@
                             return MathExpression.fromText(attempt).equals(MathExpression.fromText(value.answer_text));
                         }
                         if (symbols_used.length > 0){
-                            a_correctness = "0";
-                            console.log("used prohibited functions for NI problem");
+                            a_correctness = 0;
+                            feedback_text = "The answer should be a number!";
                         } else if (typeof matched === "undefined") {
-                            a_correctness = "0";
+                            a_correctness = 0;
                         } else {
-                            a_correctness = matched.answer_correctness;
+                            a_correctness = parseFloat(matched.answer_correctness);
+                            feedback_text = matched.answer_explanation;
                         }
                     }
                     catch(err){
-                        $("#feedback").text("Invalid Input");
-                        a_correctness = "0";
+                        a_correctness = 0;
+                        feedback_text = "You have entered an invalid input!"
                     }
                     break;
             }
+
+            if (a_correctness == 1){
+                $("#feedback-text").text("Correct!");
+            } else if (a_correctness > 0.5) {
+                correct_answer = currentQ.question.answers.find(function(value, index, array){
+                    return value.answer_correctness == 1
+                });
+                $("#feedback-text").text("Close! " + feedback_text + " The correct answer is " + correct_answer.answer_text + ".");
+            } else {
+                correct_answer = currentQ.question.answers.find(function(value, index, array){
+                    return value.answer_correctness == 1
+                });
+                $("#feedback-text").text("Incorrect. " + feedback_text + " The correct answer is " + correct_answer.answer_text + " .");
+            }
+            renderKatex(feedbackbox);
+            feedbackbox.setAttribute("class", "");
+
             // Aggregates data, appends everything to data_list
             let data = {};
             data.q_id = q_id;
             data.q_type = q_type;
-            data.q_difficulty = q_difficulty;
             data.a_correctness = a_correctness;
             data_list.push(data);
-
-            // Note: to add feedback text implementation in the future
-            feedbackbox.setAttribute("class", "");
         });
 
         // On clicking "next" button, kills DOM nodes,calls tester()
@@ -264,7 +284,7 @@
             while (inputbox.firstChild) {
                 inputbox.removeChild(inputbox.firstChild);
             }
-            tester(question_pack_data);
+            tester();
         });
     });
     </script>

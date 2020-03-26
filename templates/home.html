@@ -97,8 +97,6 @@ $(document).ready(function(){
             }
         }
         terminal_ids = Array.from(terminal_ids);
-        console.log(terminal_ids);
-        console.log(next_skills);
         data_url = "{% url 'skills:homepage-data' %}"
         terminal_id_string = "?";
         next_skills_string = "";
@@ -111,7 +109,7 @@ $(document).ready(function(){
         $.get(data_url.concat(terminal_id_string, next_skills_string), function(data, status){
             terminal_lessons_data = data.terminal_lessons_data;
             next_lessons_data = data.next_lessons_data;
-            const lessons_url = "http://127.0.0.1/lessons/";
+            const lessons_url = "http://127.0.0.1:8000/lessons/";
             let learned =  document.getElementById("learned");
             let ready_to_learn =  document.getElementById("ready-to-learn");
             terminal_lessons_data.forEach(function(value, index, array){
@@ -138,8 +136,6 @@ $(document).ready(function(){
                 ready_to_learn.appendChild(lesson_link);
                 ready_to_learn.appendChild(linebreak);
             })
-            console.log(terminal_lessons_data);
-            console.log(next_lessons_data);
         });
     });
 });
