@@ -6,8 +6,17 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<p>Welcome back {{ user.username }}! Click here (INSERT LINK HERE) to go to your current lesson.</p>
-<p><a href="{% url 'logout' %}">Log Out</a>
+<p>Welcome back {{ user.username }}! </p>
+<br>
+<div id="learned">
+    <h5>I have recently learned about...</h5>
+</div>
+<br>
+<div id="ready-to-learn">
+    <h5>I can now learn about...</h5>
+</div>
+<br>
+
 <script>
 $(document).ready(function(){
     // initializing variables to be retrieved from server
@@ -30,10 +39,13 @@ $(document).ready(function(){
         child_adjacency_matrix = parent_adjacency_matrix[0].map((col, i) => parent_adjacency_matrix.map(row => row[i]));
 
         // populates to_test with root nodes of the graph
-        // ### EDGE CASE - ROOT NODES NOT READY ###
         parent_adjacency_matrix.forEach(function(value, index, array){
             if (value == array[0]){
-                to_test.push(index);
+                if (user_skill_vector[index] < 0.5){
+                    next_skills.push(index)
+                } else {
+                    to_test.push(index);
+                }
             }
         });
 
@@ -46,15 +58,19 @@ $(document).ready(function(){
                     child_ids.push(index);
                 }
             });
-            // for each child of check_index...
-            // if user skill < 0.5 add check_index to terminal_ids set, add child to potential_next_skills set
-            // else add child topological order to to_test
-            for (x of child_ids){
-                if (user_skill_vector[x] < 0.5){
-                    terminal_ids.add(check_index);
-                    potential_next_skills.add(x);
-                } else {
-                    to_test.push(x);
+            if (child_ids.length == 0){
+                terminal_ids.add(check_index);
+            } else {
+                // for each child of check_index...
+                // if user skill < 0.5 add check_index to terminal_ids set, add child to potential_next_skills set
+                // else add child topological order to to_test
+                for (x of child_ids){
+                    if (user_skill_vector[x] < 0.5){
+                        terminal_ids.add(check_index);
+                        potential_next_skills.add(x);
+                    } else {
+                        to_test.push(x);
+                    }
                 }
             }
         }
@@ -81,7 +97,8 @@ $(document).ready(function(){
             }
         }
         terminal_ids = Array.from(terminal_ids);
-
+        console.log(terminal_ids);
+        console.log(next_skills);
         data_url = "{% url 'skills:homepage-data' %}"
         terminal_id_string = "?";
         next_skills_string = "";
@@ -94,6 +111,33 @@ $(document).ready(function(){
         $.get(data_url.concat(terminal_id_string, next_skills_string), function(data, status){
             terminal_lessons_data = data.terminal_lessons_data;
             next_lessons_data = data.next_lessons_data;
+            const lessons_url = "http://127.0.0.1/lessons/";
+            let learned =  document.getElementById("learned");
+            let ready_to_learn =  document.getElementById("ready-to-learn");
+            terminal_lessons_data.forEach(function(value, index, array){
+                let lesson_link = document.createElement("a");
+                let lesson_slug = value.lesson_slug;
+                let lesson_title = value.lesson_title;
+                let linebreak = document.createElement("br");
+                lesson_link.setAttribute("id", lesson_slug);
+                lesson_link.setAttribute("href", lessons_url.concat(lesson_slug));
+                lesson_link.innerHTML = lesson_title;
+                lesson_link.setAttribute("class", "text-primary");
+                learned.appendChild(lesson_link);
+                learned.appendChild(linebreak);
+            })
+            next_lessons_data.forEach(function(value, index, array){
+                let lesson_link = document.createElement("a");
+                let lesson_slug = value.lesson_slug;
+                let lesson_title = value.lesson_title;
+                let linebreak = document.createElement("br");
+                lesson_link.setAttribute("id", lesson_slug);
+                lesson_link.setAttribute("href", lessons_url.concat(lesson_slug));
+                lesson_link.innerHTML = lesson_title;
+                lesson_link.setAttribute("class", "text-warning");
+                ready_to_learn.appendChild(lesson_link);
+                ready_to_learn.appendChild(linebreak);
+            })
             console.log(terminal_lessons_data);
             console.log(next_lessons_data);
         });

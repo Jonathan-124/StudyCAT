@@ -22,7 +22,7 @@ class SkillManager(models.Manager):
         lesson_data = []
         for i in topological_order_list:
             lesson = self.get(topological_order=i).lesson
-            lesson_data.append({"lesson_title": lesson.lesson_title, "lesson_url": lesson.get_absolute_url()})
+            lesson_data.append({"lesson_title": lesson.lesson_title, "lesson_slug": lesson.slug})
         return lesson_data
 
 

@@ -61,7 +61,7 @@ class UserProfile(models.Model):
 
     # Receives subject slug, returns list of user skill levels for subject skills in topological order
     def get_subject_skills(self, subject_slug):
-        skill_level_list = self.user_skillfulness.filter(skill__subject__slug=subject_slug).values_list('skill_level', flat=True)
+        skill_level_list = self.user_skillfulness.filter(skill__subject__slug=subject_slug).order_by('skill__topological_order').values_list('skill_level', flat=True)
         return skill_level_list
 
     # Receives skill_id and n [0, 1], updates user skill proficiency of Skill object to new level
