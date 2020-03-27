@@ -18,7 +18,7 @@ def skill_based_randomizer(request, *args, **kwargs):
         user_skill_lvl = user_profile.get_skill_level(skill_id)
         random_question = Question.objects.random(skill_id)
         serialized_question = QuestionSerializer(random_question).data
-        return Response({"question": serialized_question,
+        return Response({"skill_id": skill_id, "question": serialized_question,
                          "user_skill": user_skill_lvl})
 
 
@@ -36,7 +36,7 @@ def skill_question_pack(request, num=3, *args, **kwargs):
         pack = []
         for i in questions:
             serialized_question = QuestionSerializer(i).data
-            pack.append({"question": serialized_question})
+            pack.append({"skill_id": skill_id, "question": serialized_question})
         return Response({"questions": pack, "user_skill": user_skill_lvl})
 
 

@@ -75,7 +75,7 @@
         // Stage 1: test end_skill_ids of indicated terminal curriculum
         // Stage 2: test potential_incorrect_skill_ids (and parents)
         // Stage 3: test potential_correct_skill_ids (and children)
-        // Stage 4: test final_check_dds
+        // Stage 4: test final_check_ids
         let testing_stage = 0;
         let currentQ;
         let potential_incorrect_skill_ids = [];
@@ -95,7 +95,7 @@
 
         // Stage 4 vars
         let final_check_ids = [];
-        const final_check_url = "http://127.0.0.1:8000/skills/random";
+        const final_check_url = "http://127.0.0.1:8000/skills/random/";
 
         // Retrieve start and end question packs for user-indicated terminal curriculum
         // Call tester() to start the testing process
@@ -141,8 +141,13 @@
                         if (sibling_question_pack.length == 0){
                             related_skill_id = potential_incorrect_skill_ids.pop();
                             $.get(parents_pack_url.concat(related_skill_id), function(data, status){
-                                sibling_question_pack = data.questions;
-                                tester()
+                                if (data.questions.length > 0){
+                                    sibling_question_pack = data.questions;
+                                    tester()
+                                } else {
+                                    final_check_ids.push(related_skill_id);
+                                    tester();
+                                }
                             });
                         } else {
                             currentQ = sibling_question_pack.pop();
@@ -162,8 +167,13 @@
                         if (sibling_question_pack.length == 0){
                             related_skill_id = potential_correct_skill_ids.pop();
                             $.get(children_pack_url.concat(related_skill_id), function(data, status){
-                                sibling_question_pack = data.questions;
-                                tester();
+                                if (data.questions.length > 0){
+                                    sibling_question_pack = data.questions;
+                                    tester();
+                                } else {
+                                    final_check_ids.push(related_skill_id);
+                                    tester();
+                                }
                             });
                         } else {
                             currentQ = sibling_question_pack.pop();
@@ -194,9 +204,11 @@
                             dataType: "json",
                             contentType: "application/json",
                             error: function(data){
-                                "Oops! It seems like something went wrong when sending your data to the server. Click <a href=\"{% url 'home' %}\">here</a> to go back to the homepage.";
+                                document.getElementById("answerbox").remove();
+                                prompt.innerHTML = "Oops! It seems like something went wrong when sending your data to the server. Click <a href=\"{% url 'home' %}\">here</a> to go back to the homepage.";
                             },
                             success: function(data){
+                                document.getElementById("answerbox").remove();
                                 prompt.innerHTML = "Congrats! You have completed the placement test. Click <a href=\"{% url 'home' %}\">here</a> to go back to the homepage.";
                             }
                         });
@@ -258,7 +270,7 @@
             // Different ways of retrieving "a_correctness" dependent on question type
             switch(q_type) {
                 case "MC":
-                    a_correctness = $('input[name="answer_choice"]:checked', '#mc_inputbox').val();
+                    a_correctness = parseFloat($('input[name="answer_choice"]:checked', '#mc_inputbox').val());
                     break;
                 case "NI":
                     let attempt = Guppy("guppybox").asciimath();
@@ -270,16 +282,16 @@
                             return MathExpression.fromText(attempt).equals(MathExpression.fromText(value.answer_text));
                         }
                         if (symbols_used.length > 0){
-                            a_correctness = "0";
+                            a_correctness = 0;
                             console.log("used prohibited functions for NI problem");
                         } else if (typeof matched === "undefined") {
-                            a_correctness = "0";
+                            a_correctness = 0;
                         } else {
-                            a_correctness = matched.answer_correctness;
+                            a_correctness = parseFloat(matched.answer_correctness);
                         }
                     }
                     catch(err){
-                        a_correctness = "0";
+                        a_correctness = 0;
                     }
                     break;
             }
