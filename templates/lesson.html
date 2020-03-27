@@ -7,7 +7,6 @@
 <h2>{{ lesson.lesson_title }}</h2>
 
 {% include lesson.html_filename %}
-
 <br>
 <p>Take the <a href="{% url 'lessons:exit_test' lesson.slug %}">exit test</a> to see if you learned all the concepts and save your progress!</p>
 
@@ -22,8 +21,21 @@ $(document).ready(function(){
                     ]
         });
     }
-
     renderKatex(document.body);
+    image_urls = [];
+    captions = [];
+    {% for lessonimage in lesson.images.all %}
+    image_urls.push("{{ lessonimage.image.url }}");
+    captions.push("{{ lessonimage.caption }}");
+    {% endfor %}
+    console.log(image_urls);
+    for (i = 0; i < image_urls.length; i++) {
+        image_dom_id = "lesson-image-" + i;
+        caption_dom_id = "lesson-image-" + i + "-caption";
+        document.getElementById(image_dom_id).setAttribute("src", image_urls[i]);
+        document.getElementById(caption_dom_id).innerHTML = captions[i];
+        console.log(captions[i])
+    }
 });
 </script>
 {% endblock content %}

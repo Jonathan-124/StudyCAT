@@ -43,6 +43,7 @@ class Question(models.Model):
     # discrimination - how well a question discriminates users who know/don't know a skill (currently unused)
     # pseudochance - how likely the user is able to guess the correct answer to the question
     MULTIPLE_CHOICE = 'MC'
+    IMAGE_CHOICE = 'IC'
     NUMERICAL_INPUT = 'NI'
     FUNCTION_INPUT = 'FI'
     MATRIX_INPUT = 'MI'
@@ -50,6 +51,7 @@ class Question(models.Model):
 
     QUESTION_TYPES = [
         (MULTIPLE_CHOICE, 'Multiple Choice'),
+        (IMAGE_CHOICE, 'Image Choice'),
         (NUMERICAL_INPUT, 'Numerical Input'),
         (FUNCTION_INPUT, 'Function Input'),
         (MATRIX_INPUT, 'Matrix Input'),

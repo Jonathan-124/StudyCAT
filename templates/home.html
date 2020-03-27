@@ -183,8 +183,7 @@ $(document).ready(function(){
             </p>
         </div>
         <div id="demo" class="container tab-pane fade"><br>
-            <p id="instructions">This is a short 3 question demonstration of how StudyCAT estimates how much you know.
-                No calculators are allowed, and please choose "I don't know" instead of guessing to accurately assess your knowledge.</p>
+            <p id="instructions">This is a short 3 question demonstration of how StudyCAT estimates how much you know.</p>
             <button id="start" class="btn btn-outline-primary">Start Demo!</button>
             <div id="test" class="d-none">
                 <p id="question-prompt"></p>
@@ -212,7 +211,7 @@ $(document).ready(function(){
             Even though students in a class might have different levels of prior knowledge, the teacher must teach material that is at the "average" level of the class.
             Even though students in a class might learn at different speeds, the teacher must teach each lesson to their class at the same speed.
             <br><br>
-            Bearing these two concerns in mind, MathCAT was created (and is being developed) with these 2 guiding tenets in mind:
+            Bearing these two concerns in mind, MathCAT was created (and is being developed) with these two central tenets in mind:
                 <ol>
                     <li>Every student deserves an education of high quality.</li>
                     <li>Every student should receive personalized instruction.</li>
@@ -232,13 +231,13 @@ $(document).ready(function(){
                 <ul>
                 <li>Bug fixes</li>
                 <li>UI improvements (answer input fixes, CSS styling, etc.)</li>
-                <li>Database model improvements (questions, answers, pictures etc.)</li>
+                <li>Database model improvements</li>
                 <li>Algorithm optimization (false positives/negatives, item calibration, placement test optimization etc.)</li>
                 <li>Lesson and question improvements</li>
                 </ul>
             In the long term, future tasks might involve:
                 <ul>
-                <li>Incorporating various other math curricula, such as IB, A-levels</li>
+                <li>Incorporating various math curricula, such as IB, A-levels</li>
                 <li>Support for teachers' ability to model students' progress</li>
                 <li>Including other subjects such as Physics, Chemistry, etc.</li>
                 <li>Localization to other languages</li>
@@ -249,17 +248,17 @@ $(document).ready(function(){
         <div id="faq" class="container tab-pane fade"><br>
             <h5>I am a teacher. How should I use this website?</h5>
             <p>
-                The testing algorithm is well suited for formative assessment. Note that because most answer evaluation is done client-side, the answering process is not secure and therefore should not be used for summative assessment.
-                Curriculum alignment is a future goal that, when implemented, educators can use see how well their students are grasping material corresponding to learning objectives.
+                The website is well suited for formative assessment. Note that because most answer evaluations are done client-side, the answering process is not secure and therefore should not be used for summative assessment.
+                Curriculum alignment is a future goal that, when implemented, can be used to see how well students are grasping material corresponding to learning objectives.
             </p>
             <h5>How can I contribute?</h5>
             <p>
              If you are a user, you can help just by using the site! Data on response patterns is very useful for calibration, and your bug reports and written feedback always help improve the site.
-             If you have expertise in CAT (Computerized Adaptive Testing), knowledge graphs or Item Response Theory, please contact me directly as I would immensely appreciate your input.
+             If you have expertise in computerized adaptive testing, knowledge graphs or item response theory, please contact me directly as I would immensely appreciate your input.
             </p>
             <h5>More details on the algorithm?</h5>
-            <p>Mathematical concepts are arranged in a skill tree (directed acyclic graph), where fundamental skills must be learned before more complicated ones.
-                These dependencies are modelled using graphs, where each node is a concept and connections between nodes represent strengths of their relationships.
+            <p>Concepts are arranged in a hierarchical skill tree, where fundamental skills must be learned before more complicated ones.
+                These dependencies are modelled using directed graphs, where each node is a concept and connections between nodes represent strengths of their relationships.
                 Each question tests the user's proficiency at a certain node, and the knowledge level of a user is updated depending on their response to the question.
             </p>
             <h5>Technical details of the website?</h5>
@@ -277,8 +276,16 @@ $(document).ready(function(){
 </div>
 
 <script>
-
-    const q1 = [{prompt: "Compute $$cos((2 pi )/(3))$$.",
+    function renderKatex(DOM) {
+        renderMathInElement(DOM, {
+        delimiters: [
+                      {left: "$$", right: "$$", display: true},
+                      {left: "\\(", right: "\\)", display: false},
+                      {left: "\\[", right: "\\]", display: true}
+                    ]
+        });
+    }
+    const q1 = [{prompt: "Compute $$ cos(\frac{2\pi}{3}) $$",
                 answers: [{answer: "-(1)/(2)", response: 1, next_id: 1},
                           {answer: "(1 / 2)", response: 2, next_id: 2},
                           {answer: "(1 / squareroot(2))", response: 2, next_id: 2},
@@ -392,7 +399,8 @@ $(document).ready(function(){
                ];
 
     $(document).ready(function(){
-        $("#question-prompt").text(q1[0].prompt);
+        document.getElementById("question-prompt").innerHTML = q1[0].prompt;
+        renderKatex(document.getElementById("question-prompt"));
         new Guppy("answerbox");
         let current_question = 1;
         let next_id;
@@ -420,7 +428,7 @@ $(document).ready(function(){
                     $("#feedback").text(q1[0].responses[0])
             }
             $("#question-prompt").text(q2[next_id].prompt);
-            Guppy.render_all("text", "$$", document.getElementById("test"))
+            renderKatex(document.getElementById("question-prompt"));
         });
         $("#start").click(function(){
             $("#start").remove();

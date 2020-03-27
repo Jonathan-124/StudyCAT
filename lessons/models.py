@@ -32,3 +32,13 @@ class Lesson(models.Model):
 
     def html_filename(self):
         return basename(self.lesson_text.name)
+
+
+def lesson_image_directory_path(instance, filename):
+    return '{0}/lesson_images/{1}/{2}'.format(instance.lesson.skill.subject.name, instance.lesson.slug, filename)
+
+
+class LessonImage(models.Model):
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(null=False, blank=False, upload_to=lesson_image_directory_path)
+    caption = models.CharField(null=True, blank=True, max_length=128)
