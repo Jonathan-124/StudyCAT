@@ -76,7 +76,7 @@ class Question(models.Model):
     objects = QuestionManager()
 
     def save(self, *args, **kwargs):
-        if self.question_type == 'MC':
+        if self.question_type == 'MC' or 'IC':
             try:
                 setattr(self, 'pseudochance', 1 / self.answers.count())
             except:
@@ -93,7 +93,7 @@ class Answer(models.Model):
     # question - many-to-one foreignkey relation to Questions model
     # answer_explanation - (if exists) plaintext explanation of answer input that includes KaTeX delimiters
     # answer_correctness - decimal [0, 1] of how correct the associated answer object is
-    answer_text = models.TextField()
+    answer_text = models.TextField(null=True, blank=True)
     answer_image = models.ImageField(null=True, blank=True, upload_to=answer_image_directory_path)
     question = models.ForeignKey(
         Question,

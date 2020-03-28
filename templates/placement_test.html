@@ -250,6 +250,42 @@
                     }
                     renderKatex(mc_inputbox);
                     break;
+                case "IC":
+                    // Image Choice case
+                    // Create ic_inputbox form element, append to inputbox as child
+                    let ic_inputbox = document.createElement("form");
+                    ic_inputbox.setAttribute("id", "ic_inputbox");
+                    inputbox.appendChild(ic_inputbox);
+
+                    // For each answer choice, create choicebox, append radio input and label to choicebox
+                    // Append choicebox to ic_inputbox
+                    currentQ.question.answers.forEach(function(value, index, array){
+                        let choicebox = document.createElement("div");
+                        choicebox.setAttribute("class", "custom-control custom-radio custom-control-inline");
+
+                        let input = document.createElement("input");
+                        input.setAttribute("type", "radio");
+                        input.setAttribute("id", index);
+                        input.setAttribute("name", "answer_choice");
+                        input.setAttribute("value", value.answer_correctness);
+                        input.setAttribute("class", "custom-control-input");
+                        choicebox.appendChild(input);
+
+                        let label = document.createElement("label");
+                        label.setAttribute("class", "custom-control-label");
+                        label.setAttribute("for", index);
+
+                        let answer_image = document.createElement("img");
+                        answer_image.setAttribute("style", "max-width:200px;max-height:200px");
+                        answer_image.setAttribute("src", value.image_url);
+                        label.appendChild(answer_image);
+
+                        choicebox.appendChild(label);
+                        ic_inputbox.appendChild(choicebox);
+                    });
+
+                    renderKatex(ic_inputbox);
+                    break;
                 case "NI":
                     // Numerical Input case
                     let guppybox = document.createElement("div");
@@ -271,6 +307,9 @@
             switch(q_type) {
                 case "MC":
                     a_correctness = parseFloat($('input[name="answer_choice"]:checked', '#mc_inputbox').val());
+                    break;
+                case "IC":
+                    a_correctness = parseFloat($('input[name="answer_choice"]:checked', '#ic_inputbox').val());
                     break;
                 case "NI":
                     let attempt = Guppy("guppybox").asciimath();

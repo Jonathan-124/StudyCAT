@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4f20b07-5da7-447c-bce7-dc551de39b8d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/lessons/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lessons/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/lessons/Subtraction_Introduction.html" beforeDir="false" afterPath="$PROJECT_DIR$/media/lessons/Subtraction_Introduction.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/questions/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/questions/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/lesson.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/lesson.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/exit_test.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/exit_test.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,20 +13,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/media/lessons/Recognizing_Basic_Shapes.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="10" column="63" selection-start-line="10" selection-start-column="63" selection-end-line="10" selection-end-column="63" />
+              <caret line="10" column="104" lean-forward="true" selection-start-line="10" selection-start-column="70" selection-end-line="10" selection-end-column="104" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#figure#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#figure#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#figure#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#figure#3;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/lesson.html">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/exit_test.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+            <state relative-caret-position="228">
+              <caret line="165" column="106" selection-start-line="165" selection-start-column="106" selection-end-line="165" selection-end-column="106" />
             </state>
           </provider>
         </entry>
@@ -46,8 +48,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>lessons</find>
-      <find>{%</find>
       <find>parent_</find>
       <find>skill_based</find>
       <find>float</find>
@@ -62,7 +62,6 @@
       <find>127</find>
       <find>input</find>
       <find>&lt;a</find>
-      <find>console</find>
       <find>ajax</find>
       <find>parse</find>
       <find>a_correct</find>
@@ -76,6 +75,9 @@
       <find>feedbackbox</find>
       <find>cos</find>
       <find>setA</find>
+      <find>answer_choice</find>
+      <find>ic_inputbox</find>
+      <find>console</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -123,24 +125,24 @@
         <option value="$PROJECT_DIR$/skills/urls.py" />
         <option value="$PROJECT_DIR$/userprofiles/models.py" />
         <option value="$PROJECT_DIR$/skills/models.py" />
-        <option value="$PROJECT_DIR$/templates/exit_test.html" />
         <option value="$PROJECT_DIR$/templates/placement_test.html" />
         <option value="$PROJECT_DIR$/skills/views.py" />
         <option value="$PROJECT_DIR$/templates/home.html" />
-        <option value="$PROJECT_DIR$/questions/models.py" />
         <option value="$PROJECT_DIR$/media/lessons/Subtraction_Introduction.html" />
         <option value="$PROJECT_DIR$/lessons/admin.py" />
         <option value="$PROJECT_DIR$/lessons/models.py" />
         <option value="$PROJECT_DIR$/templates/lesson.html" />
         <option value="$PROJECT_DIR$/media/lessons/Recognizing_Basic_Shapes.html" />
+        <option value="$PROJECT_DIR$/questions/models.py" />
+        <option value="$PROJECT_DIR$/templates/exit_test.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="111" />
-    <option name="y" value="25" />
+    <option name="x" value="51" />
+    <option name="y" value="20" />
     <option name="width" value="1389" />
-    <option name="height" value="968" />
+    <option name="height" value="967" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -158,17 +160,12 @@
             <path>
               <item name="studycat" type="b2602c69:ProjectViewProjectNode" />
               <item name="studycat" type="462c0819:PsiDirectoryNode" />
-              <item name="lessons" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="studycat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="studycat" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="studycat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="studycat" type="462c0819:PsiDirectoryNode" />
               <item name="questions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="studycat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="studycat" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -212,7 +209,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="111" y="25" width="1389" height="968" extended-state="0" />
+    <frame x="51" y="20" width="1389" height="967" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
@@ -523,13 +520,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/exit_test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3365">
-          <caret line="260" column="35" selection-start-line="260" selection-start-column="24" selection-end-line="260" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="586">
@@ -591,26 +581,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/questions/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-709">
-          <caret line="27" selection-start-line="27" selection-end-line="28" selection-end-column="99" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/questions/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="26" lean-forward="true" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lessons/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -648,10 +618,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/questions/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="26" lean-forward="true" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/questions/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="804">
+          <caret line="95" column="56" selection-start-line="95" selection-start-column="56" selection-end-line="95" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/media/lessons/Recognizing_Basic_Shapes.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="10" column="63" selection-start-line="10" selection-start-column="63" selection-end-line="10" selection-end-column="63" />
+          <caret line="10" column="104" lean-forward="true" selection-start-line="10" selection-start-column="70" selection-end-line="10" selection-end-column="104" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#figure#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#figure#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#figure#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#figure#3;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/exit_test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="165" column="106" selection-start-line="165" selection-start-column="106" selection-end-line="165" selection-end-column="106" />
         </state>
       </provider>
     </entry>
