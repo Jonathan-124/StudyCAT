@@ -4,25 +4,74 @@
 {% block title %}{{ lesson.lesson_title}} Test{% endblock title %}
 
 {% block content %}
-    <div class="jumbotron">
-        <div id="questionbox">
-            <p id="question-prompt" class=""></p>
-        </div>
+<div class="jumbotron">
+    <div id="questionbox">
+        <p id="question-prompt" class=""></p>
+    </div>
+    <br>
+    <div id="answerbox" class="">
+        <div id="inputbox"></div>
         <br>
-        <div id="answerbox" class="">
-            <div id="inputbox"></div>
-            <br>
-            <button name="submit_answer" type="submit" class="d-none">Check Answer</button>
-            <br>
-        </div>
-        <div id="feedback" class="d-none">
-            <p id="feedback-text"></p>
-            <button id="next" class="btn btn-outline-primary float-right">Next</button>
-            <br>
+        <button name="submit_answer" type="submit" class="d-none">Check Answer</button>
+        <br>
+    </div>
+    <div id="feedback" class="d-none">
+        <p id="feedback-text"></p>
+        <button id="next" class="btn btn-outline-primary float-right">Next</button>
+        <br>
+    </div>
+</div>
+
+<hr/>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Submit Bug Report
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Question Bug Report Form</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <p>What was the issue with this question?</p>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="PI" name="customRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="PI">There is something wrong with the question prompt</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="AI" name="customRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="AI">There is something wrong with the answer(s)</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="DI" name="customRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="DI">The question is not displaying correctly</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="OT" name="customRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="OT">Other</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="report-message">Please describe the problem in more detail.</label>
+                        <textarea class="form-control" id="report-message" rows="5"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send Bug Report</button>
+            </div>
         </div>
     </div>
-    <hr/>
-
+</div>
 
     <script>
     $(document).ready(function(){
