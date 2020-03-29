@@ -17,8 +17,73 @@
 </div>
 <br>
 
+<div>
+    <p>Any questions, concerns, or comments? Please provide your feedback here!</p>
+    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#feedbackModal">
+        Give Feedback
+    </button>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="feedbackModalLabel">Feedback Form</h5>
+                <button id="close-report-submission" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="feedback-form">
+                    <div class="form-group">
+                        <label for="report-message">Please provide your feedback here (max 2000 characters).</label>
+                        <textarea class="form-control" id="report-message" rows="5"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <p id="submission-feedback"></p>
+                <button id="send-feedback-report" type="submit" class="btn btn-primary">Submit Feedback</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 $(document).ready(function(){
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== ''){
+            let cookies = document.cookie.split(';');
+            for (i = 0; i < cookies.length; i++){
+                let cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')){
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    const csrftoken = getCookie('csrftoken');
+
+    // These HTTP methods do not require CSRF protection
+    function csrfSafeMethod(method) {
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    // Setting up ajax headers to include csrftoken
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+
+
     // initializing variables to be retrieved from server
     const get_user_skills_url = "{% url 'userprofiles:get_subject_skills' 'mathematics' %}";
     let parent_adjacency_matrix;
@@ -138,141 +203,171 @@ $(document).ready(function(){
             })
         });
     });
+
+    $(document).on('click', '#send-feedback-report', function(e){
+        e.preventDefault();
+        if ($("#report-message").val().length > 2000) {
+            $("#submission-feedback").text("Your message has exceeded 2000 characters.");
+        } else {
+            let report_message = $("#report-message").val();
+            let feedback_JSON = {"report_message": report_message};
+            $.ajax({
+                type: "POST",
+                // To create new url api for this bulk send in backend
+                url: "{% url 'general-report' %}",
+                data: JSON.stringify(feedback_JSON),
+                dataType: "json",
+                contentType: "application/json",
+                error: function(data){
+                    console.log(data);
+                    $("#submission-feedback").text("Oops! It seems like something went wrong when sending your data to the server. Please try again later.")
+                },
+                success: function(data){
+                    $(".modal-body").hide();
+                    $("#send-feedback-report").hide();
+                    $("#submission-feedback").text("Thank you for your feedback! Your response has been received.")
+                }
+            });
+        }
+    });
+
+    // on closing bug report modal, reset all fields
+    $(document).on('click', '#close-report-submission', function(e){
+        $("#report-message").val("");
+        $(".modal-body").show();
+        $("#send-feedback-report").show();
+    });
 });
 </script>
 
 {% else %}
-    <div class="container">
-        <h2>Welcome to StudyCAT!</h2><br>
-            <p>
-            StudyCAT is a free web application that uses a Computerized Adaptive Teaching (CAT) algorithm to help you learn math.<br>
-            If you are a returning user, please log in.<br>
-            If you are a new user, feel free to read the site introduction below and experiment with the demo!
-            </p>
+<div class="container">
+    <h2>Welcome to StudyCAT!</h2><br>
+        <p>
+        StudyCAT is a free web application that uses a Computerized Adaptive Teaching (CAT) algorithm to help you learn math.<br>
+        If you are a returning user, please log in.<br>
+        If you are a new user, feel free to read the site introduction below and experiment with the demo!
+        </p>
+    <br>
+  <!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#about">How it Works</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#demo">Demo</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#rationale">Rationale</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#roadmap">Roadmap</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#faq">FAQ</a>
+    </li>
+</ul>
+
+  <!-- Tab panes -->
+<div class="tab-content">
+    <div id="about" class="container tab-pane active"><br>
+        <p>StudyCAT follows a 3 step process to help you learn math:
+            <ol>
+                <li>First, you complete a short quiz to let us know how much you already know.</li>
+                <li>The algorithm gives you lessons and questions on topics based on your current knowledge.</li>
+                <li>The algorithm analyzes your answers and gives you new lessons and questions based on your personal progress.</li>
+            </ol>
+        Because the algorithm delivers lessons and questions based on an estimate of your personal knowledge and adjusts it based on your responses, StudyCAT requires you to create an account to track and save your progress.
+        If you are still unsure of how StudyCAT estimates your knowledge, you can try out the demo in the 'Demo' tab without creating an account.
+        </p>
+    </div>
+    <div id="demo" class="container tab-pane fade"><br>
+        <p id="instructions">This is a short 3 question demonstration of how StudyCAT estimates how much you know.</p>
+        <button id="start" class="btn btn-outline-primary">Start Demo!</button>
+        <div id="test" class="d-none">
+            <p id="question-prompt"></p>
+            <div id="answerbox"></div>
+            <br>
+            <p id="feedback"></p>
+            <br>
+            <button name="submit_answer" type="submit" class="btn btn-outline-primary">Submit</button>
+        </div>
+
+    </div>
+    <div id="rationale" class="container tab-pane"><br>
+        <h5>Motivations of StudyCAT</h5>
+        <p>
+        The typical classroom has one universal characteristic — one teacher teaches a group of students.
+        While this educational model has existed for millennia, there are two inherent problems with this paradigm:
+            <ol>
+                <li>The quality of education heavily depends on the teacher.</li>
+                <li>Each student cannot receive personalized instruction in the classroom.</li>
+            </ol>
+        Addressing the first point, although most teachers usually receive higher education prior to teaching, the quality of teaching is still highly variable among teachers.
+        This results in the unfortunate case where the students' quality of education is limited by the abilities of the teacher.
+        <br><br>
+        With regards to the second point, since there is only one teacher among many students, the teacher must teach material at an "average" pace.
+        Even though students in a class might have different levels of prior knowledge, the teacher must teach material that is at the "average" level of the class.
+        Even though students in a class might learn at different speeds, the teacher must teach each lesson to their class at the same speed.
+        <br><br>
+        Bearing these two concerns in mind, MathCAT was created (and is being developed) with these two central tenets in mind:
+            <ol>
+                <li>Every student deserves an education of high quality.</li>
+                <li>Every student should receive personalized instruction.</li>
+            </ol>
         <br>
-      <!-- Nav tabs -->
-    <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#about">How it Works</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#demo">Demo</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#rationale">Rationale</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#roadmap">Roadmap</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#faq">FAQ</a>
-        </li>
-    </ul>
-
-      <!-- Tab panes -->
-    <div class="tab-content">
-        <div id="about" class="container tab-pane active"><br>
-            <p>StudyCAT follows a 3 step process to help you learn math:
-                <ol>
-                    <li>First, you complete a short quiz to let us know how much you already know.</li>
-                    <li>The algorithm gives you lessons and questions on topics based on your current knowledge.</li>
-                    <li>The algorithm analyzes your answers and gives you new lessons and questions based on your personal progress.</li>
-                </ol>
-            Because the algorithm delivers lessons and questions based on an estimate of your personal knowledge and adjusts it based on your responses, StudyCAT requires you to create an account to track and save your progress.
-            If you are still unsure of how StudyCAT estimates your knowledge, you can try out the demo in the 'Demo' tab without creating an account.
-            </p>
-        </div>
-        <div id="demo" class="container tab-pane fade"><br>
-            <p id="instructions">This is a short 3 question demonstration of how StudyCAT estimates how much you know.</p>
-            <button id="start" class="btn btn-outline-primary">Start Demo!</button>
-            <div id="test" class="d-none">
-                <p id="question-prompt"></p>
-                <div id="answerbox"></div>
-                <br>
-                <p id="feedback"></p>
-                <br>
-                <button name="submit_answer" type="submit" class="btn btn-outline-primary">Submit</button>
-            </div>
-
-        </div>
-        <div id="rationale" class="container tab-pane"><br>
-            <h5>Motivations of StudyCAT</h5>
-            <p>
-            The typical classroom has one universal characteristic — one teacher teaches a group of students.
-            While this educational model has existed for millennia, there are two inherent problems with this paradigm:
-                <ol>
-                    <li>The quality of education heavily depends on the teacher.</li>
-                    <li>Each student cannot receive personalized instruction in the classroom.</li>
-                </ol>
-            Addressing the first point, although most teachers usually receive higher education prior to teaching, the quality of teaching is still highly variable among teachers.
-            This results in the unfortunate case where the students' quality of education is limited by the abilities of the teacher.
-            <br><br>
-            With regards to the second point, since there is only one teacher among many students, the teacher must teach material at an "average" pace.
-            Even though students in a class might have different levels of prior knowledge, the teacher must teach material that is at the "average" level of the class.
-            Even though students in a class might learn at different speeds, the teacher must teach each lesson to their class at the same speed.
-            <br><br>
-            Bearing these two concerns in mind, MathCAT was created (and is being developed) with these two central tenets in mind:
-                <ol>
-                    <li>Every student deserves an education of high quality.</li>
-                    <li>Every student should receive personalized instruction.</li>
-                </ol>
-            <br>
-            All else follows.
-            <br>
-            </p>
-        </div>
-        <div id="roadmap" class="container tab-pane fade"><br>
-            <h5>A Message from the Developer</h5>
-            <p>Thank you very much for visiting StudyCAT!<br><br>
-            This has been a personal project of mine since 2018. As the website is still in pre-alpha, there are still a lot of errors, bugs, and missing content, so please use the site at your own discretion.
-            If you have any comments, concerns, or bug reports, please do not hesitate to contact me.<br><br>
-            <h5>Future Directions</h5>
-            In the near future, high-priority tasks include:
-                <ul>
-                <li>Bug fixes</li>
-                <li>UI improvements (answer input fixes, CSS styling, etc.)</li>
-                <li>Database model improvements</li>
-                <li>Algorithm optimization (false positives/negatives, item calibration, placement test optimization etc.)</li>
-                <li>Lesson and question improvements</li>
-                </ul>
-            In the long term, future tasks might involve:
-                <ul>
-                <li>Incorporating various math curricula, such as IB, A-levels</li>
-                <li>Support for teachers' ability to model students' progress</li>
-                <li>Including other subjects such as Physics, Chemistry, etc.</li>
-                <li>Localization to other languages</li>
-                </ul>
-            Other suggestions are always welcome. Happy learning!
-            </p>
-        </div>
-        <div id="faq" class="container tab-pane fade"><br>
-            <h5>I am a teacher. How should I use this website?</h5>
-            <p>
-                The website is well suited for formative assessment. Note that because most answer evaluations are done client-side, the answering process is not secure and therefore should not be used for summative assessment.
-                Curriculum alignment is a future goal that, when implemented, can be used to see how well students are grasping material corresponding to learning objectives.
-            </p>
-            <h5>How can I contribute?</h5>
-            <p>
-             If you are a user, you can help just by using the site! Data on response patterns is very useful for calibration, and your bug reports and written feedback always help improve the site.
-             If you have expertise in computerized adaptive testing, knowledge graphs or item response theory, please contact me directly as I would immensely appreciate your input.
-            </p>
-            <h5>More details on the algorithm?</h5>
-            <p>Concepts are arranged in a hierarchical skill tree, where fundamental skills must be learned before more complicated ones.
-                These dependencies are modelled using directed graphs, where each node is a concept and connections between nodes represent strengths of their relationships.
-                Each question tests the user's proficiency at a certain node, and the knowledge level of a user is updated depending on their response to the question.
-            </p>
-            <h5>Technical details of the website?</h5>
-            <p>Database: PostgreSQL.<br>
-                Backend: Django and Django REST Framework.<br>
-                Frontend: Django, with a heavy reliance on AJAX requests and jQuery for responsive elements. Bootstrap CSS.<br>
-                Special thanks to the Guppy math editor (daniel3735928559), math-expressions (kisonecat), and KaTeX libraries!
-            </p>
-        </div>
+        All else follows.
+        <br>
+        </p>
     </div>
-
-    <div class="container">
-        <a href="{% url 'login' %}">Log In</a> | <a href="{% url 'signup' %}">Sign Up</a>
+    <div id="roadmap" class="container tab-pane fade"><br>
+        <h5>A Message from the Developer</h5>
+        <p>Thank you very much for visiting StudyCAT!<br><br>
+        This has been a personal project of mine since 2018. As the website is still in pre-alpha, there are still a lot of errors, bugs, and missing content, so please use the site at your own discretion.
+        If you have any comments, concerns, or bug reports, please do not hesitate to contact me.<br><br>
+        <h5>Future Directions</h5>
+        In the near future, high-priority tasks include:
+            <ul>
+            <li>Bug fixes</li>
+            <li>UI improvements (answer input fixes, CSS styling, etc.)</li>
+            <li>Database model improvements</li>
+            <li>Algorithm optimization (false positives/negatives, item calibration, placement test optimization etc.)</li>
+            <li>Lesson and question improvements</li>
+            </ul>
+        In the long term, future tasks might involve:
+            <ul>
+            <li>Incorporating various math curricula, such as IB, A-levels</li>
+            <li>Support for teachers' ability to model students' progress</li>
+            <li>Including other subjects such as Physics, Chemistry, etc.</li>
+            <li>Localization to other languages</li>
+            </ul>
+        Other suggestions are always welcome. Happy learning!
+        </p>
     </div>
+    <div id="faq" class="container tab-pane fade"><br>
+        <h5>I am a teacher. How should I use this website?</h5>
+        <p>
+            The website is well suited for formative assessment. Note that because most answer evaluations are done client-side, the answering process is not secure and therefore should not be used for summative assessment.
+            Curriculum alignment is a future goal that, when implemented, can be used to see how well students are grasping material corresponding to learning objectives.
+        </p>
+        <h5>How can I contribute?</h5>
+        <p>
+         If you are a user, you can help just by using the site! Data on response patterns is very useful for calibration, and your bug reports and written feedback always help improve the site.
+         If you have expertise in computerized adaptive testing, knowledge graphs or item response theory, please contact me directly as I would immensely appreciate your input.
+        </p>
+        <h5>More details on the algorithm?</h5>
+        <p>Concepts are arranged in a hierarchical skill tree, where fundamental skills must be learned before more complicated ones.
+            These dependencies are modelled using directed graphs, where each node is a concept and connections between nodes represent strengths of their relationships.
+            Each question tests the user's proficiency at a certain node, and the knowledge level of a user is updated depending on their response to the question.
+        </p>
+        <h5>Technical details of the website?</h5>
+        <p>Database: PostgreSQL.<br>
+            Backend: Django and Django REST Framework.<br>
+            Frontend: Django, with a heavy reliance on AJAX requests and jQuery for responsive elements. Bootstrap CSS.<br>
+            Special thanks to the Guppy math editor (daniel3735928559), math-expressions (kisonecat), and KaTeX libraries!
+        </p>
+    </div>
+</div>
 </div>
 
 <script>

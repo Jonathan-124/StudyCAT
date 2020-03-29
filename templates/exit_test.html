@@ -17,57 +17,57 @@
     </div>
     <div id="feedback" class="d-none">
         <p id="feedback-text"></p>
-        <button id="next" class="btn btn-outline-primary float-right">Next</button>
+        <button id="next" class="btn btn-primary float-right">Next</button>
         <br>
     </div>
 </div>
 
 <hr/>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Submit Bug Report
+<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#bugReportModal">
+  Report a Bug
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="bugReportModal" tabindex="-1" role="dialog" aria-labelledby="bugReportModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Question Bug Report Form</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title" id="bugReportModalLabel">Question Bug Report Form</h5>
+                <button id="close-report-submission" type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="bug-report-form">
                     <div class="form-group">
                         <p>What was the issue with this question?</p>
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="PI" name="customRadio" class="custom-control-input">
+                            <input type="radio" id="PI" name="bugChoice" class="custom-control-input">
                             <label class="custom-control-label" for="PI">There is something wrong with the question prompt</label>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="AI" name="customRadio" class="custom-control-input">
+                            <input type="radio" id="AI" name="bugChoice" class="custom-control-input">
                             <label class="custom-control-label" for="AI">There is something wrong with the answer(s)</label>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="DI" name="customRadio" class="custom-control-input">
+                            <input type="radio" id="DI" name="bugChoice" class="custom-control-input">
                             <label class="custom-control-label" for="DI">The question is not displaying correctly</label>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="OT" name="customRadio" class="custom-control-input">
+                            <input type="radio" id="OT" name="bugChoice" class="custom-control-input">
                             <label class="custom-control-label" for="OT">Other</label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="report-message">Please describe the problem in more detail.</label>
+                        <label for="report-message">Please describe the problem in more detail (max 2000 characters).</label>
                         <textarea class="form-control" id="report-message" rows="5"></textarea>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send Bug Report</button>
+                <p id="submission-feedback"></p>
+                <button id="send-bug-report" type="submit" class="btn btn-primary">Send Bug Report</button>
             </div>
         </div>
     </div>
@@ -249,7 +249,7 @@
                     $("#inputbox").text("No such question type found.");
             }
             // Displays "submit answer" button
-            $("button[name='submit_answer']").attr("class", "btn btn-outline-primary float-right");
+            $("button[name='submit_answer']").attr("class", "btn btn-primary float-right");
         }
 
         // When called with list of dicts, sends new user skill level as AJAX post response
@@ -290,7 +290,7 @@
             e.preventDefault();
 
             // Hides "submit answer" button
-            $("button[name='submit_answer']").attr("class", "btn btn-outline-primary d-none");
+            $("button[name='submit_answer']").attr("class", "btn btn-primary d-none");
 
             // Initializes variables to be appended to response
             let q_id = currentQ.question.id;
@@ -373,6 +373,45 @@
                 inputbox.removeChild(inputbox.firstChild);
             }
             tester();
+        });
+
+        // On clicking 'send-bug-report', modal form
+        $(document).on('click', '#send-bug-report', function(e){
+            e.preventDefault();
+            if ($('input[name="bugChoice"]:checked').length == 0) {
+                $("#submission-feedback").text("Please select the issue with the question.");
+            } else if ($("#report-message").val().length > 2000) {
+                $("#submission-feedback").text("Your message has exceeded 2000 characters.");
+            } else {
+                let reason = $('input[name="bugChoice"]:checked', '#bug-report-form').attr('id');
+                let question_fk = currentQ.question.id;
+                let report_message = $("#report-message").val();
+                let bug_report_JSON = {"question": question_fk, "reason": reason, "report_message": report_message};
+                $.ajax({
+                    type: "POST",
+                    // To create new url api for this bulk send in backend
+                    url: "{% url 'question-report' %}",
+                    data: JSON.stringify(bug_report_JSON),
+                    dataType: "json",
+                    contentType: "application/json",
+                    error: function(data){
+                        $("#submission-feedback").text("Oops! It seems like something went wrong when sending your data to the server. Please try again later.")
+                    },
+                    success: function(data){
+                        $(".modal-body").hide();
+                        $("#send-bug-report").hide();
+                        $("#submission-feedback").text("Thank you for your feedback! Your response has been received.")
+                    }
+                });
+            }
+        });
+
+        // on closing bug report modal, reset all fields
+        $(document).on('click', '#close-report-submission', function(e){
+            $('input[name="bugChoice"]').prop('checked', false);
+            $("#report-message").val("");
+            $(".modal-body").show();
+            $("send-bug-report").show();
         });
     });
     </script>
