@@ -7,14 +7,19 @@
 
 {% if user.is_authenticated %}
 <p>Welcome back {{ user.username }}! </p>
+
 <br>
-<div id="learned">
-    <h5>I have recently learned about...</h5>
+
+<div class="card-deck" id="learned">
 </div>
+
 <br>
-<div id="ready-to-learn">
-    <h5>I can now learn about...</h5>
+<br>
+<br>
+
+<div class="card-deck" id="ready-to-learn">
 </div>
+
 <br>
 
 <div>
@@ -178,29 +183,63 @@ $(document).ready(function(){
             let learned =  document.getElementById("learned");
             let ready_to_learn =  document.getElementById("ready-to-learn");
             terminal_lessons_data.forEach(function(value, index, array){
+                // Initializing card, card_body, link, and title vars
+                let card = document.createElement("div");
+                let card_body = document.createElement("div");
                 let lesson_link = document.createElement("a");
-                let lesson_slug = value.lesson_slug;
-                let lesson_title = value.lesson_title;
-                let linebreak = document.createElement("br");
-                lesson_link.setAttribute("id", lesson_slug);
-                lesson_link.setAttribute("href", lessons_url.concat(lesson_slug));
-                lesson_link.innerHTML = lesson_title;
-                lesson_link.setAttribute("class", "text-primary");
-                learned.appendChild(lesson_link);
-                learned.appendChild(linebreak);
+                let card_title = document.createElement("h5");
+                // Setting attributes
+                card_title.setAttribute("class", "card-title");
+                card_title.innerHTML = value.lesson_title;
+                lesson_link.setAttribute("href", lessons_url.concat(value.lesson_slug));
+                card_body.setAttribute("class", "card-body");
+                card.setAttribute("id", value.lesson_slug);
+                card.setAttribute("data-topological-order", terminal_ids[index]);
+                card.setAttribute("class", "card");
+                // Appending children
+                lesson_link.appendChild(card_title);
+                card_body.appendChild(lesson_link);
+                card.appendChild(card_body);
+                learned.appendChild(card);
             })
             next_lessons_data.forEach(function(value, index, array){
+                // Initializing card, card_body, link, and title vars
+                let card = document.createElement("div");
+                let card_body = document.createElement("div");
                 let lesson_link = document.createElement("a");
-                let lesson_slug = value.lesson_slug;
-                let lesson_title = value.lesson_title;
-                let linebreak = document.createElement("br");
-                lesson_link.setAttribute("id", lesson_slug);
-                lesson_link.setAttribute("href", lessons_url.concat(lesson_slug));
-                lesson_link.innerHTML = lesson_title;
+                let card_title = document.createElement("h5");
+                // Setting attributes
+                card_title.setAttribute("class", "card-title");
+                card_title.innerHTML = value.lesson_title;
+                lesson_link.setAttribute("href", lessons_url.concat(value.lesson_slug));
                 lesson_link.setAttribute("class", "text-warning");
-                ready_to_learn.appendChild(lesson_link);
-                ready_to_learn.appendChild(linebreak);
+                card_body.setAttribute("class", "card-body");
+                card.setAttribute("id", value.lesson_slug);
+                card.setAttribute("data-topological-order", next_skills[index]);
+                card.setAttribute("class", "card");
+                // Appending children
+                lesson_link.appendChild(card_title);
+                card_body.appendChild(lesson_link);
+                card.appendChild(card_body);
+                ready_to_learn.appendChild(card);
             })
+
+            for (i of next_skills){
+                parent_terminal_skills = [];
+                parent_adjacency_matrix[i].forEach(function(value, index, array){
+                    if (value == 1){
+                        parent_terminal_skills.push(index);
+                    }
+                });
+                parent_terminal_skills.forEach(function(value, index, array){
+                    parent_card_id = $(`.card[data-topological-order="${value}"]`).attr('id');
+                    child_card_id = $(`.card[data-topological-order="${i}"]`).attr('id');
+                    $(`#${parent_card_id}, #${child_card_id}`).connections({css: {
+                        border: '3px dotted blue',
+                        opacity: 0.5
+                    }});
+                });
+            }
         });
     });
 
