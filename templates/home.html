@@ -9,17 +9,21 @@
 <p>Welcome back {{ user.username }}! </p>
 
 <br>
-
-<div class="card-deck" id="learned">
+<div class="jumbotron">
+    <h5>I've recently learned about...</h5>
+    <br>
+    <div class="card-deck" id="learned">
+    </div>
 </div>
 
 <br>
-<br>
-<br>
 
-<div class="card-deck" id="ready-to-learn">
+<div class="jumbotron">
+    <div class="card-deck" id="ready-to-learn">
+    </div>
+    <br>
+    <h5>I can now learn about...</h5>
 </div>
-
 <br>
 
 <div>
@@ -195,7 +199,7 @@ $(document).ready(function(){
                 card_body.setAttribute("class", "card-body");
                 card.setAttribute("id", value.lesson_slug);
                 card.setAttribute("data-topological-order", terminal_ids[index]);
-                card.setAttribute("class", "card");
+                card.setAttribute("class", "card text-center");
                 // Appending children
                 lesson_link.appendChild(card_title);
                 card_body.appendChild(lesson_link);
@@ -216,7 +220,7 @@ $(document).ready(function(){
                 card_body.setAttribute("class", "card-body");
                 card.setAttribute("id", value.lesson_slug);
                 card.setAttribute("data-topological-order", next_skills[index]);
-                card.setAttribute("class", "card");
+                card.setAttribute("class", "card text-center");
                 // Appending children
                 lesson_link.appendChild(card_title);
                 card_body.appendChild(lesson_link);
@@ -232,14 +236,18 @@ $(document).ready(function(){
                     }
                 });
                 parent_terminal_skills.forEach(function(value, index, array){
-                    parent_card_id = $(`.card[data-topological-order="${value}"]`).attr('id');
-                    child_card_id = $(`.card[data-topological-order="${i}"]`).attr('id');
+                    parent_card_id = $(`div[data-topological-order="${value}"]`).attr('id');
+                    child_card_id = $(`div[data-topological-order="${i}"]`).attr('id');
                     $(`#${parent_card_id}, #${child_card_id}`).connections({css: {
                         border: '3px dotted blue',
                         opacity: 0.5
                     }});
                 });
             }
+            let connections = $("connection");
+            setInterval(function(){
+                connections.connections("update");
+            }, 100);
         });
     });
 
