@@ -238,16 +238,9 @@ $(document).ready(function(){
                 parent_terminal_skills.forEach(function(value, index, array){
                     parent_card_id = $(`div[data-topological-order="${value}"]`).attr('id');
                     child_card_id = $(`div[data-topological-order="${i}"]`).attr('id');
-                    $(`#${parent_card_id}, #${child_card_id}`).connections({css: {
-                        border: '3px dotted blue',
-                        opacity: 0.5
-                    }});
+                    jsPlumb.connect({source: parent_card_id, target: child_card_id});
                 });
             }
-            let connections = $("connection");
-            setInterval(function(){
-                connections.connections("update");
-            }, 100);
         });
     });
 

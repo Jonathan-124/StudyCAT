@@ -87,11 +87,9 @@ $(document).ready(function(){
                     for (i of Array.from(x.parent_ids)){
                         if (traversed_topological_orders.has(i)){
                             parent_card_id = $(`div[data-topological-order="${i}"]`).attr('id');
-                            console.log(parent_card_id);
-                            $(`#${parent_card_id}, #${x.slug}`).connections();
+                            jsPlumb.connect({source: parent_card_id, target: x.slug});
                         } else {
-                            console.log("aa");
-                            $(`#prerequisite, #${x.slug}`).connections();
+                            jsPlumb.connect({source: "prerequisite", target: x.slug});
                         }
                     }
                 }
@@ -101,10 +99,6 @@ $(document).ready(function(){
                     traversed_topological_orders.add(elem.topological_order);
                 }
             }
-            let connections = $("connection");
-            setInterval(function(){
-                connections.connections("update");
-            }, 100);
         });
     });
 });
