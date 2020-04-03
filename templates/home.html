@@ -94,7 +94,6 @@ $(document).ready(function(){
 
 
     // initializing variables to be retrieved from server
-    const get_user_skills_url = "{% url 'userprofiles:get_subject_skills' 'mathematics' %}";
     let parent_adjacency_matrix;
     let child_adjacency_matrix;
     let user_skill_vector;
@@ -105,12 +104,14 @@ $(document).ready(function(){
     let potential_next_skills = new Set();
     let next_skills = [];
 
-    $.get(get_user_skills_url, function(data, status){
+    $.get("{% url 'subjects:get_subject_dependency_matrix' 'mathematics' %}", function(data, status){
         // Retrieves user skill level array (topological order) and parent adjacency matrix from server
         // child adjacency matrix is the transpose of parent adjacency matrix
-        user_skill_vector = data.skill_level_list;
-        parent_adjacency_matrix = data.adjacency_matrix;
+        parent_adjacency_matrix = data.dependencies;
         child_adjacency_matrix = parent_adjacency_matrix[0].map((col, i) => parent_adjacency_matrix.map(row => row[i]));
+    }).then(function(){
+    $.get("{% url 'userprofiles:get_subject_skills' 'mathematics' %}", function(data, status){
+        user_skill_vector = data.skill_level_list;
 
         // populates to_test with root nodes of the graph
         parent_adjacency_matrix.forEach(function(value, index, array){
@@ -238,10 +239,15 @@ $(document).ready(function(){
                 parent_terminal_skills.forEach(function(value, index, array){
                     parent_card_id = $(`div[data-topological-order="${value}"]`).attr('id');
                     child_card_id = $(`div[data-topological-order="${i}"]`).attr('id');
-                    jsPlumb.connect({source: parent_card_id, target: child_card_id});
+                    jsPlumb.connect({source: parent_card_id,
+                                     target: child_card_id,
+                                     endpoint:"Blank",
+                                     anchor:"AutoDefault",
+                                     connector:["Bezier"]});
                 });
             }
         });
+    });
     });
 
     $(document).on('click', '#send-feedback-report', function(e){
