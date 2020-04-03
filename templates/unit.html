@@ -6,6 +6,10 @@
 
 <h2>{{ unit.name }}</h2>
 <br>
+<div class="progress">
+  <div class="progress-bar" id="{{ unit.slug }}" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<br>
 <div id="unit-lessons" class="jumbotron">
     <div class="card-deck" id="prerequisite">
         <div class="card text-center">
@@ -34,6 +38,13 @@ $(document).ready(function(){
     }).then(function(){
     $.get("{% url 'userprofiles:get_subject_skills' 'mathematics' %}", function(data, status){
         user_skill_vector = data.skill_level_list;
+    });
+    }).then(function(){
+    $.get("{% url 'units:get_unit_percentage_completion' unit.slug %}", function(data, status){
+        console.log(data);
+        percentage = data.percentage * 100
+        document.getElementById("{{ unit.slug }}").setAttribute("style", `width: ${percentage}%`);
+        document.getElementById("{{ unit.slug }}").setAttribute("aria-valuenow", percentage);
     });
     }).then(function(){
     $.get("{% url 'units:get_unit_data' unit.id %}", function(data, status){

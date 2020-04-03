@@ -34,3 +34,13 @@ def get_placement_initial_question_pack(request, *args, **kwargs):
             serialized_question = QuestionSerializer(random_question).data
             end_pack.append({"skill_id": i, "question": serialized_question})
         return Response({"start_skills_questions": start_pack, "end_skills_questions": end_pack, })
+
+
+@api_view()
+def get_units_percentage_completion(request, *args, **kwargs):
+    if request.user.is_anonymous:
+        return Response({"message": "You are not logged in"}, status=status.HTTP_403_FORBIDDEN)
+    else:
+        user_profile = request.user.profile
+        data = user_profile.curriculum_units_completion_percentage(kwargs.get('pk'))
+        return Response(data)
