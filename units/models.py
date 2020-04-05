@@ -30,6 +30,10 @@ class Unit(models.Model):
             self.slug = slugify(self.name)
         super(Unit, self).save(*args, **kwargs)
 
+    def lesson_topological_orders(self):
+        lessons = self.lessons.select_related('skill')
+        return list(map(lambda x: x.skill.topological_order, lessons))
+
 
 # Called when Unit-Lesson m2m relationship added or removed
 # Populates Unit object start_skills and end_skills fields by traversing the DAG

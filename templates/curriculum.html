@@ -25,8 +25,15 @@
   $.get("{% url 'get_units_percentage_completion' curriculum.id %}", function(data, status){
     for (i of data){
       percentage = i.percentage * 100
-      document.getElementById(i.slug).setAttribute("style", `width: ${percentage}%`);
-      document.getElementById(i.slug).setAttribute("aria-valuenow", percentage);
+      if (percentage == 100){
+        document.getElementById(i.slug).setAttribute("style", "width: 100%");
+        document.getElementById(i.slug).setAttribute("aria-valuenow", 100);
+        document.getElementById(i.slug).innerHTML = "Unit Complete!";
+      } else {
+        document.getElementById(i.slug).setAttribute("style", `width: ${percentage}%`);
+        document.getElementById(i.slug).setAttribute("aria-valuenow", percentage);
+        document.getElementById(i.slug).innerHTML = `${Math.round(percentage * 10) / 10}%`;
+      }
     }
   });
 </script>
