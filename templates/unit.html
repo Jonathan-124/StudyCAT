@@ -31,12 +31,14 @@ $(document).ready(function(){
     let remaining_topological_orders = new Set();
     let user_skill_vector;
 
-    $.get("{% url 'subjects:get_subject_dependency_matrix' 'mathematics' %}", function(data, status){
-        // Retrieves parent adjacency matrix (topological order) from server
-        // child adjacency matrix is the transpose of parent adjacency matrix
-        parent_adjacency_matrix = data.dependencies;
-        child_adjacency_matrix = parent_adjacency_matrix[0].map((col, i) => parent_adjacency_matrix.map(row => row[i]));
-    }).then(function(){
+    $.when(
+        $.get("{% url 'subjects:get_subject_dependency_matrix' 'mathematics' %}", function(data, status){
+            // Retrieves parent adjacency matrix (topological order) from server
+            // child adjacency matrix is the transpose of parent adjacency matrix
+            parent_adjacency_matrix = data.dependencies;
+            child_adjacency_matrix = parent_adjacency_matrix[0].map((col, i) => parent_adjacency_matrix.map(row => row[i]));
+        })
+    ).then(function(){
         $.get("{% url 'units:get_unit_data' unit.id %}", function(data, status){
             // API Get data on current unit
             for (i = 0; i < data.lessons.length; i++){

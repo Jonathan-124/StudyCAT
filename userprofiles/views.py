@@ -2,17 +2,22 @@ from rest_framework import status
 from rest_framework.decorators import api_view, parser_classes
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
-from django.views.generic.edit import FormView
-from django.urls import reverse_lazy
-from .forms import UserProfilePretestForm
-from .models import Skillfulness
+from django.views.generic.edit import UpdateView
+from django.urls import reverse
+from .models import UserProfile, Skillfulness
 from skills.models import Skill
 
 
-class PretestFormView(FormView):
+class PretestQuestionnaireView(UpdateView):
+    model = UserProfile
+    fields = ('user_type', 'currently_studying', 'test_date')
     template_name = 'pretest_questionnaire.html'
-    form_class = UserProfilePretestForm
-    success_url = reverse_lazy('placement')
+
+    def get_success_url(self):
+        return reverse('home')
+
+    def get_object(self, queryset=None):
+        return self.request.user.profile
 
 
 # Receives slug of subject, returns list of user skill levels for that subject in topological order

@@ -9,7 +9,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
-
 # Additional manager methods for Skillfulness model QuerySets
 class SkillfulnessManager(models.Manager):
     # Receives userprofile object and list of skill_ids, returns user readiness to learn each skill in list
