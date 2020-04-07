@@ -1,23 +1,11 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from skills.models import Skill
+from skills.models import Skill, SkillEdge
 from users.models import CustomUser
-from units.models import Unit
 from curricula.models import Curriculum
 from decimal import Decimal
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
-
-# Additional manager methods for Skillfulness model QuerySets
-class SkillfulnessManager(models.Manager):
-    # Receives userprofile object and list of skill_ids, returns user readiness to learn each skill in list
-    def unit_readiness(self, userprofile, skill_id_list):
-        self.filter(user_profile=userprofile)
-
-    # Receives userprofile object, returns list of terminus skills that user has learned
-    def terminus_skills(self, userprofile):
-        self.filter(user_profile=userprofile)
 
 
 # UserProfile are additional attributes to the user model not used for authentication
@@ -75,6 +63,21 @@ class UserProfile(models.Model):
             pass
         setattr(skillfulness, 'skill_level', newlevel)
         skillfulness.save()
+
+    # Receives num [1, 4], depreciates user skillfulness of the terminal-most skills
+    # 1 - two days+; depreciate terminal skills slightly
+    # 2 - one week+; depreciate terminal skills greatly and parents slightly
+    # 3 - two weeks+; depreciate terminal and parent skills greatly, grandparents slightly
+    # 4 - one month+; depreciate terminal, parent and grandparent skills greatly, greatgrandparents slightly
+    # 5 - two months+; depreciate terminal, ..., greatgrandparent skills greatly, greatgreatgrandparents slightly
+    def depreciate_terminal_skills(self, num):
+        passed_skill_ids = Skillfulness.objects.filter(user_profile=self).filter(skill_level__gt=0.5).values_list('skill__id', flat=True)
+        terminus_skill_ids = SkillEdge.objects.filter(parent_skill__id__in=passed_skill_ids).exclude(child_skill__id__in=passed_skill_ids).values_list('parent_skill__id', flat=True)
+        while num > 1:
+            Skillfulness.objects.filter(user_profile=self).filter(skill__id__in=terminus_skill_ids).update(skill_level=0.1)
+            terminus_skill_ids = Skill.objects.get_prerequisite_skill_ids(terminus_skill_ids)
+            num -= 1
+        Skillfulness.objects.filter(user_profile=self).filter(skill__id__in=terminus_skill_ids).update(skill_level=0.4)
 
     # Receives skill_id, returns int that indicates whether user is ready to learn skill
     # Return 2 (already learned) if user's skill_level for >= 0.5
