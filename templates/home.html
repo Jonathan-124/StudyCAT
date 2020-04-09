@@ -7,7 +7,14 @@
 
 {% if user.is_authenticated %}
 <p>Welcome back {{ user.username }}! </p>
-
+{% if user.profile.currently_studying %}
+<p> Click <a href="{% url 'curriculum' user.profile.currently_studying.slug %}">here</a> to go to your curriculum.</p>
+{% else %}
+<p>
+    It seems like you are a new user!
+    Click <a href="{% url 'placement' %}">here</a> to take the placement test.
+</p>
+{% endif %}
 <br>
 <div class="jumbotron">
     <h5>I've recently learned about...</h5>
