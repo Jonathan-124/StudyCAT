@@ -5,7 +5,7 @@ from .models import Curriculum
 class CurriculumAdmin(admin.ModelAdmin):
     model = Curriculum
     exclude = ('slug', )
-    readonly_fields = ('start_skills', 'end_skills')
+    readonly_fields = ('start_skills', 'end_skills', 'subject')
 
 
 admin.site.register(Curriculum, CurriculumAdmin)

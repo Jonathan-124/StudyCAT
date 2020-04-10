@@ -1,10 +1,12 @@
 from django.db import models
+from subjects.models import Subject
 from units.models import Unit
 from skills.models import Skill
 from django.utils.text import slugify
 from django.db.models.signals import m2m_changed
 from django.dispatch import receiver
 from django.contrib.postgres.fields import JSONField
+from django.core.exceptions import ValidationError
 import json
 
 
@@ -20,6 +22,7 @@ class Curriculum(models.Model):
     units = models.ManyToManyField(Unit, related_name="curricula")
     start_skills = JSONField(blank=True, null=True)
     end_skills = JSONField(blank=True, null=True)
+    subject = models.OneToOneField(Subject, on_delete=models.PROTECT, null=True, blank=True)
 
     class Meta:
         verbose_name_plural = 'curricula'
@@ -29,6 +32,12 @@ class Curriculum(models.Model):
 
     # Populates slug field with slugified curriculum name after save() is called
     def save(self, *args, **kwargs):
+        if self.units:
+            unit_subject_ids = self.units.values_list('subject__id', flat=True).distinct()
+            if len(unit_subject_ids) > 1:
+                raise ValidationError
+            else:
+                self.subject = Subject.objects.get(id=unit_subject_ids[0])
         if not self.id:
             self.slug = slugify(self.name)
         super(Curriculum, self).save(*args, **kwargs)
