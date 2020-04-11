@@ -32,7 +32,7 @@ $(document).ready(function(){
     let user_skill_vector;
 
     $.when(
-        $.get("{% url 'subjects:get_subject_dependency_matrix' 'mathematics' %}", function(data, status){
+        $.get("{% url 'subjects:get_subject_dependency_matrix' unit.subject.slug %}", function(data, status){
             // Retrieves parent adjacency matrix (topological order) from server
             // child adjacency matrix is the transpose of parent adjacency matrix
             parent_adjacency_matrix = data.dependencies;
@@ -127,7 +127,7 @@ $(document).ready(function(){
         });
     }).then(function(){
     {% if user.is_authenticated %}
-        $.get("{% url 'userprofiles:get_subject_skills' 'mathematics' %}", function(data, status){
+        $.get("{% url 'userprofiles:get_subject_skills' unit.subject.slug %}", function(data, status){
             const user_skill_vector = data.skill_level_list;
             let lesson_topological_orders = {{ unit.lesson_topological_orders }};
             let num_complete = 0;
