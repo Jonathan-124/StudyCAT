@@ -23,21 +23,17 @@ def skill_based_randomizer(request, *args, **kwargs):
 
 
 # Receives get request with kwarg 'pk', retrieves num random questions with skill_id = pk
-# Returns response of JSON object containing serialized questions (list length num) and user_skill (decimal [0, 1])
+# Returns response of JSON object containing serialized questions (list length num)
 @api_view()
 def skill_question_pack(request, num=3, *args, **kwargs):
-    if request.user.is_anonymous:
-        return Response({"message": "You are not logged in"}, status=status.HTTP_403_FORBIDDEN)
-    else:
-        skill_id = kwargs.get('pk')
-        user_profile = request.user.profile
-        user_skill_lvl = user_profile.get_skill_level(skill_id)
-        questions = Question.objects.random_questions(skill_id, num)
-        pack = []
-        for i in questions:
-            serialized_question = QuestionSerializer(i).data
-            pack.append({"skill_id": skill_id, "question": serialized_question})
-        return Response({"questions": pack, "user_skill": user_skill_lvl})
+    skill_id = kwargs.get('pk')
+    skill_topological_order = Skill.objects.get(id=skill_id).topological_order
+    questions = Question.objects.random_questions(skill_id, num)
+    pack = []
+    for i in questions:
+        serialized_question = QuestionSerializer(i).data
+        pack.append(serialized_question)
+    return Response({"questions": pack, "topological_order": skill_topological_order})
 
 
 # Receives get request with kwarg 'pk', retrieves one question for each parent skill of skill whose id=pk

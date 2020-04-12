@@ -8,10 +8,6 @@ class HomePageView(TemplateView):
     template_name = 'home.html'
 
 
-class PlacementTestView(TemplateView):
-    template_name = 'placement_test.html'
-
-
 class CreateGeneralBugReportView(CreateAPIView):
     queryset = GeneralBugReport.objects.all()
     serializer_class = GeneralBugReportSerializer

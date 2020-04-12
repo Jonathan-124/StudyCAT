@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from django.views.generic.edit import UpdateView
 from django.urls import reverse
 from .models import UserProfile, Skillfulness
-from skills.models import Skill
+from django.core.exceptions import ValidationError
 
 
 class PretestQuestionnaireView(UpdateView):
@@ -35,16 +35,34 @@ def update_skill_level(request, *args, **kwargs):
         return Response({"message": "success"})
 
 
-# Receives post request with JSON with "confirmed_correct_skill_ids" (list of ints)
-# Updates all confirmed skills and prerequisite skills with skill_level=0.9
+# Receives post request with list of JSON objects {"topological_orders": [list of ints], "skill_level": float}
+# Updates user skill_level for skillfulness objects with given topological orders
 @api_view(['POST'])
 @parser_classes([JSONParser])
-def post_placement_bulk_update(request, *args, **kwargs):
+def post_test_bulk_update(request, *args, **kwargs):
     if request.user.is_anonymous:
         return Response({"message": "You are not logged in"}, status=status.HTTP_403_FORBIDDEN)
     else:
         user_profile = request.user.profile
-        confirmed_correct_skill_ids = request.data["confirmed_correct_skill_ids"]
-        all_known_skills = Skill.objects.get_prerequisite_skill_ids(confirmed_correct_skill_ids)
-        Skillfulness.objects.filter(user_profile=user_profile).filter(pk__in=all_known_skills).update(skill_level=0.9)
-        return Response({"message": "success"})
+        if request.data["update_via"] == "topological_order":
+            for obj in request.data["to_be_updated"]:
+                Skillfulness.objects.filter(
+                    user_profile=user_profile
+                ).filter(
+                    skill__subject__slug=kwargs.get("slug"), skill__topological_order__in=obj["topological_orders"]
+                ).update(
+                    skill_level=obj["skill_level"]
+                )
+            return Response({"message": "success"})
+        elif request.data["update_via"] == "skill_ids":
+            for obj in request.data["to_be_updated"]:
+                Skillfulness.objects.filter(
+                    user_profile=user_profile
+                ).filter(
+                    skill__id__in=obj["skill_ids"]
+                ).update(
+                    skill_level=obj["skill_level"]
+                )
+            return Response({"message": "success"})
+        else:
+            raise ValidationError
