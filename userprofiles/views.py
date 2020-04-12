@@ -20,16 +20,6 @@ class PretestQuestionnaireView(UpdateView):
         return self.request.user.profile
 
 
-# Receives slug of subject, returns list of user skill levels for that subject in topological order
-@api_view()
-def get_subject_skills(request, *args, **kwargs):
-    if request.user.is_anonymous:
-        return Response({"message": "You are not logged in"}, status=status.HTTP_403_FORBIDDEN)
-    else:
-        skill_level_list = request.user.profile.get_subject_skills(kwargs.get("slug"))
-        return Response({"skill_level_list": skill_level_list})
-
-
 # Receives post request with kwarg pk and JSON with "new_skill_level" (decimal)
 # Updates user's skill level of skill whose id=pk to new_skill_level
 @api_view(['POST'])

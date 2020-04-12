@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import get_subject_dependency_matrix
+from .views import get_subject_data
 
 
 urlpatterns = [
-    path('<slug:slug>/', get_subject_dependency_matrix, name='get_subject_dependency_matrix'),
+    path('<slug:slug>/', get_subject_data, name='get_subject_data'),
 ]
