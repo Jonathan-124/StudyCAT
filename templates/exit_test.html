@@ -134,14 +134,14 @@ $(document).ready(function(){
 
     $.when(
         $.get("{% url 'subjects:get_subject_data' lesson.skill.subject.slug %}", function(data, status){
-            // Retrieves parent adjacency matrix (topological order) from server
+            // Retrieves parent adjacency matrix and user skill vector list (both topological order) from server
             // child adjacency matrix is the transpose of parent adjacency matrix
             parent_adjacency_matrix = data.subject_data.dependencies;
             child_adjacency_matrix = parent_adjacency_matrix[0].map((col, i) => parent_adjacency_matrix.map(row => row[i]));
             user_skill_vector = data.skill_level_list;
         }),
         $.get("{% url 'skills:skill_question_pack' lesson.skill.pk %}", function(data, status){
-            // Retrieves user proficiency data; stores user skill and question data
+            // Retrieves and stores question pack data
             question_pack_data = data.questions;
         })
     ).then(function(){
@@ -172,7 +172,6 @@ $(document).ready(function(){
             prompt_image.setAttribute("src", currentQ.image_url);
             document.getElementById("questionbox").appendChild(prompt_image);
         }
-
         switch (currentQ.question_type){
             case "MC":
                 // Multiple Choice case
@@ -182,7 +181,7 @@ $(document).ready(function(){
                 inputbox.appendChild(mc_inputbox);
 
                 // For each answer choice, create choicebox, append radio input and label to choicebox
-                // Append choicebox to mc_inputbox
+                // Append each choicebox to mc_inputbox
                 currentQ.answers.forEach(function(value, index, array){
                     let choicebox = document.createElement("div");
                     choicebox.setAttribute("class", "custom-control custom-radio");
@@ -214,7 +213,7 @@ $(document).ready(function(){
                 inputbox.appendChild(ic_inputbox);
 
                 // For each answer choice, create choicebox, append radio input and label to choicebox
-                // Append choicebox to ic_inputbox
+                // Append each choicebox to ic_inputbox
                 currentQ.answers.forEach(function(value, index, array){
                     let choicebox = document.createElement("div");
                     choicebox.setAttribute("class", "custom-control custom-radio custom-control-inline");
@@ -257,8 +256,9 @@ $(document).ready(function(){
         $("button[name='submit_answer']").attr("class", "btn btn-primary float-right");
     }
 
-    // When called with list of dicts, sends new user skill level as AJAX post response
+    // When called, sends AJAX post to update user skill
     function sendResponseData(){
+        // initializing variables
         let parent_topological_orders = new Set();
         let child_topological_orders = new Set();
         let queued_parent_topological_orders = [];
@@ -268,6 +268,7 @@ $(document).ready(function(){
         let depreciating = [];
         let appreciating = [{{ lesson.skill.topological_order }}];
 
+        // parent_topological_orders - set of topological orders of parent skills of skill being tested
         parent_adjacency_matrix[{{ lesson.skill.topological_order }}].forEach(function(value, index, array){
             if (value == 1){
                 queued_parent_topological_orders.push(index)
@@ -283,6 +284,7 @@ $(document).ready(function(){
             });
         }
 
+        // child_topological_orders - set of topological orders of children skills of skill being tested
         child_adjacency_matrix[{{ lesson.skill.topological_order }}].forEach(function(value, index, array){
             if (value == 1){
                 queued_child_topological_orders.push(index)
@@ -298,30 +300,33 @@ $(document).ready(function(){
             });
         }
 
+        // Calculates average of a_correctness of user responses, sets user_skill_level to new delta [0, 1]
         for (i of data_list){
             delta += i.a_correctness;
         }
         delta /= data_list.length
-        user_skill_level += delta - 0.5;
-        if (user_skill_level < 0){
+        if (delta < 0){
             user_skill_level = 0;
-        } else if (user_skill_level > 1) {
+        } else if (delta > 1) {
             user_skill_level = 1;
         } else {
-            // pass
+            user_skill_level = delta;
         }
 
+        // Filter for parent topological orders where the user's skill level is less than user_skill_level, push to appreciating
         Array.from(parent_topological_orders).forEach(function(value, index, array){
             if (user_skill_vector[value] < user_skill_level){
                 appreciating.push(value);
             }
         });
+        // Filter for child topological orders where the user's skill level is more than user_skill_level, push to depreciating
         Array.from(child_topological_orders).forEach(function(value, index, array){
             if (user_skill_vector[value] > user_skill_level){
                 depreciating.push(value);
             }
         });
 
+        // lists of JSON objects to be updated to new skill levels
         to_be_updated = [{"topological_orders": appreciating, "skill_level": user_skill_level}, {"topological_orders": depreciating, "skill_level": user_skill_level}];
         response = {"update_via": "topological_order", "to_be_updated": to_be_updated}
         $.ajax({
@@ -354,6 +359,7 @@ $(document).ready(function(){
         let feedback_text = "";
 
         // Different ways of retrieving "a_correctness" dependent on question type
+        // Different feedback text depending on answer correctness and whether feedback supplied for given answer in currentQ
         switch(q_type) {
             case "MC":
                 a_correctness = parseFloat($('input[name="answer_choice"]:checked', '#mc_inputbox').val());
@@ -403,9 +409,11 @@ $(document).ready(function(){
             $("#feedback-text").text("Incorrect. " + feedback_text + " The correct answer is " + correct_answer.answer_text + " .");
         }
         renderKatex(feedbackbox);
+
+        // sets feedbackbox to be visible (contains 'next' button)
         feedbackbox.setAttribute("class", "");
 
-        // Aggregates data, appends everything to data_list
+        // Aggregates data, appends user response to the question to data_list
         let data = {};
         data.q_id = q_id;
         data.q_type = q_type;
@@ -413,7 +421,7 @@ $(document).ready(function(){
         data_list.push(data);
     });
 
-    // On clicking "next" button, kills DOM nodes,calls tester()
+    // On clicking "next" button, kills DOM nodes, calls tester()
     $("#next").on('click', function(e){
         e.preventDefault();
         // to kill all children in feedbackbox

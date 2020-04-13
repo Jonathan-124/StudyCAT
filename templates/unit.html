@@ -43,6 +43,7 @@ $(document).ready(function(){
             {% endif %}
         }),
         $.get("{% url 'units:get_unit_data' unit.id %}", function(data, status){
+            // Retrieves and stores serialized lesson objects for lessons in unit
             lessons_data = data.lessons
         })
     ).then(function(){
@@ -67,8 +68,8 @@ $(document).ready(function(){
             unit_lessons.appendChild(document.createElement("br"));
             unit_lessons.appendChild(deck);
 
+            // list filtered for unit lessons that are not yet traversed and whose parents have already been traversed
             nl = lessons_data.filter(function(value){
-                // filters for unit lessons that are not yet traversed and whose parents have already been traversed
                 if (traversed_topological_orders.has(value.topological_order)){
                     return false
                 }
@@ -80,6 +81,7 @@ $(document).ready(function(){
                 return true
             });
 
+            // Creates DOM elements for nl
             for (x of nl){
                 // Initializing card, card_body, link, and title vars
                 let card = document.createElement("div");
@@ -102,8 +104,8 @@ $(document).ready(function(){
                 card.appendChild(card_body);
                 deck.appendChild(card);
 
+                // Connects to DOM elements with data-topological-attribute == topological order in parent_ids
                 for (i of Array.from(x.parent_ids)){
-                    // Connects to DOM elements with data-topological-attribute == topological order in parent_ids
                     // If not in graph, display "prerequisite" card and connect to it
                     if (traversed_topological_orders.has(i)){
                         parent_card_id = $(`div[data-topological-order="${i}"]`).attr('id');
@@ -123,19 +125,20 @@ $(document).ready(function(){
                     jsPlumb.repaintEverything();
                 }
             }
+
+            // Update remaining_topological_orders and traversed_topological_orders using nl
             for (elem of nl){
-                // Update remaining_topological_orders and traversed_topological_orders using nl
                 remaining_topological_orders.delete(elem.topological_order);
                 traversed_topological_orders.add(elem.topological_order);
             }
         }
 
         {% if user.is_authenticated %}
+            // Colors cards and connections based on user progress
             let lesson_topological_orders = {{ unit.lesson_topological_orders }};
             let num_complete = 0;
             for (i of lesson_topological_orders){
                 card_id = $(`div[data-topological-order="${i}"]`).attr('id');
-                console.log(card_id);
                 if (user_skill_vector[i] > 0.5){
                     num_complete += 1;
                     jsPlumb.select({target: card_id}).setPaintStyle({stroke: "rgb(2, 117, 216)"})
@@ -171,6 +174,7 @@ $(document).ready(function(){
                 }
             }
 
+        // displays progress bar based on user progress
             if (num_complete == lesson_topological_orders.length){
                 $(".progress-bar").attr("style", `width: 100%`);
                 $(".progress-bar").attr("aria-valuenow", 100);
@@ -189,6 +193,7 @@ $(document).ready(function(){
         {% endif %}
     });
 
+    // on window resize jsPlumb repaint
     $(window).resize(function(){
         jsPlumb.repaintEverything();
     });
