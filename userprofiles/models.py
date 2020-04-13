@@ -8,14 +8,14 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
-# UserProfile are additional attributes to the user model not used for authentication
+# UserProfile model - additional attributes to the user model not used for authentication
+# user - one-to-one relationship to CustomUser model
+# user_type - choice of what type of user they are
+# skills - each UserProfile object has one relationship to every Skill object through the Skillfulness through model
+# currently_studying - one-to-one relationship to Curriculum model, what the user is currently studying
+# test_date - (if exists) what date the user will take their test
+# user_type, currently_studying, test_date are fields updated in the pre-placement test questionnaire
 class UserProfile(models.Model):
-    # user - one-to-one relationship to CustomUser model
-    # user_type - choice of what type of user they are
-    # skills - each UserProfile object has one relationship to every Skill object through the Skillfulness through model
-    # currently_studying - one-to-one relationship to Curriculum model, what the user is currently studying
-    # test_date - (if exists) what date the user will take their test
-    # user_type, currently_studying, test_date are fields updated in the pre-placement test questionnaire
     user = models.OneToOneField(
         get_user_model(),
         on_delete=models.CASCADE,
@@ -52,6 +52,7 @@ class UserProfile(models.Model):
         return skill_level_list
 
     # Receives skill_id and n [0, 1], updates user skill proficiency of Skill object to new level
+    # now defunct
     def change_skill_level(self, skill_id, n):
         newlevel = n
         skillfulness = self.user_skillfulness.get(skill__id=skill_id)
@@ -77,32 +78,13 @@ class UserProfile(models.Model):
             terminus_skill_ids = Skill.objects.get_prerequisite_skill_ids(terminus_skill_ids)
             num -= 1
 
-    # Receives skill_id, returns int that indicates whether user is ready to learn skill
-    # Return 2 (already learned) if user's skill_level for >= 0.5
-    # Return 1 (ready to learn) if all skill_level of parent skills >= 0.5
-    # Return 0 (not ready to learn) if some skill_level of parent skills < 0.5
-    # to un-hardcode threshold!
-    def ready_to_learn_skill(self, skill_id):
-        skillobj = Skill.objects.get(id=skill_id)
-        skillfulness = self.user_skillfulness.get(skill=skillobj)
-        if Decimal(skillfulness.skill_level) >= 0.5:
-            return 2
-        else:
-            parent_skills = skillobj.get_parent_skills()
-            incomplete = list(
-                filter(lambda x: (x.user_skillfulness.get(user_profile=self).skill_level < 0.5),
-                       parent_skills)
-            )
-            if incomplete:
-                return 0
-            else:
-                return 1
-
+    # Receives unit slug, returns percentage of skills in unit in which the user's skill_level > 0.5
     def unit_completion_percentage(self, unit_slug):
         unit_skillfulness = self.user_skillfulness.filter(skill__lesson__units__slug=unit_slug)
         percentage = unit_skillfulness.filter(skill_level__gt=0.5).count() / unit_skillfulness.count()
         return percentage
 
+    # Receives curriculum id, list of objects with unit slug and their completion percentages
     def curriculum_units_completion_percentage(self, curriculum_id):
         percentages = []
         unit_slugs = Curriculum.objects.get(id=curriculum_id).units.values_list('slug', flat=True)
@@ -124,11 +106,11 @@ def save_user_profile(sender, instance, **kwargs):
 
 
 # Custom through model that connects one UserProfile object to one Skill object
+# user_profile - one-to-one relation to UserProfile object
+# skill - one-to-one relation to Skill object
+# skill_level - [0, 1] of user's skill level for a Skill object
+# to add standard deviation - 'confidence' field?
 class Skillfulness(models.Model):
-    # user_profile - one-to-one relation to UserProfile object
-    # skill - one-to-one relation to Skill object
-    # skill_level - [0, 1] of user's skill level for a Skill object
-    # to add standard deviation - 'confidence' field?
     user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='user_skillfulness')
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE, related_name='user_skillfulness')
     skill_level = models.DecimalField(decimal_places=3,

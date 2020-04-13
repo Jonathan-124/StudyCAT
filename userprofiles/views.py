@@ -8,6 +8,7 @@ from .models import UserProfile, Skillfulness
 from django.core.exceptions import ValidationError
 
 
+# Questionnaire that updates fields in the user's profile
 class PretestQuestionnaireView(UpdateView):
     model = UserProfile
     fields = ('user_type', 'currently_studying', 'test_date')
@@ -35,8 +36,11 @@ def update_skill_level(request, *args, **kwargs):
         return Response({"message": "success"})
 
 
-# Receives post request with list of JSON objects {"topological_orders": [list of ints], "skill_level": float}
-# Updates user skill_level for skillfulness objects with given topological orders
+# Receives post request with a JSON object {"update_via": str, "to_be_updated": list}
+# if "updated_via" == "topological_order", list of {"topological_orders": [list of ints], "skill_level": float}
+# if "updated_via" == "skill_ids", list of {"skill_ids": [list of ints], "skill_level": float}
+# Updates all user skill_level for skillfulness objects with each of the given topological orders/skill ids
+# Note: subject restricted for topological_order updates but not skill_id updates
 @api_view(['POST'])
 @parser_classes([JSONParser])
 def post_test_bulk_update(request, *args, **kwargs):

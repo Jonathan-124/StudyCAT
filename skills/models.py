@@ -17,21 +17,13 @@ class SkillManager(models.Manager):
             id_set.update(set(preceding_skill_ids))
         return list(prerequisite_skills_id_set)
 
-    # Receives list of topological order ids, returns list of dicts of lesson info
-    def get_lesson_data(self, topological_order_list):
-        lesson_data = []
-        for i in topological_order_list:
-            lesson = self.get(topological_order=i).lesson
-            lesson_data.append({"lesson_title": lesson.lesson_title, "lesson_slug": lesson.slug})
-        return lesson_data
 
-
-# Skills represent nodes of the DAG
+# Skill model - objects represent nodes of the DAG
+# subject - fk to Subject, i.e. which subject area self belongs to
+# name - name of skill
+# related_skills - m2m field relating to other skills; asymmetric/hierarchical relationship, see SkillEdge
+# topological order - numbered topological ordering of the skill DAG, see receiver/signal below
 class Skill(models.Model):
-    # subject - fk to Subject of which subject area self belongs to
-    # name - name of skill
-    # related_skills - m2m field relating to other skills; asymmetric/hierarchical relationship, see SkillEdge
-    # topological order - numbered topological ordering of the skill DAG, see receiver/signal below
     subject = models.ForeignKey(Subject, on_delete=models.PROTECT, related_name='skills')
     name = models.CharField(max_length=100)
     related_skills = models.ManyToManyField("self",
@@ -67,7 +59,7 @@ class Skill(models.Model):
         return list(ids)
 
 
-# SkillEdges are edges that connect Skill nodes in the knowledge DAG
+# SkillEdge model - edges that connect Skill nodes in the knowledge DAG
 class SkillEdge(models.Model):
     parent_skill = models.ForeignKey(Skill, on_delete=models.CASCADE, related_name="parent_skills")
     child_skill = models.ForeignKey(Skill, on_delete=models.CASCADE, related_name="children_skills")

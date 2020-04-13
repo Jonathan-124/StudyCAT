@@ -3,6 +3,11 @@ from django.db import models
 from django.utils.text import slugify
 
 
+# Subject model
+# name - Charfield of model name
+# slug - unique slug of subject name
+# dependencies - square parent dependency matrix of all skills whose subject is self
+# its (i, j)th entry is 1 if skill with topological order i has skill with topological order j as a parent; else 0
 class Subject(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField(unique=True)

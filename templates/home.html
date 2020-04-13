@@ -203,9 +203,9 @@ $(document).ready(function(){
                 // Setting attributes
                 card_title.setAttribute("class", "card-title");
                 card_title.innerHTML = value.lesson_title;
-                lesson_link.setAttribute("href", lessons_url.concat(value.lesson_slug));
+                lesson_link.setAttribute("href", lessons_url.concat(value.slug));
                 card_body.setAttribute("class", "card-body");
-                card.setAttribute("id", value.lesson_slug);
+                card.setAttribute("id", value.slug);
                 card.setAttribute("data-topological-order", terminal_ids[index]);
                 card.setAttribute("class", "card text-center");
                 // Appending children
@@ -223,10 +223,10 @@ $(document).ready(function(){
                 // Setting attributes
                 card_title.setAttribute("class", "card-title");
                 card_title.innerHTML = value.lesson_title;
-                lesson_link.setAttribute("href", lessons_url.concat(value.lesson_slug));
+                lesson_link.setAttribute("href", lessons_url.concat(value.slug));
                 lesson_link.setAttribute("class", "text-warning");
                 card_body.setAttribute("class", "card-body");
-                card.setAttribute("id", value.lesson_slug);
+                card.setAttribute("id", value.slug);
                 card.setAttribute("data-topological-order", next_skills[index]);
                 card.setAttribute("class", "card text-center");
                 // Appending children

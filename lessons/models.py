@@ -5,15 +5,23 @@ from django.urls import reverse
 from skills.models import Skill
 
 
+class LessonManager(models.Manager):
+    # Receives list of topological order ids, returns querysets of lessons with skill__topological_order in list
+    def get_lessons_from_topological_orders(self, topological_order_list):
+        return self.filter(skill__topological_order__in=topological_order_list)
+
+
+# Lesson model
+# lesson_title - charfield of lesson title
+# slug - lesson_title uniquely slugified, populated after save() is called
+# lesson_text - html template of lesson, uploaded to media/lessons
+# skill - one-to-one relationship to Skill model
 class Lesson(models.Model):
-    # lesson_title - charfield of lesson title
-    # slug - lesson_title uniquely slugified, populated after save() is called
-    # lesson_text - html template of lesson, uploaded to media/lessons
-    # skill - one-to-one relationship to Skill model
     lesson_title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
     lesson_text = models.FileField(upload_to='lessons')
     skill = models.OneToOneField(Skill, on_delete=models.CASCADE, related_name='lesson')
+    objects = LessonManager()
 
     class Meta:
         order_with_respect_to = 'skill'
@@ -38,6 +46,7 @@ def lesson_image_directory_path(instance, filename):
     return '{0}/lesson_images/{1}/{2}'.format(instance.lesson.skill.subject.name, instance.lesson.slug, filename)
 
 
+# LessonImage model - manytoone images related to a Lesson object
 class LessonImage(models.Model):
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(null=False, blank=False, upload_to=lesson_image_directory_path)

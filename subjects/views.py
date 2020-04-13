@@ -9,6 +9,7 @@ class PlacementTestView(TemplateView):
     template_name = 'placement_test.html'
 
 
+# Receives subject slug as kwarg, returns serialized subject data (and user skill vector if logged in) as response
 @api_view()
 def get_subject_data(request, *args, **kwargs):
     subject_data = SubjectSerializer(Subject.objects.get(slug=kwargs.get('slug'))).data

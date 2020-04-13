@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import Question, Answer
 
 
+# Serializer for Answer objects
 class AnswerSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField('get_image_url')
 
@@ -9,6 +10,7 @@ class AnswerSerializer(serializers.ModelSerializer):
         model = Answer
         fields = ('answer_text', 'answer_explanation', 'answer_correctness', 'image_url')
 
+    # populates image_url field if answer object has a non-empty image field
     def get_image_url(self, obj):
         if obj.answer_image:
             return obj.answer_image.url
@@ -16,6 +18,7 @@ class AnswerSerializer(serializers.ModelSerializer):
             return ''
 
 
+# Serializer for Question objects, includes associated answers' serialized objects
 class QuestionSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField('get_image_url')
     answers = AnswerSerializer(many=True, read_only=True)
@@ -24,6 +27,7 @@ class QuestionSerializer(serializers.ModelSerializer):
         model = Question
         fields = ('id', 'question_type', 'question_prompt', 'answers', 'image_url')
 
+    # populates image_url field if question object has a non-empty image field
     def get_image_url(self, obj):
         if obj.prompt_image:
             return obj.prompt_image.url

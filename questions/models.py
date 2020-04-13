@@ -7,7 +7,7 @@ from random import sample, randint
 
 # Additional manager methods for Question model QuerySets
 class QuestionManager(models.Manager):
-    # Retrieves random question related to skill with skill_id
+    # Retrieves random question with question.skill__id=skill_id
     def random(self, skill_id):
         queryset = self.filter(skill__id=skill_id)
         count = queryset.aggregate(count=Count('id'))['count']
@@ -25,23 +25,26 @@ class QuestionManager(models.Manager):
         return random_questions
 
 
+# Returns /{subject_slug}/question_images/{question_id}/{filename} path to store the question prompt image
 def prompt_image_directory_path(instance, filename):
-    return '{0}/question_images/{1}/{2}'.format(instance.skill.subject.name, instance.id, filename)
+    return '{0}/question_images/{1}/{2}'.format(instance.skill.subject.slug, instance.id, filename)
 
 
+# Returns /{subject_slug}/question_images/{question_id}/answer_images/{answer_id}/{filename} path to store answer image
 def answer_image_directory_path(instance, filename):
-    return '{0}/question_images/{1}/answer_images/{2}/{3}/'.format(instance.question.skill.subject.name,
+    return '{0}/question_images/{1}/answer_images/{2}/{3}/'.format(instance.question.skill.subject.slug,
                                                                instance.question.id, instance.id, filename)
 
 
+# Question model
+# skill - question objects have a many-to-one relationship to skill objects
+# question_type - choice of what type of question/what type of input it requires
+# question_prompt - plaintext of question prompt, includes KaTeX delimiters
+# prompt_image - one-to-one relationship to image associated with question (if exists)
+# is_mastery - whether the question is considered a 'mastery' question for the associated skill (currently unused)
+# discrimination - how well a question discriminates users who know/don't know a skill (currently unused)
+# pseudochance - how likely the user is able to guess the correct answer to the question (current defaults for choice questions)
 class Question(models.Model):
-    # skill - question objects have a many-to-one relationship to skill objects
-    # question_type - choice of what type of question/what type of input it requires
-    # question_prompt - plaintext of question prompt, includes KaTeX delimiters
-    # prompt_image - one-to-one relationship to image associated with question (if exists)
-    # is_mastery - whether the question is considered a 'mastery' question for the associated skill
-    # discrimination - how well a question discriminates users who know/don't know a skill (currently unused)
-    # pseudochance - how likely the user is able to guess the correct answer to the question
     MULTIPLE_CHOICE = 'MC'
     IMAGE_CHOICE = 'IC'
     NUMERICAL_INPUT = 'NI'
@@ -87,12 +90,13 @@ class Question(models.Model):
         return str(self.skill.id) + '-' + self.question_prompt
 
 
+# Answer model
+# answer_text - if Question type MC, plaintext that includes KaTeX delimiters; if IC, image caption; else asciimath
+# answer_image - one-to-one relationship to image associated with answer (if exists)
+# question - many-to-one foreignkey relation to Questions model
+# answer_explanation - plaintext explanation of answer input that includes KaTeX delimiters (if exists)
+# answer_correctness - decimal [0, 1] of how correct the associated answer object is
 class Answer(models.Model):
-    # answer_text - if Question type MC, plaintext that includes KaTeX delimiters; else asciimath
-    # answer_image - one-to-one relationship to image associated with answer (if exists)
-    # question - many-to-one foreignkey relation to Questions model
-    # answer_explanation - (if exists) plaintext explanation of answer input that includes KaTeX delimiters
-    # answer_correctness - decimal [0, 1] of how correct the associated answer object is
     answer_text = models.TextField(null=True, blank=True)
     answer_image = models.ImageField(null=True, blank=True, upload_to=answer_image_directory_path)
     question = models.ForeignKey(

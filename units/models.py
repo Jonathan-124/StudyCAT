@@ -10,13 +10,14 @@ from django.core.exceptions import ValidationError
 import json
 
 
+# Unit model
 # Each unit contains lessons related to a broad concept; each lesson may belong to multiple units
+# name - charfield of name of unit
+# slug - name uniquely slugified, populated after save() is called
+# lessons - m2m field of lessons that are related to each unit
+# start_skills - list of Skill object ids stored in JSON format; these are the root skills of the unit
+# end_skills - list of Skill object ids stored in JSON format; these are the end-node skills of the unit
 class Unit(models.Model):
-    # name - charfield of name of unit
-    # slug - name uniquely slugified, populated after save() is called
-    # lessons - m2m field of lessons that are related to each unit
-    # start_skills - list of Skill object ids stored in JSON format; these are the root skills of the unit
-    # end_skills - list of Skill object ids stored in JSON format; these are the end-node skills of the unit
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
     lessons = models.ManyToManyField(Lesson, related_name='units')
@@ -39,6 +40,7 @@ class Unit(models.Model):
             self.slug = slugify(self.name)
         super(Unit, self).save(*args, **kwargs)
 
+    # Returns list of topological orders of all lessons in unit
     def lesson_topological_orders(self):
         lessons = self.lessons.select_related('skill')
         return list(map(lambda x: x.skill.topological_order, lessons))

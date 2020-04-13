@@ -3,6 +3,9 @@ from users.models import CustomUser
 from questions.models import Question
 
 
+# Bug report model
+# reporting_user - user that submitted the report
+# report_message - report message submitted by user
 class GeneralBugReport(models.Model):
     reporting_user = models.ForeignKey(CustomUser,
                                        on_delete=models.SET_NULL,
@@ -12,6 +15,9 @@ class GeneralBugReport(models.Model):
     report_message = models.TextField(max_length=2000)
 
 
+# Bug report model for individual question objects, inherits GeneralBugReport
+# question - question being reported
+# reason - choicefield of why the question was reported
 class QuestionBugReport(GeneralBugReport):
     PROMPT_ISSUE = 'PI'
     ANSWER_ISSUE = 'AI'

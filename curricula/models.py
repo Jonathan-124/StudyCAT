@@ -10,13 +10,14 @@ from django.core.exceptions import ValidationError
 import json
 
 
+# Curriculum model
 # Each Curriculum object contains units related to a broad curriculum; each unit may belong to multiple curricula
+# name - charfield of Curriculum name
+# slug - name uniquely slugified, populated after save() is called
+# units - m2m field of units that are related to each curriculum
+# start_skills - list of Skill object ids stored in JSON format; these are the root skills of the curriculum
+# end_skills - list of Skill object ids stored in JSON format; these are the end-node skills of the curriculum
 class Curriculum(models.Model):
-    # name - charfield of Curriculum name
-    # slug - name uniquely slugified, populated after save() is called
-    # units - m2m field of units that are related to each curriculum
-    # start_skills - list of Skill object ids stored in JSON format; these are the root skills of the curriculum
-    # end_skills - list of Skill object ids stored in JSON format; these are the end-node skills of the curriculum
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
     units = models.ManyToManyField(Unit, related_name="curricula")
