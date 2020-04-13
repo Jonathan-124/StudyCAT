@@ -63,6 +63,7 @@ class Skill(models.Model):
 class SkillEdge(models.Model):
     parent_skill = models.ForeignKey(Skill, on_delete=models.CASCADE, related_name="parent_skills")
     child_skill = models.ForeignKey(Skill, on_delete=models.CASCADE, related_name="children_skills")
+    same_subject = models.BooleanField(default=True)
     ''' Currently defunct, to add this in later...
     relatedness = models.DecimalField(decimal_places=2,
                                       max_digits=3,
@@ -72,6 +73,13 @@ class SkillEdge(models.Model):
 
     def __str__(self):
         return self.parent_skill.name + " -> " + self.child_skill.name
+
+    def save(self, *args, **kwargs):
+        if self.parent_skill.subject == self.child_skill.subject:
+            setattr(self, 'same_subject', True)
+        else:
+            setattr(self, 'same_subject', False)
+        super(SkillEdge, self).save(*args, **kwargs)
 
 
 # Kahn's algorithm, updates topological order of skills in each skill tree after Skilledge save or delete

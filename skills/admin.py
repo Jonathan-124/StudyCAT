@@ -5,6 +5,7 @@ from .models import Skill, SkillEdge
 class SkillEdgeInline(admin.TabularInline):
     model = SkillEdge
     fk_name = 'child_skill'
+    readonly_fields = ('same_subject',)
     extra = 1
 
 
