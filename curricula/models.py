@@ -45,7 +45,6 @@ class Curriculum(models.Model):
 
 
 # Called when Curriculum-Unit m2m relationship added or removed
-'''To also call when unit-lesson m2m relationship changed!'''
 # Populates Curriculum object start_skills and end_skills fields by traversing the DAG
 @receiver(m2m_changed, sender=Curriculum.units.through)
 def curriculum_unit_relation_changed(sender, instance, action, reverse, **kwargs):
@@ -72,3 +71,29 @@ def curriculum_unit_relation_changed(sender, instance, action, reverse, **kwargs
         setattr(instance, 'start_skills', json.dumps(start_skill_dict))
         setattr(instance, 'end_skills', json.dumps(end_skill_dict))
         instance.save()
+
+# Called when Unit-Lesson m2m relationship added or removed
+# Populates Curriculum object start_skills and end_skills fields by traversing the DAG
+@receiver(m2m_changed, sender=Unit.lessons.through)
+def curriculum_lesson_relation_changed(sender, instance, action, reverse, **kwargs):
+    # Acts when signal is in forward direction (instance is Unit obj) and action that caused signal was add/remove
+    if not reverse and action == "post_add" or "post_remove":
+        # Same code as above, but all curricula with units attribute that includes instance is updated
+        affected_curricula = instance.curricula.all()
+        for cur in affected_curricula:
+            start_skill_set = set()
+            end_skill_set = set()
+            skills = Skill.objects.filter(lesson__units__curricula=cur)
+            for i in skills:
+                parents = i.get_parent_skills()
+                children = i.get_children_skills()
+                if not parents or parents.difference(skills):
+                    start_skill_set.add(i.id)
+                if not children or children.difference(skills):
+                    end_skill_set.add(i.id)
+            end_skill_list = list(end_skill_set.difference(start_skill_set))
+            start_skill_dict = {"skill_id_list": list(start_skill_set)}
+            end_skill_dict = {"skill_id_list": end_skill_list}
+            setattr(cur, 'start_skills', json.dumps(start_skill_dict))
+            setattr(cur, 'end_skills', json.dumps(end_skill_dict))
+            cur.save()

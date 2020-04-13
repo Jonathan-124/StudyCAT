@@ -86,18 +86,17 @@ class SkillEdge(models.Model):
 @receiver(post_save, sender=SkillEdge, dispatch_uid='save_update_topological_order')
 @receiver(post_delete, sender=SkillEdge, dispatch_uid='delete_update_topological_order')
 def update_topological_order(sender, instance, **kwargs):
-    # Receives Skill object and list of SkillEdge objects
-    # Returns list of SkillEdge objects that are parent edges of the skill_obj argument
     def parent_edges_of_child(skill_obj, edge_list):
+        # Receives Skill object and list of SkillEdge objects
+        # Returns list of SkillEdge objects that are parent edges of the skill_obj argument
         filtered = list(filter(lambda x: x.child_skill == skill_obj, edge_list))
         return filtered
 
     # subject - subject area of the graph being topologically sorted
-    # Only works if the different DAGs are disconnected (i.e. subject areas different for parent/child of edge)
-    # edges - all SkillEdge objects in the instance subject DAG
+    # edges - all SkillEdge objects connecting to skills with parent_skill__subject=child_skill__subject=subject
     # root_nodes - all Skill objects in the subject area with no parents
     subject = instance.parent_skill.subject
-    edges = list(SkillEdge.objects.filter(parent_skill__subject=subject))
+    edges = list(SkillEdge.objects.filter(parent_skill__subject=subject, same_subject=True))
     root_nodes = []
     for i in Skill.objects.filter(subject=subject):
         if not i.get_parent_skills():
@@ -117,4 +116,32 @@ def update_topological_order(sender, instance, **kwargs):
                 edges_with_child = parent_edges_of_child(child, edges)
                 if not edges_with_child:
                     root_nodes.append(child)
+
+    # Calls subject method that repopulates the topological dependency matrix
     subject.repopulate_dependency_matrix()
+
+    # Updates topological orders if skilledge changed when same_subject=False
+    # Same code, but updates other_subject dependency matrix and skill topological orders
+    if not instance.same_skill:
+        other_subject = instance.child.subject
+        edges = list(SkillEdge.objects.filter(parent_skill__subject=other_subject, same_subject=True))
+        root_nodes = []
+        for i in Skill.objects.filter(subject=other_subject):
+            if not i.get_parent_skills():
+                root_nodes.append(i)
+        j = 0
+
+        # Assigning topological order
+        while root_nodes:
+            node = root_nodes.pop()
+            setattr(node, 'topological_order', j)
+            node.save()
+            j += 1
+            for edge in edges[:]:
+                if edge.parent_skill == node:
+                    child = edge.child_skill
+                    edges.remove(edge)
+                    edges_with_child = parent_edges_of_child(child, edges)
+                    if not edges_with_child:
+                        root_nodes.append(child)
+        other_subject.repopulate_dependency_matrix()
