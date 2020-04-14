@@ -97,7 +97,7 @@
 
         // Retrieve start and end question packs for user-indicated terminal curriculum
         // Call tester() to start the testing process
-        $.get("{% url 'placement_initial_questions' %}", function(data, status){
+        $.get("{% url 'placement:initial_question_pack' %}", {scope: "{{ scope }}", pk: {{ pk }}}, function(data, status){
             start_question_pack = data.start_skills_questions;
             end_question_pack = data.end_skills_questions;
             tester();

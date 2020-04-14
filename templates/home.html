@@ -179,16 +179,8 @@ $(document).ready(function(){
             }
         }
         terminal_ids = Array.from(terminal_ids);
-        data_url = "{% url 'skills:homepage-data' %}"
-        terminal_id_string = "?";
-        next_skills_string = "";
-        for (i = 0; i < terminal_ids.length; i++){
-            terminal_id_string += "terminal_ids=" + terminal_ids[i] + "&";
-        }
-        for (i = 0; i < next_skills.length; i++){
-            next_skills_string += "next_skills=" + next_skills[i] + "&";
-        }
-        $.get(data_url.concat(terminal_id_string, next_skills_string), function(data, status){
+
+        $.get("{% url 'skills:homepage-data' %}", {"terminal_ids[]": terminal_ids, "next_skills[]": next_skills}, function(data, status){
             terminal_lessons_data = data.terminal_lessons_data;
             next_lessons_data = data.next_lessons_data;
             const lessons_url = "http://127.0.0.1:8000/lessons/";

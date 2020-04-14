@@ -29,6 +29,7 @@ urlpatterns = [
     path('units/', include(('units.urls', 'units'), namespace='units')),
     path('curricula/', include('curricula.urls')),
     path('subjects/', include(('subjects.urls', 'subjects'), namespace='subjects')),
+    path('placement/', include(('placement.urls', 'placement'), namespace='placement')),
     path('admin/', admin.site.urls),
     path('', include('pages.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # serving images during development

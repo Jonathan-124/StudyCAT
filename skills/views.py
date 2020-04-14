@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import Skill
 from lessons.models import Lesson
+from lessons.serializers import LessonSerializer
 from questions.models import Question
 from questions.serializers import QuestionSerializer
 
@@ -77,6 +78,8 @@ def get_lesson_data_from_topological_order(request, *args, **kwargs):
     if request.user.is_anonymous:
         return Response({"message": "You are not logged in"}, status=status.HTTP_403_FORBIDDEN)
     else:
-        terminal_lessons_data = Lesson.objects.get_lessons_from_topological_orders(request.query_params.getlist("terminal_ids"))
-        next_lessons_data = Lesson.objects.get_lessons_from_topological_orders(request.query_params.getlist("next_skills"))
+        terminal_lessons = Lesson.objects.get_lessons_from_topological_orders(request.query_params.getlist("terminal_ids[]"))
+        next_lessons = Lesson.objects.get_lessons_from_topological_orders(request.query_params.getlist("next_skills[]"))
+        terminal_lessons_data = LessonSerializer(terminal_lessons, many=True).data
+        next_lessons_data = LessonSerializer(next_lessons, many=True).data
         return Response({"terminal_lessons_data": terminal_lessons_data, "next_lessons_data": next_lessons_data})

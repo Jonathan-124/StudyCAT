@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'curricula.apps.CurriculaConfig',
     'subjects.apps.SubjectsConfig',
     'pages.apps.PagesConfig',
+    'placement.apps.PlacementConfig',
 ]
 
 REST_FRAMEWORK = {

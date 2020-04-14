@@ -1,12 +1,7 @@
 from .models import Subject
 from .serializers import SubjectSerializer
-from django.views.generic import TemplateView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-
-
-class PlacementTestView(TemplateView):
-    template_name = 'placement_test.html'
 
 
 # Receives subject slug as kwarg, returns serialized subject data (and user skill vector if logged in) as response
