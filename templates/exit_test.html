@@ -16,12 +16,12 @@
         <br>
     </div>
     <div id="feedback" class="d-none">
-        <p id="feedback-text"></p>
+        <div id="feedback-text" class="d-none" role="alert"></div>
         <button id="next" class="btn btn-primary float-right">Next</button>
-        <br>
     </div>
 </div>
 
+{% if user.is_authenticated %}
 <hr/>
 
 <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#bugReportModal">
@@ -72,6 +72,7 @@
         </div>
     </div>
 </div>
+{% endif %}
 
 <script>
 $(document).ready(function(){
@@ -138,7 +139,9 @@ $(document).ready(function(){
             // child adjacency matrix is the transpose of parent adjacency matrix
             parent_adjacency_matrix = data.subject_data.dependencies;
             child_adjacency_matrix = parent_adjacency_matrix[0].map((col, i) => parent_adjacency_matrix.map(row => row[i]));
+            {% if user.is_authenticated%}
             user_skill_vector = data.skill_level_list;
+            {% endif %}
         }),
         $.get("{% url 'skills:skill_question_pack' lesson.skill.pk %}", function(data, status){
             // Retrieves and stores question pack data
@@ -156,7 +159,16 @@ $(document).ready(function(){
             presentQuestion();
         } else {
             // if no more questions to test, calls sendResponseData
+            {% if user.is_authenticated %}
             sendResponseData();
+            {% else %}
+            let percentage_correct = 0;
+            for(i of data_list) {
+                percentage_correct += i.a_correctness;
+            }
+            percentage_correct = Math.round(percentage_correct * 1000 / data_list.length) / 10;
+            prompt.innerHTML = `Congrats, you have completed the lesson with a score of ${percentage_correct}%! Please <a href="{% url 'login' %}">log in</a> to save your progress.`
+            {% endif %}
         }
     }
 
@@ -256,6 +268,7 @@ $(document).ready(function(){
         $("button[name='submit_answer']").attr("class", "btn btn-primary float-right");
     }
 
+    {% if user.is_authenticated %}
     // When called, sends AJAX post to update user skill
     function sendResponseData(){
         // initializing variables
@@ -340,10 +353,11 @@ $(document).ready(function(){
                 prompt.innerHTML = "Oops! It seems like something went wrong when sending your data to the server. Click <a href=\"{% url 'home' %}\">here</a> to go back to the homepage."
             },
             success: function(data){
-                prompt.innerHTML = "Congrats! You have completed the lesson. Click <a href=\"{% url 'home' %}\">here</a> to go back to the homepage.";
-            }
+                percentage_correct = Math.round(user_skill_level * 1000) / 10;
+                prompt.innerHTML = `Congrats, you have completed the lesson with a score of ${percentage_correct}%! Click <a href=\"{% url 'home' %}\">here</a> to go back to the homepage.`;            }
         });
     }
+    {% endif %}
 
     // On "submit_answer" button click
     $("button[name='submit_answer']").on('click', function(e){
@@ -396,16 +410,19 @@ $(document).ready(function(){
 
         if (a_correctness == 1){
             $("#feedback-text").text("Correct!");
+            $("#feedback-text").attr("class", "alert alert-success");
         } else if (a_correctness > 0.5) {
             correct_answer = currentQ.answers.find(function(value, index, array){
                 return value.answer_correctness == 1
             });
             $("#feedback-text").text("Close! " + feedback_text + " The correct answer is " + correct_answer.answer_text + ".");
+            $("#feedback-text").attr("class", "alert alert-warning");
         } else {
             correct_answer = currentQ.answers.find(function(value, index, array){
                 return value.answer_correctness == 1
             });
-            $("#feedback-text").text("Incorrect. " + feedback_text + " The correct answer is " + correct_answer.answer_text + " .");
+            $("#feedback-text").text("Incorrect. " + feedback_text + " The correct answer is " + correct_answer.answer_text + ".");
+            $("#feedback-text").attr("class", "alert alert-danger");
         }
         renderKatex(feedbackbox);
 
@@ -438,6 +455,7 @@ $(document).ready(function(){
         tester();
     });
 
+    {% if user.is_authenticated %}
     // On clicking 'send-bug-report', modal form
     $(document).on('click', '#send-bug-report', function(e){
         e.preventDefault();
@@ -476,6 +494,7 @@ $(document).ready(function(){
         $(".modal-body").show();
         $("send-bug-report").show();
     });
+    {% endif %}
 });
 </script>
 {% endblock content %}

@@ -11,4 +11,7 @@
     {{ form|crispy }}
     <button class="btn btn-success ml-2" type="submit">Log In</button>
 </form>
+<hr>
+<p>Don't have an account? Then click <a href="{% url 'signup' %}" class="btn btn-primary ml-2">here</a> to sign up!</p>
+
 {% endblock content %}

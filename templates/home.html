@@ -25,8 +25,7 @@
         <br>
     </div>
     <div id="feedback" class="d-none">
-        <p id="feedback-text"></p>
-        <br>
+        <div id="feedback-text" class="d-none" role="alert"></div>
     </div>
 </div>
 <br>
@@ -353,24 +352,28 @@ $(document).ready(function(){
                         feedback_text = "You have entered an invalid input!"
                     }
                     break;
+                jsPlumb.repaintEverything();
             }
 
             if (a_correctness == 1){
                 $("#feedback-text").text("Correct!");
+                $("#feedback-text").attr("class", "alert alert-success");
             } else if (a_correctness > 0.5) {
                 correct_answer = currentQ.answers.find(function(value, index, array){
                     return value.answer_correctness == 1
                 });
                 $("#feedback-text").text("Close! " + feedback_text + " The correct answer is " + correct_answer.answer_text + ".");
+                $("#feedback-text").attr("class", "alert alert-warning");
             } else {
                 correct_answer = currentQ.answers.find(function(value, index, array){
                     return value.answer_correctness == 1
                 });
-                $("#feedback-text").text("Incorrect. " + feedback_text + " The correct answer is " + correct_answer.answer_text + " .");
+                $("#feedback-text").text("Incorrect. " + feedback_text + " The correct answer is " + correct_answer.answer_text + ".");
+                $("#feedback-text").attr("class", "alert alert-danger");
             }
             renderKatex(feedbackbox);
 
-            // sets feedbackbox to be visible (contains 'next' button)
+            // sets feedbackbox to be visible
             feedbackbox.setAttribute("class", "");
             jsPlumb.repaintEverything();
         });
