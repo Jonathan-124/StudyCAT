@@ -21,6 +21,7 @@ class UserProfile(models.Model):
         on_delete=models.CASCADE,
         related_name='profile',
     )
+
     CURRENT_STUDENT = 'CS'
     CAREER_RELATED = 'CR'
     MATHEMATICS_INSTRUCTOR = 'MI'
@@ -65,17 +66,22 @@ class UserProfile(models.Model):
         setattr(skillfulness, 'skill_level', newlevel)
         skillfulness.save()
 
+    # Returns list of terminus skill ids
+    def retrieve_terminus_skills(self):
+        passed_skill_ids = Skillfulness.objects.filter(user_profile=self).filter(skill_level__gt=0.5).values_list('skill__id', flat=True)
+        terminus_skill_ids = SkillEdge.objects.filter(parent_skill__id__in=passed_skill_ids).exclude(child_skill__id__in=passed_skill_ids).values_list('parent_skill__id', flat=True)
+        return terminus_skill_ids
+
     # Receives num [1, 5], depreciates user skillfulness of the terminal-most skills
     # 1 - two days+; depreciate terminal skills slightly
     # 2 - one week+; depreciate terminal skills slightly more and and parents slightly
     # 3 - two weeks+; 4 - one month +; 5 - two months +;
     def depreciate_terminal_skills(self, num):
-        passed_skill_ids = Skillfulness.objects.filter(user_profile=self).filter(skill_level__gt=0.5).values_list('skill__id', flat=True)
-        terminus_skill_ids = SkillEdge.objects.filter(parent_skill__id__in=passed_skill_ids).exclude(child_skill__id__in=passed_skill_ids).values_list('parent_skill__id', flat=True)
+        terminus_skill_ids = self.retrieve_terminus_skills()
         while num > 0:
             depreciation = 0.6 - 0.1 * num
             Skillfulness.objects.filter(user_profile=self).filter(skill__id__in=terminus_skill_ids).update(skill_level=depreciation)
-            terminus_skill_ids = Skill.objects.get_prerequisite_skill_ids(terminus_skill_ids)
+            terminus_skill_ids = self.retrieve_terminus_skills()
             num -= 1
 
     # Receives unit slug, returns percentage of skills in unit in which the user's skill_level > 0.5

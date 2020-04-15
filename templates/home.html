@@ -7,14 +7,29 @@
 
 {% if user.is_authenticated %}
 <p>Welcome back {{ user.username }}! </p>
-{% if user.profile.currently_studying %}
-<p> Click <a href="{% url 'curriculum' user.profile.currently_studying.slug %}">here</a> to go to your curriculum.</p>
-{% else %}
-<p>
-    It seems like you are a new user!
-    Click <a href="{% url 'placement' %}">here</a> to take the placement test.
-</p>
-{% endif %}
+    {% if user.profile.currently_studying %}
+    <p> Click <a href="{% url 'curriculum' user.profile.currently_studying.slug %}">here</a> to go to your curriculum.</p>
+    {% endif %}
+<br>
+<div id="challenge" class="jumbotron">
+    <h5>Here's a challenge for you...</h5>
+    <hr>
+    <div id="questionbox">
+        <p id="question-prompt" class=""></p>
+    </div>
+    <br>
+    <div id="answerbox" class="">
+        <div id="inputbox"></div>
+        <br>
+        <button name="submit_answer" type="submit" class="d-none">Check Answer</button>
+        <br>
+    </div>
+    <div id="feedback" class="d-none">
+        <p id="feedback-text"></p>
+        <br>
+    </div>
+</div>
+<br>
 <br>
 <div class="jumbotron">
     <h5>I've recently learned about...</h5>
@@ -69,6 +84,16 @@
 
 <script>
 $(document).ready(function(){
+    function renderKatex(DOM) {
+        renderMathInElement(DOM, {
+        delimiters: [
+                      {left: "$$", right: "$$", display: true},
+                      {left: "\\(", right: "\\)", display: false},
+                      {left: "\\[", right: "\\]", display: true}
+                    ]
+        });
+    }
+
     function getCookie(name) {
         let cookieValue = null;
         if (document.cookie && document.cookie !== ''){
@@ -101,6 +126,11 @@ $(document).ready(function(){
         }
     });
 
+    // storing DOM elements for manipulation
+    const prompt = document.getElementById("question-prompt");
+    const answerbox = document.getElementById("answerbox");
+    const inputbox = document.getElementById("inputbox");
+    const feedbackbox = document.getElementById("feedback");
 
     // initializing variables to be retrieved from server
     let parent_adjacency_matrix;
@@ -112,6 +142,7 @@ $(document).ready(function(){
     let terminal_ids = new Set();
     let potential_next_skills = new Set();
     let next_skills = [];
+    let currentQ;
 
     $.get("{% url 'subjects:get_subject_data' user.profile.currently_studying.subject.slug %}", function(data, status){
         // Retrieves user skill level array (topological order) and parent adjacency matrix from server
@@ -158,7 +189,7 @@ $(document).ready(function(){
         }
 
         for (x of potential_next_skills){
-            // for x in potential_next_skills, get its parent topolotical order ids as a set
+            // for x in potential_next_skills, get its parent topological order ids as a set
             // if all parents are in the terminal_ids set, x is pushed to the true next_skills list
             parent_ids = new Set();
             parent_adjacency_matrix[x].forEach(function(value, index, array){
@@ -179,6 +210,170 @@ $(document).ready(function(){
             }
         }
         terminal_ids = Array.from(terminal_ids);
+
+        // Get random challenge question
+        const rand_top = terminal_ids[Math.floor(Math.random() * terminal_ids.length)];
+        $.get("{% url 'skills:skill_based_randomizer' %}", {topological_order: rand_top, subject_slug: "{{ user.profile.currently_studying.subject.slug }}"}, function(data, status){
+            currentQ = data;
+            // displays question prompt text
+            prompt.innerHTML = currentQ.question_prompt;
+            renderKatex(prompt);
+            // displays question prompt image if present
+            if (currentQ.image_url){
+                let prompt_image = document.createElement("img");
+                prompt_image.setAttribute("class", "img-fluid");
+                prompt_image.setAttribute("src", currentQ.image_url);
+                document.getElementById("questionbox").appendChild(prompt_image);
+            }
+            switch (currentQ.question_type){
+                case "MC":
+                    // Multiple Choice case
+                    // Create mc_inputbox form element, append to inputbox as child
+                    let mc_inputbox = document.createElement("form");
+                    mc_inputbox.setAttribute("id", "mc_inputbox");
+                    inputbox.appendChild(mc_inputbox);
+
+                    // For each answer choice, create choicebox, append radio input and label to choicebox
+                    // Append each choicebox to mc_inputbox
+                    currentQ.answers.forEach(function(value, index, array){
+                        let choicebox = document.createElement("div");
+                        choicebox.setAttribute("class", "custom-control custom-radio");
+
+                        let input = document.createElement("input");
+                        input.setAttribute("type", "radio");
+                        input.setAttribute("id", index);
+                        input.setAttribute("name", "answer_choice");
+                        input.setAttribute("value", value.answer_correctness);
+                        input.setAttribute("class", "custom-control-input");
+                        choicebox.appendChild(input);
+
+                        let label = document.createElement("label");
+                        label.setAttribute("class", "custom-control-label");
+                        label.setAttribute("for", index);
+                        label.innerHTML = value.answer_text;
+                        choicebox.appendChild(label);
+
+                        mc_inputbox.appendChild(choicebox);
+                    });
+
+                    renderKatex(mc_inputbox);
+                    break;
+                case "IC":
+                    // Image Choice case
+                    // Create ic_inputbox form element, append to inputbox as child
+                    let ic_inputbox = document.createElement("form");
+                    ic_inputbox.setAttribute("id", "ic_inputbox");
+                    inputbox.appendChild(ic_inputbox);
+
+                    // For each answer choice, create choicebox, append radio input and label to choicebox
+                    // Append each choicebox to ic_inputbox
+                    currentQ.answers.forEach(function(value, index, array){
+                        let choicebox = document.createElement("div");
+                        choicebox.setAttribute("class", "custom-control custom-radio custom-control-inline");
+
+                        let input = document.createElement("input");
+                        input.setAttribute("type", "radio");
+                        input.setAttribute("id", index);
+                        input.setAttribute("name", "answer_choice");
+                        input.setAttribute("value", value.answer_correctness);
+                        input.setAttribute("class", "custom-control-input");
+                        choicebox.appendChild(input);
+
+                        let label = document.createElement("label");
+                        label.setAttribute("class", "custom-control-label");
+                        label.setAttribute("for", index);
+
+                        let answer_image = document.createElement("img");
+                        answer_image.setAttribute("style", "max-width:200px;max-height:200px");
+                        answer_image.setAttribute("src", value.image_url);
+                        label.appendChild(answer_image);
+
+                        choicebox.appendChild(label);
+                        ic_inputbox.appendChild(choicebox);
+                    });
+
+                    renderKatex(ic_inputbox);
+                    break;
+                case "NI":
+                    // Numerical Input case
+                    // Create guppy isntance with id "guppybox", append to inputbox
+                    let guppybox = document.createElement("div");
+                    guppybox.setAttribute("id", "guppybox");
+                    inputbox.appendChild(guppybox);
+                    new Guppy("guppybox");
+                    break;
+                default:
+                    $("#inputbox").text("No such question type found.");
+            }
+            // Displays "submit answer" button
+            $("button[name='submit_answer']").attr("class", "btn btn-primary float-right");
+            jsPlumb.repaintEverything();
+        });
+
+        // On "submit_answer" button click
+        $("button[name='submit_answer']").on('click', function(e){
+            e.preventDefault();
+
+            // Hides "submit answer" button
+            $("button[name='submit_answer']").attr("class", "btn btn-primary d-none");
+            let feedback_text = "";
+
+            // Different ways of retrieving "a_correctness" dependent on question type
+            // Different feedback text depending on answer correctness and whether feedback supplied for given answer in currentQ
+            switch(currentQ.question_type) {
+                case "MC":
+                    a_correctness = parseFloat($('input[name="answer_choice"]:checked', '#mc_inputbox').val());
+                    feedback_text = currentQ.answers[$('input[name="answer_choice"]:checked', '#mc_inputbox').attr('id')].answer_explanation
+                    break;
+                case "IC":
+                    a_correctness = parseFloat($('input[name="answer_choice"]:checked', '#ic_inputbox').val());
+                    feedback_text = currentQ.answers[$('input[name="answer_choice"]:checked', '#ic_inputbox').attr('id')].answer_explanation
+                    break;
+                case "NI":
+                    let attempt = Guppy("guppybox").asciimath();
+                    symbols_used = Guppy("guppybox").symbols_used()
+                    try {
+                        const parsed_attempt = MathExpression.fromText(attempt);
+                        let matched = currentQ.answers.find(checkAnswer);
+                        function checkAnswer(value, index, array) {
+                            return MathExpression.fromText(attempt).equals(MathExpression.fromText(value.answer_text));
+                        }
+                        if (symbols_used.length > 0){
+                            a_correctness = 0;
+                            feedback_text = "The answer should be a number!";
+                        } else if (typeof matched === "undefined") {
+                            a_correctness = 0;
+                        } else {
+                            a_correctness = parseFloat(matched.answer_correctness);
+                            feedback_text = matched.answer_explanation;
+                        }
+                    }
+                    catch(err){
+                        a_correctness = 0;
+                        feedback_text = "You have entered an invalid input!"
+                    }
+                    break;
+            }
+
+            if (a_correctness == 1){
+                $("#feedback-text").text("Correct!");
+            } else if (a_correctness > 0.5) {
+                correct_answer = currentQ.answers.find(function(value, index, array){
+                    return value.answer_correctness == 1
+                });
+                $("#feedback-text").text("Close! " + feedback_text + " The correct answer is " + correct_answer.answer_text + ".");
+            } else {
+                correct_answer = currentQ.answers.find(function(value, index, array){
+                    return value.answer_correctness == 1
+                });
+                $("#feedback-text").text("Incorrect. " + feedback_text + " The correct answer is " + correct_answer.answer_text + " .");
+            }
+            renderKatex(feedbackbox);
+
+            // sets feedbackbox to be visible (contains 'next' button)
+            feedbackbox.setAttribute("class", "");
+            jsPlumb.repaintEverything();
+        });
 
         $.get("{% url 'skills:homepage-data' %}", {"terminal_ids[]": terminal_ids, "next_skills[]": next_skills}, function(data, status){
             terminal_lessons_data = data.terminal_lessons_data;
@@ -246,6 +441,11 @@ $(document).ready(function(){
                 });
             }
         });
+    });
+
+    // on window resize jsPlumb repaint
+    $(window).resize(function(){
+        jsPlumb.repaintEverything();
     });
 
     $(document).on('click', '#send-feedback-report', function(e){
@@ -327,7 +527,7 @@ $(document).ready(function(){
     </div>
     <div id="demo" class="container tab-pane fade"><br>
         <p id="instructions">This is a short 3 question demonstration of how StudyCAT estimates how much you know.</p>
-        <button id="start" class="btn btn-outline-primary">Start Demo!</button>
+        <button id="start" class="btn btn-outline-primary">Work in progress...</button>
         <div id="test" class="d-none">
             <p id="question-prompt"></p>
             <div id="answerbox"></div>
@@ -414,168 +614,6 @@ $(document).ready(function(){
 </div>
 </div>
 
-<script>
-    function renderKatex(DOM) {
-        renderMathInElement(DOM, {
-        delimiters: [
-                      {left: "$$", right: "$$", display: true},
-                      {left: "\\(", right: "\\)", display: false},
-                      {left: "\\[", right: "\\]", display: true}
-                    ]
-        });
-    }
-    const q1 = [{prompt: "Compute $$ cos(\frac{2\pi}{3}) $$",
-                answers: [{answer: "-(1)/(2)", response: 1, next_id: 1},
-                          {answer: "(1 / 2)", response: 2, next_id: 2},
-                          {answer: "(1 / squareroot(2))", response: 2, next_id: 2},
-                          {answer: "neg((1 / squareroot(2)))", response: 2, next_id:2},
-                          {answer: "(squareroot(3) / 2)", response: 2, next_id: 2},
-                          {answer: "neg((squareroot(3) / 2))", response: 2, next_id: 2},
-                          {answer: "0", response: 2, next_id: 2},
-                          {answer: "1", response: 2, next_id: 2},
-                          {answer: "neg(1)", response: 2, next_id: 2}],
-                default: 0,
-                responses: ["Your answer suggests that you have not yet learned about trigonometric functions, or need some review.",
-                            "You entered the correct answer $$-(1)/(2)$$ for the question, which suggests that you are proficient with trigonometric functions and their common angles.",
-                            "Although your answer was incorrect, it is one of the common outputs for trigonometric functions with 'nice' angles. This suggests that you have learned some trigonometry before, but might need some review."
-                           ]
-                }
-               ];
-    const q2 = [{prompt: "Let $$y=3x+4$$. If $$y=1$$, calculate $$x$$.",
-                 answers : [{answer: "-1", response: 1, next_id: 1},
-                            {answer: "1", response: 2, next_id: 0},
-                            {answer: "7", response: 2, next_id: 0}],
-                 default: 0,
-                 responses: ["Your response shows it is likely that you have not yet learned about variables, or need some review.",
-                             "You have entered the correct answer, meaning that you have a good grasp of what variables are and how to manipulate equations.",
-                             "You have entered an incorrect answer, but the answer you entered shows some understanding of variables, so you probably need some practice in manipulating equations."
-                            ]
-                 },
-                {prompt: "Compute $$(d)/(dx)((x)^(3)+ cos(x))$$.",
-                answers: [{answer: "((3 * (x^2)) - sin(x))", response: 1, next_id: 3},
-                          {answer: "((3 * (x^2)) + sin(x))", response: 2, next_id: 3},
-                          {answer: "((3 * (x^3)) - sin(x))", response: 3, next_id: 2},
-                          {answer: "((3 * x) - sin(x))", response: 3, next_id: 2},
-                          {answer: "((3 * (x^2)) + cos(x))", response: 3, next_id: 2}
-                         ],
-                default: 4,
-                responses: ["Your response shows that you have not yet learned about calculus.",
-                            "You have entered the correct answer, showing understanding of both the power rule and the derivative of the cosine function.",
-                            "You have entered an incorrect answer, however your answer suggests that you have an understanding of the power rule and perhaps could use some practice on differentiating the cosine function.",
-                            "Although you have successfully differentiated the sine function, your answer shows that you could use some review regarding the power rule.",
-                           ]
-                },
-                {prompt: "Let $$f * (x) = (e^(x + 2))$$. Calculate $$((f^neg(1)) * (x))$$.",
-                 answers : [{answer: "(ln(x) - 2)", response: 1, next_id: 2},
-                            {answer: "(ln(y) - 2)", response: 2, next_id: 4},
-                            {answer: "(ln(x) + 2)", response: 2, next_id: 4},
-                            {answer: "(log(x) - 2)", response: 2, next_id: 4},
-                            {answer: "(ln(x - 2))", response: 2, next_id: 4},
-                            {answer: "(ln(x + 2))", response: 2, next_id: 4},
-                            {answer: "(log(x - 2))", response: 2, next_id: 4},
-                            {answer: "(log(x - 2))", response: 2, next_id: 4},
-                            {answer: "(1 / (e^(x + 2)))", response: 3, next_id: 4},
-                           ],
-                 default: 1,
-                 responses: ["Your response shows that you might not have learned about function inverses yet, or could use some review.",
-                             "You have entered the correct answer, meaning that you have a very good understanding of function inverses, exponents, and logarithms.",
-                             "You have entered an incorrect answer, but the answer you entered shows some understanding of function inverses, so you probably need some review.",
-                             "You have entered the multiplicative inverse, suggesting that you might not have learned about function inverses yet."
-                            ]
-                 }
-               ];
-    const q3 = [{prompt: "What is $$4*5$$?",
-                 answers : [{answer: "20", response: 1, next_id: 0}],
-                 responses: ["Your response shows you could use some review in multiplication.",
-                             "You have entered the correct answer, meaning that you have a good understanding of multiplication."
-                            ]
-                 },
-                 {prompt: "Let $$f(x)=3x-1$$. Calculate $$f(5)$$.",
-                 answers : [{answer: "14", response: 1, next_id: 0},
-                            {answer: "2", response: 2, next_id: 0},
-                            {answer: "15x-5", response: 3, next_id: 0},
-                            {answer: "15x-1", response: 3, next_id: 0}
-                            ],
-                 responses: ["Your response shows it is likely that you have not yet learned about functions, or could use some review.",
-                             "You have entered the correct answer, meaning that you have a good grasp of what functions are and how to calculate the output given a function and an input.",
-                             "You have entered an incorrect answer, but the answer you entered shows some understanding of function inverses, so you probably need some review.",
-                             "You attempted to multiply the function by $$5$$, indicating that you have not yet learned about function notation, or could use some review."
-                            ]
-                 },
-                {prompt: "Compute $$((d / (d * x)) * (2x^4)$$. ",
-                 answers : [{answer: "(8 * (x^3))", response: 1, next_id: 0},
-                            {answer: "(6 * (x^3))", response: 2, next_id: 0},
-                           ],
-                 responses: ["Your response shows that you haven't yet learned about derivatives and the power rule, could use some review.",
-                             "You have entered the correct answer, showing knowledge of the power rule.",
-                             "This answer shows an incorrect understanding of the power rule, but does show that you have some basic notion of derivatives."
-                            ]
-                 },
-                 {prompt: "Compute $$defintegral(1,2,(x / ((x^2) + 1)),x)$$. ",
-                 answers : [{answer: "(((1 / 2) * ln(5)) - ((1 / 2) * ln(2)))", response: 1, next_id: 0},
-                            {answer: "(((1 / 2) * ln(2)) - ((1 / 2) * ln(5)))", response: 2, next_id: 0},
-                            {answer: "(((1 / 2) * ln(2)) + ((1 / 2) * ln(5)))", response: 3, next_id: 0},
-                            {answer: "(ln(5) - ln(2))", response: 4, next_id: 0},
-                            {answer: "(2 * (ln(5) - ln(2)))", response: 4, next_id: 0},
-                            {answer: "ln(2)", response: 5, next_id: 0}],
-                 responses: ["Your response shows it is likely that you have not yet learned about u-substitution integration, or could use some review.",
-                             "You have entered the correct answer, showing proficiency in integration techniques such as u-substitution.",
-                             "This answer is has the correct limits switched, showing that you have learned about integration and u-substitution but need some review.",
-                             "This answer has the indicates correct calculation of the integral but a mistake in signs when computing the definite integral, suggesting that you have learned about integration and u-substitution but need some review.",
-                             "This answer shows some understanding of the u-substitution technique, but you did not correctly take into account the factor of $$1/2$$ when substituting.",
-                             "This answer shows understanding of the u-substitution integration technique, however the integral was evaluated with incorrect limits in terms of $$x$$ instead of $$u$$.",
-                            ]
-                 },
-                 {prompt: "Let $$f(x)= ((2 * x) + 1)$$ and $$g(x)=(x^2)$$. Calculate $$f(g(x))$$.",
-                 answers : [{answer: "((2 * (x^2)) + 1)", response: 1, next_id: 0},
-                            {answer: "(((2 * x) + 1)^2)", response: 2, next_id: 0},
-                           ],
-                 responses: ["Your response shows it is likely that you have not yet learned about composed functions, or could use some review.",
-                             "You have entered the correct answer, showing knowledge of computing composed functions.",
-                             "You have computed $$g(f(x))$$, showing some knowledge of composed functions, but you could use some review."
-                            ]
-                 },
-               ];
-
-    $(document).ready(function(){
-        document.getElementById("question-prompt").innerHTML = q1[0].prompt;
-        renderKatex(document.getElementById("question-prompt"));
-        new Guppy("answerbox");
-        let current_question = 1;
-        let next_id;
-        $("button[name='submit_answer']").on('click', function(e){
-            e.preventDefault();
-                let attempt = Guppy("answerbox").asciimath();
-                try {
-                    const parsed_attempt = MathExpression.fromText(attempt);
-                    let matched = q1[0].answers.find(checkAnswer);
-                    function checkAnswer(value, index, array) {
-                        return MathExpression.fromText(attempt).equals(MathExpression.fromText(value.answer));
-                    }
-                    if (typeof matched === "undefined"){
-                        next_id = 0;
-                        $("#feedback").text(q1[0].responses[0]);
-                    } else {
-                        response_index = matched.response;
-                        $("#feedback").text(q1[0].responses[response_index]);
-                        next_id = matched.next_id;
-                    }
-                    current_question = current_question + 1
-                }
-                catch(err){
-                    next_id = 0;
-                    $("#feedback").text(q1[0].responses[0])
-            }
-            $("#question-prompt").text(q2[next_id].prompt);
-            renderKatex(document.getElementById("question-prompt"));
-        });
-        $("#start").click(function(){
-            $("#start").remove();
-            $("#instructions").remove();
-            $("#test").attr("class", "d-block");
-        });
-    });
-</script>
 
 {% endif %}
 {% endblock content %}

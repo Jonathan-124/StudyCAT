@@ -8,20 +8,16 @@ from questions.models import Question
 from questions.serializers import QuestionSerializer
 
 
-# Receives get request with kwarg 'pk', retrieves random question with skill_id = pk
+# Receives get request with query params subject slug and topological order
 # Returns response of JSON object containing serialized question (JSON) and user_skill (decimal [0, 1])
 @api_view()
 def skill_based_randomizer(request, *args, **kwargs):
     if request.user.is_anonymous:
         return Response({"message": "You are not logged in"}, status=status.HTTP_403_FORBIDDEN)
     else:
-        skill_id = kwargs.get('pk')
-        user_profile = request.user.profile
-        user_skill_lvl = user_profile.get_skill_level(skill_id)
-        random_question = Question.objects.random(skill_id)
+        random_question = Question.objects.random_by_topological_order(request.query_params["topological_order"], request.query_params["subject_slug"])
         serialized_question = QuestionSerializer(random_question).data
-        return Response({"skill_id": skill_id, "question": serialized_question,
-                         "user_skill": user_skill_lvl})
+        return Response(serialized_question)
 
 
 # Receives get request with kwarg 'pk', retrieves num random questions with skill_id = pk

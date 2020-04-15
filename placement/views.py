@@ -36,6 +36,8 @@ def initial_question_pack(request, *args, **kwargs):
             unit = Unit.objects.get(id=request.query_params["pk"])
             start_skills_id_list.extend(json.loads(unit.start_skills)["skill_id_list"])
             end_skills_id_list.extend(json.loads(unit.end_skills)["skill_id_list"])
+        elif request.query_params["scope"] == "refresher":
+            end_skills_id_list.extend(request.user.profile.retrieve_terminus_skills())
         else:
             raise ValidationError
         for i in start_skills_id_list:
@@ -47,4 +49,3 @@ def initial_question_pack(request, *args, **kwargs):
             serialized_question = QuestionSerializer(random_question).data
             end_pack.append({"skill_id": i, "question": serialized_question})
         return Response({"start_skills_questions": start_pack, "end_skills_questions": end_pack, })
-
