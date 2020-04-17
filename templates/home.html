@@ -38,6 +38,7 @@
 </div>
 
 <br>
+<br>
 
 <div class="jumbotron">
     <div class="card-deck" id="ready-to-learn">
@@ -152,7 +153,7 @@ $(document).ready(function(){
 
         // populates to_test with root nodes of the graph
         parent_adjacency_matrix.forEach(function(value, index, array){
-            if (value == array[0]){
+            if (value.every(x => x == 0)){
                 if (user_skill_vector[index] < 0.5){
                     next_skills.push(index)
                 } else {
@@ -170,19 +171,15 @@ $(document).ready(function(){
                     child_ids.push(index);
                 }
             });
-            if (child_ids.length == 0){
-                terminal_ids.add(check_index);
-            } else {
-                // for each child of check_index...
-                // if user skill < 0.5 add check_index to terminal_ids set, add child to potential_next_skills set
-                // else add child topological order to to_test
-                for (x of child_ids){
-                    if (user_skill_vector[x] < 0.5){
-                        terminal_ids.add(check_index);
-                        potential_next_skills.add(x);
-                    } else {
-                        to_test.push(x);
-                    }
+            // for each child of check_index...
+            // if user skill < 0.5 add check_index to terminal_ids set, add child to potential_next_skills set
+            // else add child topological order to to_test
+            for (x of child_ids){
+                if (user_skill_vector[x] < 0.5){
+                    terminal_ids.add(check_index);
+                    potential_next_skills.add(x);
+                } else {
+                    to_test.push(x);
                 }
             }
         }
@@ -396,7 +393,7 @@ $(document).ready(function(){
                 lesson_link.setAttribute("href", lessons_url.concat(value.slug));
                 card_body.setAttribute("class", "card-body");
                 card.setAttribute("id", value.slug);
-                card.setAttribute("data-topological-order", terminal_ids[index]);
+                card.setAttribute("data-topological-order", value.topological_order);
                 card.setAttribute("class", "card text-center");
                 // Appending children
                 lesson_link.appendChild(card_title);
@@ -417,7 +414,7 @@ $(document).ready(function(){
                 lesson_link.setAttribute("class", "text-warning");
                 card_body.setAttribute("class", "card-body");
                 card.setAttribute("id", value.slug);
-                card.setAttribute("data-topological-order", next_skills[index]);
+                card.setAttribute("data-topological-order", value.topological_order);
                 card.setAttribute("class", "card text-center");
                 // Appending children
                 lesson_link.appendChild(card_title);

@@ -12,7 +12,7 @@
 {% for unit in curriculum.units.all %}
 <div class="card">
   <div class="card-header">
-    <div class="progress d-none">
+    <div class="progress">
       <div class="progress-bar" id="{{ unit.slug }}" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
   </div>
@@ -25,23 +25,21 @@
 {% endfor %}
 
 <script>
-  {% if user.is_authenticated %}
-  $.get("{% url 'get_units_percentage_completion' curriculum.id %}", function(data, status){
-    for (i of data){
-      percentage = i.percentage * 100
-      if (percentage == 100){
-        document.getElementById(i.slug).setAttribute("style", "width: 100%");
-        document.getElementById(i.slug).setAttribute("aria-valuenow", 100);
-        document.getElementById(i.slug).innerHTML = "Unit Complete!";
-        document.getElementById(i.slug).setAttribute("class", "progress");
-      } else {
-        document.getElementById(i.slug).setAttribute("style", `width: ${percentage}%`);
-        document.getElementById(i.slug).setAttribute("aria-valuenow", percentage);
-        document.getElementById(i.slug).innerHTML = `${Math.round(percentage * 10) / 10}%`;
-        document.getElementById(i.slug).setAttribute("class", "progress");
-      }
+{% if user.is_authenticated %}
+$.get("{% url 'get_units_percentage_completion' curriculum.id %}", function(data, status){
+  for (i of data){
+    percentage = i.percentage * 100
+    if (percentage == 100){
+      document.getElementById(i.slug).setAttribute("style", "width: 100%");
+      document.getElementById(i.slug).setAttribute("aria-valuenow", 100);
+      document.getElementById(i.slug).innerHTML = "Unit Complete!";
+    } else {
+      document.getElementById(i.slug).setAttribute("style", `width: ${percentage}%`);
+      document.getElementById(i.slug).setAttribute("aria-valuenow", percentage);
+      document.getElementById(i.slug).innerHTML = `${Math.round(percentage * 10) / 10}%`;
     }
-  });
-  {% endif %}
+  }
+});
+{% endif %}
 </script>
 {% endblock content %}
