@@ -1,0 +1,77 @@
+<p>
+  Like addition, although it is easy to subtract small numbers in our heads, it is much more difficult to subtract big numbers.
+  For example, when we calculate \( 8-3 \), we can simply get the answer 5.
+  But if we wanted to calculate something like \( 369 - 84 \), it is much more difficult to do without a calculator, or pencil and paper.
+  <b>Long subtraction</b> is the process we use to subtract big numbers. Here is one way of doing it:
+  <ol>
+    <li>Write the number you are subtracting from (the "total" number) on top, and the number you are subtracting (how much you are taking away) on the botton, making sure to match each place vertically. Write a minus sign on the left, and draw a horizontal line underneath the bottom number.</li>
+    <li>Look at the two digits in the column on the far right.</li>
+        <ul>
+            <li>If the top digit is greater than or equal to the bottom digit:</li>
+            <ul>
+                <li>Subtract the bottom digit from the top, and write the resulting digit underneath the line. Order matters, so make sure you do the top digit minus the bottom one!</li>
+            </ul>
+            <li>If the top digit is less than the bottom digit:</li>
+                <ul>
+                    <li>Subtract the the bottom digit from \( 10 + top digit\) (this is called <b>borrowing</b>), and write the resulting digit underneath the line. Again, order matters, so make sure you do the top digit minus the bottom one!</li>
+                    <li>Then, replace the digit on the top line of the column to the immediate left by crossing it out and writing in the original digit subtracted by 1. </li>
+                    <ul>
+                        <li>In the special case when 0 is this original digit on the top line of the column to the immediate left, cross it out and replace it with a 9. Then, replace the digit on the top line of the column to its immediate left by crossing it out and writing in the original digit subtracted by 1. </li>
+                    </ul>
+                </ul>
+        </ul>
+    <li>Repeat from step 2, but now looking at the column to the immediate left of the digit below the line.</li>
+    <li>When there are no columns left to look at, the number below the line is the final answer!</li>
+  </ol>
+  Let's look at a couple of examples.
+  Calculate \( 369 - 84 \).
+  First, we set the numbers up by writing the two numbers vertically and matching the digits in step 1:
+  $$
+  \begin{matrix}
+   &3&6&9 \\
+   -&&8&4 \\ \hline
+  \end{matrix}
+  $$
+  Since only the first digit has a hundreds' place, we leave the hundreds' place for the second digit blank.
+  Remember that we match the digits by place, so the 6 must be matched with the 8 and the 9 must be matched with the 4!
+  Note that in subtraction, we cannot switch the positions of the top and bottom numbers.
+  In step 2, we start by subtracting the digits in the ones' place. Because \( 9 > 4 \), we calculate  \( 9-4 \) and write the answer in the same column underneath the line like so:
+  $$
+  \begin{matrix}
+    &3&6&9 \\
+    -&&8&4 \\
+    \hline
+    &&&5
+  \end{matrix}
+  $$
+  Then, we repeat from step 2, but look at the place immediately to the left.
+  Because \( 6 < 9 \), we subtract the bottom digit 9 from \( 10 + 6 = 16\). Since \( 16 - 8 = 8\), we write 8 under the line in the tens' place column like so:
+  $$
+  \begin{matrix}
+    &3&6&9 \\
+    -&&8&4 \\
+    \hline
+    &&8&5
+  \end{matrix}
+  $$
+    Remember, we still have to replace the digit on the top line of the column to the immediate left! In this case, we cross out the 3 in the hundreds' place of the top line, and replace it with a 2, the original digit subtracted by one.
+  $$
+  \begin{matrix}
+    &\cancel{3}2&6&9 \\
+    -&&8&4 \\
+    \hline
+    &&8&5
+  \end{matrix}
+  $$
+  Finally, we repeat step 2, and look at the hundreds column. Because there is no hundreds' digit in the second number (same as subtracting by 0), we simply write the 2 underneath the line in the same column.
+  And because there are no more columns to the left, we are done with the end result looking like this:
+  $$
+  \begin{matrix}
+    &\cancel{3}2&6&9 \\
+    -&&8&4 \\
+    \hline
+    &2&8&5
+  \end{matrix}
+  $$
+  The result of \( 369 - 84 \) is the number underneath the line, \( 285 \)!
+</p>

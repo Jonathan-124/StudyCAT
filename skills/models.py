@@ -122,7 +122,7 @@ def update_topological_order(sender, instance, **kwargs):
 
     # Updates topological orders if skilledge changed when same_subject=False
     # Same code, but updates other_subject dependency matrix and skill topological orders
-    if not instance.same_skill:
+    if not instance.same_subject:
         other_subject = instance.child.subject
         edges = list(SkillEdge.objects.filter(parent_skill__subject=other_subject, same_subject=True))
         root_nodes = []

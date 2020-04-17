@@ -1,7 +1,4 @@
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.generic import DetailView
-from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Lesson
 
 
@@ -13,10 +10,5 @@ class LessonView(DetailView):
 
 # Class based view for exit test after user finishes a lesson; requires user to be logged in
 class ExitTestView(DetailView):
-    """
-    @method_decorator(ensure_csrf_cookie)
-    def dispatch(self, request, *args, **kwargs):
-        return super(ExitTestView, self).dispatch(request, *args, **kwargs)
-    """
     model = Lesson
     template_name = 'exit_test.html'
