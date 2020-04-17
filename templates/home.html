@@ -8,7 +8,7 @@
 {% if user.is_authenticated %}
 <p>Welcome back {{ user.username }}! </p>
     {% if user.profile.currently_studying %}
-    <p> Click <a href="{% url 'curriculum' user.profile.currently_studying.slug %}">here</a> to go to your curriculum.</p>
+    <p> Click <a href="{% url 'curriculum' user.profile.currently_studying.slug %}">here</a> to continue studying {{ user.profile.currently_studying.name}}!</p>
     {% endif %}
 <br>
 <div id="challenge" class="jumbotron">
@@ -29,23 +29,24 @@
     </div>
 </div>
 <br>
-<br>
-<div class="jumbotron">
-    <h5>I've recently learned about...</h5>
+<p>Unsure about what to learn? Here are a few suggestions...</p>
+<div id="zpd">
+    <div class="jumbotron">
+        <h5>You've recently learned about...</h5>
+        <br>
+        <div class="card-deck" id="learned">
+        </div>
+    </div>
     <br>
-    <div class="card-deck" id="learned">
+    <br>
+    <div class="jumbotron">
+        <div class="card-deck" id="ready-to-learn">
+        </div>
+        <br>
+        <h5>You can now learn about...</h5>
     </div>
 </div>
 
-<br>
-<br>
-
-<div class="jumbotron">
-    <div class="card-deck" id="ready-to-learn">
-    </div>
-    <br>
-    <h5>I can now learn about...</h5>
-</div>
 <br>
 
 <div>

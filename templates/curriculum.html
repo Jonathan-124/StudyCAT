@@ -17,9 +17,9 @@
     </div>
   </div>
   <div class="card-body">
-    <h5 class="card-title">{{ unit.name }}</h5>
-    <p class="card-text">Unit description here...</p>
-    <a href="{% url 'units:unit' unit.slug %}" class="btn btn-primary">Go to unit</a>
+    <h5 class="card-title"><a href="{% url 'units:unit' unit.slug %}">{{ unit.name }}</a></h5>
+    <hr>
+    <p class="card-text">{{ unit.description }}</p>
   </div>
 </div>
 {% endfor %}
