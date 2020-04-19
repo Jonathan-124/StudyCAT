@@ -11,22 +11,25 @@ class CustomUser(AbstractUser):
 
 
 def update_previous_login(sender, user, **kwargs):
-    user.previous_login = user.last_login
-    user.last_login = timezone.now()
-    delta = (user.last_login - user.previous_login).days
-    if delta < 2:
+    if not user.last_login:
         pass
-    elif delta < 7:
-        user.profile.depreciate_terminal_skills(1)
-    elif delta < 15:
-        user.profile.depreciate_terminal_skills(2)
-    elif delta < 30:
-        user.profile.depreciate_terminal_skills(3)
-    elif delta < 60:
-        user.profile.depreciate_terminal_skills(4)
     else:
-        user.profile.depreciate_terminal_skills(5)
-    user.save(update_fields=['previous_login', 'last_login'])
+        user.previous_login = user.last_login
+        user.last_login = timezone.now()
+        delta = (user.last_login - user.previous_login).days
+        if delta < 2:
+            pass
+        elif delta < 7:
+            user.profile.depreciate_terminal_skills(1)
+        elif delta < 15:
+            user.profile.depreciate_terminal_skills(2)
+        elif delta < 30:
+            user.profile.depreciate_terminal_skills(3)
+        elif delta < 60:
+            user.profile.depreciate_terminal_skills(4)
+        else:
+            user.profile.depreciate_terminal_skills(5)
+        user.save(update_fields=['previous_login', 'last_login'])
 
 
 user_logged_in.disconnect(update_last_login, dispatch_uid='update_last_login')

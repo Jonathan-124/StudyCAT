@@ -7,9 +7,7 @@
 
 {% if user.is_authenticated %}
 <p>Welcome back {{ user.username }}! </p>
-    {% if user.profile.currently_studying %}
-    <p> Click <a href="{% url 'curriculum' user.profile.currently_studying.slug %}">here</a> to continue studying {{ user.profile.currently_studying.name}}!</p>
-    {% endif %}
+<p>Click <a href="{% url 'curriculum' user.profile.currently_studying.slug %}">here</a> to continue studying {{ user.profile.currently_studying.name}}!</p>
 <br>
 <div id="challenge" class="jumbotron">
     <h5>Here's a challenge for you...</h5>
@@ -145,7 +143,7 @@ $(document).ready(function(){
     let next_skills = [];
     let currentQ;
 
-    $.get("{% url 'subjects:get_subject_data' user.profile.currently_studying.subject.slug %}", function(data, status){
+    $.get("{% url 'subjects:get_subject_data' 'mathematics' %}", function(data, status){
         // Retrieves user skill level array (topological order) and parent adjacency matrix from server
         // child adjacency matrix is the transpose of parent adjacency matrix
         parent_adjacency_matrix = data.subject_data.dependencies;
