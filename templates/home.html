@@ -7,7 +7,9 @@
 
 {% if user.is_authenticated %}
 <p>Welcome back {{ user.username }}! </p>
-<p>Click <a href="{% url 'curriculum' user.profile.currently_studying.slug %}">here</a> to continue studying {{ user.profile.currently_studying.name}}!</p>
+{% for curriculum in user.profile.currently_studying.all %}
+<p>Click <a href="{% url 'curriculum' curriculum.slug %}">here</a> to continue studying {{ curriculum.name}}!</p>
+{% endfor %}
 <br>
 <div id="challenge" class="jumbotron">
     <h5>Here's a challenge for you...</h5>
@@ -172,7 +174,7 @@ $(document).ready(function(){
 
         // Get random challenge question
         const rand_top = terminal_ids[Math.floor(Math.random() * terminal_ids.length)];
-        $.get("{% url 'skills:skill_based_randomizer' %}", {topological_order: rand_top, subject_slug: "{{ user.profile.currently_studying.subject.slug }}"}, function(data, status){
+        $.get("{% url 'skills:skill_based_randomizer' %}", {topological_order: rand_top, subject_slug: "mathematics"}, function(data, status){
             currentQ = data;
             // displays question prompt text
             prompt.innerHTML = currentQ.question_prompt;

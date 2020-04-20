@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserProfile, Skillfulness
+from .models import UserProfile, Skillfulness, CurrentlyStudying
 
 
 class SkillfulnessInline(admin.TabularInline):
@@ -8,10 +8,17 @@ class SkillfulnessInline(admin.TabularInline):
     can_delete = False
 
 
+class CurrentlyStudyingInline(admin.TabularInline):
+    model = CurrentlyStudying
+
+
 class UserProfileAdmin(admin.ModelAdmin):
+    model = UserProfile
     inlines = [
         SkillfulnessInline,
+        CurrentlyStudyingInline
     ]
+    can_delete = True
 
 
 admin.site.register(UserProfile, UserProfileAdmin)

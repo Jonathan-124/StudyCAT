@@ -27,10 +27,6 @@ def initial_question_pack(request, *args, **kwargs):
         curriculum = Curriculum.objects.get(id=request.query_params["pk"])
         start_skills_id_list.extend(json.loads(curriculum.start_skills)["skill_id_list"])
         end_skills_id_list.extend(json.loads(curriculum.end_skills)["skill_id_list"])
-    elif request.query_params["scope"] == "currently_studying":
-        curriculum = request.user.profile.currently_studying
-        start_skills_id_list.extend(json.loads(curriculum.start_skills)["skill_id_list"])
-        end_skills_id_list.extend(json.loads(curriculum.end_skills)["skill_id_list"])
     elif request.query_params["scope"] == "unit":
         unit = Unit.objects.get(id=request.query_params["pk"])
         start_skills_id_list.extend(json.loads(unit.start_skills)["skill_id_list"])

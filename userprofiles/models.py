@@ -33,9 +33,8 @@ class UserProfile(models.Model):
         (SELF_STUDY, 'Self Study'),
     ]
     user_type = models.CharField(max_length=2, choices=USER_TYPES, default=SELF_STUDY)
+    currently_studying = models.ManyToManyField(Curriculum, through='CurrentlyStudying', through_fields=('user_profile', 'curriculum'))
     skills = models.ManyToManyField(Skill, through='Skillfulness', through_fields=('user_profile', 'skill'))
-    currently_studying = models.OneToOneField(Curriculum, on_delete=models.CASCADE, blank=True, null=True)
-    test_date = models.DateField(blank=True, null=True)
 
     def __str__(self):
         return self.user.username
@@ -144,3 +143,9 @@ def create_all_skills(sender, instance, created, **kwargs):
         all_skills = Skill.objects.all()
         for i in all_skills:
             Skillfulness.objects.get_or_create(user_profile=instance, skill=i)
+
+
+class CurrentlyStudying(models.Model):
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='currently_studying_through')
+    curriculum = models.ForeignKey(Curriculum, on_delete=models.CASCADE, related_name='currently_studying_through')
+    test_date = models.DateField(blank=True, null=True)
