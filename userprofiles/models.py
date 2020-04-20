@@ -3,7 +3,6 @@ from django.contrib.auth import get_user_model
 from skills.models import Skill, SkillEdge
 from users.models import CustomUser
 from curricula.models import Curriculum
-from decimal import Decimal
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 

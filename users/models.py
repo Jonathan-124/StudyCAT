@@ -6,7 +6,6 @@ from django.contrib.auth.signals import user_logged_in
 
 
 class CustomUser(AbstractUser):
-    age = models.PositiveIntegerField(null=True, blank=True)
     previous_login = models.DateTimeField(null=True, blank=True)
 
 

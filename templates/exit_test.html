@@ -180,6 +180,7 @@ $(document).ready(function(){
         // displays question prompt image if present
         if (currentQ.image_url){
             let prompt_image = document.createElement("img");
+            prompt_image.setAttribute("id", "prompt-image");
             prompt_image.setAttribute("class", "img-fluid");
             prompt_image.setAttribute("src", currentQ.image_url);
             document.getElementById("questionbox").appendChild(prompt_image);
@@ -350,11 +351,11 @@ $(document).ready(function(){
             dataType: "json",
             contentType: "application/json",
             error: function(data){
-                prompt.innerHTML = "Oops! It seems like something went wrong when sending your data to the server. Click <a href=\"{% url 'home' %}\">here</a> to go back to the homepage."
+                prompt.innerHTML = "Oops! It seems like something went wrong when sending your data to the server. Click <a href=\"{% url 'lessons:lesson' lesson.slug %}\">here</a> to go back to the lesson page."
             },
             success: function(data){
                 percentage_correct = Math.round(user_skill_level * 1000) / 10;
-                prompt.innerHTML = `Congrats, you have completed the lesson with a score of ${percentage_correct}%! Click <a href=\"{% url 'home' %}\">here</a> to go back to the homepage.`;            }
+                prompt.innerHTML = `Congrats, you have completed the lesson with a score of ${percentage_correct}%! Click <a href=\"{% url 'lessons:lesson' lesson.slug %}\">here</a> to go back to the lesson page.`;            }
         });
     }
     {% endif %}
@@ -444,7 +445,7 @@ $(document).ready(function(){
         feedbackbox.setAttribute("class", "d-none");
         // Removing children from questionbox and inputbox DOM
         if (currentQ.image_url){
-            document.getElementById("questionbox").removeChild(prompt_image);
+            document.getElementById("questionbox").removeChild(document.getElementById("prompt-image"));
         }
         while (prompt.firstChild) {
             prompt.removeChild(prompt.firstChild);

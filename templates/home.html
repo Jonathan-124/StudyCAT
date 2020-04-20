@@ -28,23 +28,12 @@
 </div>
 <br>
 <p>Unsure about what to learn? Here are a few suggestions...</p>
-<div id="zpd">
-    <div class="jumbotron">
-        <h5>You've recently learned about...</h5>
-        <br>
-        <div class="card-deck" id="learned">
-        </div>
-    </div>
+<div class="jumbotron">
+    <h5>You've recently learned about...</h5>
     <br>
-    <br>
-    <div class="jumbotron">
-        <div class="card-deck" id="ready-to-learn">
-        </div>
-        <br>
-        <h5>You can now learn about...</h5>
+    <div class="card-deck" id="learned">
     </div>
 </div>
-
 <br>
 
 <div>
@@ -176,32 +165,9 @@ $(document).ready(function(){
             for (x of child_ids){
                 if (user_skill_vector[x] < 0.5){
                     terminal_ids.add(check_index);
-                    potential_next_skills.add(x);
                 } else {
                     to_test.push(x);
                 }
-            }
-        }
-
-        for (x of potential_next_skills){
-            // for x in potential_next_skills, get its parent topological order ids as a set
-            // if all parents are in the terminal_ids set, x is pushed to the true next_skills list
-            parent_ids = new Set();
-            parent_adjacency_matrix[x].forEach(function(value, index, array){
-                if (value == 1){
-                    parent_ids.add(index)
-                }
-            });
-            if (isSuperset(terminal_ids, parent_ids)){
-                next_skills.push(x);
-            }
-            function isSuperset(set, subset) {
-                for (let elem of subset) {
-                    if (!set.has(elem)) {
-                        return false
-                    }
-                }
-                return true
             }
         }
         terminal_ids = Array.from(terminal_ids);
@@ -302,7 +268,6 @@ $(document).ready(function(){
             }
             // Displays "submit answer" button
             $("button[name='submit_answer']").attr("class", "btn btn-primary float-right");
-            jsPlumb.repaintEverything();
         });
 
         // On "submit_answer" button click
@@ -374,12 +339,10 @@ $(document).ready(function(){
             jsPlumb.repaintEverything();
         });
 
-        $.get("{% url 'skills:homepage-data' %}", {"terminal_ids[]": terminal_ids, "next_skills[]": next_skills}, function(data, status){
+        $.get("{% url 'skills:homepage-data' %}", {"terminal_ids[]": terminal_ids}, function(data, status){
             terminal_lessons_data = data.terminal_lessons_data;
-            next_lessons_data = data.next_lessons_data;
             const lessons_url = "http://127.0.0.1:8000/lessons/";
             let learned =  document.getElementById("learned");
-            let ready_to_learn =  document.getElementById("ready-to-learn");
             terminal_lessons_data.forEach(function(value, index, array){
                 // Initializing card, card_body, link, and title vars
                 let card = document.createElement("div");
@@ -400,51 +363,7 @@ $(document).ready(function(){
                 card.appendChild(card_body);
                 learned.appendChild(card);
             })
-            next_lessons_data.forEach(function(value, index, array){
-                // Initializing card, card_body, link, and title vars
-                let card = document.createElement("div");
-                let card_body = document.createElement("div");
-                let lesson_link = document.createElement("a");
-                let card_title = document.createElement("h5");
-                // Setting attributes
-                card_title.setAttribute("class", "card-title");
-                card_title.innerHTML = value.lesson_title;
-                lesson_link.setAttribute("href", lessons_url.concat(value.slug));
-                lesson_link.setAttribute("class", "text-warning");
-                card_body.setAttribute("class", "card-body");
-                card.setAttribute("id", value.slug);
-                card.setAttribute("data-topological-order", value.topological_order);
-                card.setAttribute("class", "card text-center");
-                // Appending children
-                lesson_link.appendChild(card_title);
-                card_body.appendChild(lesson_link);
-                card.appendChild(card_body);
-                ready_to_learn.appendChild(card);
-            })
-
-            for (i of next_skills){
-                parent_terminal_skills = [];
-                parent_adjacency_matrix[i].forEach(function(value, index, array){
-                    if (value == 1){
-                        parent_terminal_skills.push(index);
-                    }
-                });
-                parent_terminal_skills.forEach(function(value, index, array){
-                    parent_card_id = $(`div[data-topological-order="${value}"]`).attr('id');
-                    child_card_id = $(`div[data-topological-order="${i}"]`).attr('id');
-                    jsPlumb.connect({source: parent_card_id,
-                                     target: child_card_id,
-                                     endpoint:"Blank",
-                                     anchor:["Top", "Bottom"],
-                                     connector:["Bezier"]});
-                });
-            }
         });
-    });
-
-    // on window resize jsPlumb repaint
-    $(window).resize(function(){
-        jsPlumb.repaintEverything();
     });
 
     $(document).on('click', '#send-feedback-report', function(e){

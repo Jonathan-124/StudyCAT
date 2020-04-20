@@ -8,6 +8,9 @@ class AnswerInline(admin.TabularInline):
 
 
 class QuestionAdmin(admin.ModelAdmin):
+    model = Question
+    list_display = ['question_prompt', 'question_type', 'skill']
+    list_filter = ['skill']
     readonly_fields = ['pseudochance', 'discrimination']
     inlines = [
         AnswerInline,

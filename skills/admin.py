@@ -12,6 +12,8 @@ class SkillEdgeInline(admin.TabularInline):
 class SkillAdmin(admin.ModelAdmin):
     model = Skill
     exclude = ('related_skills', )
+    list_display = ['name', 'topological_order', 'subject']
+    list_filter = ['subject']
     inlines = (SkillEdgeInline, )
     readonly_fields = ['topological_order']
 

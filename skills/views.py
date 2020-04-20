@@ -62,12 +62,10 @@ def children_skill_question_pack(request, *args, **kwargs):
     return Response({"questions": pack})
 
 
-# Receives two lists of topological orders, returns lesson data response
+# Receives list of topological orders, returns lesson data response
 @api_view()
 @login_required()
 def get_lesson_data_from_topological_order(request, *args, **kwargs):
     terminal_lessons = Lesson.objects.get_lessons_from_topological_orders(request.query_params.getlist("terminal_ids[]"))
-    next_lessons = Lesson.objects.get_lessons_from_topological_orders(request.query_params.getlist("next_skills[]"))
     terminal_lessons_data = LessonSerializer(terminal_lessons, many=True).data
-    next_lessons_data = LessonSerializer(next_lessons, many=True).data
-    return Response({"terminal_lessons_data": terminal_lessons_data, "next_lessons_data": next_lessons_data})
+    return Response({"terminal_lessons_data": terminal_lessons_data})

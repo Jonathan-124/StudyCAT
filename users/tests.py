@@ -14,7 +14,3 @@ class UserTests(TestCase):
     def test_user_existence(self):
         user = CustomUser.objects.get(username='testuser_1')
         self.assertTrue(user)
-
-    def test_user_agefield(self):
-        user = CustomUser.objects.get(username='testuser_1')
-        self.assertEquals(user.age, 20)
