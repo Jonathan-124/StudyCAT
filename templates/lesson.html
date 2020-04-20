@@ -9,6 +9,9 @@
 {% include lesson.html_filename %}
 <hr>
 <p>Take the <a href="{% url 'lessons:exit_test' lesson.slug %}">exit test</a> to see if you learned all the concepts and save your progress!</p>
+{% if request.GET.unit %}
+<p>Click <a href="{% url 'units:unit' request.GET.unit %}">here</a> to go return to the unit.</p>
+{% endif %}
 
 <script>
 $(document).ready(function(){

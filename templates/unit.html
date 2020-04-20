@@ -97,7 +97,7 @@ $(document).ready(function(){
                 // Setting attributes
                 card_title.setAttribute("class", "card-title");
                 card_title.innerHTML = x.lesson_title;
-                lesson_link.setAttribute("href", lessons_url.concat(x.slug));
+                lesson_link.setAttribute("href", lessons_url + x.slug + "?unit={{ unit.slug }}");
                 card_body.setAttribute("class", "card-body");
                 card.setAttribute("id", x.slug);
                 card.setAttribute("data-topological-order", x.topological_order);
@@ -146,7 +146,7 @@ $(document).ready(function(){
                 card_id = $(`div[data-topological-order="${i}"]`).attr('id');
                 if (user_skill_vector[i] > 0.5){
                     num_complete += 1;
-                    jsPlumb.select({target: card_id}).setPaintStyle({stroke: "rgb(2, 117, 216)"})
+                    jsPlumb.select({target: card_id}).setPaintStyle({stroke: "rgb(153, 153, 153)", strokeWidth:1})
                 } else{
                     let readiness = true;
                     let parents = [];
@@ -164,10 +164,10 @@ $(document).ready(function(){
                             parent_id = "prerequisite";
                         }
                         if (user_skill_vector[j] > 0.5){
-                            jsPlumb.select({source: parent_id, target: card_id}).setPaintStyle({stroke: "rgb(2, 117, 216)"});
+                            jsPlumb.select({source: parent_id, target: card_id}).setPaintStyle({stroke: "rgb(153, 153, 153)", strokeWidth:1});
                         } else {
                             readiness = false;
-                            jsPlumb.select({source: parent_id, target: card_id}).setPaintStyle({stroke: "rgb(153, 153, 153)"});
+                            jsPlumb.select({source: parent_id, target: card_id}).setPaintStyle({stroke: "rgb(153, 153, 153)", strokeWidth:1, dashstyle:"10 10"});
                         }
                     }
 
