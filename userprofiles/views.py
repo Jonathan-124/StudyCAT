@@ -4,18 +4,18 @@ from rest_framework.response import Response
 from django.views.generic.edit import UpdateView
 from django.urls import reverse
 from .models import UserProfile, Skillfulness
-from .forms import CurrentlyStudyingUpdateForm, CurrentlyStudyingFormSet
+from .forms import ProfileUpdateForm, CurrentlyStudyingFormSet
 from django.core.exceptions import ValidationError
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.db import transaction
 
 
 # Questionnaire that updates fields in the user's profile
-class PretestQuestionnaireView(LoginRequiredMixin, UpdateView):
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = UserProfile
-    form_class = CurrentlyStudyingUpdateForm
-    template_name = 'pretest_questionnaire.html'
+    form_class = ProfileUpdateForm
+    template_name = 'profile_update.html'
 
     def get_success_url(self):
         return reverse('home')
@@ -23,51 +23,23 @@ class PretestQuestionnaireView(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         return self.request.user.profile
 
-    def get(self, request, *args, **kwargs):
-        """
-        Handles GET requests and instantiates blank versions of the form
-        and its inline formsets.
-        """
-        self.object = self.get_object()
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        currently_studying_form = CurrentlyStudyingFormSet()
-        return self.render_to_response(
-            self.get_context_data(form=form, currently_studying_form=currently_studying_form))
-
-    def post(self, request, *args, **kwargs):
-        """
-        Handles POST requests, instantiating a form instance and its inline
-        formsets with the passed POST variables and then checking them for
-        validity.
-        """
-        self.object = self.get_object()
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        currently_studying_form = CurrentlyStudyingFormSet()
-        if form.is_valid() and currently_studying_form.is_valid():
-            return self.form_valid(form, currently_studying_form)
+    def get_context_data(self, **kwargs):
+        context = super(ProfileUpdateView, self).get_context_data(**kwargs)
+        if self.request.POST:
+            context['currently_studying_form'] = CurrentlyStudyingFormSet(self.request.POST, instance=self.get_object())
         else:
-            return self.form_invalid(form, currently_studying_form)
+            context['currently_studying_form'] = CurrentlyStudyingFormSet(instance=self.get_object())
+        return context
 
-    def form_valid(self, form, currently_studying_form):
-        """
-        Called if all forms are valid. Creates a Recipe instance along with
-        associated Ingredients and Instructions and then redirects to a
-        success page.
-        """
-        self.object = form.save()
-        currently_studying_form.instance = self.object
-        currently_studying_form.save()
-        return HttpResponseRedirect(self.get_success_url())
-
-    def form_invalid(self, form, currently_studying_form):
-        """
-        Called if a form is invalid. Re-renders the context data with the
-        data-filled forms and errors.
-        """
-        return self.render_to_response(
-            self.get_context_data(form=form, currently_studying_form=currently_studying_form))
+    def form_valid(self, form):
+        context = self.get_context_data()
+        currently_studying_form = context['currently_studying_form']
+        with transaction.atomic():
+            self.object = form.save()
+            if currently_studying_form.is_valid():
+                currently_studying_form.instance = self.get_object()
+                currently_studying_form.save()
+        return super(ProfileUpdateView, self).form_valid(form)
 
 
 # Receives post request with kwarg pk and JSON with "new_skill_level" (decimal)
