@@ -7,10 +7,12 @@
 <form method="post">
     {% csrf_token %}
     {{ form|crispy }}
+<br>
 <table class="table">
-    {{ currently_studying_form.management_form|crispy }}
+    <p>Change your current courses</p>
+    {{ currently_studying_update_form.management_form|crispy }}
 
-    {% for form in currently_studying_form.forms %}
+    {% for form in currently_studying_update_form.forms %}
         {% if forloop.first %}
             <thead>
             <tr>
@@ -36,7 +38,37 @@
         </tr>
     {% endfor %}
 </table>
-    <button class="btn btn-primary ml-2" type="submit">Submit</button>
+<table class="table">
+    <p>Add a new course</p>
+    {{ currently_studying_add_form.management_form|crispy }}
+
+    {% for form in currently_studying_add_form.forms %}
+        {% if forloop.first %}
+            <thead>
+            <tr>
+                {% for field in form.visible_fields %}
+                    <th>{{ field.label|capfirst }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+        {% endif %}
+        <tr class="{% cycle row1 row2 %} formset_row">
+            {% for field in form.visible_fields %}
+                <td>
+                    {# Include the hidden fields in the form #}
+                    {% if forloop.first %}
+                        {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                        {% endfor %}
+                    {% endif %}
+                    {{ field.errors.as_ul }}
+                    {{ field|as_crispy_field }}
+                </td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+    <button class="btn btn-primary ml-2" type="submit">Update</button>
 </form>
 
 <script>

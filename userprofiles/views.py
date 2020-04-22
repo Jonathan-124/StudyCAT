@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from django.views.generic.edit import UpdateView
 from django.urls import reverse
 from .models import UserProfile, Skillfulness
-from .forms import ProfileUpdateForm, CurrentlyStudyingFormSet
+from .forms import ProfileUpdateForm, CurrentlyStudyingAddFormSet, CurrentlyStudyingUpdateFormSet
 from django.core.exceptions import ValidationError
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
@@ -26,19 +26,24 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super(ProfileUpdateView, self).get_context_data(**kwargs)
         if self.request.POST:
-            context['currently_studying_form'] = CurrentlyStudyingFormSet(self.request.POST, instance=self.get_object())
+            context['currently_studying_add_form'] = CurrentlyStudyingAddFormSet(self.request.POST, instance=self.get_object())
+            context['currently_studying_update_form'] = CurrentlyStudyingUpdateFormSet(self.request.POST, instance=self.get_object())
         else:
-            context['currently_studying_form'] = CurrentlyStudyingFormSet(instance=self.get_object())
+            context['currently_studying_add_form'] = CurrentlyStudyingAddFormSet(instance=self.get_object())
+            context['currently_studying_update_form'] = CurrentlyStudyingUpdateFormSet(instance=self.get_object())
         return context
 
     def form_valid(self, form):
         context = self.get_context_data()
-        currently_studying_form = context['currently_studying_form']
+        currently_studying_add_form = context['currently_studying_form']
+        currently_studying_update_form = context['currently_studying_form']
         with transaction.atomic():
             self.object = form.save()
-            if currently_studying_form.is_valid():
-                currently_studying_form.instance = self.get_object()
-                currently_studying_form.save()
+            if currently_studying_add_form.is_valid() and currently_studying_update_form.is_valid():
+                currently_studying_add_form.instance = self.get_object()
+                currently_studying_add_form.save()
+                currently_studying_update_form.instance = self.get_object()
+                currently_studying_update_form.save()
         return super(ProfileUpdateView, self).form_valid(form)
 
 

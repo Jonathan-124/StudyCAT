@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from skills.models import Skill, SkillEdge
 from users.models import CustomUser
 from curricula.models import Curriculum
@@ -149,3 +150,8 @@ class CurrentlyStudying(models.Model):
     user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='currently_studying_through')
     curriculum = models.ForeignKey(Curriculum, on_delete=models.CASCADE, related_name='currently_studying_through')
     test_date = models.DateField(blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        if CurrentlyStudying.objects.filter(user_profile=self.user_profile, curriculum=self.curriculum).exists():
+            raise ValidationError('User has already selected curriculum for currently studying')
+        return super(CurrentlyStudying, self).save(*args, **kwargs)
