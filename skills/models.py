@@ -1,3 +1,4 @@
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
@@ -31,6 +32,8 @@ class Skill(models.Model):
                                             symmetrical=False,
                                             related_name="related_to")
     topological_order = models.PositiveIntegerField(blank=True, null=True)
+    ancestor_ids = ArrayField(models.PositiveIntegerField(), blank=True, null=True)
+    descendant_ids = ArrayField(models.PositiveIntegerField(), blank=True, null=True)
     objects = SkillManager()
 
     class Meta:
@@ -56,6 +59,15 @@ class Skill(models.Model):
             current_skill = parent_skills.pop()
             ids.add(current_skill.id)
             parent_skills.update(set(current_skill.get_parent_skills()))
+        return list(ids)
+
+    def get_descendant_skill_ids(self):
+        ids = set()
+        child_skills = set(self.get_children_skills())
+        while child_skills:
+            current_skill = child_skills.pop()
+            ids.add(current_skill.id)
+            child_skills.update(set(current_skill.get_children_skills()))
         return list(ids)
 
 
@@ -107,6 +119,8 @@ def update_topological_order(sender, instance, **kwargs):
     while root_nodes:
         node = root_nodes.pop()
         setattr(node, 'topological_order', j)
+        setattr(node, 'ancestor_ids', node.get_preceding_skill_ids())
+        setattr(node, 'descendant_ids', node.get_descendant_skill_ids())
         node.save()
         j += 1
         for edge in edges[:]:
@@ -135,6 +149,8 @@ def update_topological_order(sender, instance, **kwargs):
         while root_nodes:
             node = root_nodes.pop()
             setattr(node, 'topological_order', j)
+            setattr(node, 'ancestor_ids', node.get_preceding_skill_ids())
+            setattr(node, 'descendant_ids', node.get_descendant_skill_ids())
             node.save()
             j += 1
             for edge in edges[:]:

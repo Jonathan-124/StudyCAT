@@ -15,7 +15,7 @@ class SkillAdmin(admin.ModelAdmin):
     list_display = ['name', 'topological_order', 'subject']
     list_filter = ['subject']
     inlines = (SkillEdgeInline, )
-    readonly_fields = ['topological_order']
+    readonly_fields = ['topological_order', 'ancestor_ids', 'descendant_ids']
 
 
 admin.site.register(Skill, SkillAdmin)

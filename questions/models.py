@@ -11,20 +11,30 @@ class QuestionManager(models.Manager):
     def random(self, skill_id):
         queryset = self.filter(skill__id=skill_id)
         count = queryset.aggregate(count=Count('id'))['count']
-        random_index = randint(0, count - 1)
-        return queryset.all()[random_index]
+        if count == 0:
+            return None
+        else:
+            random_index = randint(0, count - 1)
+            return queryset.all()[random_index]
 
     # Retrieves random question with given topological_order, subject slug
     def random_by_topological_order(self, topological_order, slug):
         queryset = self.filter(skill__subject__slug=slug, skill__topological_order=topological_order)
         count = queryset.aggregate(count=Count('id'))['count']
-        random_index = randint(0, count - 1)
-        return queryset.all()[random_index]
+        if count == 0:
+            return None
+        else:
+            random_index = randint(0, count - 1)
+            return queryset.all()[random_index]
 
     # Retrieves num random questions related to skill with skill_id
     def random_questions(self, skill_id, num):
         queryset = self.filter(skill__id=skill_id)
         count = queryset.aggregate(count=Count('id'))['count']
+        if count == 0:
+            return None
+        elif num > count:
+            num = count
         random_index_list = sample(range(0, count), num)
         random_questions = []
         for i in random_index_list:

@@ -25,7 +25,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields = ('id', 'question_type', 'question_prompt', 'answers', 'image_url')
+        fields = ('id', 'skill', 'question_type', 'question_prompt', 'answers', 'image_url')
 
     # populates image_url field if question object has a non-empty image field
     def get_image_url(self, obj):

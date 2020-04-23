@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
+    path('api/', include('api.urls')),
     path('users/', include('users.urls')),
     path('users/', include('django.contrib.auth.urls')),
     path('profiles/', include(('userprofiles.urls', 'userprofiles'), namespace='userprofiles')),

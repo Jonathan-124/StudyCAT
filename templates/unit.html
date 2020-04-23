@@ -39,6 +39,7 @@ $(document).ready(function(){
         $.get("{% url 'subjects:get_subject_data' unit.subject.slug %}", function(data, status){
             // Retrieves parent adjacency matrix (topological order) from server
             // child adjacency matrix is the transpose of parent adjacency matrix
+            console.log(data);
             parent_adjacency_matrix = data.subject_data.dependencies;
             child_adjacency_matrix = parent_adjacency_matrix[0].map((col, i) => parent_adjacency_matrix.map(row => row[i]));
             {% if user.is_authenticated %}
@@ -48,6 +49,7 @@ $(document).ready(function(){
         $.get("{% url 'units:get_unit_data' unit.id %}", function(data, status){
             // Retrieves and stores serialized lesson objects for lessons in unit
             lessons_data = data.lessons
+            console.log(data);
         })
     ).then(function(){
         for (i = 0; i < lessons_data.length; i++){

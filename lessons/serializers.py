@@ -1,13 +1,11 @@
 from rest_framework import serializers
 from .models import Lesson
+from skills.serializers import SkillSerializer
 
 
 class LessonSerializer(serializers.ModelSerializer):
-    topological_order = serializers.SerializerMethodField('get_topological_order')
+    skill = SkillSerializer(many=False, read_only=True)
 
     class Meta:
         model = Lesson
-        fields = ('lesson_title', 'slug', 'topological_order')
-
-    def get_topological_order(self, obj):
-        return obj.skill.topological_order
+        fields = ('lesson_title', 'slug', 'skill')
