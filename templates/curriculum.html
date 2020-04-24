@@ -30,7 +30,7 @@
 
 <script>
 {% if user.is_authenticated %}
-$.get("{% url 'get_units_percentage_completion' curriculum.id %}", function(data, status){
+$.get("{% url 'get_curriculum_completion_status' curriculum.id %}", function(data, status){
   for (i of data){
     percentage = i.percentage * 100
     if (percentage == 100){

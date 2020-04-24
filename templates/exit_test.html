@@ -126,49 +126,23 @@ $(document).ready(function(){
     const feedbackbox = document.getElementById("feedback");
 
     // Initializing variables related to questions and data
-    let parent_adjacency_matrix;
-    let child_adjacency_matrix;
-    let user_skill_vector;
-    let question_pack_data;
     let currentQ;
-    let data_list = [];
+    let question_pack = [];
+    let response_data = [];
 
-    $.when(
-        $.get("{% url 'subjects:get_subject_data' lesson.skill.subject.slug %}", function(data, status){
-            // Retrieves parent adjacency matrix and user skill vector list (both topological order) from server
-            // child adjacency matrix is the transpose of parent adjacency matrix
-            parent_adjacency_matrix = data.subject_data.dependencies;
-            child_adjacency_matrix = parent_adjacency_matrix[0].map((col, i) => parent_adjacency_matrix.map(row => row[i]));
-            {% if user.is_authenticated%}
-            user_skill_vector = data.skill_level_list;
-            {% endif %}
-        }),
-        $.get("{% url 'skills:skill_question_pack' lesson.skill.pk %}", function(data, status){
-            // Retrieves and stores question pack data
-            question_pack_data = data.questions;
-        })
-    ).then(function(){
+    $.get("{% url 'get_random_questions' lesson.skill.id  3 %}", function(data, status){
+        question_pack = data;
         tester();
     })
 
-    // Top level function that starts the testing process
+    // Top level function that initiates the testing process
     function tester() {
-        if (question_pack_data.length > 0) {
-            // sets currentQ to the next question in question_pack_data list; calls presentQuestion
-            currentQ = question_pack_data.pop()
+        if (question_pack.length > 0) {
+            // sets currentQ to the next question in question_pack list; calls presentQuestion
+            currentQ = question_pack.pop()
             presentQuestion();
         } else {
-            // if no more questions to test, calls sendResponseData
-            {% if user.is_authenticated %}
             sendResponseData();
-            {% else %}
-            let percentage_correct = 0;
-            for(i of data_list) {
-                percentage_correct += i.a_correctness;
-            }
-            percentage_correct = Math.round(percentage_correct * 1000 / data_list.length) / 10;
-            prompt.innerHTML = `Congrats, you have completed the lesson with a score of ${percentage_correct}%! Please <a href="{% url 'login' %}">log in</a> to save your progress.`
-            {% endif %}
         }
     }
 
@@ -269,97 +243,6 @@ $(document).ready(function(){
         $("button[name='submit_answer']").attr("class", "btn btn-primary float-right");
     }
 
-    {% if user.is_authenticated %}
-    // When called, sends AJAX post to update user skill
-    function sendResponseData(){
-        // initializing variables
-        let parent_topological_orders = new Set();
-        let child_topological_orders = new Set();
-        let queued_parent_topological_orders = [];
-        let queued_child_topological_orders = [];
-        let user_skill_level = user_skill_vector[{{ lesson.skill.topological_order }}]
-        let delta = 0;
-        let depreciating = [];
-        let appreciating = [{{ lesson.skill.topological_order }}];
-
-        // parent_topological_orders - set of topological orders of parent skills of skill being tested
-        parent_adjacency_matrix[{{ lesson.skill.topological_order }}].forEach(function(value, index, array){
-            if (value == 1){
-                queued_parent_topological_orders.push(index)
-            }
-        });
-        while (queued_parent_topological_orders.length > 0){
-            let current = queued_parent_topological_orders.pop();
-            parent_topological_orders.add(current);
-            parent_adjacency_matrix[current].forEach(function(value, index, array){
-                if (value == 1){
-                    queued_parent_topological_orders.push(index)
-                }
-            });
-        }
-
-        // child_topological_orders - set of topological orders of children skills of skill being tested
-        child_adjacency_matrix[{{ lesson.skill.topological_order }}].forEach(function(value, index, array){
-            if (value == 1){
-                queued_child_topological_orders.push(index)
-            }
-        });
-        while (queued_child_topological_orders.length > 0){
-            let current = queued_child_topological_orders.pop();
-            child_topological_orders.add(current);
-            child_adjacency_matrix[current].forEach(function(value, index, array){
-                if (value == 1){
-                    queued_child_topological_orders.push(index)
-                }
-            });
-        }
-
-        // Calculates average of a_correctness of user responses, sets user_skill_level to new delta [0, 1]
-        for (i of data_list){
-            delta += i.a_correctness;
-        }
-        delta /= data_list.length
-        if (delta < 0){
-            user_skill_level = 0;
-        } else if (delta > 1) {
-            user_skill_level = 1;
-        } else {
-            user_skill_level = delta;
-        }
-
-        // Filter for parent topological orders where the user's skill level is less than user_skill_level, push to appreciating
-        Array.from(parent_topological_orders).forEach(function(value, index, array){
-            if (user_skill_vector[value] < user_skill_level){
-                appreciating.push(value);
-            }
-        });
-        // Filter for child topological orders where the user's skill level is more than user_skill_level, push to depreciating
-        Array.from(child_topological_orders).forEach(function(value, index, array){
-            if (user_skill_vector[value] > user_skill_level){
-                depreciating.push(value);
-            }
-        });
-
-        // lists of JSON objects to be updated to new skill levels
-        to_be_updated = [{"topological_orders": appreciating, "skill_level": user_skill_level}, {"topological_orders": depreciating, "skill_level": user_skill_level}];
-        response = {"update_via": "topological_order", "to_be_updated": to_be_updated}
-        $.ajax({
-            type: "POST",
-            // To create new url api for this bulk send in backend
-            url: "{% url 'userprofiles:subject_posttest_update' lesson.skill.subject.slug %}",
-            data: JSON.stringify(response),
-            dataType: "json",
-            contentType: "application/json",
-            error: function(data){
-                prompt.innerHTML = "Oops! It seems like something went wrong when sending your data to the server. Click <a href=\"{% url 'lessons:lesson' lesson.slug %}\">here</a> to go back to the lesson page."
-            },
-            success: function(data){
-                percentage_correct = Math.round(user_skill_level * 1000) / 10;
-                prompt.innerHTML = `Congrats, you have completed the lesson with a score of ${percentage_correct}%! Click <a href=\"{% url 'lessons:lesson' lesson.slug %}\">here</a> to go back to the lesson page.`;            }
-        });
-    }
-    {% endif %}
-
     // On "submit_answer" button click
     $("button[name='submit_answer']").on('click', function(e){
         e.preventDefault();
@@ -435,7 +318,7 @@ $(document).ready(function(){
         data.q_id = q_id;
         data.q_type = currentQ.question_type;
         data.a_correctness = a_correctness;
-        data_list.push(data);
+        response_data.push(data);
     });
 
     // On clicking "next" button, kills DOM nodes, calls tester()
@@ -455,6 +338,44 @@ $(document).ready(function(){
         }
         tester();
     });
+
+    function sendResponseData(){
+        let score = 0;
+
+        // Calculates average of a_correctness of user responses, sets score
+        for (i of response_data){
+            score += i.a_correctness;
+        }
+        score /= response_data.length
+        if (score < 0){
+            score = 0;
+        } else if (score > 1) {
+            score = 1;
+        } else {
+            // pass
+        }
+        const percentage_correct = Math.round(score * 1000) / 10;
+
+        {% if user.is_authenticated %}
+        const response = {"score": score, "skill_pk": {{ lesson.skill.pk }}}
+        $.ajax({
+            type: "POST",
+            // To create new url api for this bulk send in backend
+            url: "{% url 'post_test_update' %}",
+            data: JSON.stringify(response),
+            dataType: "json",
+            contentType: "application/json",
+            error: function(data){
+                prompt.innerHTML = "Oops! It seems like something went wrong when sending your data to the server. Click <a href=\"{% url 'lessons:lesson' lesson.slug %}\">here</a> to go back to the lesson page."
+            },
+            success: function(data){
+                prompt.innerHTML = `Congrats, you have completed the lesson with a score of ${percentage_correct}%! Click <a href=\"{% url 'lessons:lesson' lesson.slug %}\">here</a> to go back to the lesson page.`
+            }
+        });
+        {% else %}
+        prompt.innerHTML = `Congrats, you have completed the lesson with a score of ${percentage_correct}%! Please <a href="{% url 'login' %}">log in</a> to save your progress.`
+        {% endif %}
+    };
 
     {% if user.is_authenticated %}
     // On clicking 'send-bug-report', modal form

@@ -97,7 +97,7 @@
 
         // Retrieve start and end question packs for user-indicated terminal curriculum
         // Call tester() to start the testing process
-        $.get("{% url 'placement:initial_question_pack' %}", {scope: "{{ scope }}", pk: {{ pk }}}, function(data, status){
+        $.get("{% url 'get_placement_question_pack' scope pk %}", function(data, status){
             start_question_pack = data.start_skills_questions;
             end_question_pack = data.end_skills_questions;
             tester();
@@ -137,10 +137,11 @@
                     // after all parents of related_skill_id tested, set related_skill_id to new id in potential_incorrect_skill_ids
                     if (potential_incorrect_skill_ids.length > 0 || sibling_question_pack.length > 0){
                         if (sibling_question_pack.length == 0){
+                            related_url = "/api/questions/parents/"
                             related_skill_id = potential_incorrect_skill_ids.pop();
-                            $.get(parents_pack_url.concat(related_skill_id), function(data, status){
-                                if (data.questions.length > 0){
-                                    sibling_question_pack = data.questions;
+                            $.get(related_url.concat(related_skill_id), function(data, status){
+                                if (data.length > 0){
+                                    sibling_question_pack = data;
                                     tester()
                                 } else {
                                     final_check_ids.push(related_skill_id);
@@ -163,10 +164,11 @@
                     // after all children of related_skill_id tested, set related_skill_id to new id in potential_correct_skill_ids
                     if (potential_correct_skill_ids.length > 0 || sibling_question_pack.length > 0){
                         if (sibling_question_pack.length == 0){
+                            related_url = "/api/questions/children/"
                             related_skill_id = potential_correct_skill_ids.pop();
-                            $.get(children_pack_url.concat(related_skill_id), function(data, status){
-                                if (data.questions.length > 0){
-                                    sibling_question_pack = data.questions;
+                            $.get(related_url.concat(related_skill_id), function(data, status){
+                                if (data.length > 0){
+                                    sibling_question_pack = data;
                                     tester();
                                 } else {
                                     final_check_ids.push(related_skill_id);
@@ -186,16 +188,17 @@
                     // Final tests of skill_ids at user's terminal skill level
                     // Ajax POST once final checks are done
                     if (final_check_ids.length > 0){
+                        skill_url = "/api/questions/random/"
                         final_id = final_check_ids.pop();
-                        $.get(final_check_url.concat(final_id), function(data, status){
+                        $.get(skill_url.concat(final_id), function(data, status){
                             currentQ = data;
                             presentQuestion();
                         });
                     } else {
-                        response = {"update_via": "skill_ids", "to_be_updated": [{"skill_ids": confirmed_correct_skill_ids, "skill_level": 0.8}]};
+                        response = {"confirmed_correct_skill_ids": confirmed_correct_skill_ids};
                         $.ajax({
                             type: "POST",
-                            url: "{% url 'userprofiles:posttest_update' %}",
+                            url: "{% url 'post_placement_bulk_update' %}",
                             data: JSON.stringify(response),
                             dataType: "json",
                             contentType: "application/json",
@@ -214,15 +217,15 @@
         }
 
         function presentQuestion(){
-            prompt.innerHTML = currentQ.question.question_prompt;
+            prompt.innerHTML = currentQ.question_prompt;
             renderKatex(prompt);
-            switch (currentQ.question.question_type){
+            switch (currentQ.question_type){
                 case "MC":
                     // Multiple Choice case
                     let mc_inputbox = document.createElement("form");
                     mc_inputbox.setAttribute("id", "mc_inputbox");
                     inputbox.appendChild(mc_inputbox);
-                    currentQ.question.answers.forEach(answer_iterator);
+                    currentQ.answers.forEach(answer_iterator);
 
                     function answer_iterator(value, index, array){
                         let choicebox = document.createElement("div");
@@ -255,7 +258,7 @@
 
                     // For each answer choice, create choicebox, append radio input and label to choicebox
                     // Append choicebox to ic_inputbox
-                    currentQ.question.answers.forEach(function(value, index, array){
+                    currentQ.answers.forEach(function(value, index, array){
                         let choicebox = document.createElement("div");
                         choicebox.setAttribute("class", "custom-control custom-radio custom-control-inline");
 
@@ -298,7 +301,7 @@
         $("button[name='submit_answer']").on('click', function(e){
             e.preventDefault();
             let a_correctness;
-            let q_type = currentQ.question.question_type;
+            let q_type = currentQ.question_type;
             // Different ways of retrieving "a_correctness" dependent on question type
             switch(q_type) {
                 case "MC":
@@ -312,7 +315,7 @@
                     symbols_used = Guppy("guppybox").symbols_used()
                     try {
                         const parsed_attempt = MathExpression.fromText(attempt);
-                        let matched = currentQ.question.answers.find(checkAnswer);
+                        let matched = currentQ.answers.find(checkAnswer);
                         function checkAnswer(value, index, array) {
                             return MathExpression.fromText(attempt).equals(MathExpression.fromText(value.answer_text));
                         }
@@ -336,23 +339,23 @@
                     case 0:
                     case 1:
                         // add skill_id to list of potential correct skills
-                        potential_correct_skill_ids.push(currentQ.skill_id);
+                        potential_correct_skill_ids.push(currentQ.skill);
                         break;
                     case 2:
                         // add current_skill (skill being tested) to confirmed correct id list
                         // add related_skill (child skill of skill being tested) to final_check_ids list
-                        confirmed_correct_skill_ids.push(currentQ.skill_id);
+                        confirmed_correct_skill_ids.push(currentQ.skill);
                         final_check_ids.push(related_skill_id);
                         break;
                     case 3:
                         // add related_skill (parent skill of skill being tested) to confirmed correct id list
                         // add current_skill (skill being tested) to potential_correct_skill_ids
                         confirmed_correct_skill_ids.push(related_skill_id);
-                        potential_correct_skill_ids.push(currentQ.skill_id);
+                        potential_correct_skill_ids.push(currentQ.skill);
                         break;
                     case 4:
                         // add current_skill to confirmed_correct_skill_ids
-                        confirmed_correct_skill_ids.push(currentQ.skill_id);
+                        confirmed_correct_skill_ids.push(currentQ.skill);
                         break;
                 }
             } else {
@@ -360,23 +363,23 @@
                     case 0:
                     case 1:
                         // add skill_id to list of potential incorrect skills
-                        potential_incorrect_skill_ids.push(currentQ.skill_id);
+                        potential_incorrect_skill_ids.push(currentQ.skill);
                         break;
                     case 2:
                         // add related_skill (child skill of skill being tested) to confirmed_incorrect_skill_ids
                         // add current_skill (skill being tested) to potential incorrect id list
                         confirmed_incorrect_skill_ids.push(related_skill_id);
-                        potential_incorrect_skill_ids.push(currentQ.skill_id);
+                        potential_incorrect_skill_ids.push(currentQ.skill);
                         break;
                     case 3:
                         // add current_skill (skill being tested) to confirmed incorrect id list
                         // add related_skill (parent skill of skill being tested) to final_check_ids list
-                        confirmed_incorrect_skill_ids(currentQ.skill_id);
+                        confirmed_incorrect_skill_ids(currentQ.skill);
                         final_check_ids.push(related_skill_id);
                         break;
                     case 4:
                         // add current_skill to confirmed_incorrect_skill_ids
-                        confirmed_incorrect_skill_ids.push(currentQ.skill_id);
+                        confirmed_incorrect_skill_ids.push(currentQ.skill);
                         break;
                 }
             }

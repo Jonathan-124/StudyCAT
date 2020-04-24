@@ -31,7 +31,6 @@ $(document).ready(function(){
     image_urls.push("{{ lessonimage.image.url }}");
     captions.push("{{ lessonimage.caption }}");
     {% endfor %}
-    console.log(image_urls);
     for (i = 0; i < image_urls.length; i++) {
         image_dom_id = "lesson-image-" + i;
         caption_dom_id = "lesson-image-" + i + "-caption";

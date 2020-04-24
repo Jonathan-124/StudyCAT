@@ -120,252 +120,206 @@ $(document).ready(function(){
     const inputbox = document.getElementById("inputbox");
     const feedbackbox = document.getElementById("feedback");
 
-    // initializing variables to be retrieved from server
-    let parent_adjacency_matrix;
-    let child_adjacency_matrix;
-    let user_skill_vector;
-
     // initializing variables to be populated client-side
-    let to_test = [];
-    let terminal_ids = new Set();
-    let potential_next_skills = new Set();
-    let next_skills = [];
     let currentQ;
 
-    $.get("{% url 'subjects:get_subject_data' 'mathematics' %}", function(data, status){
-        // Retrieves user skill level array (topological order) and parent adjacency matrix from server
-        // child adjacency matrix is the transpose of parent adjacency matrix
-        parent_adjacency_matrix = data.subject_data.dependencies;
-        child_adjacency_matrix = parent_adjacency_matrix[0].map((col, i) => parent_adjacency_matrix.map(row => row[i]));
-        user_skill_vector = data.skill_level_list;
+    // Retrieves terminus lesson data and random question for one of these lessons for the particular user
+    $.get("{% url 'get_homepage_data'%}", function(data, status){
+        currentQ = data.question;
+        lessons_data = data.lessons;
 
-        // populates to_test with root nodes of the graph
-        parent_adjacency_matrix.forEach(function(value, index, array){
-            if (value.every(x => x == 0)){
-                if (user_skill_vector[index] < 0.5){
-                    next_skills.push(index)
-                } else {
-                    to_test.push(index);
-                }
-            }
-        });
+        // Setting up DOM learned using data.lessons
+        let learned =  document.getElementById("learned");
+        let lessons_url = "/lessons/"
+        lessons_data.forEach(function(value, index, array){
+            // Initializing card, card_body, link, and title vars
+            let card = document.createElement("div");
+            let card_body = document.createElement("div");
+            let lesson_link = document.createElement("a");
+            let card_title = document.createElement("h5");
 
-        while (to_test.length > 0){
-            // for each check_index in to_test, get child topological order id list
-            check_index = to_test.pop();
-            child_ids = [];
-            child_adjacency_matrix[check_index].forEach(function(value, index, array){
-                if (value == 1){
-                    child_ids.push(index);
-                }
-            });
-            // for each child of check_index...
-            // if user skill < 0.5 add check_index to terminal_ids set, add child to potential_next_skills set
-            // else add child topological order to to_test
-            for (x of child_ids){
-                if (user_skill_vector[x] < 0.5){
-                    terminal_ids.add(check_index);
-                } else {
-                    to_test.push(x);
-                }
-            }
+            // Setting attributes
+            card_title.setAttribute("class", "card-title");
+            card_title.innerHTML = value.lesson_title;
+            lesson_link.setAttribute("href", lessons_url.concat(value.slug));
+            card_body.setAttribute("class", "card-body");
+            card.setAttribute("id", value.slug);
+            card.setAttribute("data-topological-order", value.topological_order);
+            card.setAttribute("class", "card text-center");
+
+            // Appending children
+            lesson_link.appendChild(card_title);
+            card_body.appendChild(lesson_link);
+            card.appendChild(card_body);
+            learned.appendChild(card);
+        })
+
+
+        // Setting up DOM challenge using data.question
+        prompt.innerHTML = currentQ.question_prompt;
+        renderKatex(prompt);
+
+        // displays question prompt image if present
+        if (currentQ.image_url){
+            let prompt_image = document.createElement("img");
+            prompt_image.setAttribute("class", "img-fluid");
+            prompt_image.setAttribute("src", currentQ.image_url);
+            document.getElementById("questionbox").appendChild(prompt_image);
         }
-        terminal_ids = Array.from(terminal_ids);
 
-        // Get random challenge question
-        const rand_top = terminal_ids[Math.floor(Math.random() * terminal_ids.length)];
-        $.get("{% url 'skills:skill_based_randomizer' %}", {topological_order: rand_top, subject_slug: "mathematics"}, function(data, status){
-            currentQ = data;
-            // displays question prompt text
-            prompt.innerHTML = currentQ.question_prompt;
-            renderKatex(prompt);
-            // displays question prompt image if present
-            if (currentQ.image_url){
-                let prompt_image = document.createElement("img");
-                prompt_image.setAttribute("class", "img-fluid");
-                prompt_image.setAttribute("src", currentQ.image_url);
-                document.getElementById("questionbox").appendChild(prompt_image);
-            }
-            switch (currentQ.question_type){
-                case "MC":
-                    // Multiple Choice case
-                    // Create mc_inputbox form element, append to inputbox as child
-                    let mc_inputbox = document.createElement("form");
-                    mc_inputbox.setAttribute("id", "mc_inputbox");
-                    inputbox.appendChild(mc_inputbox);
+        // depending on question type, different execution
+        switch (currentQ.question_type){
+            case "MC":
+                // Multiple Choice case
+                // Create mc_inputbox form element, append to inputbox as child
+                let mc_inputbox = document.createElement("form");
+                mc_inputbox.setAttribute("id", "mc_inputbox");
+                inputbox.appendChild(mc_inputbox);
 
-                    // For each answer choice, create choicebox, append radio input and label to choicebox
-                    // Append each choicebox to mc_inputbox
-                    currentQ.answers.forEach(function(value, index, array){
-                        let choicebox = document.createElement("div");
-                        choicebox.setAttribute("class", "custom-control custom-radio");
+                // For each answer choice, create choicebox, append radio input and label to choicebox
+                // Append each choicebox to mc_inputbox
+                currentQ.answers.forEach(function(value, index, array){
+                    let choicebox = document.createElement("div");
+                    choicebox.setAttribute("class", "custom-control custom-radio");
 
-                        let input = document.createElement("input");
-                        input.setAttribute("type", "radio");
-                        input.setAttribute("id", index);
-                        input.setAttribute("name", "answer_choice");
-                        input.setAttribute("value", value.answer_correctness);
-                        input.setAttribute("class", "custom-control-input");
-                        choicebox.appendChild(input);
+                    let input = document.createElement("input");
+                    input.setAttribute("type", "radio");
+                    input.setAttribute("id", index);
+                    input.setAttribute("name", "answer_choice");
+                    input.setAttribute("value", value.answer_correctness);
+                    input.setAttribute("class", "custom-control-input");
+                    choicebox.appendChild(input);
 
-                        let label = document.createElement("label");
-                        label.setAttribute("class", "custom-control-label");
-                        label.setAttribute("for", index);
-                        label.innerHTML = value.answer_text;
-                        choicebox.appendChild(label);
+                    let label = document.createElement("label");
+                    label.setAttribute("class", "custom-control-label");
+                    label.setAttribute("for", index);
+                    label.innerHTML = value.answer_text;
+                    choicebox.appendChild(label);
 
-                        mc_inputbox.appendChild(choicebox);
-                    });
-
-                    renderKatex(mc_inputbox);
-                    break;
-                case "IC":
-                    // Image Choice case
-                    // Create ic_inputbox form element, append to inputbox as child
-                    let ic_inputbox = document.createElement("form");
-                    ic_inputbox.setAttribute("id", "ic_inputbox");
-                    inputbox.appendChild(ic_inputbox);
-
-                    // For each answer choice, create choicebox, append radio input and label to choicebox
-                    // Append each choicebox to ic_inputbox
-                    currentQ.answers.forEach(function(value, index, array){
-                        let choicebox = document.createElement("div");
-                        choicebox.setAttribute("class", "custom-control custom-radio custom-control-inline");
-
-                        let input = document.createElement("input");
-                        input.setAttribute("type", "radio");
-                        input.setAttribute("id", index);
-                        input.setAttribute("name", "answer_choice");
-                        input.setAttribute("value", value.answer_correctness);
-                        input.setAttribute("class", "custom-control-input");
-                        choicebox.appendChild(input);
-
-                        let label = document.createElement("label");
-                        label.setAttribute("class", "custom-control-label");
-                        label.setAttribute("for", index);
-
-                        let answer_image = document.createElement("img");
-                        answer_image.setAttribute("style", "max-width:200px;max-height:200px");
-                        answer_image.setAttribute("src", value.image_url);
-                        label.appendChild(answer_image);
-
-                        choicebox.appendChild(label);
-                        ic_inputbox.appendChild(choicebox);
-                    });
-
-                    renderKatex(ic_inputbox);
-                    break;
-                case "NI":
-                    // Numerical Input case
-                    // Create guppy isntance with id "guppybox", append to inputbox
-                    let guppybox = document.createElement("div");
-                    guppybox.setAttribute("id", "guppybox");
-                    inputbox.appendChild(guppybox);
-                    new Guppy("guppybox");
-                    break;
-                default:
-                    $("#inputbox").text("No such question type found.");
-            }
-            // Displays "submit answer" button
-            $("button[name='submit_answer']").attr("class", "btn btn-primary float-right");
-        });
-
-        // On "submit_answer" button click
-        $("button[name='submit_answer']").on('click', function(e){
-            e.preventDefault();
-
-            // Hides "submit answer" button
-            $("button[name='submit_answer']").attr("class", "btn btn-primary d-none");
-            let feedback_text = "";
-
-            // Different ways of retrieving "a_correctness" dependent on question type
-            // Different feedback text depending on answer correctness and whether feedback supplied for given answer in currentQ
-            switch(currentQ.question_type) {
-                case "MC":
-                    a_correctness = parseFloat($('input[name="answer_choice"]:checked', '#mc_inputbox').val());
-                    feedback_text = currentQ.answers[$('input[name="answer_choice"]:checked', '#mc_inputbox').attr('id')].answer_explanation
-                    break;
-                case "IC":
-                    a_correctness = parseFloat($('input[name="answer_choice"]:checked', '#ic_inputbox').val());
-                    feedback_text = currentQ.answers[$('input[name="answer_choice"]:checked', '#ic_inputbox').attr('id')].answer_explanation
-                    break;
-                case "NI":
-                    let attempt = Guppy("guppybox").asciimath();
-                    symbols_used = Guppy("guppybox").symbols_used()
-                    try {
-                        const parsed_attempt = MathExpression.fromText(attempt);
-                        let matched = currentQ.answers.find(checkAnswer);
-                        function checkAnswer(value, index, array) {
-                            return MathExpression.fromText(attempt).equals(MathExpression.fromText(value.answer_text));
-                        }
-                        if (symbols_used.length > 0){
-                            a_correctness = 0;
-                            feedback_text = "The answer should be a number!";
-                        } else if (typeof matched === "undefined") {
-                            a_correctness = 0;
-                        } else {
-                            a_correctness = parseFloat(matched.answer_correctness);
-                            feedback_text = matched.answer_explanation;
-                        }
-                    }
-                    catch(err){
-                        a_correctness = 0;
-                        feedback_text = "You have entered an invalid input!"
-                    }
-                    break;
-                jsPlumb.repaintEverything();
-            }
-
-            if (a_correctness == 1){
-                $("#feedback-text").text("Correct!");
-                $("#feedback-text").attr("class", "alert alert-success");
-            } else if (a_correctness > 0.5) {
-                correct_answer = currentQ.answers.find(function(value, index, array){
-                    return value.answer_correctness == 1
+                    mc_inputbox.appendChild(choicebox);
                 });
-                $("#feedback-text").text("Close! " + feedback_text + " The correct answer is " + correct_answer.answer_text + ".");
-                $("#feedback-text").attr("class", "alert alert-warning");
-            } else {
-                correct_answer = currentQ.answers.find(function(value, index, array){
-                    return value.answer_correctness == 1
+
+                renderKatex(mc_inputbox);
+                break;
+            case "IC":
+                // Image Choice case
+                // Create ic_inputbox form element, append to inputbox as child
+                let ic_inputbox = document.createElement("form");
+                ic_inputbox.setAttribute("id", "ic_inputbox");
+                inputbox.appendChild(ic_inputbox);
+
+                // For each answer choice, create choicebox, append radio input and label to choicebox
+                // Append each choicebox to ic_inputbox
+                currentQ.answers.forEach(function(value, index, array){
+                    let choicebox = document.createElement("div");
+                    choicebox.setAttribute("class", "custom-control custom-radio custom-control-inline");
+
+                    let input = document.createElement("input");
+                    input.setAttribute("type", "radio");
+                    input.setAttribute("id", index);
+                    input.setAttribute("name", "answer_choice");
+                    input.setAttribute("value", value.answer_correctness);
+                    input.setAttribute("class", "custom-control-input");
+                    choicebox.appendChild(input);
+
+                    let label = document.createElement("label");
+                    label.setAttribute("class", "custom-control-label");
+                    label.setAttribute("for", index);
+
+                    let answer_image = document.createElement("img");
+                    answer_image.setAttribute("style", "max-width:200px;max-height:200px");
+                    answer_image.setAttribute("src", value.image_url);
+                    label.appendChild(answer_image);
+
+                    choicebox.appendChild(label);
+                    ic_inputbox.appendChild(choicebox);
                 });
-                $("#feedback-text").text("Incorrect. " + feedback_text + " The correct answer is " + correct_answer.answer_text + ".");
-                $("#feedback-text").attr("class", "alert alert-danger");
-            }
-            renderKatex(feedbackbox);
 
-            // sets feedbackbox to be visible
-            feedbackbox.setAttribute("class", "");
-            jsPlumb.repaintEverything();
-        });
-
-        $.get("{% url 'skills:homepage-data' %}", {"terminal_ids[]": terminal_ids}, function(data, status){
-            terminal_lessons_data = data.terminal_lessons_data;
-            const lessons_url = "http://127.0.0.1:8000/lessons/";
-            let learned =  document.getElementById("learned");
-            terminal_lessons_data.forEach(function(value, index, array){
-                // Initializing card, card_body, link, and title vars
-                let card = document.createElement("div");
-                let card_body = document.createElement("div");
-                let lesson_link = document.createElement("a");
-                let card_title = document.createElement("h5");
-                // Setting attributes
-                card_title.setAttribute("class", "card-title");
-                card_title.innerHTML = value.lesson_title;
-                lesson_link.setAttribute("href", lessons_url.concat(value.slug));
-                card_body.setAttribute("class", "card-body");
-                card.setAttribute("id", value.slug);
-                card.setAttribute("data-topological-order", value.topological_order);
-                card.setAttribute("class", "card text-center");
-                // Appending children
-                lesson_link.appendChild(card_title);
-                card_body.appendChild(lesson_link);
-                card.appendChild(card_body);
-                learned.appendChild(card);
-            })
-        });
+                renderKatex(ic_inputbox);
+                break;
+            case "NI":
+                // Numerical Input case
+                // Create guppy isntance with id "guppybox", append to inputbox
+                let guppybox = document.createElement("div");
+                guppybox.setAttribute("id", "guppybox");
+                inputbox.appendChild(guppybox);
+                new Guppy("guppybox");
+                break;
+            default:
+                $("#inputbox").text("No such question type found.");
+        }
+        // Displays "submit answer" button
+        $("button[name='submit_answer']").attr("class", "btn btn-primary float-right");
     });
 
+    // On "submit_answer" button click
+    $("button[name='submit_answer']").on('click', function(e){
+        e.preventDefault();
+
+        // Hides "submit answer" button
+        $("button[name='submit_answer']").attr("class", "btn btn-primary d-none");
+        let feedback_text = "";
+
+        // Different ways of retrieving "a_correctness" dependent on question type
+        // Different feedback text depending on answer correctness and whether feedback supplied for given answer in currentQ
+        switch(currentQ.question_type) {
+            case "MC":
+                a_correctness = parseFloat($('input[name="answer_choice"]:checked', '#mc_inputbox').val());
+                feedback_text = currentQ.answers[$('input[name="answer_choice"]:checked', '#mc_inputbox').attr('id')].answer_explanation
+                break;
+            case "IC":
+                a_correctness = parseFloat($('input[name="answer_choice"]:checked', '#ic_inputbox').val());
+                feedback_text = currentQ.answers[$('input[name="answer_choice"]:checked', '#ic_inputbox').attr('id')].answer_explanation
+                break;
+            case "NI":
+                let attempt = Guppy("guppybox").asciimath();
+                symbols_used = Guppy("guppybox").symbols_used()
+                try {
+                    const parsed_attempt = MathExpression.fromText(attempt);
+                    let matched = currentQ.answers.find(checkAnswer);
+                    function checkAnswer(value, index, array) {
+                        return MathExpression.fromText(attempt).equals(MathExpression.fromText(value.answer_text));
+                    }
+                    if (symbols_used.length > 0){
+                        a_correctness = 0;
+                        feedback_text = "The answer should be a number!";
+                    } else if (typeof matched === "undefined") {
+                        a_correctness = 0;
+                    } else {
+                        a_correctness = parseFloat(matched.answer_correctness);
+                        feedback_text = matched.answer_explanation;
+                    }
+                }
+                catch(err){
+                    a_correctness = 0;
+                    feedback_text = "You have entered an invalid input!"
+                }
+                break;
+        }
+
+        if (a_correctness == 1){
+            $("#feedback-text").text("Correct!");
+            $("#feedback-text").attr("class", "alert alert-success");
+        } else if (a_correctness > 0.5) {
+            correct_answer = currentQ.answers.find(function(value, index, array){
+                return value.answer_correctness == 1
+            });
+            $("#feedback-text").text("Close! " + feedback_text + " The correct answer is " + correct_answer.answer_text + ".");
+            $("#feedback-text").attr("class", "alert alert-warning");
+        } else {
+            correct_answer = currentQ.answers.find(function(value, index, array){
+                return value.answer_correctness == 1
+            });
+            $("#feedback-text").text("Incorrect. " + feedback_text + " The correct answer is " + correct_answer.answer_text + ".");
+            $("#feedback-text").attr("class", "alert alert-danger");
+        }
+        renderKatex(feedbackbox);
+
+        // sets feedbackbox to be visible
+        feedbackbox.setAttribute("class", "");
+    });
+
+    // Feedback modal AJAX send
     $(document).on('click', '#send-feedback-report', function(e){
         e.preventDefault();
         if ($("#report-message").val().length > 2000) {

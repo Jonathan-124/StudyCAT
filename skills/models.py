@@ -33,6 +33,8 @@ class Skill(models.Model):
                                             related_name="related_to")
     topological_order = models.PositiveIntegerField(blank=True, null=True)
     ancestor_ids = ArrayField(models.PositiveIntegerField(), blank=True, null=True)
+    parents = ArrayField(models.PositiveIntegerField(), blank=True, null=True)
+    children = ArrayField(models.PositiveIntegerField(), blank=True, null=True)
     descendant_ids = ArrayField(models.PositiveIntegerField(), blank=True, null=True)
     objects = SkillManager()
 
@@ -120,6 +122,8 @@ def update_topological_order(sender, instance, **kwargs):
         node = root_nodes.pop()
         setattr(node, 'topological_order', j)
         setattr(node, 'ancestor_ids', node.get_preceding_skill_ids())
+        setattr(node, 'parents', list(node.get_parent_skills().values_list('id', flat=True)))
+        setattr(node, 'children', list(node.get_children_skills().values_list('id', flat=True)))
         setattr(node, 'descendant_ids', node.get_descendant_skill_ids())
         node.save()
         j += 1
@@ -150,6 +154,8 @@ def update_topological_order(sender, instance, **kwargs):
             node = root_nodes.pop()
             setattr(node, 'topological_order', j)
             setattr(node, 'ancestor_ids', node.get_preceding_skill_ids())
+            setattr(node, 'parents', list(node.get_parent_skills().values_list('id', flat=True)))
+            setattr(node, 'children', list(node.get_children_skills().values_list('id', flat=True)))
             setattr(node, 'descendant_ids', node.get_descendant_skill_ids())
             node.save()
             j += 1

@@ -1,3 +1,4 @@
+import random
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
@@ -70,6 +71,15 @@ class UserProfile(models.Model):
         passed_skill_ids = Skillfulness.objects.filter(user_profile=self).filter(skill_level__gt=0.5).values_list('skill__id', flat=True)
         terminus_skill_ids = SkillEdge.objects.filter(parent_skill__id__in=passed_skill_ids).exclude(child_skill__id__in=passed_skill_ids).values_list('parent_skill__id', flat=True)
         return terminus_skill_ids
+
+    # Returns queryset of terminus lessons and random skill id of one of these lessons
+    def retrieve_terminus_lessons(self):
+        lessons = set()
+        passed_skill_ids = Skillfulness.objects.filter(user_profile=self).filter(skill_level__gt=0.5).values_list('skill__id', flat=True)
+        terminus_skills = SkillEdge.objects.filter(parent_skill__id__in=passed_skill_ids).exclude(child_skill__id__in=passed_skill_ids).select_related('parent_skill__lesson')
+        for skilledge in terminus_skills:
+            lessons.add(skilledge.parent_skill.lesson)
+        return lessons, random.choice(terminus_skills).parent_skill.id
 
     # Receives num [1, 5], depreciates user skillfulness of the terminal-most skills
     # 1 - two days+; depreciate terminal skills slightly
