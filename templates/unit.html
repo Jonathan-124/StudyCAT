@@ -14,13 +14,6 @@
 </div>
 <br>
 <div id="unit-lessons" class="jumbotron">
-    <div class="card-deck d-none" id="prerequisite">
-        <div class="card text-center">
-            <div class="card-body">
-                <h5>Prerequisite Topics</h5>
-            </div>
-        </div>
-    </div>
 </div>
 
 <script>
@@ -38,14 +31,14 @@ $(document).ready(function(){
             // Retrieves and stores serialized lesson objects for lessons in unit
             lessons_data = data.unit_data.lessons;
             user_skill_data = data.user_skill_levels;
-            console.log(lessons_data);
-            console.log(user_skill_data);
         })
     ).then(function(){
+        // Populates untraversed_skills with all skill_ids of unit lessons
         for (i = 0; i < lessons_data.length; i++){
             untraversed_skills.add(lessons_data[i].skill.id);
         }
 
+        // Creates nodes and connections
         while (untraversed_skills.size > 0){
             // Create 'tiers' of card decks based on precedence
             let deck = document.createElement("div");
@@ -56,7 +49,7 @@ $(document).ready(function(){
             unit_lessons.appendChild(document.createElement("br"));
             unit_lessons.appendChild(deck);
 
-            // list filtered for unit lessons that are not yet traversed and whose parents have already been traversed
+            // list filtered for lessons that are not yet traversed and whose parents have already been traversed
             current_roots = lessons_data.filter(function(value){
                 if (traversed_skills.has(value.skill.id)){
                     return false;
@@ -69,7 +62,7 @@ $(document).ready(function(){
                 return true;
             });
 
-            // Creates DOM elements for nl
+            // Creates DOM elements for current_roots
             for (x of current_roots){
                 // Initializing card, card_body, link, and title vars
                 let card = document.createElement("div");
@@ -92,23 +85,18 @@ $(document).ready(function(){
                 card.appendChild(card_body);
                 deck.appendChild(card);
 
-                // Connects to DOM elements with data-topological-attribute == topological order in parent_ids
+                // Connects each node to their parent nodes if in the graph
                 for (i of x.skill.parents){
-                    // If not in graph, display "prerequisite" card and connect to it
                     if (traversed_skills.has(i)){
                         parent_card_id = $(`div[data-skill="${i}"]`).attr('id');
                         jsPlumb.connect({source: parent_card_id,
                                          target: x.slug,
+                                         paintStyle: {stroke: "rgb(153, 153, 153)", strokeWidth:1},
                                          endpoint:"Blank",
                                          anchor:["Top", "Bottom"],
                                          connector:["Bezier", {curviness: 20}]});
                     } else {
-                        document.getElementById("prerequisite").setAttribute("class", "card-deck");
-                        jsPlumb.connect({source: "prerequisite",
-                                         target: x.slug,
-                                         endpoint:"Blank",
-                                         anchor:["Left", "Right"],
-                                         connector:["Bezier", {curviness: 20}]});
+                        // pass
                     }
                     jsPlumb.repaintEverything();
                 }
@@ -124,47 +112,48 @@ $(document).ready(function(){
         {% if user.is_authenticated %}
             // Colors cards and connections based on user progress
             let num_complete = 0;
-            for (i of user_skill_data){
-                card_id = $(`div[data-skill="${i[0]}"]`).attr('id');
-                if (i[1] > 0.5){
-                    num_complete += 1;
-                    jsPlumb.select({target: card_id}).setPaintStyle({stroke: "rgb(153, 153, 153)", strokeWidth:1})
-                } else{
-                    let readiness = true;
 
-                    for (j of lessons.data.find(function(value){return value.skill == i[0]}).skill.parents){
-                        let parent_id;
-                        if (traversed_skills.has(j)){
-                            parent_id = $(`div[data-skill="${j}"]`).attr('id');
-                            // coloring options here...
-                            /*
-                            if (user_skill_vector[j] > 0.5){
-                                jsPlumb.select({source: parent_id, target: card_id}).setPaintStyle({stroke: "rgb(153, 153, 153)", strokeWidth:1});
+            for (i = 0; i < user_skill_data.length ; i++){
+                current = user_skill_data[i]
+                card_id = $(`div[data-skill="${current[0]}"]`).attr('id');
+
+                if (current[1] > 0.5){
+                    num_complete += 1;
+                } else {
+                    let readiness = true;
+                    let parent_ids = lessons_data.find(function(value){return value.skill.id == current[0]}).skill.parents
+
+                    for (j = 0; j < parent_ids.length ; j++){
+                        let parent_skillfulness = user_skill_data.find(function(value){return value[0] == parent_ids[j]})
+                        if (parent_skillfulness){
+                            if (parent_skillfulness[1] > 0.5){
+                                // pass
                             } else {
                                 readiness = false;
+                                let parent_id = $(`div[data-skill="${parent_ids[j]}"]`).attr('id');
+                                console.log(parent_id);
                                 jsPlumb.select({source: parent_id, target: card_id}).setPaintStyle({stroke: "rgb(153, 153, 153)", strokeWidth:1, dashstyle:"10 10"});
                             }
-                            */
                         } else {
-                            parent_id = "prerequisite";
+                            // parent skill not in unit
                         }
                     }
 
                     if (readiness == true){
-                        $(`div[data-topological-order="${i}"]`).find("a").attr("class", "text-warning");
+                        $(`#${card_id}`).find("a").attr("class", "text-warning");
                     } else {
-                        $(`div[data-topological-order="${i}"]`).find("a").attr("class", "text-muted");
+                        $(`#${card_id}`).find("a").attr("class", "text-muted");
                     }
                 }
             }
 
         // displays progress bar based on user progress
-            if (num_complete == lesson_topological_orders.length){
+            if (num_complete == lessons_data.length){
                 $(".progress-bar").attr("style", `width: 100%`);
                 $(".progress-bar").attr("aria-valuenow", 100);
                 $(".progress-bar").text("Unit Complete!");
             } else {
-                percentage = num_complete * 100 / lesson_topological_orders.length
+                percentage = num_complete * 100 / lessons_data.length
                 $(".progress-bar").attr("style", `width: ${percentage}%`);
                 $(".progress-bar").attr("aria-valuenow", percentage);
                 $(".progress-bar").text(`${Math.round(percentage * 10) / 10}%`);
