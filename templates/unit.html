@@ -5,8 +5,8 @@
 {% block content %}
 
 <h2>{{ unit.name }}</h2>
-{% if user.is_authenticated %}
-<p>Already completed the unit? Click <a href="{% url 'placement:initial_placement_test' 'unit' unit.id %}">here</a> to test out!</p>
+{% if not user.is_authenticated %}
+<p><a href="{% url 'login' %}">Log in</a> to see your progress!</p>
 {% endif %}
 <br>
 <div class="progress" style="height: 20px;">
@@ -15,6 +15,20 @@
 <br>
 <div id="unit-lessons" class="jumbotron">
 </div>
+
+{% if user.is_authenticated %}
+<footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <div class="row">
+      <div class="col-10">
+        <p>Already completed the unit? Click <a href="{% url 'placement:initial_placement_test' 'unit' unit.id %}">here</a> to test out!</p>      </div>
+      <div class="col-2">
+        <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#feedbackModal">
+            Give Feedback
+        </button>
+      </div>
+    </div>
+</footer>
+{% endif %}
 
 <script>
 $(document).ready(function(){

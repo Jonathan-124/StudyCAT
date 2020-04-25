@@ -6,8 +6,6 @@
 <h2>{{ curriculum.name }}</h2>
 {% if not user.is_authenticated %}
 <p><a href="{% url 'login' %}">Log in</a> to see your progress!</p>
-{% else %}
-<p>Already completed the course? Click <a href="{% url 'placement:initial_placement_test' 'curriculum' curriculum.id %}">here</a> to test out!</p>
 {% endif %}
 <br>
 
@@ -27,6 +25,21 @@
   </div>
 </div>
 {% endfor %}
+
+{% if user.is_authenticated %}
+<footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <div class="row">
+      <div class="col-10">
+      <p>Already completed the course? Click <a href="{% url 'placement:initial_placement_test' 'curriculum' curriculum.id %}">here</a> to test out!</p>
+      </div>
+      <div class="col-2">
+        <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#feedbackModal">
+            Give Feedback
+        </button>
+      </div>
+    </div>
+</footer>
+{% endif %}
 
 <script>
 {% if user.is_authenticated %}

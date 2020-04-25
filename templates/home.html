@@ -6,10 +6,7 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<p>Welcome back {{ user.username }}! </p>
-{% for curriculum in user.profile.currently_studying.all %}
-<p>Click <a href="{% url 'curriculum' curriculum.slug %}">here</a> to continue studying {{ curriculum.name}}!</p>
-{% endfor %}
+<div class="alert alert-secondary text-center" role="alert">Welcome back {{ user.username }}!</div>
 <br>
 <div id="challenge" class="jumbotron">
     <h5>Here's a challenge for you...</h5>
@@ -29,20 +26,30 @@
     </div>
 </div>
 <br>
-<p>Want to brush up on something you've recently learned? Here are a few suggestions...</p>
+<p>Want to brush up on something you might've forgotten? Here are a few suggestions...</p>
 <div class="jumbotron">
     <div class="card-deck" id="learned">
     </div>
 </div>
 <br>
 
-<div>
-    <p>Any questions, concerns, or comments? Please provide your feedback here!</p>
-    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#feedbackModal">
-        Give Feedback
-    </button>
-</div>
-<br>
+<footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <div class="row">
+      <div class="col-6 col-md">
+          <h5>Features</h5>
+      </div>
+      <div class="col-6 col-md">
+          <h5>About</h5>
+      </div>
+      <div class="col-6 col-md">
+          <h5>Contact</h5>
+      </div>
+      <div class="col-6 col-md">
+        <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#feedbackModal">
+            Give Feedback
+        </button>
+    </div>
+</footer>
 
 <!-- Modal -->
 <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
@@ -64,7 +71,7 @@
             </div>
             <div class="modal-footer">
                 <p id="submission-feedback"></p>
-                <button id="send-feedback-report" type="submit" class="btn btn-primary">Submit Feedback</button>
+                <button id="send-feedback-report" type="submit" class="btn btn-primary float-right">Submit</button>
             </div>
         </div>
     </div>

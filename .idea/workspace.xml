@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b4f20b07-5da7-447c-bce7-dc551de39b8d" name="Default Changelist" comment="" />
+    <list default="true" id="b4f20b07-5da7-447c-bce7-dc551de39b8d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/templates/curriculum.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curriculum.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/lesson.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/lesson.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/unit.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/unit.html" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -10,15 +15,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/unit.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
-              <caret line="155" column="62" selection-start-line="155" selection-start-column="62" selection-end-line="155" selection-end-column="62" />
+            <state relative-caret-position="255">
+              <caret line="18" selection-start-line="18" selection-end-line="30" selection-end-column="11" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/lesson.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/home.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="592">
+              <caret line="47" column="71" selection-start-line="47" selection-start-column="71" selection-end-line="47" selection-end-column="71" />
             </state>
           </provider>
         </entry>
@@ -35,7 +58,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>click</find>
       <find>prompt_image</find>
       <find>topological</find>
       <find>curricu</find>
@@ -45,7 +67,6 @@
       <find>paints</find>
       <find>navbar</find>
       <find>subject_slug</find>
-      <find>btn</find>
       <find>remove</find>
       <find>current</find>
       <find>skillfulness</find>
@@ -65,6 +86,8 @@
       <find>is_authe</find>
       <find>homea</find>
       <find>0.0.</find>
+      <find>btn</find>
+      <find>card_id</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -99,10 +122,7 @@
         <option value="$PROJECT_DIR$/lessons/serializers.py" />
         <option value="$PROJECT_DIR$/questions/models.py" />
         <option value="$PROJECT_DIR$/userprofiles/models.py" />
-        <option value="$PROJECT_DIR$/templates/home.html" />
         <option value="$PROJECT_DIR$/templates/exit_test.html" />
-        <option value="$PROJECT_DIR$/templates/curriculum.html" />
-        <option value="$PROJECT_DIR$/templates/lesson.html" />
         <option value="$PROJECT_DIR$/api/urls.py" />
         <option value="$PROJECT_DIR$/templates/placement_test.html" />
         <option value="$PROJECT_DIR$/skills/serializers.py" />
@@ -123,13 +143,16 @@
         <option value="$PROJECT_DIR$/curricula/views.py" />
         <option value="$PROJECT_DIR$/curricula/urls.py" />
         <option value="$PROJECT_DIR$/templates/base.html" />
+        <option value="$PROJECT_DIR$/templates/curriculum.html" />
+        <option value="$PROJECT_DIR$/templates/home.html" />
         <option value="$PROJECT_DIR$/templates/unit.html" />
+        <option value="$PROJECT_DIR$/templates/lesson.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="459" />
-    <option name="y" value="36" />
+    <option name="x" value="364" />
+    <option name="y" value="41" />
     <option name="width" value="1389" />
     <option name="height" value="967" />
   </component>
@@ -204,7 +227,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="459" y="36" width="1389" height="967" extended-state="0" />
+    <frame x="364" y="41" width="1389" height="967" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
@@ -327,27 +350,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="367" column="17" selection-start-line="367" selection-start-column="12" selection-end-line="367" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/curriculum.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="32" column="91" selection-start-line="32" selection-start-column="91" selection-end-line="32" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5406">
-          <caret line="321" column="31" selection-start-line="321" selection-start-column="31" selection-end-line="321" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/lesson.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="28" column="18" lean-forward="true" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -587,14 +589,35 @@
     <entry file="file://$PROJECT_DIR$/db.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/curriculum.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" selection-start-line="7" selection-end-line="7" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/unit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="155" column="62" selection-start-line="155" selection-start-column="62" selection-end-line="155" selection-end-column="62" />
+        <state relative-caret-position="255">
+          <caret line="18" selection-start-line="18" selection-end-line="30" selection-end-column="11" />
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="592">
+          <caret line="47" column="71" selection-start-line="47" selection-start-column="71" selection-end-line="47" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/lesson.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
         </state>
       </provider>
     </entry>

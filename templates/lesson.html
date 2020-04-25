@@ -5,13 +5,28 @@
 {% block content %}
 
 <h2>{{ lesson.lesson_title }}</h2>
-
+<br>
 {% include lesson.html_filename %}
-<hr>
-<p>Take the <a href="{% url 'lessons:exit_test' lesson.slug %}">exit test</a> to see if you learned all the concepts and save your progress!</p>
-{% if request.GET.unit %}
-<p>Click <a href="{% url 'units:unit' request.GET.unit %}">here</a> to return to the unit.</p>
-{% endif %}
+
+<footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <div class="row">
+        <div class="col-10">
+            <div class="row">
+                <p>Take the <a href="{% url 'lessons:exit_test' lesson.slug %}">exit test</a> to see if you learned all the concepts and save your progress!</p>
+            </div>
+            {% if request.GET.unit %}
+            <div class="row">
+                <p>Click <a href="{% url 'units:unit' request.GET.unit %}">here</a> to return to the unit.</p>
+            </div>
+            {% endif %}
+        </div>
+        <div class="col-2">
+            <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#feedbackModal">
+                Give Feedback
+            </button>
+        </div>
+    </div>
+</footer>
 
 <script>
 $(document).ready(function(){
