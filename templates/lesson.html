@@ -3,30 +3,63 @@
 {% block title %}{{ lesson.lesson_title }}{% endblock title %}
 
 {% block content %}
+<div class="row">
+    <div class="col-md-6 text-center">
+        <span class="float-md-left"><h2>{{ lesson.lesson_title }}</h2></span>
+    </div>
+    <div class="col-md-6 text-center">
+        {% if request.GET.unit %}
+        <span class="float-md-right">
+            <a class="btn btn-link" href="{% url 'units:unit' request.GET.unit %}">Return to unit</a>
+        </span>
+        {% endif %}
+    </div>
+</div>
+{% if not user.is_authenticated %}
+<p><a href="{% url 'login' %}">Log in</a> to see your progress!</p>
+{% endif %}
 
-<h2>{{ lesson.lesson_title }}</h2>
 <br>
 {% include lesson.html_filename %}
+<br>
+<a class="btn btn-primary btn-lg btn-block" href="{% url 'lessons:exit_test' lesson.slug %}">Exit Test</a>
 
-<footer class="pt-4 my-md-5 pt-md-5 border-top">
-    <div class="row">
-        <div class="col-10">
-            <div class="row">
-                <p>Take the <a href="{% url 'lessons:exit_test' lesson.slug %}">exit test</a> to see if you learned all the concepts and save your progress!</p>
+{% if user.is_authenticated %}
+<!-- Modal -->
+<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="feedbackModalLabel">Feedback Form</h5>
+                <button id="close-report-submission" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            {% if request.GET.unit %}
-            <div class="row">
-                <p>Click <a href="{% url 'units:unit' request.GET.unit %}">here</a> to return to the unit.</p>
+            <div class="modal-body">
+                <form id="feedback-form">
+                    <div class="form-group">
+                        <label for="report-message">Please provide your feedback here (max 2000 characters).</label>
+                        <textarea class="form-control" id="report-message" rows="5"></textarea>
+                    </div>
+                </form>
             </div>
-            {% endif %}
-        </div>
-        <div class="col-2">
-            <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#feedbackModal">
-                Give Feedback
-            </button>
+            <div class="modal-footer">
+                <p id="submission-feedback"></p>
+                <button id="send-feedback-report" type="submit" class="btn btn-primary float-right">Submit</button>
+            </div>
         </div>
     </div>
+</div>
+
+<footer class="pt-4 my-md-5 pt-md-5 border-top">
+  <div class="float-right">
+    <button type="button" class="btn btn-outline-secondary btn-sm float-right" data-toggle="modal" data-target="#feedbackModal">
+        Give Feedback
+    </button>
+  </div>
 </footer>
+{% endif %}
+
 
 <script>
 $(document).ready(function(){
@@ -52,6 +85,75 @@ $(document).ready(function(){
         document.getElementById(image_dom_id).setAttribute("src", image_urls[i]);
         document.getElementById(caption_dom_id).innerHTML = captions[i];
     }
+
+    {% if user.is_authenticated %}
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== ''){
+            let cookies = document.cookie.split(';');
+            for (i = 0; i < cookies.length; i++){
+                let cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')){
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    const csrftoken = getCookie('csrftoken');
+
+    // These HTTP methods do not require CSRF protection
+    function csrfSafeMethod(method) {
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    // Setting up ajax headers to include csrftoken
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+
+    // Feedback modal AJAX send
+    $(document).on('click', '#send-feedback-report', function(e){
+        e.preventDefault();
+        if ($("#report-message").val().length > 2000) {
+            $("#submission-feedback").text("Your message has exceeded 2000 characters.");
+        } else {
+            let report_message = $("#report-message").val();
+            let feedback_JSON = {"report_message": report_message};
+            $.ajax({
+                type: "POST",
+                // To create new url api for this bulk send in backend
+                url: "{% url 'general-report' %}",
+                data: JSON.stringify(feedback_JSON),
+                dataType: "json",
+                contentType: "application/json",
+                error: function(data){
+                    console.log(data);
+                    $("#submission-feedback").text("Oops! It seems like something went wrong when sending your data to the server. Please try again later.")
+                },
+                success: function(data){
+                    $(".modal-body").hide();
+                    $("#send-feedback-report").hide();
+                    $("#submission-feedback").text("Thank you for your feedback! Your response has been received.")
+                }
+            });
+        }
+    });
+
+    // on closing bug report modal, reset all fields
+    $(document).on('click', '#close-report-submission', function(e){
+        $("#report-message").val("");
+        $(".modal-body").show();
+        $("#send-feedback-report").show();
+    });
+    {% endif %}
 });
 </script>
 {% endblock content %}

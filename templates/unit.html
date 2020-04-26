@@ -4,7 +4,17 @@
 
 {% block content %}
 
-<h2>{{ unit.name }}</h2>
+<div class="row">
+    <div class="col-md-6 text-center">
+        <span class="float-md-left"><h2>{{ unit.name }}</h2></span>
+    </div>
+    {% if user.is_authenticated %}
+    <div class="col-md-6 text-center">
+        <span class="float-md-right"><a class="btn btn-outline-primary" href="{% url 'placement:initial_placement_test' 'unit' unit.id %}">Test Out</a></span>
+    </div>
+    {% endif %}
+</div>
+
 {% if not user.is_authenticated %}
 <p><a href="{% url 'login' %}">Log in</a> to see your progress!</p>
 {% endif %}
@@ -17,16 +27,38 @@
 </div>
 
 {% if user.is_authenticated %}
-<footer class="pt-4 my-md-5 pt-md-5 border-top">
-    <div class="row">
-      <div class="col-10">
-        <p>Already completed the unit? Click <a href="{% url 'placement:initial_placement_test' 'unit' unit.id %}">here</a> to test out!</p>      </div>
-      <div class="col-2">
-        <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#feedbackModal">
-            Give Feedback
-        </button>
-      </div>
+<!-- Modal -->
+<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="feedbackModalLabel">Feedback Form</h5>
+                <button id="close-report-submission" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="feedback-form">
+                    <div class="form-group">
+                        <label for="report-message">Please provide your feedback here (max 2000 characters).</label>
+                        <textarea class="form-control" id="report-message" rows="5"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <p id="submission-feedback"></p>
+                <button id="send-feedback-report" type="submit" class="btn btn-primary float-right">Submit</button>
+            </div>
+        </div>
     </div>
+</div>
+
+<footer class="pt-4 my-md-5 pt-md-5 border-top">
+  <div class="float-right">
+    <button type="button" class="btn btn-outline-secondary btn-sm float-right" data-toggle="modal" data-target="#feedbackModal">
+        Give Feedback
+    </button>
+  </div>
 </footer>
 {% endif %}
 
@@ -55,12 +87,10 @@ $(document).ready(function(){
         // Creates nodes and connections
         while (untraversed_skills.size > 0){
             // Create 'tiers' of card decks based on precedence
+            unit_lessons.appendChild(document.createElement("br"));
+            unit_lessons.appendChild(document.createElement("br"));
             let deck = document.createElement("div");
             deck.setAttribute("class", "card-deck");
-            unit_lessons.appendChild(document.createElement("br"));
-            unit_lessons.appendChild(document.createElement("br"));
-            unit_lessons.appendChild(document.createElement("br"));
-            unit_lessons.appendChild(document.createElement("br"));
             unit_lessons.appendChild(deck);
 
             // list filtered for lessons that are not yet traversed and whose parents have already been traversed
@@ -121,6 +151,9 @@ $(document).ready(function(){
                 untraversed_skills.delete(elem.skill.id);
                 traversed_skills.add(elem.skill.id);
             }
+
+            unit_lessons.appendChild(document.createElement("br"));
+            unit_lessons.appendChild(document.createElement("br"));
         }
 
         {% if user.is_authenticated %}
@@ -184,6 +217,75 @@ $(document).ready(function(){
     $(window).resize(function(){
         jsPlumb.repaintEverything();
     });
+
+    {% if user.is_authenticated %}
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== ''){
+            let cookies = document.cookie.split(';');
+            for (i = 0; i < cookies.length; i++){
+                let cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')){
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    const csrftoken = getCookie('csrftoken');
+
+    // These HTTP methods do not require CSRF protection
+    function csrfSafeMethod(method) {
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    // Setting up ajax headers to include csrftoken
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+
+    // Feedback modal AJAX send
+    $(document).on('click', '#send-feedback-report', function(e){
+        e.preventDefault();
+        if ($("#report-message").val().length > 2000) {
+            $("#submission-feedback").text("Your message has exceeded 2000 characters.");
+        } else {
+            let report_message = $("#report-message").val();
+            let feedback_JSON = {"report_message": report_message};
+            $.ajax({
+                type: "POST",
+                // To create new url api for this bulk send in backend
+                url: "{% url 'general-report' %}",
+                data: JSON.stringify(feedback_JSON),
+                dataType: "json",
+                contentType: "application/json",
+                error: function(data){
+                    console.log(data);
+                    $("#submission-feedback").text("Oops! It seems like something went wrong when sending your data to the server. Please try again later.")
+                },
+                success: function(data){
+                    $(".modal-body").hide();
+                    $("#send-feedback-report").hide();
+                    $("#submission-feedback").text("Thank you for your feedback! Your response has been received.")
+                }
+            });
+        }
+    });
+
+    // on closing bug report modal, reset all fields
+    $(document).on('click', '#close-report-submission', function(e){
+        $("#report-message").val("");
+        $(".modal-body").show();
+        $("#send-feedback-report").show();
+    });
+    {% endif %}
 });
 </script>
 

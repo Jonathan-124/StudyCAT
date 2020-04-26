@@ -45,7 +45,7 @@
           <h5>Contact</h5>
       </div>
       <div class="col-6 col-md">
-        <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#feedbackModal">
+        <button type="button" class="btn btn-outline-secondary btn-sm float-right" data-toggle="modal" data-target="#feedbackModal">
             Give Feedback
         </button>
     </div>
@@ -88,38 +88,6 @@ $(document).ready(function(){
                     ]
         });
     }
-
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== ''){
-            let cookies = document.cookie.split(';');
-            for (i = 0; i < cookies.length; i++){
-                let cookie = cookies[i].trim();
-                // Does this cookie string begin with the name we want?
-                if (cookie.substring(0, name.length + 1) === (name + '=')){
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        return cookieValue;
-    }
-
-    const csrftoken = getCookie('csrftoken');
-
-    // These HTTP methods do not require CSRF protection
-    function csrfSafeMethod(method) {
-        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-    }
-
-    // Setting up ajax headers to include csrftoken
-    $.ajaxSetup({
-        beforeSend: function(xhr, settings) {
-            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                xhr.setRequestHeader("X-CSRFToken", csrftoken);
-            }
-        }
-    });
 
     // storing DOM elements for manipulation
     const prompt = document.getElementById("question-prompt");
@@ -326,6 +294,39 @@ $(document).ready(function(){
         feedbackbox.setAttribute("class", "");
     });
 
+    {% if user.is_authenticated %}
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== ''){
+            let cookies = document.cookie.split(';');
+            for (i = 0; i < cookies.length; i++){
+                let cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')){
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    const csrftoken = getCookie('csrftoken');
+
+    // These HTTP methods do not require CSRF protection
+    function csrfSafeMethod(method) {
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    // Setting up ajax headers to include csrftoken
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+
     // Feedback modal AJAX send
     $(document).on('click', '#send-feedback-report', function(e){
         e.preventDefault();
@@ -360,6 +361,7 @@ $(document).ready(function(){
         $(".modal-body").show();
         $("#send-feedback-report").show();
     });
+    {% endif %}
 });
 </script>
 
