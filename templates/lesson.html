@@ -30,15 +30,34 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="feedbackModalLabel">Feedback Form</h5>
+                <h5 class="modal-title" id="feedbackModalLabel">Lesson Bug Report Form</h5>
                 <button id="close-report-submission" type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="feedback-form">
+                <form id="bug-report-form">
                     <div class="form-group">
-                        <label for="report-message">Please provide your feedback here (max 2000 characters).</label>
+                        <p>What was the issue with this lesson?</p>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="FI" name="bugChoice" class="custom-control-input">
+                            <label class="custom-control-label" for="FI">There is something factually incorrect with the lesson</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="TI" name="bugChoice" class="custom-control-input">
+                            <label class="custom-control-label" for="TI">There are typos present in the lesson</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="DI" name="bugChoice" class="custom-control-input">
+                            <label class="custom-control-label" for="DI">The lesson is not displaying correctly</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="OT" name="bugChoice" class="custom-control-input">
+                            <label class="custom-control-label" for="OT">Other</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="report-message">Please describe the problem in more detail (max 2000 characters).</label>
                         <textarea class="form-control" id="report-message" rows="5"></textarea>
                     </div>
                 </form>
@@ -54,7 +73,7 @@
 <footer class="pt-4 my-md-5 pt-md-5 border-top">
   <div class="float-right">
     <button type="button" class="btn btn-outline-secondary btn-sm float-right" data-toggle="modal" data-target="#feedbackModal">
-        Give Feedback
+        Report a Bug
     </button>
   </div>
 </footer>
@@ -120,27 +139,30 @@ $(document).ready(function(){
     });
 
     // Feedback modal AJAX send
-    $(document).on('click', '#send-feedback-report', function(e){
+    $(document).on('click', '#send-bug-report', function(e){
         e.preventDefault();
-        if ($("#report-message").val().length > 2000) {
+        if ($('input[name="bugChoice"]:checked').length == 0) {
+            $("#submission-feedback").text("Please select the issue with the lesson.");
+        } else if ($("#report-message").val().length > 2000) {
             $("#submission-feedback").text("Your message has exceeded 2000 characters.");
         } else {
+            let reason = $('input[name="bugChoice"]:checked', '#bug-report-form').attr('id');
+            let lesson_fk = {{ lesson.id }};
             let report_message = $("#report-message").val();
-            let feedback_JSON = {"report_message": report_message};
+            let bug_report_JSON = {"lesson": lesson_fk, "reason": reason, "report_message": report_message};
             $.ajax({
                 type: "POST",
                 // To create new url api for this bulk send in backend
-                url: "{% url 'general-report' %}",
-                data: JSON.stringify(feedback_JSON),
+                url: "{% url 'lesson-report' %}",
+                data: JSON.stringify(bug_report_JSON),
                 dataType: "json",
                 contentType: "application/json",
                 error: function(data){
-                    console.log(data);
                     $("#submission-feedback").text("Oops! It seems like something went wrong when sending your data to the server. Please try again later.")
                 },
                 success: function(data){
                     $(".modal-body").hide();
-                    $("#send-feedback-report").hide();
+                    $("#send-bug-report").hide();
                     $("#submission-feedback").text("Thank you for your feedback! Your response has been received.")
                 }
             });
@@ -150,6 +172,7 @@ $(document).ready(function(){
     // on closing bug report modal, reset all fields
     $(document).on('click', '#close-report-submission', function(e){
         $("#report-message").val("");
+        $('input[name="bugChoice"]').prop('checked', false);
         $(".modal-body").show();
         $("#send-feedback-report").show();
     });

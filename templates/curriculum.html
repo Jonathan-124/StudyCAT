@@ -41,7 +41,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="feedbackModalLabel">Feedback Form</h5>
+                <h5 class="modal-title" id="feedbackModalLabel">Curriculum Bug Report Form</h5>
                 <button id="close-report-submission" type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -65,7 +65,7 @@
 <footer class="pt-4 my-md-5 pt-md-5 border-top">
   <div class="float-right">
     <button type="button" class="btn btn-outline-secondary btn-sm float-right" data-toggle="modal" data-target="#feedbackModal">
-        Give Feedback
+        Report a Bug
     </button>
   </div>
 </footer>
@@ -123,27 +123,27 @@ $(document).ready(function(){
     });
 
     // Feedback modal AJAX send
-    $(document).on('click', '#send-feedback-report', function(e){
+    $(document).on('click', '#send-bug-report', function(e){
         e.preventDefault();
         if ($("#report-message").val().length > 2000) {
             $("#submission-feedback").text("Your message has exceeded 2000 characters.");
         } else {
+            let curriculum_fk = {{ curriculum.id }};
             let report_message = $("#report-message").val();
-            let feedback_JSON = {"report_message": report_message};
+            let bug_report_JSON = {"curriculum": curriculum_fk, "report_message": report_message};
             $.ajax({
                 type: "POST",
                 // To create new url api for this bulk send in backend
-                url: "{% url 'general-report' %}",
-                data: JSON.stringify(feedback_JSON),
+                url: "{% url 'curriculum-report' %}",
+                data: JSON.stringify(bug_report_JSON),
                 dataType: "json",
                 contentType: "application/json",
                 error: function(data){
-                    console.log(data);
                     $("#submission-feedback").text("Oops! It seems like something went wrong when sending your data to the server. Please try again later.")
                 },
                 success: function(data){
                     $(".modal-body").hide();
-                    $("#send-feedback-report").hide();
+                    $("#send-bug-report").hide();
                     $("#submission-feedback").text("Thank you for your feedback! Your response has been received.")
                 }
             });

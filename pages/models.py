@@ -1,6 +1,9 @@
 from django.db import models
 from users.models import CustomUser
 from questions.models import Question
+from lessons.models import Lesson
+from units.models import Unit
+from curricula.models import Curriculum
 
 
 # Bug report model
@@ -25,10 +28,42 @@ class QuestionBugReport(GeneralBugReport):
     OTHER = 'OT'
 
     REPORT_REASON = [
-        (PROMPT_ISSUE, 'There is something wrong with the question prompt.'),
+        (PROMPT_ISSUE, 'There is something wrong with the question prompt'),
         (ANSWER_ISSUE, 'There is something wrong with the answer(s)'),
         (DISPLAY_ISSUE, 'The question is not displaying correctly'),
         (OTHER, 'Other'),
     ]
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='bug_reports')
     reason = models.CharField(max_length=2, choices=REPORT_REASON)
+
+
+class LessonBugReport(GeneralBugReport):
+    FACTUAL_ISSUE = 'FI'
+    TYPOGRAPHICAL_ISSUE = 'TI'
+    DISPLAY_ISSUE = 'DI'
+    OTHER = 'OT'
+
+    REPORT_REASON = [
+        (FACTUAL_ISSUE, 'There is something factually incorrect with the lesson'),
+        (TYPOGRAPHICAL_ISSUE, 'There are typos present in the lesson'),
+        (DISPLAY_ISSUE, 'The lesson is not displaying correctly'),
+        (OTHER, 'Other'),
+    ]
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, related_name='bug_reports')
+    reason = models.CharField(max_length=2, choices=REPORT_REASON)
+
+
+class UnitBugReport(GeneralBugReport):
+    DISPLAY_ISSUE = 'DI'
+    OTHER = 'OT'
+
+    REPORT_REASON = [
+        (DISPLAY_ISSUE, 'The unit is not displaying correctly'),
+        (OTHER, 'Other'),
+    ]
+    unit = models.ForeignKey(Unit, on_delete=models.CASCADE, related_name='bug_reports')
+    reason = models.CharField(max_length=2, choices=REPORT_REASON)
+
+
+class CurriculumBugReport(GeneralBugReport):
+    curriculum = models.ForeignKey(Curriculum, on_delete=models.CASCADE, related_name='bug_reports')

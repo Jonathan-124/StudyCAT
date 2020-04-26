@@ -22,12 +22,6 @@
 </div>
 
 {% if user.is_authenticated %}
-<hr/>
-
-<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#bugReportModal">
-  Report a Bug
-</button>
-
 <!-- Modal -->
 <div class="modal fade" id="bugReportModal" tabindex="-1" role="dialog" aria-labelledby="bugReportModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -72,6 +66,14 @@
         </div>
     </div>
 </div>
+
+<footer class="pt-4 my-md-5 pt-md-5 border-top">
+  <div class="float-right">
+    <button type="button" class="btn btn-outline-secondary btn-sm float-right" data-toggle="modal" data-target="#bugReportModal">
+      Report a Bug
+    </button>
+  </div>
+</footer>
 {% endif %}
 
 <script>
