@@ -19,7 +19,6 @@
 <p><a href="{% url 'login' %}">Log in</a> to see your progress!</p>
 {% endif %}
 
-<br>
 {% include lesson.html_filename %}
 <br>
 <a class="btn btn-primary btn-lg btn-block" href="{% url 'lessons:exit_test' lesson.slug %}">Exit Test</a>

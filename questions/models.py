@@ -12,7 +12,7 @@ class QuestionManager(models.Manager):
         queryset = self.filter(skill__id=skill_id)
         count = queryset.aggregate(count=Count('id'))['count']
         if count == 0:
-            return None
+            return self.none()
         else:
             random_index = randint(0, count - 1)
             return queryset.all()[random_index]
@@ -22,7 +22,7 @@ class QuestionManager(models.Manager):
         queryset = self.filter(skill__subject__slug=slug, skill__topological_order=topological_order)
         count = queryset.aggregate(count=Count('id'))['count']
         if count == 0:
-            return None
+            return self.none()
         else:
             random_index = randint(0, count - 1)
             return queryset.all()[random_index]
@@ -32,7 +32,7 @@ class QuestionManager(models.Manager):
         queryset = self.filter(skill__id=skill_id)
         count = queryset.aggregate(count=Count('id'))['count']
         if count == 0:
-            return None
+            return self.none()
         elif num > count:
             num = count
         random_index_list = sample(range(0, count), num)

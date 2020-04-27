@@ -99,10 +99,10 @@ class UserProfile(models.Model):
         percentage = unit_skillfulness.filter(skill_level__gt=0.5).count() / unit_skillfulness.count()
         return percentage
 
-    # Receives curriculum id, list of objects with unit slug and their completion percentages
-    def curriculum_units_completion_percentage(self, curriculum_id):
+    # Receives curriculum, list of objects with unit slug and their completion percentages
+    def curriculum_units_completion_percentage(self, curriculum_obj):
         percentages = []
-        unit_slugs = Curriculum.objects.get(id=curriculum_id).units.values_list('slug', flat=True)
+        unit_slugs = curriculum_obj.units.values_list('slug', flat=True)
         for slug in unit_slugs:
             percentages.append({"slug": slug, "percentage": self.unit_completion_percentage(slug)})
         return percentages
