@@ -210,6 +210,8 @@ $(document).ready(function(){
                 $(".progress-bar").attr("style", `width: 100%`);
                 $(".progress-bar").attr("aria-valuenow", 100);
                 $(".progress-bar").text("Unit Complete!");
+            } else if (num_complete == 0){
+                $(".progress").text("0%");
             } else {
                 percentage = num_complete * 100 / lessons_data.length
                 $(".progress-bar").attr("style", `width: ${percentage}%`);

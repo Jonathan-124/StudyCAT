@@ -33,12 +33,6 @@ class Curriculum(models.Model):
 
     # Populates slug field with slugified curriculum name after save() is called
     def save(self, *args, **kwargs):
-        if self.units:
-            unit_subject_ids = self.units.values_list('subject__id', flat=True).distinct()
-            if len(unit_subject_ids) > 1:
-                raise ValidationError
-            else:
-                self.subject = Subject.objects.get(id=unit_subject_ids[0])
         if not self.id:
             self.slug = slugify(self.name)
         super(Curriculum, self).save(*args, **kwargs)

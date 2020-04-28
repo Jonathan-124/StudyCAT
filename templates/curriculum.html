@@ -81,6 +81,8 @@ $(document).ready(function(){
           document.getElementById(i.slug).setAttribute("style", "width: 100%");
           document.getElementById(i.slug).setAttribute("aria-valuenow", 100);
           document.getElementById(i.slug).innerHTML = "Unit Complete!";
+        } else if (percentage == 0){
+            document.getElementById(i.slug).parentElement.innerHTML = "0%"
         } else {
           document.getElementById(i.slug).setAttribute("style", `width: ${percentage}%`);
           document.getElementById(i.slug).setAttribute("aria-valuenow", percentage);

@@ -31,12 +31,6 @@ class Unit(models.Model):
 
     # Populates slug field with slugified unit name after save() is called
     def save(self, *args, **kwargs):
-        if self.lessons:
-            skill_subject_ids = self.lessons.values_list('skill__subject__id', flat=True).distinct()
-            if len(skill_subject_ids) > 1:
-                raise ValidationError
-            else:
-                self.subject = Subject.objects.get(id=skill_subject_ids[0])
         if not self.id:
             self.slug = slugify(self.name)
         super(Unit, self).save(*args, **kwargs)

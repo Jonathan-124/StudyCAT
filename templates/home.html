@@ -294,7 +294,6 @@ $(document).ready(function(){
         feedbackbox.setAttribute("class", "");
     });
 
-    {% if user.is_authenticated %}
     function getCookie(name) {
         let cookieValue = null;
         if (document.cookie && document.cookie !== ''){
@@ -361,7 +360,6 @@ $(document).ready(function(){
         $(".modal-body").show();
         $("#send-feedback-report").show();
     });
-    {% endif %}
 });
 </script>
 
