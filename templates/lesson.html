@@ -19,9 +19,15 @@
 <p><a href="{% url 'login' %}">Log in</a> to see your progress!</p>
 {% endif %}
 <br>
+<a id="prerequisite-lessons-button" class="btn btn-lg btn-block d-none" data-toggle="collapse" href="#parentCollapse" role="button" aria-expanded="false" aria-controls="parentCollapse"></a>
+<div class="collapse" id="parentCollapse">
+    <div id="prerequisite-lessons" class="list-group">
+    </div>
+</div>
+<br>
 {% include lesson.html_filename %}
 <br>
-<a class="btn btn-primary btn-lg btn-block" href="{% url 'lessons:exit_test' lesson.slug %}">Exit Test</a>
+<a id="exit-test" class="btn btn-primary btn-lg btn-block">Exit Test</a>
 
 {% if user.is_authenticated %}
 <!-- Modal -->
@@ -93,16 +99,54 @@ $(document).ready(function(){
     renderKatex(document.body);
     image_urls = [];
     captions = [];
+
     {% for lessonimage in lesson.images.all %}
     image_urls.push("{{ lessonimage.image.url }}");
     captions.push("{{ lessonimage.caption }}");
     {% endfor %}
+
     for (i = 0; i < image_urls.length; i++) {
         image_dom_id = "lesson-image-" + i;
         caption_dom_id = "lesson-image-" + i + "-caption";
         document.getElementById(image_dom_id).setAttribute("src", image_urls[i]);
         document.getElementById(caption_dom_id).innerHTML = captions[i];
     }
+
+    {% if request.GET.unit %}
+    exit_url = "{% url 'lessons:exit_test' lesson.slug %}" + "?unit={{ request.GET.unit }}";
+    $("#exit-test").attr("href", exit_url);
+    {% else %}
+    exit_url = "{% url 'lessons:exit_test' lesson.slug %}";
+    $("#exit-test").attr("href", exit_url);
+    {% endif %}
+
+    $.get("{% url 'get_parent_lessons_data' lesson.skill.id %}", function(data, status){
+        const lessons_url = "/lessons/";
+        const prerequisites = document.getElementById("prerequisite-lessons");
+        let readiness = true;
+        for (i of data.user_skill_levels){
+            let parent_lesson_data = data.lessons_data.find(function(value){return i[0] == value.skill.id});
+            item = document.createElement("a");
+            item.setAttribute("href", lessons_url + parent_lesson_data.slug);
+            if (i[1] > 0.5){
+                item.setAttribute("class", "list-group-item list-group-item-action");
+                item.innerHTML = parent_lesson_data.lesson_title;
+            } else {
+                readiness = false;
+                item.setAttribute("class", "list-group-item list-group-item-action list-group-item-secondary");
+                item.innerHTML = "(Incomplete) " + parent_lesson_data.lesson_title;
+
+            }
+            prerequisites.appendChild(item);
+            if (readiness){
+                $("#prerequisite-lessons-button").attr("class", "btn btn-light btn-lg btn-block");
+                $("#prerequisite-lessons-button").text("Prerequisite Lessons - Complete!");
+            } else {
+                $("#prerequisite-lessons-button").attr("class", "btn btn-secondary btn-lg btn-block");
+                $("#prerequisite-lessons-button").text("Prerequisite Lessons - Incomplete");
+            }
+        }
+    });
 
     {% if user.is_authenticated %}
     function getCookie(name) {

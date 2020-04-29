@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from curricula.models import Curriculum
 from units.models import Unit
 from units.serializers import UnitSerializer
+from lessons.models import Lesson
 from lessons.serializers import LessonSerializer
 from skills.models import Skill
 from userprofiles.models import Skillfulness
@@ -51,6 +52,20 @@ def get_unit_data(request, *args, **kwargs):
         return Response({"unit_data": unit_data, "user_skill_levels": user_skill_levels})
     else:
         return Response({"unit_data": unit_data})
+
+
+# Receives skill pk, returns serialized parent lesson data
+@api_view()
+def get_parent_lessons_data(request, *args, **kwargs):
+    parents = Skill.objects.get(id=kwargs.get('pk')).get_parent_skills()
+    lessons = Lesson.objects.filter(skill__in=parents)
+    serialized_lessons = LessonSerializer(lessons, many=True).data
+    if request.user.is_authenticated:
+        user_skill_levels = Skillfulness.objects.filter(user_profile=request.user.profile, skill__in=parents).values_list('skill', 'skill_level')
+        return Response({"lessons_data": serialized_lessons, "user_skill_levels": user_skill_levels})
+    else:
+        return Response({"lessons_data": serialized_lessons})
+
 
 # Receives skill pk and optional num, returns random serialized question (or num list of questions) with given skill pk
 @api_view()

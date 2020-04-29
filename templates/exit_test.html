@@ -368,10 +368,14 @@ $(document).ready(function(){
             dataType: "json",
             contentType: "application/json",
             error: function(data){
-                prompt.innerHTML = "Oops! It seems like something went wrong when sending your data to the server. Click <a href=\"{% url 'lessons:lesson' lesson.slug %}\">here</a> to go back to the lesson page."
+                prompt.innerHTML = "Oops! It seems like something went wrong when sending your data to the server. Please send us a bug report."
             },
             success: function(data){
-                prompt.innerHTML = `Congrats, you have completed the lesson with a score of ${percentage_correct}%! Click <a href=\"{% url 'lessons:lesson' lesson.slug %}\">here</a> to go back to the lesson page.`
+                {% if request.GET.unit %}
+                prompt.innerHTML = `Congrats, you have completed the lesson with a score of ${percentage_correct}%! <br> Click <a href=\"{% url 'units:unit' request.GET.unit %}\">here</a> to go back to the unit page.`
+                {% else %}
+                prompt.innerHTML = `Congrats, you have completed the lesson with a score of ${percentage_correct}%!`
+                {% endif %}
             }
         });
         {% else %}
