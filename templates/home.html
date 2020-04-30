@@ -5,7 +5,7 @@
 
 {% block content %}
 
-{% if user.is_authenticated %}
+{% if user.is_authenticated and user.profile.currently_studying %}
 <div class="alert alert-secondary text-center" role="alert">Welcome back {{ user.username }}!</div>
 <br>
 <div id="challenge" class="jumbotron">
@@ -49,6 +49,7 @@
         <button type="button" class="btn btn-outline-secondary btn-sm float-right" data-toggle="modal" data-target="#feedbackModal">
             Give Feedback
         </button>
+      </div>
     </div>
 </footer>
 
@@ -363,6 +364,39 @@ $(document).ready(function(){
     });
 });
 </script>
+
+{% elif user.is_authenticated and not user.profile.currently_studying %}
+
+<div class="alert alert-secondary text-center" role="alert">Welcome to MathCAT {{ user.username }}!</div>
+<br>
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Just one more step...</h5>
+      <p class="card-text">Click <a class="dropdown-item" href="{% url 'userprofiles:profile_update' %}">here</a> to tell us what courses you are studying for.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+
+<footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <div class="row">
+      <div class="col-6 col-md">
+          <h5>Features</h5>
+      </div>
+      <div class="col-6 col-md">
+          <h5>About</h5>
+      </div>
+      <div class="col-6 col-md">
+          <h5>Contact</h5>
+      </div>
+      <div class="col-6 col-md">
+        <button type="button" class="btn btn-outline-secondary btn-sm float-right" data-toggle="modal" data-target="#feedbackModal">
+            Give Feedback
+        </button>
+      </div>
+    </div>
+</footer>
+
 
 {% else %}
 <div class="container">
