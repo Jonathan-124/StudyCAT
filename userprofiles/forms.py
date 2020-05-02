@@ -18,7 +18,7 @@ class CurrentlyStudyingAddForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(CurrentlyStudyingAddForm, self).__init__(*args, **kwargs)
-        self.fields['curriculum'].queryset = Curriculum.objects.exclude(id__in=kwargs['instance'].user_profile.currently_studying.all())
+        self.fields['curriculum'].queryset = Curriculum.objects.exclude(id__in=self.instance.user_profile.currently_studying.all())
         self.fields['curriculum'].initial = False
         self.helper = FormHelper()
         self.helper.form_show_labels = False
