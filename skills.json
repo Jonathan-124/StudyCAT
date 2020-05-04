@@ -1,0 +1,240 @@
+[
+{
+    "model": "skills.skill",
+    "pk": 1,
+    "fields": {
+        "subject": 1,
+        "name": "Numbers and Digits",
+        "topological_order": 0,
+        "ancestor_ids": "[]",
+        "parents": "[]",
+        "children": "[\"7\", \"5\", \"3\", \"2\"]",
+        "descendant_ids": "[\"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"10\"]"
+    }
+},
+{
+    "model": "skills.skill",
+    "pk": 2,
+    "fields": {
+        "subject": 1,
+        "name": "Place Value",
+        "topological_order": 4,
+        "ancestor_ids": "[\"1\"]",
+        "parents": "[\"1\"]",
+        "children": "[\"10\", \"6\", \"4\"]",
+        "descendant_ids": "[\"10\", \"4\", \"6\"]"
+    }
+},
+{
+    "model": "skills.skill",
+    "pk": 3,
+    "fields": {
+        "subject": 1,
+        "name": "Comparison Signs Introduction",
+        "topological_order": 3,
+        "ancestor_ids": "[\"1\"]",
+        "parents": "[\"1\"]",
+        "children": "[\"10\", \"4\"]",
+        "descendant_ids": "[\"10\", \"4\"]"
+    }
+},
+{
+    "model": "skills.skill",
+    "pk": 4,
+    "fields": {
+        "subject": 1,
+        "name": "Comparing Multi-digit Numbers",
+        "topological_order": 7,
+        "ancestor_ids": "[\"1\", \"2\", \"3\"]",
+        "parents": "[\"3\", \"2\"]",
+        "children": "[]",
+        "descendant_ids": "[]"
+    }
+},
+{
+    "model": "skills.skill",
+    "pk": 5,
+    "fields": {
+        "subject": 1,
+        "name": "Addition Introduction",
+        "topological_order": 2,
+        "ancestor_ids": "[\"1\"]",
+        "parents": "[\"1\"]",
+        "children": "[\"6\"]",
+        "descendant_ids": "[\"6\"]"
+    }
+},
+{
+    "model": "skills.skill",
+    "pk": 6,
+    "fields": {
+        "subject": 1,
+        "name": "Long Addition",
+        "topological_order": 6,
+        "ancestor_ids": "[\"1\", \"2\", \"5\"]",
+        "parents": "[\"5\", \"2\"]",
+        "children": "[]",
+        "descendant_ids": "[]"
+    }
+},
+{
+    "model": "skills.skill",
+    "pk": 7,
+    "fields": {
+        "subject": 1,
+        "name": "Subtraction Introduction",
+        "topological_order": 1,
+        "ancestor_ids": "[\"1\"]",
+        "parents": "[\"1\"]",
+        "children": "[\"10\"]",
+        "descendant_ids": "[\"10\"]"
+    }
+},
+{
+    "model": "skills.skill",
+    "pk": 8,
+    "fields": {
+        "subject": 1,
+        "name": "Recognizing Basic Shapes",
+        "topological_order": 8,
+        "ancestor_ids": "[]",
+        "parents": "[]",
+        "children": "[\"11\"]",
+        "descendant_ids": "[\"11\"]"
+    }
+},
+{
+    "model": "skills.skill",
+    "pk": 10,
+    "fields": {
+        "subject": 1,
+        "name": "Long Subtraction",
+        "topological_order": 5,
+        "ancestor_ids": "[\"1\", \"2\", \"3\", \"7\"]",
+        "parents": "[\"7\", \"3\", \"2\"]",
+        "children": "[]",
+        "descendant_ids": "[]"
+    }
+},
+{
+    "model": "skills.skill",
+    "pk": 11,
+    "fields": {
+        "subject": 1,
+        "name": "Classifying 2D Shapes",
+        "topological_order": 9,
+        "ancestor_ids": "[\"8\"]",
+        "parents": "[\"8\"]",
+        "children": "[]",
+        "descendant_ids": "[]"
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 1,
+    "fields": {
+        "parent_skill": 1,
+        "child_skill": 2,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 2,
+    "fields": {
+        "parent_skill": 1,
+        "child_skill": 3,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 3,
+    "fields": {
+        "parent_skill": 3,
+        "child_skill": 4,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 4,
+    "fields": {
+        "parent_skill": 2,
+        "child_skill": 4,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 5,
+    "fields": {
+        "parent_skill": 1,
+        "child_skill": 5,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 6,
+    "fields": {
+        "parent_skill": 5,
+        "child_skill": 6,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 7,
+    "fields": {
+        "parent_skill": 2,
+        "child_skill": 6,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 8,
+    "fields": {
+        "parent_skill": 1,
+        "child_skill": 7,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 15,
+    "fields": {
+        "parent_skill": 7,
+        "child_skill": 10,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 16,
+    "fields": {
+        "parent_skill": 2,
+        "child_skill": 10,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 17,
+    "fields": {
+        "parent_skill": 3,
+        "child_skill": 10,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 24,
+    "fields": {
+        "parent_skill": 8,
+        "child_skill": 11,
+        "same_subject": true
+    }
+}
+]

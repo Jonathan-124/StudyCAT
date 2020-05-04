@@ -1,6 +1,7 @@
 import json
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
+from django.db.models import F
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -157,20 +158,18 @@ def post_test_update(request, *args, **kwargs):
     serializer = PostTestUpdateSerializer(data=request.data)
     if serializer.is_valid():
         try:
-            skillfulness_obj = Skillfulness.objects.get(user_profile=user_profile, skill__id=request.data["skill_pk"])
+            skill = Skillfulness.objects.get(user_profile=user_profile, skill__id=request.data["skill_pk"])
         except ObjectDoesNotExist:
             Response({"message": "Object does not exist"}, status=status.HTTP_400_BAD_REQUEST)
         else:
-            score = request.data["score"]
-            ancestor_ids = Skill.objects.get(id=request.data["skill_pk"]).ancestor_ids
-            descendant_ids = Skill.objects.get(id=request.data["skill_pk"]).descendant_ids
-            if skillfulness_obj.skill_level >= score:
-                Skillfulness.objects.filter(user_profile=user_profile, skill__id__in=ancestor_ids, skill_level__lt=score).update(skill_level=score)
+            if request.data["score"] > 0.6:
+                ancestors_and_self = skill.ancestor_ids.append(skill.id)
+                Skillfulness.objects.filter(user_profile=user_profile, skill__id__in=ancestors_and_self,
+                                            skill_level__lt=3).update(skill_level=F('skill_level') + 1)
             else:
-                Skillfulness.objects.filter(user_profile=user_profile, skill__id__in=ancestor_ids, skill_level__gt=score).update(skill_level=score)
-            Skillfulness.objects.filter(user_profile=user_profile, skill__id__in=descendant_ids, skill_level__gt=score).update(skill_level=score)
-            skillfulness_obj.skill_level = score
-            skillfulness_obj.save(update_fields=['skill_level'])
+                descendants_and_self = skill.descendant_ids.append(skill.id)
+                Skillfulness.objects.filter(user_profile=user_profile, skill__id__in=descendants_and_self,
+                                            skill_level__gt=0).update(skill_level=F('skill_level') - 1)
             return Response({"message": "success"}, status=status.HTTP_200_OK)
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -190,7 +189,7 @@ def post_placement_bulk_update(request, *args, **kwargs):
             ancestors = i.ancestor_ids
             to_be_updated.add(i.id)
             to_be_updated.update(set(ancestors))
-        Skillfulness.objects.filter(user_profile=user_profile, skill__id__in=to_be_updated).update(skill_level=0.8)
+        Skillfulness.objects.filter(user_profile=user_profile, skill__id__in=to_be_updated).update(skill_level=1)
         return Response({"message": "success"}, status=status.HTTP_200_OK)
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

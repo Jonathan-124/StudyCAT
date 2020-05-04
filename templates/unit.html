@@ -175,7 +175,7 @@ $(document).ready(function(){
                 current = user_skill_data[i]
                 card_id = $(`div[data-skill="${current[0]}"]`).attr('id');
 
-                if (current[1] > 0.5){
+                if (current[1] > 0){
                     num_complete += 1;
                 } else {
                     let readiness = true;
@@ -184,7 +184,7 @@ $(document).ready(function(){
                     for (j = 0; j < parent_ids.length ; j++){
                         let parent_skillfulness = user_skill_data.find(function(value){return value[0] == parent_ids[j]})
                         if (parent_skillfulness){
-                            if (parent_skillfulness[1] > 0.5){
+                            if (parent_skillfulness[1] > 0){
                                 // pass
                             } else {
                                 readiness = false;

@@ -1,13 +1,11 @@
 from django.db import models
 from django.utils.text import slugify
-from django.contrib.postgres.fields import JSONField
+from django.contrib.postgres.fields import ArrayField
 from django.db.models.signals import m2m_changed
 from django.dispatch import receiver
 from subjects.models import Subject
 from lessons.models import Lesson
 from skills.models import Skill
-from django.core.exceptions import ValidationError
-import json
 
 
 # Unit model
@@ -22,8 +20,8 @@ class Unit(models.Model):
     slug = models.SlugField(unique=True)
     description = models.TextField(max_length=255)
     lessons = models.ManyToManyField(Lesson, related_name='units')
-    start_skills = JSONField(blank=True, null=True)
-    end_skills = JSONField(blank=True, null=True)
+    start_skills = ArrayField(models.PositiveIntegerField(), blank=True, null=True)
+    end_skills = ArrayField(models.PositiveIntegerField(), blank=True, null=True)
     subject = models.OneToOneField(Subject, on_delete=models.PROTECT, null=True, blank=True)
 
     def __str__(self):
@@ -64,9 +62,8 @@ def lesson_unit_relation_changed(sender, instance, action, reverse, **kwargs):
                 end_skill_set.add(i.id)
         # If a skill_id is in both the start and end skill sets, only include it in the start skill set
         # Add both lists into start_skill_dict and end_skill_dict, change to JSON, set model field attributes and save
+        start_skill_list = list(start_skill_set)
         end_skill_list = list(end_skill_set.difference(start_skill_set))
-        start_skill_dict = {"skill_id_list": list(start_skill_set)}
-        end_skill_dict = {"skill_id_list": end_skill_list}
-        setattr(instance, 'start_skills', json.dumps(start_skill_dict))
-        setattr(instance, 'end_skills', json.dumps(end_skill_dict))
+        setattr(instance, 'start_skills', start_skill_list)
+        setattr(instance, 'end_skills', end_skill_list)
         instance.save()

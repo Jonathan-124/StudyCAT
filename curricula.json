@@ -1,0 +1,17 @@
+[
+{
+    "model": "curricula.curriculum",
+    "pk": 1,
+    "fields": {
+        "name": "Middle School Mathematics",
+        "slug": "middle-school-mathematics",
+        "start_skills": null,
+        "end_skills": null,
+        "subject": 1,
+        "units": [
+            1,
+            2
+        ]
+    }
+}
+]
