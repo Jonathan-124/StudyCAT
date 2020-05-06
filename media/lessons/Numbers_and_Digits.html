@@ -5,57 +5,130 @@
     In this example, the word "three" is the number that I use to count the number of cookies I have.
     I can also say that I see three people.
     In this example, the word "three" is the number that I use to count the number of people I see.
+    <br><br>
     In the first case, it measures the amount of cookies I have. In the second case, it measures the amount of people there are.
     Notice how even though the things we are counting are different, the numbers used to describe them are the same because the amount is the same!
     <br><br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Example 1</h5>
+        </div>
+        <div class="card-body">
+            <p>Which of the following is a number?</p>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="ex1-radio1" name="example1" class="custom-control-input">
+                <label class="custom-control-label" for="ex1-radio1">Cookie</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="ex1-radio2" name="example1" class="custom-control-input">
+                <label class="custom-control-label" for="ex1-radio2">Green</label>
+            </div>
+                <div class="custom-control custom-radio">
+                <input type="radio" id="ex1-radio3" name="example1" class="custom-control-input">
+            <label class="custom-control-label" for="ex1-radio3">Six</label>
+            </div>
+                <div class="custom-control custom-radio">
+                <input type="radio" id="ex1-radio4" name="example1" class="custom-control-input">
+            <label class="custom-control-label" for="ex1-radio4">Phone</label>
+            </div>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex1-solution" onclick="console.log(this.innerHTML); this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex1-solution">Show solution</a>
+        </div>
+        <div id="ex1-solution" class="collapse hide" aria-labelledby="ex1-solution">
+            <div class="card-footer">
+                The correct answer is six.
+                <br><br>
+                Numbers are used to count an amount of things, and six is the only choice that is a measure of the amount of things there are.
+            </div>
+        </div>
+    </div>
+    <br><br>
     Although words like "three" can be used to represent numbers, we usually represent numbers in a more efficient way, as shown in this table.
     The column on the left are words associated with these numbers, and the column on the right are <b>digits</b>, which are unique symbols we use to represent these numbers instead of words.
-<table class="table w-auto">
-    <thead>
-      <tr>
-        <th scope="col">Word</th>
-        <th scope="col">Digit</th>
-      </tr>
-    </thead>
-      <tr>
-        <td>Zero</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>One</td>
-        <td>1</td>
-      </tr>
-      <tr>
-        <td>Two</td>
-        <td>2</td>
-      </tr>
-      <tr>
-        <td>Three</td>
-        <td>3</td>
-      </tr>
-      <tr>
-        <td>Four</td>
-        <td>4</td>
-      </tr>
-      <tr>
-        <td>Five</td>
-        <td>5</td>
-      </tr>
-      <tr>
-        <td>Six</td>
-        <td>6</td>
-      </tr>
-      <tr>
-        <td>Seven</td>
-        <td>7</td>
-      </tr>
-      <tr>
-        <td>Eight</td>
-        <td>8</td>
-      </tr>
-      <tr>
-        <td>Nine</td>
-        <td>9</td>
-      </tr>
+    <br><br><br>
+    <table class="table">
+        <caption>Representing numbers using words and digits</caption>
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Word</th>
+            <th scope="col">Digit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Zero</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>One</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>Two</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>Three</td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>Four</td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td>Five</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td>Six</td>
+            <td>6</td>
+          </tr>
+          <tr>
+            <td>Seven</td>
+            <td>7</td>
+          </tr>
+          <tr>
+            <td>Eight</td>
+            <td>8</td>
+          </tr>
+          <tr>
+            <td>Nine</td>
+            <td>9</td>
+          </tr>
+        </tbody>
     </table>
+    <br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Example 2</h5>
+        </div>
+        <div class="card-body">
+            <p>Which of the following is the digit we use to represent the number six?</p>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="ex2-radio1" name="example2" class="custom-control-input">
+                <label class="custom-control-label" for="ex2-radio1">0</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="ex2-radio2" name="example2" class="custom-control-input">
+                <label class="custom-control-label" for="ex2-radio2">6</label>
+            </div>
+                <div class="custom-control custom-radio">
+                <input type="radio" id="ex2-radio3" name="example2" class="custom-control-input">
+            <label class="custom-control-label" for="ex2-radio3">3</label>
+            </div>
+                <div class="custom-control custom-radio">
+                <input type="radio" id="ex2-radio4" name="example2" class="custom-control-input">
+            <label class="custom-control-label" for="ex2-radio4">9</label>
+            </div>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex2-solution" onclick="console.log(this.innerHTML); this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex2-solution">Show solution</a>
+        </div>
+        <div id="ex2-solution" class="collapse hide" aria-labelledby="ex1-solution">
+            <div class="card-footer">
+                The correct answer is 6.
+                <br><br>
+                Looking at the table above, we can see that the word "six" is represented by the digit 6.
+            </div>
+        </div>
+    </div>
 </p>

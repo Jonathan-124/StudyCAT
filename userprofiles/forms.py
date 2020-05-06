@@ -18,6 +18,7 @@ class CurrentlyStudyingAddForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(CurrentlyStudyingAddForm, self).__init__(*args, **kwargs)
+
         self.fields['curriculum'].queryset = Curriculum.objects.exclude(id__in=self.instance.user_profile.currently_studying.all())
         self.fields['curriculum'].initial = False
         self.helper = FormHelper()
@@ -36,5 +37,5 @@ class CurrentlyStudyingUpdateForm(ModelForm):
         self.helper.form_show_labels = False
 
 
-CurrentlyStudyingAddFormSet = inlineformset_factory(UserProfile, CurrentlyStudying, form=CurrentlyStudyingAddForm, fields=('curriculum', 'test_date'), extra=0, can_delete=True)
+CurrentlyStudyingAddFormSet = inlineformset_factory(UserProfile, CurrentlyStudying, form=CurrentlyStudyingAddForm, fields=('curriculum', 'test_date'), extra=0, can_delete=False)
 CurrentlyStudyingUpdateFormSet = inlineformset_factory(UserProfile, CurrentlyStudying, form=CurrentlyStudyingUpdateForm, fields=('curriculum', 'test_date'), extra=0, can_delete=True)

@@ -71,17 +71,17 @@
     <button class="btn btn-primary ml-2" type="submit">Update</button>
 </form>
 
-<script>
-    $('.dateinput.form-control').datepicker();
-    $('.add-row').on('click', function(e){
-        $('.dateinput.form-control').datepicker();
-    });
-</script>
 <script type="text/javascript">
+    $('.dateinput.form-control').datepicker();
+
     $('.formset_row').formset({
         addText: 'add course',
         deleteText: 'remove',
         prefix: 'currently_studying_through'
+    });
+
+    $('.add-row').on('click', function(e){
+        $('.dateinput.form-control').datepicker();
     });
 </script>
 {% endblock content %}

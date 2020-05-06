@@ -30,8 +30,8 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         context = self.get_context_data()
-        currently_studying_add_form = context['currently_studying_form']
-        currently_studying_update_form = context['currently_studying_form']
+        currently_studying_add_form = context['currently_studying_add_form']
+        currently_studying_update_form = context['currently_studying_update_form']
         with transaction.atomic():
             self.object = form.save()
             if currently_studying_add_form.is_valid() and currently_studying_update_form.is_valid():
@@ -39,4 +39,7 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
                 currently_studying_add_form.save()
                 currently_studying_update_form.instance = self.get_object()
                 currently_studying_update_form.save()
+            else:
+                print(currently_studying_add_form.errors)
+                print(currently_studying_update_form.errors)
         return super(ProfileUpdateView, self).form_valid(form)
