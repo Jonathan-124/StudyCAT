@@ -2,39 +2,111 @@
     Consider this question. Which number is bigger, twenty three thousand six hundred forty three or four thousand eight hundred sixty three?
     <br>
     It is difficult to do this comparison in our heads, since it is hard to visualize the numbers directly.
-    Fortunately, we can always follow four simple steps to figure out which of two numbers is bigger, even when the numbers are very large.
+    Fortunately, we can always follow a few simple steps to figure out which of any two numbers is bigger, even when the numbers are very large.
     <br><br>
-    The four steps are as follows:
+    The process is as follows:
     <ol>
         <li>Write down both numbers using digits. </li>
-        <li>Compare the amount of places/digits the two numbers have. If they do not have the same amount of places, the number with more places is bigger.</li>
-        <li>If the two numbers have the same amount of digits, compare the left-most place of the two numbers. The number with the bigger digit left-most place is bigger.</li>
-        <li>If the left-most place of the two numbers are the same digit, cross out the left-most place of both numbers. Repeat from step 3.</li>
+        <li>Compare the amount of places/digits the two numbers have.</li>
+        <ul>
+            <li>If the two numbers do not have the same amount of places, the number with more places is bigger.</li>
+            <li>If the two numbers have the same amount of places, compare the place value of the left-most place of the two numbers.</li>
+            <ul>
+                <li>If these two digits are different, the number with the bigger place value in this place is bigger.</li>
+                <li>If these two digits are the same, repeat this step but compare the place values in the next place to the right.</li>
+            </ul>
+        </ul>
     </ol>
-    Let's try to tackle the original example using this four-step process.<br>
-    Which number is bigger, twenty three thousand six hundred forty three or four thousand eight hundred sixty three?
-    <ul>
-        <li>23643 and 4863 are the two numbers written using digits.</li>
-        <li>The first number has 5 places, and the second number has 4. So the first number is bigger, and we're done!</li>
-    </ul>
-    Let's try another example.<br>
-    Which number is bigger, 1327 or 1389?
-    <ul>
-        <li>1027 and 1089 are already written using digits.</li>
-        <li>Both numbers have 4 places, so we need to go to step 3.</li>
-        <li>The left-most place of the two numbers contain the same digit, 1.</li>
-        <li>Since the left-most place of both numbers contain 1, the same digit, we cross out the left-most digit in the two numbers and repeat from step 3.</li>
-        <li>Now, the left-most place of the two numbers contain the same digit, 0.</li>
-        <li>Since the left-most place of both numbers contain 0, the same digit, we cross out the left-most digit in the two numbers and repeat from step 3.</li>
-        <li>Now, the left-most place of the first number contains the digit 2 and the left-most place of the second number contains the digit 8. So the second number is bigger, and we're done!</li>
-    </ul>
-    Finally, let's try this example. <br>
-    Which of the following signs (\( <, =, > \)) goes in the box \( 185 \square 564 \)?
-    <ul>
-        <li>185 and 564 are already written using digits.</li>
-        <li>Both numbers have 3 places, so we need to go to step 3.</li>
-        <li>the left-most place of the first number contains the digit 1 and the left-most place of the second number contains the digit 5. The second number is bigger!</li>
-    </ul>
-    Recall that the pointy end of the comparison sign always points to the smaller number. So \( < \) is the correct sign to fill in the box.
+    Let's try to tackle the original example.
     <br><br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 1</h5>
+        </div>
+        <div class="card-body">
+            <p>Which number is bigger?</p>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="ex1-radio1" name="exercise1" class="custom-control-input">
+                <label class="custom-control-label" for="ex1-radio1">Twenty three thousand six hundred forty three</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="ex1-radio2" name="exercise1" class="custom-control-input">
+                <label class="custom-control-label" for="ex1-radio2">Four thousand eight hundred sixty three</label>
+            </div>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex1-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex1-solution">Show solution</a>
+        </div>
+        <div id="ex1-solution" class="collapse hide" aria-labelledby="ex1-solution">
+            <div class="card-footer">
+                The correct answer is the first number (twenty three thousand six hundred forty three).
+                <br><br>
+                First, we write the two numbers using digits: 23643 and 4863.<br>
+                Because the first number has 5 places and the second number has 4 places, the first number is bigger.<br>
+            </div>
+        </div>
+    </div>
+    <br>
+    Let's try a few more exercises.<br>
+    <br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 2</h5>
+        </div>
+        <div class="card-body">
+            <p>Which number is bigger?</p>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="ex2-radio1" name="exercise2" class="custom-control-input">
+                <label class="custom-control-label" for="ex2-radio1">1327</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="ex2-radio2" name="exercise2" class="custom-control-input">
+                <label class="custom-control-label" for="ex2-radio2">1419</label>
+            </div>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex2-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex2-solution">Show solution</a>
+        </div>
+        <div id="ex2-solution" class="collapse hide" aria-labelledby="ex2-solution">
+            <div class="card-footer">
+                The correct answer is 1419.
+                <br><br>
+                1027 and 1089 are already written using digits.<br>
+                Since both numbers have 4 places, we need to go to compare their place values in their left most places (the thousands' place).<br>
+                The thousands' place of the two numbers has the same place value (1), so we have to compare the place values in the hundreds' place.<br>
+                Since 4 is larger than 3, 1419 is larger than 1327.
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 3</h5>
+        </div>
+        <div class="card-body">
+            <p>Choose the correct sign that fills in the blank. $$ 185 \ \square \ 564 $$</p>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="ex3-radio1" name="exercise3" class="custom-control-input">
+                <label class="custom-control-label" for="ex3-radio1">\( < \)</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="ex3-radio2" name="exercise3" class="custom-control-input">
+                <label class="custom-control-label" for="ex3-radio2">\( > \)</label>
+            </div>
+                <div class="custom-control custom-radio">
+                <input type="radio" id="ex3-radio3" name="exercise3" class="custom-control-input">
+                <label class="custom-control-label" for="ex3-radio3">\( = \)</label>
+            </div>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex3-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex3-solution">Show solution</a>
+        </div>
+        <div id="ex3-solution" class="collapse hide" aria-labelledby="ex3-solution">
+            <div class="card-footer">
+                The correct answer is \( < \).
+                <br><br>
+                185 and 564 are already written using digits.<br>
+                Both numbers have 3 places, so we need to compare the place values of the left-most place (the hundreds' place).<br>
+                Since 1 is smaller than 5, 185 is less than 564.<br>
+                Recall that the pointy end of the comparison sign always points to the smaller number. So \( < \) is the correct sign to fill in the box!
+            </div>
+        </div>
+    </div>
 </p>

@@ -1,67 +1,115 @@
 <p>
     Even though it is easier to use <b>digits</b> instead of words to represent numbers, we only have ten digits in total (0-9).
-    This brings us to a very important question: how do you use digits to represent numbers bigger than 9?
+    This brings us to a very important question: how do we use digits to represent numbers bigger than 9?
     This is where <b>place value</b> comes in.
     <br><br>
     Let's look at how we write the number "ten" using digits. Instead of creating a new digit from scratch, we re-use the digits 1 and 0 to write "ten" as 10.
     In other words, we write bigger numbers with more than one digit.
     <br><br>
-    Because we now have numbers with more than one digit, we call the position of a digit its <b>place</b>, and the value of the digit at its place the <b>place value</b>.
+    Because we now have numbers with more than one digit, we call the position of a digit its <b>place</b>, and the value of the digit in its place the <b>place value</b>.
     In numbers with two digits, the place on the right is called the ones' place, and the place on the left is called the tens' place.
     <br><br>
-    For example, the number 14 is a two-digit number. The place value of its ones' place is 4, and the place value of its tens' place is 1.
+    For example, the number 32 is a two-digit number. The place value of its ones' place is 2, and the place value of its tens' place is 3.
     <br>
-    Here's another example. The number 32 is a two-digit number. The place value of its ones' place is 2, and the place value of its tens' place is 3.
-    <br><br>
+    <div class="card">
+      <div class="card-header">
+          <h5>Exercise 1</h5>
+      </div>
+      <div class="card-body">
+          <p>In the number 14, what place has a place value of 4?</p>
+          <div class="custom-control custom-radio">
+              <input type="radio" id="ex1-radio1" name="exercise1" class="custom-control-input">
+              <label class="custom-control-label" for="ex1-radio1">Ones' place</label>
+          </div>
+          <div class="custom-control custom-radio">
+              <input type="radio" id="ex1-radio2" name="exercise1" class="custom-control-input">
+              <label class="custom-control-label" for="ex1-radio2">Tens' place</label>
+          </div>
+          <div class="custom-control custom-radio">
+              <input type="radio" id="ex1-radio3" name="exercise1" class="custom-control-input">
+              <label class="custom-control-label" for="ex1-radio3">Left place</label>
+          </div>
+          <div class="custom-control custom-radio">
+              <input type="radio" id="ex1-radio4" name="exercise1" class="custom-control-input">
+              <label class="custom-control-label" for="ex1-radio4">Right place</label>
+          </div>
+          <br>
+          <a class="btn btn-primary" data-toggle="collapse" href="#ex1-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex1-solution">Show solution</a>
+      </div>
+      <div id="ex1-solution" class="collapse hide" aria-labelledby="ex1-solution">
+          <div class="card-footer">
+              The correct answer is "Ones' place".
+              <br><br>
+              The number is a two-digit number, and the digit 4 occupies the place on the right, which is the one's place.
+              Since the digit 1 is in the tens' place, the tens' place (not the ones' place) has a place value of 1, so the second choice is incorrect. There are no places called left and right places, so the last two choices are incorrect.
+          </div>
+      </div>
+    </div>
+
+    <br>
     What about numbers with more than two digits? What are the names of the places?
     <br><br>
-    As a general rule, for a number with any number of digits, <b>we always assign place to digits from right to left </b>. In other words, we start from the digit in the right-most position, then proceed to the left one digit at a time.
-    Here is a table of how we assign place based on position for numbers up to a million.
-    <table class="table w-auto">
-    <thead>
+    As a general rule, <b>for a number with any number of digits, we always assign place to digits from right to left </b>. In other words, we start from the digit in the right-most position, then proceed to the left one place at a time.
+    Here is a table of how we assign place for numbers up to a million.
+    <br><br>
+    <table class="table">
+    <thead class="thead-light">
       <tr>
         <th scope="col">Position</th>
         <th scope="col">Place</th>
       </tr>
     </thead>
       <tr>
-        <td>Right-most position</td>
+        <td>Right-most place</td>
         <td>Ones' place</td>
       </tr>
       <tr>
-        <td>One spot left of the right-most position</td>
+        <td>Second place from the right</td>
         <td>Tens' place</td>
       </tr>
       <tr>
-        <td>Two spots left of the right-most position</td>
+        <td>Third place from the right</td>
         <td>Hundreds' place</td>
       </tr>
       <tr>
-        <td>Three spots left of the right-most position</td>
+        <td>Fourth place from the right</td>
         <td>Thousands' place</td>
       </tr>
       <tr>
-        <td>Four spots left of the right-most position</td>
+        <td>Fifth place from the right</td>
         <td>Ten-thousands' place</td>
       </tr>
       <tr>
-        <td>Five spots left of the right-most position</td>
+        <td>Sixth place from the right</td>
         <td>Hundred-thousands' place</td>
       </tr>
       <tr>
-        <td>Six spots left of the right-most position</td>
+        <td>Seventh from the right</td>
         <td>Millions' place</td>
       </tr>
     </table>
-    Here's an example. What is the place value in each place in the number 18453?<br>
-    We start from the digit in the right-most position. The right-most digit occupies the ones' place, and has place-value of 3.
-    Then, we go to the digit one spot to the left. It occupies the tens' place, and has place-value of 5.
-    Then, we go to the digit one spot to the left. It occupies the hundreds' place, and has place-value of 4.
-    Then, we go to the digit one spot to then left. It occupies the thousands' place, and has place-value of 8.
+    Here's an example. What is the place value of each place in the number 18453?<br>
+    We start from the digit in the right-most position. The right-most digit occupies the ones' place, and has place-value of 3.<br>
+    Then, we go to the digit one spot to the left. It occupies the tens' place, and has place-value of 5.<br>
+    Then, we go to the digit one spot to the left. It occupies the hundreds' place, and has place-value of 4.<br>
+    Then, we go to the digit one spot to then left. It occupies the thousands' place, and has place-value of 8.<br>
     Finally, we go to the digit one spot to the left. It occupies the ten-thousands' place, and has place-value of 1.
     <br><br>
-    Here's another example. What is the place-value of the ten-thousands' place in the number 324906?
-    From the table above, we know that the digit in the ten-thousands' place is always four spots left of the right-most position.
-    The digit in the ten-thousands' place of 324906 is 2.
-    Since the place-value of a place is just the digit that occupies that place, the place-value of the ten-thousands' place in 324906 is 2.
+    <div class="card">
+      <div class="card-header">
+          <h5>Exercise 2</h5>
+      </div>
+      <div class="card-body">
+          <p>What is the place-value of the ten-thousands' place in the number 324906?</p>
+          <br>
+          <a class="btn btn-primary" data-toggle="collapse" href="#ex2-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex2-solution">Show solution</a>
+      </div>
+      <div id="ex2-solution" class="collapse hide" aria-labelledby="ex2-solution">
+          <div class="card-footer">
+              The correct answer is 2.
+              <br><br>
+              Using the table above, we know that the ten-thousands' place is the fifth place from the right. The digit 2 occupies this place, so the ten-thousands' place in 324906 has a place value of 2.
+          </div>
+      </div>
+    </div>
 </p>

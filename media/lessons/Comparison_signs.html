@@ -1,5 +1,5 @@
 <p>
-  In daily life, we can <b>compare</b> similar things in many ways.
+  In daily life, we can <b>compare</b> things in many ways.
   <br><br>
   For example, here are a couple of ways we can compare two similar things:
   <ul>
@@ -7,18 +7,51 @@
     <li>Charlie's room is <i>cleaner</i> than Diana's room.</li>
     <li>Ernie's car is <i>bigger</i> than Fred's car.</li>
   </ul>
-  Notice how in each example, we are using words in <i>italics</i> to compare similar things (hair, rooms, and cars in each example).
+  Notice how in each example, we are using words in <i>italics</i> to compare similar things (hair, rooms, and cars to be specific).
   <br><br>
   We can do similar things with numbers!
   You might be thinking that a number cannot be 'darker' or 'cleaner' than another number, and you would be correct.
-  The only way numbers can be compared is by comparing their <i>amount</i>.
+  The only way numbers can be compared is by comparing their <i>amounts</i>.
   <br><br>
   Here are some examples where we compare two numbers:
   <ul>
-    <li>The number 2 is <i>greater</i> than the number 1.</li>
-    <li>The number 4 is <i>less</i> than the number 9.</li>
-    <li>The number 5 is <i>equal</i> to the number 5.</li>
+    <li>Two is <i>greater</i> than one.</li>
+    <li>Four is <i>less</i> than nine.</li>
+    <li>Five is <i>equal</i> to five.</li>
   </ul>
+
+  <br>
+  <div class="card">
+      <div class="card-header">
+          <h5>Exercise 1</h5>
+      </div>
+      <div class="card-body">
+          <p>Which of the following statements is correct?</p>
+          <div class="custom-control custom-radio">
+              <input type="radio" id="ex1-radio1" name="exercise1" class="custom-control-input">
+              <label class="custom-control-label" for="ex1-radio1">3 is greater than 4</label>
+          </div>
+          <div class="custom-control custom-radio">
+              <input type="radio" id="ex1-radio2" name="exercise1" class="custom-control-input">
+              <label class="custom-control-label" for="ex1-radio2">7 is equal to 5</label>
+          </div>
+              <div class="custom-control custom-radio">
+              <input type="radio" id="ex1-radio3" name="exercise1" class="custom-control-input">
+              <label class="custom-control-label" for="ex1-radio3">1 is less than 3</label>
+          </div>
+          <br>
+          <a class="btn btn-primary" data-toggle="collapse" href="#ex1-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex1-solution">Show solution</a>
+      </div>
+      <div id="ex1-solution" class="collapse hide" aria-labelledby="ex1-solution">
+          <div class="card-footer">
+              The correct answer is "1 is less than 3".
+              <br><br>
+              3 is less than 4, so the first choice is incorrect. 7 is greater than 5, so the second choice is incorrect. Remember that numbers can be represented by either words or digits, and in this example we are using their digit representations to compare numbers.
+          </div>
+      </div>
+  </div>
+  <br><br>
+
   An important thing to keep in mind is that when we compare two numbers, there are only three possible outcomes:
   <br>
   <ol>
@@ -26,24 +59,26 @@
     <li>The first number is less than the second number. For example, 1 is less than 5.</li>
     <li>The first number is equal to the second number. For example, 6 is equal to 6.</li>
   </ol>
+
   Because typing out sentences like these takes too much work, we have invented the following three <b>signs</b> to make it easier to represent these ideas:
-  <table class="table w-auto">
-      <thead>
+  <br><br>
+  <table class="table">
+      <thead class="thead-light">
         <tr>
           <th scope="col">Sign</th>
           <th scope="col">Name of Sign</th>
         </tr>
       </thead>
         <tr>
-          <td>$$>$$</td>
+          <td>\(>\)</td>
           <td>Greater-than sign</td>
         </tr>
         <tr>
-          <td>$$<$$</td>
+          <td>\(<\)</td>
           <td>Less-than sign</td>
         </tr>
         <tr>
-          <td>$$=$$</td>
+          <td>\(=\)</td>
           <td>Equals sign</td>
         </tr>
   </table>
@@ -61,4 +96,36 @@
 <br>
   In the first example \( 3>0 \), 3 is bigger than 0, so the pointy end points to the 0.
   In the second example \( 1<5 \), 1 is smaller than 5, so the pointy end points to the 1.
+
+
+<br><br>
+<div class="card">
+    <div class="card-header">
+        <h5>Exercise 2</h5>
+    </div>
+    <div class="card-body">
+        <p>Choose the correct sign that fills in the blank. $$ 5 \ \square \ 8 $$</p>
+        <div class="custom-control custom-radio">
+            <input type="radio" id="ex2-radio1" name="exercise2" class="custom-control-input">
+            <label class="custom-control-label" for="ex2-radio1">\( < \)</label>
+        </div>
+        <div class="custom-control custom-radio">
+            <input type="radio" id="ex2-radio2" name="exercise2" class="custom-control-input">
+            <label class="custom-control-label" for="ex2-radio2">\( > \)</label>
+        </div>
+            <div class="custom-control custom-radio">
+            <input type="radio" id="ex2-radio3" name="exercise2" class="custom-control-input">
+            <label class="custom-control-label" for="ex2-radio3">\( = \)</label>
+        </div>
+        <br>
+        <a class="btn btn-primary" data-toggle="collapse" href="#ex2-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex2-solution">Show solution</a>
+    </div>
+    <div id="ex2-solution" class="collapse hide" aria-labelledby="ex2-solution">
+        <div class="card-footer">
+            The correct answer is \( < \).
+            <br><br>
+            5 is less than 8, and since the pointy end of the sign always points to the smaller number, the first choice is correct.
+        </div>
+    </div>
+</div>
 </p>
