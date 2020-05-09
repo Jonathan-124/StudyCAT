@@ -158,17 +158,17 @@ def post_test_update(request, *args, **kwargs):
     serializer = PostTestUpdateSerializer(data=request.data)
     if serializer.is_valid():
         try:
-            skill = Skillfulness.objects.get(user_profile=user_profile, skill__id=request.data["skill_pk"])
+            skillfulness = Skillfulness.objects.get(user_profile=user_profile, skill__id=request.data["skill_pk"])
         except ObjectDoesNotExist:
             Response({"message": "Object does not exist"}, status=status.HTTP_400_BAD_REQUEST)
         else:
             if request.data["score"] > 0.6:
-                ancestors_and_self = skill.ancestor_ids.append(skill.id)
-                Skillfulness.objects.filter(user_profile=user_profile, skill__id__in=ancestors_and_self,
+                skillfulness.skill.ancestor_ids.append(skillfulness.skill.id)
+                Skillfulness.objects.filter(user_profile=user_profile, skill__id__in=skillfulness.skill.ancestor_ids,
                                             skill_level__lt=3).update(skill_level=F('skill_level') + 1)
             else:
-                descendants_and_self = skill.descendant_ids.append(skill.id)
-                Skillfulness.objects.filter(user_profile=user_profile, skill__id__in=descendants_and_self,
+                skillfulness.skill.descendant_ids.append(skillfulness.skill.id)
+                Skillfulness.objects.filter(user_profile=user_profile, skill__id__in=skillfulness.skill.descendant_ids,
                                             skill_level__gt=0).update(skill_level=F('skill_level') - 1)
             return Response({"message": "success"}, status=status.HTTP_200_OK)
     else:

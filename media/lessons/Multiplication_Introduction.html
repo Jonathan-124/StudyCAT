@@ -1,0 +1,78 @@
+<p>
+    Let's start with a question. How many squares are there below?
+    $$
+    \begin{matrix}
+    &\square&\square&\square&\square&\square&\square&\square \\
+    &\square&\square&\square&\square&\square&\square&\square \\
+    &\square&\square&\square&\square&\square&\square&\square \\
+    &\square&\square&\square&\square&\square&\square&\square \\
+    &\square&\square&\square&\square&\square&\square&\square \\
+    &\square&\square&\square&\square&\square&\square&\square \\
+    \end{matrix}
+    $$
+    One way to do this is to count the squares one by one, and we can figure out that there are 42 squares in total.
+    However, this is a very inefficient way of solving the problem. Even for such a short problem, it already takes a lot of time to count the number of squares.
+    <br><br>
+    You might notice that the squares are arranged very nicely. There are 7 columns in total, and each column has exactly 6 squares.
+    A slightly simpler way to count the total number of squares is, instead of counting one square at a time, we count one column at a time!
+    In this example, each column has 6 squares, and since there are 7 columns in total, we count by six seven times (\( 6+6+6+6+6+6+6 \)) to get the answer of 42!
+    <br><br>
+    There is an even simpler way to represent the addition of a number to itself, over and over again — <b>multiplication</b>!
+    To rephrase what we did in the example more simply, we could say '6 multiplied by 7', which is another way to say 'add 6 to itself 7 times'.
+    <br><br>
+    Because writing 'multiply' becomes tiresome after a while, we use the symbol \( \times \) (called a <b>multiplication sign</b>) instead to write it as
+    $$ 6 \times 7 $$
+    Since the result of \( 6 \times 7 \) is equal to 42, we can also write
+    $$ 6 \times 7 = 42 $$
+    Notice that in this example, you can also count the total number of squares one row at a time instead of counting one column at a time!<br>
+    There are 7 squares in each row, and 6 rows in total. Adding 7 to itself 6 times (\(7+7+7+7+7+7\)) is the same as saying 7 multiplied by 6 (\( 7 \times 6 =42 \)), which also gives us the total number of squares.
+    <br><br>
+    In other words, <b>order of multiplication does not matter</b>. You can always switch the order of the two numbers that you are multiplying, and still get the same result.
+    <br><br>
+    Let's go through some exercises.
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 1</h5>
+        </div>
+        <div class="card-body">
+            <p>Fill in the blank. $$ 3 \times 8 = \square$$</p>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex1-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex1-solution">Show solution</a>
+        </div>
+        <div id="ex1-solution" class="collapse hide" aria-labelledby="ex1-solution">
+            <div class="card-footer">
+                The correct answer is \( 3 \times 8 = 24 \).
+                <br><br>
+                We add 3 to itself 8 times, and get the answer of 24. Recall that since order of multiplication does not matter, we can add 8 to itself 3 times (\( 8 \times 3 \)) and get the same answer.
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 2</h5>
+        </div>
+        <div class="card-body">
+            <p>Charlie has 4 boxes, and each box has 6 cookies. How many cookies does charlie have in total?</p>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex2-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex2-solution">Show solution</a>
+        </div>
+        <div id="ex2-solution" class="collapse hide" aria-labelledby="ex2-solution">
+            <div class="card-footer">
+                The correct answer is 24.
+                <br><br>
+                To find the total number of cookies Charlie has, we need to add the number of cookies in each box to itself 4 times. \( 6 \times 4 = 24\), so there are 24 cookies in total.
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+    To summarize multiplication:
+    <ul>
+        <li>When adding the same number to itself many times, we use multiplication.</li>
+        <li>Multiplication is represented by the Multiplication sign (\( \times \)).</li>
+        <li>Order of multiplication does not matter.</li>
+    </ul>
+</p>

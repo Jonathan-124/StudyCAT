@@ -49,8 +49,12 @@ class UserProfile(models.Model):
 
     # Returns list of terminus skill ids
     def retrieve_terminus_skills(self):
-        passed_skills = Skillfulness.objects.filter(user_profile=self).filter(skill_level__gte=1)
-        terminus_skill_ids = SkillEdge.objects.filter(parent_skill__id__in=passed_skills).exclude(child_skill__id__in=passed_skills).values_list('parent_skill__id', flat=True)
+        terminus_skill_ids = []
+        passed_skills = Skill.objects.filter(user_skillfulness__user_profile=self).filter(user_skillfulness__skill_level__gte=1)
+        terminus_skilledges = SkillEdge.objects.filter(parent_skill__in=passed_skills).exclude(child_skill__in=passed_skills).select_related('parent_skill')
+        for skilledge in terminus_skilledges:
+            if not skilledge.parent_skill.get_children_skills.intersection(passed_skills):
+                terminus_skill_ids.append(skilledge.parent_skill.id)
         return terminus_skill_ids
 
     # Returns queryset of terminus lessons and random skill id of one of these lessons

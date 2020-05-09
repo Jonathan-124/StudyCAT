@@ -359,7 +359,8 @@ $(document).ready(function(){
         const percentage_correct = Math.round(score * 1000) / 10;
 
         {% if user.is_authenticated %}
-        const response = {"score": score, "skill_pk": {{ lesson.skill.pk }}}
+        const response = {"score": parseFloat(score.toFixed(3)), "skill_pk": {{ lesson.skill.pk }}};
+        console.log(response);
         $.ajax({
             type: "POST",
             // To create new url api for this bulk send in backend
@@ -372,14 +373,22 @@ $(document).ready(function(){
             },
             success: function(data){
                 {% if request.GET.unit %}
-                prompt.innerHTML = `Congrats, you have completed the lesson with a score of ${percentage_correct}%! <br> Click <a href=\"{% url 'units:unit' request.GET.unit %}\">here</a> to go back to the unit page.`
+                if (score > 0.6){
+                    prompt.innerHTML = `Congrats, you have completed the exit test with a score of ${percentage_correct}%! <br> Click <a href=\"{% url 'units:unit' request.GET.unit %}\">here</a> to go back to the unit page.`
+                } else {
+                    prompt.innerHTML = `You have completed the lesson with a score of ${percentage_correct}%. We recommend that you review this lesson and its prerequisite lessons before you take the exit test again. <br> Click <a href=\"{% url 'units:unit' request.GET.unit %}\">here</a> to go back to the unit page.`
+                }
                 {% else %}
-                prompt.innerHTML = `Congrats, you have completed the lesson with a score of ${percentage_correct}%!`
+                if (score > 0.6){
+                    prompt.innerHTML = `Congrats, you have completed the exit test with a score of ${percentage_correct}%!`
+                } else {
+                    prompt.innerHTML = `You have completed the lesson with a score of ${percentage_correct}%. We recommend that you review this lesson and its prerequisite lessons before you take the exit test again.`
+                }
                 {% endif %}
             }
         });
         {% else %}
-        prompt.innerHTML = `Congrats, you have completed the lesson with a score of ${percentage_correct}%! Please <a href="{% url 'login' %}">log in</a> to save your progress.`
+        prompt.innerHTML = `You have completed the exit test with a score of ${percentage_correct}%. Please <a href="{% url 'login' %}">log in</a> to save your progress.`
         {% endif %}
     };
 
