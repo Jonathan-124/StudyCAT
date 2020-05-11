@@ -26,6 +26,8 @@
 <div id="unit-lessons" class="jumbotron">
 </div>
 
+<div id="cy" class="jumbotron"></div>
+
 {% if user.is_authenticated %}
 <!-- Modal -->
 <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
@@ -73,6 +75,7 @@
 </footer>
 {% endif %}
 
+
 <script>
 $(document).ready(function(){
     // Initializing variables
@@ -82,6 +85,7 @@ $(document).ready(function(){
     let traversed_skills = new Set();
     let user_skill_data;
     let lessons_data;
+    let elements = [];
 
     $.when(
         $.get("{% url 'get_unit_data' unit.id %}", function(data, status){
@@ -90,6 +94,130 @@ $(document).ready(function(){
             user_skill_data = data.user_skill_levels;
         })
     ).then(function(){
+        for (i of lessons_data){
+            let readiness = true;
+            let skill_id = i.skill.id;
+            let user_skill = user_skill_data.find(function(value){return value[0] == skill_id})[1];
+            href = lessons_url + i.slug + "?unit={{ unit.slug }}";
+            for (j of i.skill.parents){
+                let user_parent_skill = user_skill_data.find(function(value){return value[0] == j})[1];
+                if (user_parent_skill > 0){
+                    elements.push({data: {id: `${skill_id}-${j}`, source: j, target: skill_id, status: 1}});
+                } else {
+                    readiness = false;
+                    elements.push({data: {id: `${skill_id}-${j}`, source: j, target: skill_id, status: 0}});
+                }
+            }
+            if (user_skill > 0){
+                elements.push({data: {
+                        id: skill_id,
+                        href: href,
+                        label: i.lesson_title,
+                        status: 2
+                    },
+                    classes: 'center-center'
+                });
+            } else {
+                if (readiness){
+                    elements.push({data: {
+                            id: skill_id,
+                            href: href,
+                            label: i.lesson_title,
+                            status: 1
+                        },
+                        classes: 'center-center'
+                    });
+                } else {
+                    elements.push({data: {
+                            id: skill_id,
+                            href: href,
+                            label: i.lesson_title,
+                            status: 0
+                        },
+                        classes: 'center-center'
+                    });
+                }
+            }
+        }
+
+        var cy = cytoscape({
+            container: document.getElementById('cy'),
+            elements: elements,
+            userZoomingEnabled: false,
+            userPanningEnabled: false,
+            autoungrabify: true,
+            style: [
+                {
+                selector: 'node[status=0]',
+                style: {
+                    'background-color': '#868e96 ',
+                    'width': 'label',
+                    'label': 'data(label)',
+                    'padding-left': 5,
+                    'padding-right': 5,
+                    'shape': 'round-rectangle',
+                    'text-valign': 'center',
+                    'text-halign': 'center',
+                    }
+                },
+                {
+                selector: 'node[status=1]',
+                style: {
+                    'background-color': '#ffc107',
+                    'width': 'label',
+                    'label': 'data(label)',
+                    'padding-left': 5,
+                    'padding-right': 5,
+                    'shape': 'round-rectangle',
+                    'text-valign': 'center',
+                    'text-halign': 'center',
+                    }
+                },
+                {
+                selector: 'node[status=2]',
+                style: {
+                    'background-color': '#0275d8',
+                    'width': 'label',
+                    'label': 'data(label)',
+                    'padding-left': 5,
+                    'padding-right': 5,
+                    'shape': 'round-rectangle',
+                    'text-valign': 'center',
+                    'text-halign': 'center',
+                    }
+                },
+                {
+                selector: 'edge[status=0]',
+                style: {
+                    'width': 1,
+                    'line-color': '#868e96',
+                    'target-arrow-color': '#868e96',
+                    'target-arrow-shape': 'triangle',
+                    'curve-style': 'bezier',
+                    'line-style': 'dashed',
+                    'line-dash-pattern': [10, 10]
+                    }
+                },
+                {
+                selector: 'edge[status=1]',
+                style: {
+                    'width': 1,
+                    'line-color': '#868e96',
+                    'target-arrow-color': '#868e96',
+                    'target-arrow-shape': 'triangle',
+                    'curve-style': 'bezier',
+                    }
+                }
+            ],
+            layout: {
+                name: 'dagre',
+            }
+        });
+
+        cy.$('node').on('tap', function(e){
+            window.location.href = this.data('href');
+        });
+
         // Populates untraversed_skills with all skill_ids of unit lessons
         for (i = 0; i < lessons_data.length; i++){
             untraversed_skills.add(lessons_data[i].skill.id);
@@ -189,7 +317,6 @@ $(document).ready(function(){
                             } else {
                                 readiness = false;
                                 let parent_id = $(`div[data-skill="${parent_ids[j]}"]`).attr('id');
-                                console.log(parent_id);
                                 jsPlumb.select({source: parent_id, target: card_id}).setPaintStyle({stroke: "rgb(153, 153, 153)", strokeWidth:1, dashstyle:"10 10"});
                             }
                         } else {
