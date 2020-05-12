@@ -23,9 +23,6 @@
   <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
 <br>
-<div id="unit-lessons" class="jumbotron">
-</div>
-
 <div id="cy" class="jumbotron"></div>
 
 {% if user.is_authenticated %}
@@ -80,10 +77,8 @@
 $(document).ready(function(){
     // Initializing variables
     const lessons_url = "/lessons/";
-    let unit_lessons = document.getElementById("unit-lessons");
-    let untraversed_skills = new Set();
-    let traversed_skills = new Set();
     let user_skill_data;
+    let num_complete = 0;
     let lessons_data;
     let elements = [];
 
@@ -94,6 +89,7 @@ $(document).ready(function(){
             user_skill_data = data.user_skill_levels;
         })
     ).then(function(){
+        {% if user.is_authenticated %}
         for (i of lessons_data){
             let readiness = true;
             let skill_id = i.skill.id;
@@ -109,6 +105,7 @@ $(document).ready(function(){
                 }
             }
             if (user_skill > 0){
+                num_complete += 1;
                 elements.push({data: {
                         id: skill_id,
                         href: href,
@@ -140,6 +137,21 @@ $(document).ready(function(){
             }
         }
 
+        if (num_complete == lessons_data.length){
+            $(".progress-bar").attr("style", `width: 100%`);
+            $(".progress-bar").attr("aria-valuenow", 100);
+            $(".progress-bar").text("Unit Complete!");
+        } else if (num_complete == 0){
+            $(".progress").replaceWith(`<div class="alert alert-dark text-center" role="alert">
+                Take the placement quiz if you haven't yet!
+            </div>`);
+        } else {
+            percentage = num_complete * 100 / lessons_data.length
+            $(".progress-bar").attr("style", `width: ${percentage}%`);
+            $(".progress-bar").attr("aria-valuenow", percentage);
+            $(".progress-bar").text(`${Math.round(percentage * 10) / 10}%`);
+        }
+
         var cy = cytoscape({
             container: document.getElementById('cy'),
             elements: elements,
@@ -152,7 +164,10 @@ $(document).ready(function(){
                 style: {
                     'background-color': '#868e96 ',
                     'width': 'label',
+                    'height': 'label',
                     'label': 'data(label)',
+                    'text-wrap': 'wrap',
+                    'text-max-width': 25,
                     'padding-left': 5,
                     'padding-right': 5,
                     'shape': 'round-rectangle',
@@ -165,7 +180,10 @@ $(document).ready(function(){
                 style: {
                     'background-color': '#ffc107',
                     'width': 'label',
+                    'height': 'label',
                     'label': 'data(label)',
+                    'text-wrap': 'wrap',
+                    'text-max-width': 25,
                     'padding-left': 5,
                     'padding-right': 5,
                     'shape': 'round-rectangle',
@@ -178,7 +196,10 @@ $(document).ready(function(){
                 style: {
                     'background-color': '#0275d8',
                     'width': 'label',
+                    'height': 'label',
                     'label': 'data(label)',
+                    'text-wrap': 'wrap',
+                    'text-max-width': 25,
                     'padding-left': 5,
                     'padding-right': 5,
                     'shape': 'round-rectangle',
@@ -190,6 +211,7 @@ $(document).ready(function(){
                 selector: 'edge[status=0]',
                 style: {
                     'width': 1,
+                    'overlay-opacity': 0,
                     'line-color': '#868e96',
                     'target-arrow-color': '#868e96',
                     'target-arrow-shape': 'triangle',
@@ -203,6 +225,7 @@ $(document).ready(function(){
                 style: {
                     'width': 1,
                     'line-color': '#868e96',
+                    'overlay-opacity': 0,
                     'target-arrow-color': '#868e96',
                     'target-arrow-shape': 'triangle',
                     'curve-style': 'bezier',
@@ -214,154 +237,81 @@ $(document).ready(function(){
             }
         });
 
+        {% else %}
+        for (i of lessons_data){
+            let readiness = true;
+            let skill_id = i.skill.id;
+            href = lessons_url + i.slug + "?unit={{ unit.slug }}";
+            for (j of i.skill.parents){
+                elements.push({data: {id: `${skill_id}-${j}`, source: j, target: skill_id}});
+            }
+            elements.push({data: {
+                    id: skill_id,
+                    href: href,
+                    label: i.lesson_title,
+                },
+                classes: 'center-center'
+            });
+        }
+
+        var cy = cytoscape({
+            container: document.getElementById('cy'),
+            elements: elements,
+            userZoomingEnabled: false,
+            userPanningEnabled: false,
+            autoungrabify: true,
+            style: [
+                {
+                selector: 'node',
+                style: {
+                    'background-color': '#868e96 ',
+                    'width': 'label',
+                    'height': 'label',
+                    'label': 'data(label)',
+                    'text-wrap': 'wrap',
+                    'text-max-width': 25,
+                    'padding-left': 5,
+                    'padding-right': 5,
+                    'shape': 'round-rectangle',
+                    'text-valign': 'center',
+                    'text-halign': 'center',
+                    }
+                },
+                {
+                selector: 'edge',
+                style: {
+                    'width': 1,
+                    'overlay-opacity': 0,
+                    'line-color': '#868e96',
+                    'target-arrow-color': '#868e96',
+                    'target-arrow-shape': 'triangle',
+                    'curve-style': 'bezier',
+                    }
+                },
+            ],
+            layout: {
+                name: 'dagre',
+            }
+        });
+
+        $(".progress-bar").attr("style", "width: 100%");
+        $(".progress-bar").attr("class", "progress-bar bg-secondary");
+        $(".progress-bar").attr("aria-valuenow", 100);
+        $(".progress-bar").text("Log in to see your progress!");
+
+        {% endif %}
+
         cy.$('node').on('tap', function(e){
             window.location.href = this.data('href');
         });
 
-        // Populates untraversed_skills with all skill_ids of unit lessons
-        for (i = 0; i < lessons_data.length; i++){
-            untraversed_skills.add(lessons_data[i].skill.id);
-        }
+        cy.$('node').on('mouseover', function(e){
+            $('html,body').css('cursor', 'pointer');
+        });
 
-        // Creates nodes and connections
-        while (untraversed_skills.size > 0){
-            // Create 'tiers' of card decks based on precedence
-            unit_lessons.appendChild(document.createElement("br"));
-            unit_lessons.appendChild(document.createElement("br"));
-            let deck = document.createElement("div");
-            deck.setAttribute("class", "card-deck");
-            unit_lessons.appendChild(deck);
-
-            // list filtered for lessons that are not yet traversed and whose parents have already been traversed
-            current_roots = lessons_data.filter(function(value){
-                if (traversed_skills.has(value.skill.id)){
-                    return false;
-                }
-                for (elem of untraversed_skills){
-                    if (new Set(value.skill.parents).has(elem)){
-                        return false;
-                    }
-                }
-                return true;
-            });
-
-            // Creates DOM elements for current_roots
-            for (x of current_roots){
-                // Initializing card, card_body, link, and title vars
-                let card = document.createElement("div");
-                let card_body = document.createElement("div");
-                let lesson_link = document.createElement("a");
-                let card_title = document.createElement("h5");
-
-                // Setting attributes
-                card_title.setAttribute("class", "card-title");
-                card_title.innerHTML = x.lesson_title;
-                lesson_link.setAttribute("href", lessons_url + x.slug + "?unit={{ unit.slug }}");
-                card_body.setAttribute("class", "card-body");
-                card.setAttribute("id", x.slug);
-                card.setAttribute("data-skill", x.skill.id);
-                card.setAttribute("class", "card text-center");
-
-                // Appending children
-                lesson_link.appendChild(card_title);
-                card_body.appendChild(lesson_link);
-                card.appendChild(card_body);
-                deck.appendChild(card);
-
-                // Connects each node to their parent nodes if in the graph
-                for (i of x.skill.parents){
-                    if (traversed_skills.has(i)){
-                        parent_card_id = $(`div[data-skill="${i}"]`).attr('id');
-                        jsPlumb.connect({source: parent_card_id,
-                                         target: x.slug,
-                                         paintStyle: {stroke: "rgb(153, 153, 153)", strokeWidth:1},
-                                         endpoint:"Blank",
-                                         anchor:["Top", "Bottom"],
-                                         connector:["Bezier", {curviness: 20}]});
-                    } else {
-                        // pass
-                    }
-                    jsPlumb.repaintEverything();
-                }
-            }
-
-            // Update remaining_topological_orders and traversed_topological_orders using nl
-            for (elem of current_roots){
-                untraversed_skills.delete(elem.skill.id);
-                traversed_skills.add(elem.skill.id);
-            }
-
-            unit_lessons.appendChild(document.createElement("br"));
-            unit_lessons.appendChild(document.createElement("br"));
-        }
-
-        {% if user.is_authenticated %}
-            // Colors cards and connections based on user progress
-            let num_complete = 0;
-
-            for (i = 0; i < user_skill_data.length ; i++){
-                current = user_skill_data[i]
-                card_id = $(`div[data-skill="${current[0]}"]`).attr('id');
-
-                if (current[1] > 0){
-                    num_complete += 1;
-                } else {
-                    let readiness = true;
-                    let parent_ids = lessons_data.find(function(value){return value.skill.id == current[0]}).skill.parents
-
-                    for (j = 0; j < parent_ids.length ; j++){
-                        let parent_skillfulness = user_skill_data.find(function(value){return value[0] == parent_ids[j]})
-                        if (parent_skillfulness){
-                            if (parent_skillfulness[1] > 0){
-                                // pass
-                            } else {
-                                readiness = false;
-                                let parent_id = $(`div[data-skill="${parent_ids[j]}"]`).attr('id');
-                                jsPlumb.select({source: parent_id, target: card_id}).setPaintStyle({stroke: "rgb(153, 153, 153)", strokeWidth:1, dashstyle:"10 10"});
-                            }
-                        } else {
-                            // parent skill not in unit
-                        }
-                    }
-
-                    if (readiness == true){
-                        $(`#${card_id}`).find("a").attr("class", "text-warning");
-                    } else {
-                        $(`#${card_id}`).find("a").attr("class", "text-muted");
-                    }
-                }
-            }
-
-        // displays progress bar based on user progress
-            if (num_complete == lessons_data.length){
-                $(".progress-bar").attr("style", `width: 100%`);
-                $(".progress-bar").attr("aria-valuenow", 100);
-                $(".progress-bar").text("Unit Complete!");
-            } else if (num_complete == 0){
-                $(".progress").replaceWith(`<div class="alert alert-dark text-center" role="alert">
-                    Take the placement quiz if you haven't yet!
-                </div>`);
-                jsPlumb.repaintEverything();
-                $(".close").click(function(){
-                    jsPlumb.repaintEverything();
-                });
-            } else {
-                percentage = num_complete * 100 / lessons_data.length
-                $(".progress-bar").attr("style", `width: ${percentage}%`);
-                $(".progress-bar").attr("aria-valuenow", percentage);
-                $(".progress-bar").text(`${Math.round(percentage * 10) / 10}%`);
-            }
-        {% else %}
-            $(".progress-bar").attr("style", "width: 100%");
-            $(".progress-bar").attr("class", "progress-bar bg-secondary");
-            $(".progress-bar").attr("aria-valuenow", 100);
-            $(".progress-bar").text("Log in to see your progress!");
-        {% endif %}
-    });
-
-    // on window resize jsPlumb repaint
-    $(window).resize(function(){
-        jsPlumb.repaintEverything();
+        cy.$('node').on('mouseout', function(e){
+            $('html,body').css('cursor', 'default');
+        });
     });
 
     {% if user.is_authenticated %}

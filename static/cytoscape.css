@@ -3,4 +3,5 @@
   height: 80vh;
   margin: auto;
   z-index: 999;
+  font-family: inherit;
 }
