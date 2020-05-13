@@ -162,10 +162,14 @@ $(document).ready(function(){
                 {
                 selector: 'node[status=0]',
                 style: {
-                    'background-color': '#868e96 ',
+                    'border-width': 1,
+                    'border-style': 'dashed',
+                    'border-color': '#868e96',
+                    'background-color': '#ffffff',
                     'width': 'label',
                     'height': 'label',
                     'label': 'data(label)',
+                    'color': '#868e96',
                     'text-wrap': 'wrap',
                     'text-max-width': 25,
                     'padding-left': 5,
@@ -178,10 +182,14 @@ $(document).ready(function(){
                 {
                 selector: 'node[status=1]',
                 style: {
-                    'background-color': '#ffc107',
+                    'border-width': 1,
+                    'border-style': 'dashed',
+                    'border-color': '#ffc107',
+                    'background-color': '#ffffff',
                     'width': 'label',
                     'height': 'label',
                     'label': 'data(label)',
+                    'color': '#000000',
                     'text-wrap': 'wrap',
                     'text-max-width': 25,
                     'padding-left': 5,
@@ -194,10 +202,14 @@ $(document).ready(function(){
                 {
                 selector: 'node[status=2]',
                 style: {
-                    'background-color': '#0275d8',
+                    'border-width': 3,
+                    'border-style': 'solid',
+                    'border-color': '#0275d8',
+                    'background-color': '#ffffff',
                     'width': 'label',
                     'height': 'label',
                     'label': 'data(label)',
+                    'color': '#000000',
                     'text-wrap': 'wrap',
                     'text-max-width': 25,
                     'padding-left': 5,
@@ -214,8 +226,10 @@ $(document).ready(function(){
                     'overlay-opacity': 0,
                     'line-color': '#868e96',
                     'target-arrow-color': '#868e96',
-                    'target-arrow-shape': 'triangle',
-                    'curve-style': 'bezier',
+                    'target-arrow-shape': 'none',
+                    'curve-style': 'straight',
+                    'source-endpoint': '180deg',
+                    'target-endpoint': '0deg',
                     'line-style': 'dashed',
                     'line-dash-pattern': [10, 10]
                     }
@@ -227,8 +241,10 @@ $(document).ready(function(){
                     'line-color': '#868e96',
                     'overlay-opacity': 0,
                     'target-arrow-color': '#868e96',
-                    'target-arrow-shape': 'triangle',
-                    'curve-style': 'bezier',
+                    'target-arrow-shape': 'none',
+                    'curve-style': 'straight',
+                    'source-endpoint': '180deg',
+                    'target-endpoint': '0deg',
                     }
                 }
             ],
@@ -264,10 +280,14 @@ $(document).ready(function(){
                 {
                 selector: 'node',
                 style: {
-                    'background-color': '#868e96 ',
+                    'border-width': 1,
+                    'border-style': 'solid',
+                    'border-color': '#868e96',
+                    'background-color': '#ffffff',
                     'width': 'label',
                     'height': 'label',
                     'label': 'data(label)',
+                    'color': '#000000',
                     'text-wrap': 'wrap',
                     'text-max-width': 25,
                     'padding-left': 5,
@@ -284,8 +304,10 @@ $(document).ready(function(){
                     'overlay-opacity': 0,
                     'line-color': '#868e96',
                     'target-arrow-color': '#868e96',
-                    'target-arrow-shape': 'triangle',
-                    'curve-style': 'bezier',
+                    'target-arrow-shape': 'none',
+                    'curve-style': 'straight',
+                    'source-endpoint': '180deg',
+                    'target-endpoint': '0deg',
                     }
                 },
             ],
@@ -307,10 +329,12 @@ $(document).ready(function(){
 
         cy.$('node').on('mouseover', function(e){
             $('html,body').css('cursor', 'pointer');
+            this.css({'background-color': '#d4ebf2'})
         });
 
         cy.$('node').on('mouseout', function(e){
             $('html,body').css('cursor', 'default');
+            this.css({'background-color': '#ffffff'})
         });
     });
 

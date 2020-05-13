@@ -1,0 +1,170 @@
+<p>
+  Even though it is easy to multiply small numbers in our heads, it is much more difficult to multiply big numbers.
+  For example, when we calculate \( 2 \times 4 \), it's easy to figure out that the answer is \(8\).
+  But if we wanted to calculate something like \( 284 \times 33 \), it is much more difficult to do without a calculator, or pencil and paper.
+  <br><br>
+  <b>Long multiplication</b> is the process we use to multiply big numbers. But before we talk about long multiplication, we need to first talk about how to multiply large numbers with single digit numbers.
+  Here's how we multiply large numbers with single digit numbers:
+  <ol>
+    <li>Write the large number on top of the single digit number, and match each place vertically. Write a multiplication sign on the left, and draw a horizontal line underneath the bottom number.</li>
+    <li>Look at the digit in the ones' column of the top number. Multiply this digit with the single digit number.</li>
+    <li>If there is a tiny number on top of the column you're looking at, add this tiny number to the result you just got. If not, skip this step!</li>
+      <ul>
+        <li>If the new result is a one-digit number:</li>
+        <ul>
+          <li>Write the result underneath the line in the same column.</li>
+        </ul>
+        <li>If the new result is a two-digit number:</li>
+        <ul>
+          <li>Write the result's ones' place digit underneath the same column</li>
+          <li>Write the result's ones' place digit on top of the column to the immediate left as a tiny number.</li>
+        </ul>
+      </ul>
+    <li>Repeat from step 2, but now looking at the column to the immediate left of the digit below the line.</li>
+    <li>When there are no columns left to look at, the number below the line is the final answer!</li>
+  </ol>
+  Let's look at an example.
+<br><br>
+  Calculate \( 214 \times 3 \).<br>
+  First, we set the numbers up by writing the two numbers vertically and matching the digits in step 1:
+  $$
+  \begin{matrix}
+  &2&1&4 \\
+  \times &&&3 \\
+  \hline
+  \end{matrix}
+  $$
+  In step 2, we calculate \( 4 \times 3 \), and get the result of \(12\). Because there is no tiny number on top of the ones' column, we skip step 2.<br>
+  Because our result is a two-digit number, we write the result's ones' digit (\(2\)) underneath the line in the same column, and write the result's tens' digit (\(1\))on top of the column to the immediate left as a tiny number like so:
+  $$
+  \begin{matrix}
+    &&\tiny 1 \\
+    &2&1&4 \\
+   \times &&&3 \\
+    \hline
+    &&&2
+  \end{matrix}
+  $$
+  Then, we repeat from step 2, but look at the place immediately to the left instead.<br>
+  In step 2, we calculate \( 1 \times 3 \), and get the result of \(3\). Because there is a tiny number on top of the tens' column (\(1\)), we add this number to the result we just got, and get a new result of \(4\).<br>
+  Because our result is a one-digit number, we write the result underneath the line in the same column like so:
+  $$
+  \begin{matrix}
+    &&\tiny 1 \\
+    &2&1&4 \\
+   \times &&&3 \\
+    \hline
+    &&4&2
+  \end{matrix}
+  $$
+  Again, we repeat step 2, and look at the hundreds column. We calculate \( 2 \times 3 \), and get the result of \(6\). Because there is no tiny number on top of the hundreds' column, we skip step 2.<br>
+  Because our result is a one-digit number, we write the result underneath the line in the same column like so:
+  $$
+  \begin{matrix}
+    &&\tiny 1 \\
+    &2&1&4 \\
+   \times &&&3 \\
+    \hline
+    &6&4&2
+  \end{matrix}
+  $$
+  And because there are no more columns to the left, we are done with the result of \( 214 \times 3 \) being the number underneath the line, \( 642 \)!
+<br><br>
+<div class="card">
+    <div class="card-header">
+        <h5>Exercise 1</h5>
+    </div>
+    <div class="card-body">
+        <p>Calculate \( 6 \times 275 \).</p>
+        <br>
+        <a class="btn btn-primary" data-toggle="collapse" href="#ex1-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex1-solution">Show solution</a>
+    </div>
+    <div id="ex1-solution" class="collapse hide" aria-labelledby="ex1-solution">
+        <div class="card-footer">
+            The correct answer is 1650.
+            <br><br>
+            $$
+            \begin{matrix}
+            \tiny 1&\tiny 4&\tiny 3 \\
+            &2&7&5 \\
+            \times &&&6 \\
+            \hline
+            1&6&5&0
+            \end{matrix}
+            $$
+        </div>
+    </div>
+</div>
+<br><br>
+Now that we know how to multiply a large number with a one-digit number, we can talk about multiplying two large numbers — long multiplication!
+<ol>
+    <li>Write the larger number on top of the smaller number, and match each place vertically. Write a multiplication sign on the left, and draw a horizontal line underneath the bottom number.</li>
+    <li>Multiply the larger number with each digit of the smaller number individually, in the same way you multiply a large number and a one-digit number as we have done above.</li>
+    <li>For each result we get, write it underneath the horizontal line by aligning the ones' place of the result with column the original digit was in.</li>
+    <li>After writing all the results down, draw a new horizontal line underneath. Add the the numbers between the two horizontal lines as you would in long addition, and the final result is the number underneath the second line.</li>
+</ol>
+  Let's look at an example of long division.
+<br><br>
+  Calculate \( 175 \times 18 \).<br>
+  As always, we first set up the numbers like so:
+  $$
+  \begin{matrix}
+  &1&7&5 \\
+  \times &&1&8 \\
+  \hline
+  \end{matrix}
+  $$
+  In step 2, we multiply the larger number with each digit of the smaller number individually. In other words, we calculate \(175 \times 8 \) and \(175 \times 1 \).<br>
+  Done correctly, we should get \(175 \times 8 = 1400 \) and \(175 \times 1 = 175\).<br>
+  In step 3, we align the ones' place of the result of \(175 \times 8 = 1400 \) with the column the \(8\) was originally in, and the ones' place of the result of \(175 \times 1 = 175 \) with the column the \(1\) was originally in like so:
+  $$
+  \begin{matrix}
+  &&1&7&5 \\
+  &\times &&1&8 \\
+  \hline
+  &1&4&0&0 \\
+  +&1&7&5& \\
+  \hline
+  \end{matrix}
+  $$
+  Finally, we add the numbers in between the two horizontal lines as we would in long addition:
+  $$
+  \begin{matrix}
+  &&1&7&5 \\
+  &\times &&1&8 \\
+  \hline
+  &1&4&0&0 \\
+  +&1&7&5& \\
+  \hline
+  &3&1&5&0
+  \end{matrix}
+  $$
+<div class="card">
+    <div class="card-header">
+        <h5>Exercise 2</h5>
+    </div>
+    <div class="card-body">
+        <p>Calculate \( 257 \times 106 \).</p>
+        <br>
+        <a class="btn btn-primary" data-toggle="collapse" href="#ex2-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex2-solution">Show solution</a>
+    </div>
+    <div id="ex2-solution" class="collapse hide" aria-labelledby="ex2-solution">
+        <div class="card-footer">
+            The correct answer is 27242.
+            <br><br>
+              $$
+              \begin{matrix}
+              &&&2&5&7 \\
+              &&\times &1&0&6 \\
+              \hline
+              &&1&5&4&2 \\
+              +&&&&0& \\
+              +&2&5&7&&& \\
+              \hline
+              &2&7&2&4&2
+              \end{matrix}
+              $$
+        </div>
+    </div>
+</div>
+</p>

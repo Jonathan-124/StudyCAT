@@ -40,7 +40,7 @@ class Skill(models.Model):
 
     class Meta:
         # Order skills by their topological order
-        ordering = ['topological_order']
+        ordering = ['name']
 
     def __str__(self):
         return self.name
