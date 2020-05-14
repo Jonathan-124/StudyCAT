@@ -13,8 +13,11 @@
     </div>
     {% endif %}
 </div>
+<br>
 {% if not user.is_authenticated %}
 <p><a href="{% url 'login' %}">Log in</a> to see your progress!</p>
+{% else %}
+<div id="progress-message" class="alert alert-primary text-center d-none" role="alert"></div>
 {% endif %}
 <br>
 
@@ -33,6 +36,7 @@
     <p class="card-text">{{ unit.description }}</p>
   </div>
 </div>
+<br>
 {% endfor %}
 
 {% if user.is_authenticated %}
@@ -75,20 +79,45 @@
 {% if user.is_authenticated %}
 $(document).ready(function(){
     $.get("{% url 'get_curriculum_completion_status' curriculum.id %}", function(data, status){
-      for (i of data){
-        percentage = i.percentage * 100
-        if (percentage == 100){
-          document.getElementById(i.slug).setAttribute("style", "width: 100%");
-          document.getElementById(i.slug).setAttribute("aria-valuenow", 100);
-          document.getElementById(i.slug).innerHTML = "Unit Complete!";
-        } else if (percentage == 0){
-            document.getElementById(i.slug).parentElement.innerHTML = "0%"
-        } else {
-          document.getElementById(i.slug).setAttribute("style", `width: ${percentage}%`);
-          document.getElementById(i.slug).setAttribute("aria-valuenow", percentage);
-          document.getElementById(i.slug).innerHTML = `${Math.round(percentage * 10) / 10}%`;
+        let num_lessons = 0;
+        let num_completed = 0;
+        for (i of data.curriculum_status){
+            percentage = i.status[0] / i.status[1] * 100
+            num_lessons += i.status[1]
+            num_completed += i.status[0]
+            if (percentage == 100){
+                document.getElementById(i.slug).setAttribute("style", "width: 100%");
+                document.getElementById(i.slug).setAttribute("aria-valuenow", 100);
+                document.getElementById(i.slug).innerHTML = "Unit Complete!";
+            } else if (percentage == 0){
+                document.getElementById(i.slug).parentElement.innerHTML = "0%"
+            } else {
+                document.getElementById(i.slug).setAttribute("style", `width: ${percentage}%`);
+                document.getElementById(i.slug).setAttribute("aria-valuenow", percentage);
+                document.getElementById(i.slug).innerHTML = `${Math.round(percentage * 10) / 10}%`;
+            }
         }
-      }
+        if (data.test_date){
+            test_date = new Date(data.test_date);
+            days_remaining = Math.floor((test_date - Date.now()) / (1000*60*60*24));
+            if (-1 < days_remaining && days_remaining < 7){
+                // "It's the final stretch, you can do it!"
+            } else if (num_lessons - num_completed > 0 && days_remaining >= 3){
+                const review_days = Math.floor(num_lessons / 7);
+                const lessons_per_day =  (num_lessons - num_completed) / (days_remaining - review_days);
+                let progress_banner = document.getElementById("progress-message");
+                if (lessons_per_day < 0.5){
+                    progress_banner.innerHTML = `You're ahead of schedule! To stay on track, study a new lesson every ${Math.floor(1 / lessons_per_day)} days and <b>review every day</b>!`
+                } else if (lessons_per_day < 1) {
+                    progress_banner.innerHTML = "You're right on track! To stay on track, study a new lesson and <b>review every day</b>!"
+                } else {
+                    progress_banner.innerHTML = `Don't fall behind! Study ${Math.ceiling(lessons_per_day)} new lessons every day and <b>review every day</b> to get back on track!`
+                }
+                progress_banner.setAttribute("class", "alert alert-primary text-center")
+            } else {
+                // pass
+            }
+        }
     });
 
 

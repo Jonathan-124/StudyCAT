@@ -40,8 +40,12 @@ def get_curriculum_completion_status(request, *args, **kwargs):
     except ObjectDoesNotExist:
         return Response({"message": "Curriculum does not exist"}, status=status.HTTP_400_BAD_REQUEST)
     else:
-        data = user_profile.curriculum_units_completion_percentage(curriculum)
-        return Response(data)
+        curriculum_status = user_profile.curriculum_units_completion_percentage(curriculum)
+        currently_studying = CurrentlyStudying.objects.filter(user_profile=user_profile, curriculum=curriculum)
+        if currently_studying:
+            return Response({"curriculum_status": curriculum_status, "test_date": currently_studying[0].test_date})
+        else:
+            return Response({"curriculum_status": curriculum_status})
 
 
 # Receives unit pk, returns serialized unit data

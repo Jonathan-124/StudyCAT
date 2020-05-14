@@ -38,7 +38,7 @@ class UserProfile(models.Model):
         passed_skills = Skill.objects.filter(user_skillfulness__user_profile=self).filter(user_skillfulness__skill_level__gte=1)
         terminus_skilledges = SkillEdge.objects.filter(parent_skill__in=passed_skills).exclude(child_skill__in=passed_skills).select_related('parent_skill')
         for skilledge in terminus_skilledges:
-            if not skilledge.parent_skill.get_children_skills.intersection(passed_skills):
+            if not skilledge.parent_skill.get_children_skills().intersection(passed_skills):
                 terminus_skill_ids.append(skilledge.parent_skill.id)
         return terminus_skill_ids
 
@@ -73,19 +73,18 @@ class UserProfile(models.Model):
             terminus_skills = self.retrieve_terminus_skills()
             num -= 1
 
-    # Receives unit slug, returns percentage of skills in unit in which the user's skill_level > 0.5
+    # Receives unit slug, returns tuple of counts
     def unit_completion_percentage(self, unit_slug):
         unit_skillfulness = self.user_skillfulness.filter(skill__lesson__units__slug=unit_slug)
-        percentage = unit_skillfulness.filter(skill_level__gte=1).count() / unit_skillfulness.count()
-        return percentage
+        return unit_skillfulness.filter(skill_level__gte=1).count(), unit_skillfulness.count()
 
-    # Receives curriculum, list of objects with unit slug and their completion percentages
+    # Receives curriculum, list of objects with unit slug and their completion tuples
     def curriculum_units_completion_percentage(self, curriculum_obj):
-        percentages = []
+        status = []
         unit_slugs = curriculum_obj.units.values_list('slug', flat=True)
         for slug in unit_slugs:
-            percentages.append({"slug": slug, "percentage": self.unit_completion_percentage(slug)})
-        return percentages
+            status.append({"slug": slug, "status": self.unit_completion_percentage(slug)})
+        return status
 
 
 # Creates UserProfile object when CustomUser is created
