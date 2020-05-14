@@ -4,84 +4,129 @@
 {% block title %}Profile Update{% endblock title %}
 
 {% block content %}
+
 <form method="post">
     {% csrf_token %}
-    {{ form|crispy }}
-<br>
-<table class="table">
-    <p>Change your current courses</p>
-    {{ currently_studying_update_form.management_form|crispy }}
-
-    {% for form in currently_studying_update_form.forms %}
-        {% if forloop.first %}
-            <thead>
+    <h5>My courses</h5>
+    <table class="table">
+        <thead>
             <tr>
-                {% for field in form.visible_fields %}
-                    <th>{{ field.label|capfirst }}</th>
-                {% endfor %}
+                <th style="width: 60%">Course</th>
+                <th style="width: 30%">Test Date</th>
+                <th class="text-center" style="width: 10%">Delete</th>
             </tr>
-            </thead>
-        {% endif %}
-        <tr class="{% cycle row1 row2 %} formset_row">
-            {% for field in form.visible_fields %}
-                <td>
-                    {# Include the hidden fields in the form #}
-                    {% if forloop.first %}
-                        {% for hidden in form.hidden_fields %}
-                            {{ hidden }}
-                        {% endfor %}
-                    {% endif %}
-                    {{ field.errors.as_ul }}
-                    {{ field|as_crispy_field }}
-                </td>
-            {% endfor %}
-        </tr>
-    {% endfor %}
-</table>
-<table class="table">
-    <p>Add a new course</p>
-    {{ currently_studying_add_form.management_form|crispy }}
-
-    {% for form in currently_studying_add_form.forms %}
-        {% if forloop.first %}
-            <thead>
+        </thead>
+        <tbody id="update-courses">
+        </tbody>
+    </table>
+    <br>
+    <h5>Add a course</h5>
+    <table class="table">
+        <thead>
             <tr>
-                {% for field in form.visible_fields %}
-                    <th>{{ field.label|capfirst }}</th>
-                {% endfor %}
+                <th style="width: 60%">Course</th>
+                <th style="width: 40%">Test Date</th>
             </tr>
-            </thead>
-        {% endif %}
-        <tr class="{% cycle row1 row2 %} formset_row">
-            {% for field in form.visible_fields %}
-                <td>
-                    {# Include the hidden fields in the form #}
-                    {% if forloop.first %}
-                        {% for hidden in form.hidden_fields %}
-                            {{ hidden }}
-                        {% endfor %}
-                    {% endif %}
-                    {{ field.errors.as_ul }}
-                    {{ field|as_crispy_field }}
-                </td>
-            {% endfor %}
+        </thead>
+        <tr>
+            <td>
+                <select id="add-course" class="form-control">
+                    <option id="default" selected>--Select a course to add--</option>
+                </select>
+            </td>
+            <td><input type="text" class="form-control" placeholder="yyyy-mm-dd" data-toggle="datepicker"></td>
         </tr>
-    {% endfor %}
-</table>
-    <button class="btn btn-primary ml-2" type="submit">Update</button>
+    </table>
+    <button id="submit-update" class="btn btn-primary ml-2" type="submit">Update</button>
 </form>
-
+<br>
 <script type="text/javascript">
-    $('.dateinput.form-control').datepicker();
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== ''){
+            let cookies = document.cookie.split(';');
+            for (i = 0; i < cookies.length; i++){
+                let cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')){
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
 
-    $('.formset_row').formset({
-        addText: 'add course',
-        deleteText: 'remove',
-        prefix: 'currently_studying_through'
+    const csrftoken = getCookie('csrftoken');
+
+    // These HTTP methods do not require CSRF protection
+    function csrfSafeMethod(method) {
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    // Setting up ajax headers to include csrftoken
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
     });
 
-    $('.add-row').on('click', function(e){
-        $('.dateinput.form-control').datepicker();
+    let currently_studying;
+    let new_course;
+    $.get("{% url 'get_profile_update_data' %}", function(data, status){
+        console.log(data);
+        currently_studying = data.currently_studying;
+        let tbody = document.getElementById("update-courses");
+        let selections = document.getElementById("add-course")
+        for (i of currently_studying){
+            let row = document.createElement("tr");
+            row.setAttribute("id", i.curriculum.id);
+
+            let curriculum_box = document.createElement("td");
+            let curriculum_input = document.createElement("input");
+            curriculum_input.setAttribute("type", "text");
+            curriculum_input.setAttribute("class", "form-control");
+            curriculum_input.setAttribute("value", i.curriculum.name);
+            curriculum_input.setAttribute("disabled", true);
+            curriculum_box.appendChild(curriculum_input);
+
+            let date_box = document.createElement("td");
+            let date_input = document.createElement("input");
+            date_input.setAttribute("type", "text");
+            date_input.setAttribute("class", "form-control");
+            date_input.setAttribute("data-toggle", "datepicker")
+            date_input.setAttribute("placeholder", "yyyy-mm-dd");
+            if (i.test_date){
+                date_input.setAttribute("value", i.test_date);
+            }
+            date_box.appendChild(date_input);
+
+            let del_box = document.createElement("td");
+            let del_input = document.createElement("input");
+            del_input.setAttribute("type", "checkbox");
+            del_input.setAttribute("class", "checkbox");
+            del_box.setAttribute("class", "text-center")
+            del_box.appendChild(del_input);
+
+            row.appendChild(curriculum_box);
+            row.appendChild(date_box);
+            row.appendChild(del_box);
+            tbody.appendChild(row);
+        }
+        for (i of data.curricula){
+            let choice = document.createElement("option");
+            choice.setAttribute("id", "i.id");
+            choice.innerHTML = i.name;
+            selections.appendChild(choice);
+        }
+        $('[data-toggle="datepicker"]').datepicker({format: 'yyyy-mm-dd'});
+    });
+
+    $(document).on('click', '#submit-update', function(e){
+        e.preventDefault();
+        // do something...
     });
 </script>
 {% endblock content %}

@@ -11,30 +11,15 @@ from django.dispatch import receiver
 
 # UserProfile model - additional attributes to the user model not used for authentication
 # user - one-to-one relationship to CustomUser model
-# user_type - choice of what type of user they are
 # skills - each UserProfile object has one relationship to every Skill object through the Skillfulness through model
 # currently_studying - one-to-one relationship to Curriculum model, what the user is currently studying
 # test_date - (if exists) what date the user will take their test
-# user_type, currently_studying, test_date are fields updated in the pre-placement test questionnaire
 class UserProfile(models.Model):
     user = models.OneToOneField(
         get_user_model(),
         on_delete=models.CASCADE,
         related_name='profile',
     )
-
-    CURRENT_STUDENT = 'CS'
-    CAREER_RELATED = 'CR'
-    MATHEMATICS_INSTRUCTOR = 'MI'
-    SELF_STUDY = 'SS'
-
-    USER_TYPES = [
-        (CURRENT_STUDENT, 'Current Student'),
-        (CAREER_RELATED, 'Career Related'),
-        (MATHEMATICS_INSTRUCTOR, 'Mathematics Instructor'),
-        (SELF_STUDY, 'Self Study'),
-    ]
-    user_type = models.CharField(max_length=2, choices=USER_TYPES, default=SELF_STUDY)
     currently_studying = models.ManyToManyField(Curriculum, through='CurrentlyStudying', through_fields=('user_profile', 'curriculum'))
     skills = models.ManyToManyField(Skill, through='Skillfulness', through_fields=('user_profile', 'skill'))
 
@@ -155,6 +140,6 @@ class CurrentlyStudying(models.Model):
     test_date = models.DateField(blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        if CurrentlyStudying.objects.filter(user_profile=self.user_profile, curriculum=self.curriculum).exists():
-            raise ValidationError('User has already selected curriculum for currently studying')
+        if self._state.adding and CurrentlyStudying.objects.filter(user_profile=self.user_profile, curriculum=self.curriculum).exists():
+            raise ValidationError('Cannot create a currently studying object as user already has one.')
         return super(CurrentlyStudying, self).save(*args, **kwargs)

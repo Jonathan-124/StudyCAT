@@ -2,16 +2,18 @@ import json
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.db.models import F
-from rest_framework import status
+from rest_framework import status, generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from curricula.models import Curriculum
+from curricula.serializers import CurriculumSerializer
 from units.models import Unit
 from units.serializers import UnitSerializer
 from lessons.models import Lesson
 from lessons.serializers import LessonSerializer
 from skills.models import Skill
-from userprofiles.models import Skillfulness
+from userprofiles.models import Skillfulness, CurrentlyStudying
+from userprofiles.serializers import CurrentlyStudyingSerializer
 from questions.models import Question
 from questions.serializers import QuestionSerializer
 from .serializers import PostTestUpdateSerializer, PostPlacementBulkUpdateSerializer
@@ -193,3 +195,27 @@ def post_placement_bulk_update(request, *args, **kwargs):
         return Response({"message": "success"}, status=status.HTTP_200_OK)
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# Get request that returns two serialized lists
+# 1st list is all of request.user's currently studying objects, 2nd list is list of all other valid curriculum objects
+# untested for empty querysets
+@api_view()
+@login_required()
+def get_profile_update_data(request, *args, **kwargs):
+    user_profile = request.user.profile
+    currently_studying_objs = CurrentlyStudying.objects.filter(user_profile=user_profile)
+    valid_curricula_objs = Curriculum.objects.exclude(id__in=currently_studying_objs.values_list('curriculum__id', flat=True))
+    serialized_currently_studying_objs = CurrentlyStudyingSerializer(currently_studying_objs, many=True).data
+    serialized_valid_curricula_objs = CurriculumSerializer(valid_curricula_objs, many=True).data
+    return Response({"currently_studying": serialized_currently_studying_objs, "curricula": serialized_valid_curricula_objs}, status=status.HTTP_200_OK)
+
+
+class CreateCurrentlyStudying(generics.CreateAPIView):
+    queryset = CurrentlyStudying.objects.all()
+    serializer_class = CurrentlyStudyingSerializer
+
+
+class UpdateCurrentlyStudying(generics.RetrieveUpdateDestroyAPIView):
+    queryset = CurrentlyStudying.objects.all()
+    serializer_class = CurrentlyStudyingSerializer

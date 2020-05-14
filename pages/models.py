@@ -23,12 +23,14 @@ class GeneralBugReport(models.Model):
 # reason - choicefield of why the question was reported
 class QuestionBugReport(GeneralBugReport):
     PROMPT_ISSUE = 'PI'
+    PARTIAL_CREDIT = 'PC'
     ANSWER_ISSUE = 'AI'
     DISPLAY_ISSUE = 'DI'
     OTHER = 'OT'
 
     REPORT_REASON = [
         (PROMPT_ISSUE, 'There is something wrong with the question prompt'),
+        (PARTIAL_CREDIT, 'My answer deserves partial credit (please write down your answer)'),
         (ANSWER_ISSUE, 'There is something wrong with the answer(s)'),
         (DISPLAY_ISSUE, 'The question is not displaying correctly'),
         (OTHER, 'Other'),
@@ -41,12 +43,14 @@ class LessonBugReport(GeneralBugReport):
     FACTUAL_ISSUE = 'FI'
     TYPOGRAPHICAL_ISSUE = 'TI'
     DISPLAY_ISSUE = 'DI'
+    SEQUENCING_ISSUE = 'SI'
     OTHER = 'OT'
 
     REPORT_REASON = [
         (FACTUAL_ISSUE, 'There is something factually incorrect with the lesson'),
         (TYPOGRAPHICAL_ISSUE, 'There are typos present in the lesson'),
         (DISPLAY_ISSUE, 'The lesson is not displaying correctly'),
+        (SEQUENCING_ISSUE, 'There are knowledge gaps between this lesson and previous/subsequent lessons'),
         (OTHER, 'Other'),
     ]
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, related_name='bug_reports')
