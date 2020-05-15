@@ -166,7 +166,7 @@ def post_test_update(request, *args, **kwargs):
         try:
             skillfulness = Skillfulness.objects.get(user_profile=user_profile, skill__id=request.data["skill_pk"])
         except ObjectDoesNotExist:
-            Response({"message": "Object does not exist"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"message": "Object does not exist"}, status=status.HTTP_400_BAD_REQUEST)
         else:
             if request.data["score"] > 0.6:
                 user_profile.streak_update()
@@ -216,11 +216,41 @@ def get_profile_update_data(request, *args, **kwargs):
     return Response({"currently_studying": serialized_currently_studying_objs, "curricula": serialized_valid_curricula_objs}, status=status.HTTP_200_OK)
 
 
-class CreateCurrentlyStudying(generics.CreateAPIView):
-    queryset = CurrentlyStudying.objects.all()
-    serializer_class = CurrentlyStudyingSerializer
+@api_view(['POST'])
+@login_required()
+def create_currently_studying(request, *args, **kwargs):
+    user_profile = request.user.profile
+    try:
+        curriculum_obj = Curriculum.objects.get(id=request.data["curriculum"])
+        CurrentlyStudying.objects.create(user_profile=user_profile, curriculum=curriculum_obj, test_date=request.data["test_date"])
+    except:
+        return Response({"message": "Unable to create object"}, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response({"message": "success"}, status=status.HTTP_200_OK)
 
 
-class UpdateCurrentlyStudying(generics.RetrieveUpdateDestroyAPIView):
-    queryset = CurrentlyStudying.objects.all()
-    serializer_class = CurrentlyStudyingSerializer
+@api_view(['PATCH'])
+@login_required()
+def update_currently_studying(request, *args, **kwargs):
+    user_profile = request.user.profile
+    try:
+        currently_studying_obj = CurrentlyStudying.objects.get(user_profile=user_profile, curriculum=request.data["curriculum"])
+    except ObjectDoesNotExist:
+        return Response({"message": "Object does not exist"}, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        currently_studying_obj.test_date = request.data["test_date"]
+        currently_studying_obj.save(update_fields=["test_date"])
+        return Response({"message": "success"}, status=status.HTTP_200_OK)
+
+
+@api_view(['DELETE'])
+@login_required()
+def delete_currently_studying(request, *args, **kwargs):
+    user_profile = request.user.profile
+    try:
+        currently_studying_obj = CurrentlyStudying.objects.get(user_profile=user_profile, curriculum=request.data["curriculum"])
+    except ObjectDoesNotExist:
+        return Response({"message": "Object does not exist"}, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        currently_studying_obj.delete()
+        return Response({"message": "success"}, status=status.HTTP_200_OK)

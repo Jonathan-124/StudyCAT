@@ -118,7 +118,7 @@
         }
         for (i of data.curricula){
             let choice = document.createElement("option");
-            choice.setAttribute("id", "i.id");
+            choice.setAttribute("id", i.id);
             choice.innerHTML = i.name;
             selections.appendChild(choice);
         }
@@ -129,30 +129,64 @@
         e.preventDefault();
         for (i of currently_studying){
             if ($("#" + i.curriculum.id + "-checkbox").is(':checked')){
-                console.log("checked")
-                // send delete request
+                $.ajax({
+                    url: "{% url 'delete_currently_studying' %}",
+                    type: "DELETE",
+                    data: {"curriculum": i.curriculum.id},
+                    success: function(data, status){
+                        // redirect...
+                    }
+                })
             } else if ($("#" + i.curriculum.id + "-date").val()){
                 input_test_date = $("#" + i.curriculum.id + "-date").val();
                 if (input_test_date != i.test_date){
-                    // send patch request
-                    console.log("update test date")
+                    $.ajax({
+                        url: "{% url 'update_currently_studying' %}",
+                        type: "PATCH",
+                        data: {"curriculum": i.curriculum.id, "test_date": input_test_date},
+                        success: function(data, status){
+                            // redirect...
+                        }
+                    })
                 }
             } else {
                 if (i.test_date){
-                    // send patch request
-                    console.log("create test date")
+                    $.ajax({
+                        url: "{% url 'update_currently_studying' %}",
+                        type: "PATCH",
+                        data: {"curriculum": i.curriculum.id},
+                        success: function(data, status){
+                            // redirect...
+                        }
+                    });
                 }
             }
         }
         let selections = document.getElementById("add-course")
         selected_index = selections.selectedIndex;
         if (selections.options[selected_index].id != "default"){
-            course_id = selections.options[selectedIndex].id;
-            if ($("#add-course-date").text()){
-                input_test_date = $("#add-course-date").text();
-                // send create request
+            course_id = parseInt(selections.options[selected_index].id);
+            if ($("#add-course-date").val()){
+                input_test_date = $("#add-course-date").val();
+                console.log(course_id);
+                console.log(input_test_date);
+                $.ajax({
+                    url: "{% url 'create_currently_studying' %}",
+                    type: "POST",
+                    data: {"curriculum": course_id, "test_date": input_test_date},
+                    success: function(data, status){
+                        // redirect...
+                    }
+                });
             } else {
-                // send create request
+                $.ajax({
+                    url: "{% url 'create_currently_studying' %}",
+                    type: "POST",
+                    data: {"curriculum": course_id},
+                    success: function(data, status){
+                        // redirect...
+                    }
+                });
             }
         }
     });
