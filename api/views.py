@@ -16,7 +16,7 @@ from userprofiles.models import Skillfulness, CurrentlyStudying
 from userprofiles.serializers import CurrentlyStudyingSerializer
 from questions.models import Question
 from questions.serializers import QuestionSerializer
-from .serializers import PostTestUpdateSerializer, PostPlacementBulkUpdateSerializer
+from .serializers import PostTestUpdateSerializer, PostPlacementBulkUpdateSerializer, CurrentlyStudyingUpdateSerializer
 
 
 # Returns JSON object of list of serialized lessons and one random question that are both at the user's terminus level
@@ -220,37 +220,56 @@ def get_profile_update_data(request, *args, **kwargs):
 @login_required()
 def create_currently_studying(request, *args, **kwargs):
     user_profile = request.user.profile
-    try:
-        curriculum_obj = Curriculum.objects.get(id=request.data["curriculum"])
-        CurrentlyStudying.objects.create(user_profile=user_profile, curriculum=curriculum_obj, test_date=request.data["test_date"])
-    except:
-        return Response({"message": "Unable to create object"}, status=status.HTTP_400_BAD_REQUEST)
+    serializer = CurrentlyStudyingUpdateSerializer(data=request.data)
+    if serializer.is_valid():
+        try:
+            curriculum_obj = Curriculum.objects.get(id=request.data["curriculum"])
+            if "test_date" in request.data:
+                CurrentlyStudying.objects.create(user_profile=user_profile, curriculum=curriculum_obj,
+                                                 test_date=request.data["test_date"])
+            else:
+                CurrentlyStudying.objects.create(user_profile=user_profile, curriculum=curriculum_obj)
+        except:
+            return Response({"message": "Unable to create object"}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({"message": "success"}, status=status.HTTP_200_OK)
     else:
-        return Response({"message": "success"}, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['PATCH'])
 @login_required()
 def update_currently_studying(request, *args, **kwargs):
     user_profile = request.user.profile
-    try:
-        currently_studying_obj = CurrentlyStudying.objects.get(user_profile=user_profile, curriculum=request.data["curriculum"])
-    except ObjectDoesNotExist:
-        return Response({"message": "Object does not exist"}, status=status.HTTP_400_BAD_REQUEST)
+    serializer = CurrentlyStudyingUpdateSerializer(data=request.data)
+    if serializer.is_valid():
+        try:
+            currently_studying_obj = CurrentlyStudying.objects.get(user_profile=user_profile, curriculum=request.data["curriculum"])
+            if "test_date" in request.data:
+                currently_studying_obj.test_date = request.data["test_date"]
+            else:
+                currently_studying_obj.test_date = None
+            currently_studying_obj.save(update_fields=["test_date"])
+        except ObjectDoesNotExist:
+            return Response({"message": "Object does not exist"}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({"message": "success"}, status=status.HTTP_200_OK)
     else:
-        currently_studying_obj.test_date = request.data["test_date"]
-        currently_studying_obj.save(update_fields=["test_date"])
-        return Response({"message": "success"}, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['DELETE'])
 @login_required()
 def delete_currently_studying(request, *args, **kwargs):
     user_profile = request.user.profile
-    try:
-        currently_studying_obj = CurrentlyStudying.objects.get(user_profile=user_profile, curriculum=request.data["curriculum"])
-    except ObjectDoesNotExist:
-        return Response({"message": "Object does not exist"}, status=status.HTTP_400_BAD_REQUEST)
+    serializer = CurrentlyStudyingUpdateSerializer(data=request.data)
+    if serializer.is_valid():
+        try:
+            currently_studying_obj = CurrentlyStudying.objects.get(user_profile=user_profile, curriculum=request.data["curriculum"])
+            currently_studying_obj.delete()
+        except ObjectDoesNotExist:
+            return Response({"message": "Object does not exist"}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({"message": "success"}, status=status.HTTP_200_OK)
     else:
-        currently_studying_obj.delete()
-        return Response({"message": "success"}, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
