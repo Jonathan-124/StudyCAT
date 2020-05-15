@@ -31,10 +31,10 @@
         <tr>
             <td>
                 <select id="add-course" class="form-control">
-                    <option id="default" selected>--Select a course to add--</option>
+                    <option id="default" selected>-- Select a course to add --</option>
                 </select>
             </td>
-            <td><input type="text" class="form-control" placeholder="yyyy-mm-dd" data-toggle="datepicker"></td>
+            <td><input id="add-course-date" type="text" class="form-control" placeholder="yyyy-mm-dd" data-toggle="datepicker"></td>
         </tr>
     </table>
     <button id="submit-update" class="btn btn-primary ml-2" type="submit">Update</button>
@@ -76,7 +76,6 @@
     let currently_studying;
     let new_course;
     $.get("{% url 'get_profile_update_data' %}", function(data, status){
-        console.log(data);
         currently_studying = data.currently_studying;
         let tbody = document.getElementById("update-courses");
         let selections = document.getElementById("add-course")
@@ -94,6 +93,7 @@
 
             let date_box = document.createElement("td");
             let date_input = document.createElement("input");
+            date_input.setAttribute("id", i.curriculum.id + "-date");
             date_input.setAttribute("type", "text");
             date_input.setAttribute("class", "form-control");
             date_input.setAttribute("data-toggle", "datepicker")
@@ -105,6 +105,7 @@
 
             let del_box = document.createElement("td");
             let del_input = document.createElement("input");
+            del_input.setAttribute("id", i.curriculum.id + "-checkbox");
             del_input.setAttribute("type", "checkbox");
             del_input.setAttribute("class", "checkbox");
             del_box.setAttribute("class", "text-center")
@@ -126,7 +127,34 @@
 
     $(document).on('click', '#submit-update', function(e){
         e.preventDefault();
-        // do something...
+        for (i of currently_studying){
+            if ($("#" + i.curriculum.id + "-checkbox").is(':checked')){
+                console.log("checked")
+                // send delete request
+            } else if ($("#" + i.curriculum.id + "-date").val()){
+                input_test_date = $("#" + i.curriculum.id + "-date").val();
+                if (input_test_date != i.test_date){
+                    // send patch request
+                    console.log("update test date")
+                }
+            } else {
+                if (i.test_date){
+                    // send patch request
+                    console.log("create test date")
+                }
+            }
+        }
+        let selections = document.getElementById("add-course")
+        selected_index = selections.selectedIndex;
+        if (selections.options[selected_index].id != "default"){
+            course_id = selections.options[selectedIndex].id;
+            if ($("#add-course-date").text()){
+                input_test_date = $("#add-course-date").text();
+                // send create request
+            } else {
+                // send create request
+            }
+        }
     });
 </script>
 {% endblock content %}
