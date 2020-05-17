@@ -1,0 +1,299 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Unit Review{% endblock title %}
+
+{% block content %}
+<div class="jumbotron">
+    <div id="questionbox">
+        <p id="question-prompt" class=""></p>
+    </div>
+    <br>
+    <div id="answerbox" class="">
+        <div id="inputbox"></div>
+        <br>
+        <button name="submit_answer" type="submit" class="d-none">Check Answer</button>
+        <br>
+    </div>
+    <div id="feedback" class="d-none">
+        <div id="feedback-text" class="d-none" role="alert"></div>
+        <button id="next" class="btn btn-primary float-right">Next</button>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        // KaTeX function to render math elements
+        renderKatex(document.body);
+        function renderKatex(DOM) {
+            renderMathInElement(DOM, {
+            delimiters: [
+                          {left: "$$", right: "$$", display: true},
+                          {left: "\\(", right: "\\)", display: false},
+                          {left: "\\[", right: "\\]", display: true}
+                        ]
+            });
+        }
+
+        // Gets cookie w/ name attribute
+        const csrftoken = getCookie('csrftoken');
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== ''){
+                let cookies = document.cookie.split(';');
+                for (i = 0; i < cookies.length; i++){
+                    let cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')){
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        // These HTTP methods do not require CSRF protection
+        function csrfSafeMethod(method) {
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        // Setting up ajax headers to include csrftoken
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+
+        // storing DOM elements for manipulation
+        const prompt = document.getElementById("question-prompt");
+        const answerbox = document.getElementById("answerbox");
+        const inputbox = document.getElementById("inputbox");
+        const feedbackbox = document.getElementById("feedback");
+
+        // Initializing vars
+        let currentQ;
+        let incorrect_skill_ids = [];
+        let correct_skill_ids = [];
+        let question_pack;
+        let num_questions = 0;
+
+
+        // Retrieve start and end question packs for user-indicated terminal curriculum
+        // Call tester() to start the testing process
+        $.get("{% url 'get_unit_review_question_pack' unit.id %}", function(data, status){
+            question_pack = data;
+            num_questions = question_pack.length;
+            tester();
+        });
+
+        function tester() {
+            if (question_pack.length > 0) {
+                // sets currentQ to the next question in question_pack list; calls presentQuestion
+                currentQ = question_pack.pop()
+                presentQuestion();
+            } else {
+                sendResponseData();
+            }
+        }
+
+        function presentQuestion(){
+            prompt.innerHTML = currentQ.question_prompt;
+            renderKatex(prompt);
+            switch (currentQ.question_type){
+                case "MC":
+                    // Multiple Choice case
+                    let mc_inputbox = document.createElement("form");
+                    mc_inputbox.setAttribute("id", "mc_inputbox");
+                    inputbox.appendChild(mc_inputbox);
+                    currentQ.answers.forEach(answer_iterator);
+
+                    function answer_iterator(value, index, array){
+                        let choicebox = document.createElement("div");
+                        choicebox.setAttribute("class", "custom-control custom-radio");
+
+                        let input = document.createElement("input");
+                        input.setAttribute("type", "radio");
+                        input.setAttribute("id", index);
+                        input.setAttribute("name", "answer_choice");
+                        input.setAttribute("value", value.answer_correctness);
+                        input.setAttribute("class", "custom-control-input");
+                        choicebox.appendChild(input);
+
+                        let label = document.createElement("label");
+                        label.setAttribute("class", "custom-control-label");
+                        label.setAttribute("for", index);
+                        label.innerHTML = value.answer_text;
+                        choicebox.appendChild(label);
+
+                        mc_inputbox.appendChild(choicebox);
+                    }
+                    renderKatex(mc_inputbox);
+                    break;
+                case "IC":
+                    // Image Choice case
+                    // Create ic_inputbox form element, append to inputbox as child
+                    let ic_inputbox = document.createElement("form");
+                    ic_inputbox.setAttribute("id", "ic_inputbox");
+                    inputbox.appendChild(ic_inputbox);
+
+                    // For each answer choice, create choicebox, append radio input and label to choicebox
+                    // Append choicebox to ic_inputbox
+                    currentQ.answers.forEach(function(value, index, array){
+                        let choicebox = document.createElement("div");
+                        choicebox.setAttribute("class", "custom-control custom-radio custom-control-inline");
+
+                        let input = document.createElement("input");
+                        input.setAttribute("type", "radio");
+                        input.setAttribute("id", index);
+                        input.setAttribute("name", "answer_choice");
+                        input.setAttribute("value", value.answer_correctness);
+                        input.setAttribute("class", "custom-control-input");
+                        choicebox.appendChild(input);
+
+                        let label = document.createElement("label");
+                        label.setAttribute("class", "custom-control-label");
+                        label.setAttribute("for", index);
+
+                        let answer_image = document.createElement("img");
+                        answer_image.setAttribute("style", "max-width:200px;max-height:200px");
+                        answer_image.setAttribute("src", value.image_url);
+                        label.appendChild(answer_image);
+
+                        choicebox.appendChild(label);
+                        ic_inputbox.appendChild(choicebox);
+                    });
+
+                    renderKatex(ic_inputbox);
+                    break;
+                case "NI":
+                    // Numerical Input case
+                    let guppybox = document.createElement("div");
+                    guppybox.setAttribute("id", "guppybox");
+                    inputbox.appendChild(guppybox);
+                    new Guppy("guppybox");
+                    break;
+                default:
+                    $("#inputbox").text("No such question type found.");
+            }
+            // Displays "submit answer" button
+            $("button[name='submit_answer']").attr("class", "btn btn-primary float-right");
+        }
+
+        // On "submit_answer" button click
+        $("button[name='submit_answer']").on('click', function(e){
+            e.preventDefault();
+
+            // Hides "submit answer" button
+            $("button[name='submit_answer']").attr("class", "btn btn-primary d-none");
+
+            // Initializes variables to be appended to response
+            let q_id = currentQ.id;
+            let a_correctness;
+            let feedback_text = "";
+
+            // Different ways of retrieving "a_correctness" dependent on question type
+            // Different feedback text depending on answer correctness and whether feedback supplied for given answer in currentQ
+            switch(currentQ.question_type) {
+                case "MC":
+                    a_correctness = parseFloat($('input[name="answer_choice"]:checked', '#mc_inputbox').val());
+                    feedback_text = currentQ.answers[$('input[name="answer_choice"]:checked', '#mc_inputbox').attr('id')].answer_explanation
+                    break;
+                case "IC":
+                    a_correctness = parseFloat($('input[name="answer_choice"]:checked', '#ic_inputbox').val());
+                    feedback_text = currentQ.answers[$('input[name="answer_choice"]:checked', '#ic_inputbox').attr('id')].answer_explanation
+                    break;
+                case "NI":
+                    let attempt = Guppy("guppybox").asciimath();
+                    symbols_used = Guppy("guppybox").symbols_used()
+                    try {
+                        const parsed_attempt = MathExpression.fromText(attempt);
+                        let matched = currentQ.answers.find(checkAnswer);
+                        function checkAnswer(value, index, array) {
+                            return MathExpression.fromText(attempt).equals(MathExpression.fromText(value.answer_text));
+                        }
+                        if (symbols_used.length > 0){
+                            a_correctness = 0;
+                            feedback_text = "The answer should be a number!";
+                        } else if (typeof matched === "undefined") {
+                            a_correctness = 0;
+                        } else {
+                            a_correctness = parseFloat(matched.answer_correctness);
+                            feedback_text = matched.answer_explanation;
+                        }
+                    }
+                    catch(err){
+                        a_correctness = 0;
+                        feedback_text = "You have entered an invalid input!"
+                    }
+                    break;
+            }
+
+            if (a_correctness == 1){
+                $("#feedback-text").text("Correct!");
+                $("#feedback-text").attr("class", "alert alert-success");
+                correct_skill_ids.push(currentQ.skill);
+            } else if (a_correctness > 0.5) {
+                correct_answer = currentQ.answers.find(function(value, index, array){
+                    return value.answer_correctness == 1
+                });
+                $("#feedback-text").text("Close! " + feedback_text + " The correct answer is " + correct_answer.answer_text + ".");
+                $("#feedback-text").attr("class", "alert alert-warning");
+            } else {
+                correct_answer = currentQ.answers.find(function(value, index, array){
+                    return value.answer_correctness == 1
+                });
+                $("#feedback-text").text("Incorrect. " + feedback_text + " The correct answer is " + correct_answer.answer_text + ".");
+                $("#feedback-text").attr("class", "alert alert-danger");
+                incorrect_skill_ids.push(currentQ.skill);
+            }
+            renderKatex(feedbackbox);
+
+            // sets feedbackbox to be visible (contains 'next' button)
+            feedbackbox.setAttribute("class", "");
+        });
+
+        // On clicking "next" button, kills DOM nodes, calls tester()
+        $("#next").on('click', function(e){
+            e.preventDefault();
+            // to kill all children in feedbackbox
+            feedbackbox.setAttribute("class", "d-none");
+            // Removing children from questionbox and inputbox DOM
+            if (currentQ.image_url){
+                document.getElementById("questionbox").removeChild(document.getElementById("prompt-image"));
+            }
+            while (prompt.firstChild) {
+                prompt.removeChild(prompt.firstChild);
+            }
+            while (inputbox.firstChild) {
+                inputbox.removeChild(inputbox.firstChild);
+            }
+            tester();
+        });
+
+        function sendResponseData(){
+            const score = correct_skill_ids.length / num_questions;
+            const percentage_correct = Math.round(score * 1000) / 10;
+            const response = {"correct_skill_ids": correct_skill_ids, "incorrect_skill_ids": incorrect_skill_ids};
+            $.ajax({
+                type: "PATCH",
+                url: "{% url 'unit_review_update' %}",
+                data: JSON.stringify(response),
+                dataType: "json",
+                contentType: "application/json",
+                error: function(data){
+                    prompt.innerHTML = "Oops! It seems like something went wrong when sending your data to the server. Please send us a bug report."
+                },
+                success: function(data){
+                    if (score > 0.6){
+                        prompt.innerHTML = `Congrats, you have completed the unit review with a score of ${percentage_correct}%! <br> Click <a href=\"{% url 'units:unit' unit.slug %}\">here</a> to go back to the unit page.`
+                    } else {
+                        prompt.innerHTML = `You have completed the lesson with a score of ${percentage_correct}%. We recommend that you review this lesson and its prerequisite lessons before you take the exit test again. <br> Click <a href=\"{% url 'units:unit' unit.slug %}\">here</a> to go back to the unit page.`
+                    }
+                }
+            });
+        };
+    });
+</script>
+{% endblock content%}

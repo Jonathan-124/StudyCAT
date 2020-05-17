@@ -134,7 +134,7 @@
                     type: "DELETE",
                     data: {"curriculum": i.curriculum.id},
                     success: function(data, status){
-                        // redirect...
+                        window.location.href = "{% url 'home' %}";
                     }
                 })
             } else if ($("#" + i.curriculum.id + "-date").val()){
@@ -145,7 +145,7 @@
                         type: "PATCH",
                         data: {"curriculum": i.curriculum.id, "test_date": input_test_date},
                         success: function(data, status){
-                            // redirect...
+                            window.location.href = "{% url 'home' %}";
                         }
                     })
                 }
@@ -156,7 +156,7 @@
                         type: "PATCH",
                         data: {"curriculum": i.curriculum.id},
                         success: function(data, status){
-                            // redirect...
+                            window.location.href = "{% url 'home' %}";
                         }
                     });
                 }
@@ -168,14 +168,12 @@
             course_id = parseInt(selections.options[selected_index].id);
             if ($("#add-course-date").val()){
                 input_test_date = $("#add-course-date").val();
-                console.log(course_id);
-                console.log(input_test_date);
                 $.ajax({
                     url: "{% url 'create_currently_studying' %}",
                     type: "POST",
                     data: {"curriculum": course_id, "test_date": input_test_date},
                     success: function(data, status){
-                        // redirect...
+                        window.location.href = "{% url 'home' %}";
                     }
                 });
             } else {
@@ -184,7 +182,7 @@
                     type: "POST",
                     data: {"curriculum": course_id},
                     success: function(data, status){
-                        // redirect...
+                        window.location.href = "{% url 'home' %}";
                     }
                 });
             }

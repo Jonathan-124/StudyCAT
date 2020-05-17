@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 
-{% block title %}{{ lesson.lesson_title}} Test{% endblock title %}
+{% block title %}{{ lesson.lesson_title }} Test{% endblock title %}
 
 {% block content %}
 <div class="jumbotron">
@@ -136,7 +136,7 @@ $(document).ready(function(){
     let question_pack = [];
     let response_data = [];
 
-    $.get("{% url 'get_random_questions' lesson.skill.id  3 %}", function(data, status){
+    $.get("{% url 'get_random_questions' lesson.skill.id  5 %}", function(data, status){
         question_pack = data;
         tester();
     })
@@ -366,7 +366,7 @@ $(document).ready(function(){
         const response = {"score": parseFloat(score.toFixed(3)), "skill_pk": {{ lesson.skill.pk }}};
         console.log(response);
         $.ajax({
-            type: "POST",
+            type: "PATCH",
             // To create new url api for this bulk send in backend
             url: "{% url 'post_test_update' %}",
             data: JSON.stringify(response),

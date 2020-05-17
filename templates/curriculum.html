@@ -9,7 +9,7 @@
     </div>
     {% if user.is_authenticated %}
     <div class="col-md-6 text-center">
-        <span class="float-md-right"><a class="btn btn-outline-primary" href="{% url 'placement:initial_placement_test' 'curriculum' curriculum.id %}">Test Out</a></span>
+        <span class="float-md-right"><a class="btn btn-outline-primary" href="{% url 'placement:initial_placement_test' curriculum.id %}">Placement Test</a></span>
     </div>
     {% endif %}
 </div>
@@ -18,6 +18,7 @@
 <p><a href="{% url 'login' %}">Log in</a> to see your progress!</p>
 {% else %}
 <div id="progress-message" class="alert alert-primary text-center d-none" role="alert"></div>
+<div id="cy" class="jumbotron d-none"></div>
 {% endif %}
 <br>
 
@@ -81,10 +82,121 @@ $(document).ready(function(){
     $.get("{% url 'get_curriculum_completion_status' curriculum.id %}", function(data, status){
         let num_lessons = 0;
         let num_completed = 0;
+        let progress_banner = document.getElementById("progress-message");
+
+        if (data.prerequisite_data.length > 20){
+            progress_banner.innerHTML = "Before you start the course, take the placement test!"
+            progress_banner.setAttribute("class", "alert alert-primary text-center")
+        } else if (data.prerequisite_data.length > 0){
+            prerequisite_ids = new Set();
+            let elements = [];
+
+            for (i of data.prerequisite_data){
+                prerequisite_ids.add(i.skill.id);
+            }
+
+            for (i of data.prerequisite_data){
+                let skill_id = i.skill.id;
+                let href = lessons_url + i.slug + "?unit={{ unit.slug }}";
+                let root = true;
+                for (j of i.skill.parents){
+                    if (prerequisite_ids.has(j)){
+                        root = false;
+                        elements.push({data: {id: `${j}-${skill_id}`, source: j, target: skill_id}});
+                    }
+                }
+                if (root){
+                    elements.push({data: {
+                            id: skill_id,
+                            href: href,
+                            label: i.lesson_title,
+                            status: 1
+                        },
+                        classes: 'center-center'
+                    });
+                } else {
+                    elements.push({data: {
+                            id: skill_id,
+                            href: href,
+                            label: i.lesson_title,
+                            status: 0
+                        },
+                        classes: 'center-center'
+                    });
+                }
+            }
+            var cy = cytoscape({
+                container: document.getElementById('cy'),
+                elements: elements,
+                userZoomingEnabled: false,
+                userPanningEnabled: false,
+                autoungrabify: true,
+                style: [
+                    {
+                    selector: 'node[status=0]',
+                    style: {
+                        'border-width': 1,
+                        'border-style': 'dashed',
+                        'border-color': '#868e96',
+                        'background-color': '#ffffff',
+                        'width': 'label',
+                        'height': 'label',
+                        'label': 'data(label)',
+                        'color': '#868e96',
+                        'text-wrap': 'wrap',
+                        'text-max-width': 25,
+                        'padding-left': 5,
+                        'padding-right': 5,
+                        'shape': 'round-rectangle',
+                        'text-valign': 'center',
+                        'text-halign': 'center',
+                        }
+                    },
+                    {
+                    selector: 'node[status=1]',
+                    style: {
+                        'border-width': 1,
+                        'border-style': 'dashed',
+                        'border-color': '#ffc107',
+                        'background-color': '#ffffff',
+                        'width': 'label',
+                        'height': 'label',
+                        'label': 'data(label)',
+                        'color': '#000000',
+                        'text-wrap': 'wrap',
+                        'text-max-width': 25,
+                        'padding-left': 5,
+                        'padding-right': 5,
+                        'shape': 'round-rectangle',
+                        'text-valign': 'center',
+                        'text-halign': 'center',
+                        }
+                    },
+                    {
+                    selector: 'edge',
+                    style: {
+                        'width': 1,
+                        'overlay-opacity': 0,
+                        'line-color': '#868e96',
+                        'target-arrow-color': '#868e96',
+                        'target-arrow-shape': 'none',
+                        'curve-style': 'straight',
+                        'source-endpoint': '180deg',
+                        'target-endpoint': '0deg',
+                        'line-style': 'dashed',
+                        'line-dash-pattern': [10, 10]
+                        }
+                    },
+                ],
+                layout: {
+                    name: 'dagre',
+                }
+            });
+            $("#cy").attr("class", "jumbotron");
+        }
+
         for (i of data.curriculum_status){
             percentage = i.status[0] / i.status[1] * 100
-            num_lessons += i.status[1]
-            num_completed += i.status[0]
             if (percentage == 100){
                 document.getElementById(i.slug).setAttribute("style", "width: 100%");
                 document.getElementById(i.slug).setAttribute("aria-valuenow", 100);
@@ -97,6 +209,8 @@ $(document).ready(function(){
                 document.getElementById(i.slug).innerHTML = `${Math.round(percentage * 10) / 10}%`;
             }
         }
+
+
         if (data.test_date){
             test_date = new Date(data.test_date);
             days_remaining = Math.floor((test_date - Date.now()) / (1000*60*60*24));
@@ -105,13 +219,12 @@ $(document).ready(function(){
             } else if (num_lessons - num_completed > 0 && days_remaining >= 3){
                 const review_days = Math.floor(num_lessons / 7);
                 const lessons_per_day =  (num_lessons - num_completed) / (days_remaining - review_days);
-                let progress_banner = document.getElementById("progress-message");
                 if (lessons_per_day < 0.5){
                     progress_banner.innerHTML = `You're ahead of schedule! To stay on track, study a new lesson every ${Math.floor(1 / lessons_per_day)} days and <b>review every day</b>!`
                 } else if (lessons_per_day < 1) {
                     progress_banner.innerHTML = "You're right on track! To stay on track, study a new lesson and <b>review every day</b>!"
                 } else {
-                    progress_banner.innerHTML = `Don't fall behind! Study ${Math.ceiling(lessons_per_day)} new lessons every day and <b>review every day</b> to get back on track!`
+                    progress_banner.innerHTML = `Don't fall behind! Study ${Math.ceil(lessons_per_day)} new lessons every day and <b>review every day</b> to get back on track!`
                 }
                 progress_banner.setAttribute("class", "alert alert-primary text-center")
             } else {

@@ -9,8 +9,8 @@
         <span class="float-md-left"><h2>{{ unit.name }}</h2></span>
     </div>
     {% if user.is_authenticated %}
-    <div class="col-md-6 text-center">
-        <span class="float-md-right"><a class="btn btn-outline-primary" href="{% url 'placement:initial_placement_test' 'unit' unit.id %}">Placement Quiz</a></span>
+    <div id="review-unit" class="col-md-6 text-center d-none">
+        <span class="float-md-right"><a class="btn btn-outline-primary" href="{% url 'units:unit_review' unit.slug %}">Review completed lessons</a></span>
     </div>
     {% endif %}
 </div>
@@ -94,14 +94,16 @@ $(document).ready(function(){
             let readiness = true;
             let skill_id = i.skill.id;
             let user_skill = user_skill_data.find(function(value){return value[0] == skill_id})[1];
-            href = lessons_url + i.slug + "?unit={{ unit.slug }}";
+            let href = lessons_url + i.slug + "?unit={{ unit.slug }}";
             for (j of i.skill.parents){
                 let user_parent_skill = user_skill_data.find(function(value){return value[0] == j})[1];
-                if (user_parent_skill > 0){
-                    elements.push({data: {id: `${skill_id}-${j}`, source: j, target: skill_id, status: 1}});
-                } else {
-                    readiness = false;
-                    elements.push({data: {id: `${skill_id}-${j}`, source: j, target: skill_id, status: 0}});
+                if (user_parent_skill != null){
+                    if (user_parent_skill > 0){
+                        elements.push({data: {id: `${j}-${skill_id}`, source: j, target: skill_id, status: 1}});
+                    } else {
+                        readiness = false;
+                        elements.push({data: {id: `${j}-${skill_id}`, source: j, target: skill_id, status: 0}});
+                    }
                 }
             }
             if (user_skill > 0){
@@ -141,15 +143,17 @@ $(document).ready(function(){
             $(".progress-bar").attr("style", `width: 100%`);
             $(".progress-bar").attr("aria-valuenow", 100);
             $(".progress-bar").text("Unit Complete!");
+            $("#review-unit").attr("class", "col-md-6 text-center");
         } else if (num_complete == 0){
-            $(".progress").replaceWith(`<div class="alert alert-dark text-center" role="alert">
-                Take the placement quiz if you haven't yet!
+            $(".progress").replaceWith(`<div class="alert alert-primary text-center" role="alert">
+                Take the placement test if you haven't yet!
             </div>`);
         } else {
             percentage = num_complete * 100 / lessons_data.length
             $(".progress-bar").attr("style", `width: ${percentage}%`);
             $(".progress-bar").attr("aria-valuenow", percentage);
             $(".progress-bar").text(`${Math.round(percentage * 10) / 10}%`);
+            $("#review-unit").attr("class", "col-md-6 text-center");
         }
 
         var cy = cytoscape({
@@ -259,7 +263,7 @@ $(document).ready(function(){
             let skill_id = i.skill.id;
             href = lessons_url + i.slug + "?unit={{ unit.slug }}";
             for (j of i.skill.parents){
-                elements.push({data: {id: `${skill_id}-${j}`, source: j, target: skill_id}});
+                elements.push({data: {id: `${j}-${skill_id}`, source: j, target: skill_id}});
             }
             elements.push({data: {
                     id: skill_id,

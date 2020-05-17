@@ -10,6 +10,11 @@ class PostPlacementBulkUpdateSerializer(serializers.Serializer):
     confirmed_correct_skill_ids = serializers.ListField(child=serializers.IntegerField())
 
 
+class UnitReviewUpdateSerializer(serializers.Serializer):
+    correct_skill_ids = serializers.ListField(child=serializers.IntegerField())
+    incorrect_skill_ids = serializers.ListField(child=serializers.IntegerField())
+
+
 class CurrentlyStudyingUpdateSerializer(serializers.Serializer):
     curriculum = serializers.IntegerField()
     test_date = serializers.DateField(required=False)

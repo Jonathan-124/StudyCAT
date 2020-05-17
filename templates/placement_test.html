@@ -97,7 +97,7 @@
 
         // Retrieve start and end question packs for user-indicated terminal curriculum
         // Call tester() to start the testing process
-        $.get("{% url 'get_placement_question_pack' scope pk %}", function(data, status){
+        $.get("{% url 'get_placement_question_pack' pk %}", function(data, status){
             start_question_pack = data.start_skills_questions;
             end_question_pack = data.end_skills_questions;
             tester();
@@ -197,7 +197,7 @@
                     } else {
                         response = {"confirmed_correct_skill_ids": confirmed_correct_skill_ids};
                         $.ajax({
-                            type: "POST",
+                            type: "PATCH",
                             url: "{% url 'post_placement_bulk_update' %}",
                             data: JSON.stringify(response),
                             dataType: "json",

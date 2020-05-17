@@ -1,8 +1,7 @@
-import json
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.db.models import F
-from rest_framework import status, generics
+from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from curricula.models import Curriculum
@@ -16,7 +15,7 @@ from userprofiles.models import Skillfulness, CurrentlyStudying
 from userprofiles.serializers import CurrentlyStudyingSerializer
 from questions.models import Question
 from questions.serializers import QuestionSerializer
-from .serializers import PostTestUpdateSerializer, PostPlacementBulkUpdateSerializer, CurrentlyStudyingUpdateSerializer
+from .serializers import PostTestUpdateSerializer, PostPlacementBulkUpdateSerializer, UnitReviewUpdateSerializer, CurrentlyStudyingUpdateSerializer
 
 
 # Returns JSON object of list of serialized lessons and one random question that are both at the user's terminus level
@@ -40,12 +39,21 @@ def get_curriculum_completion_status(request, *args, **kwargs):
     except ObjectDoesNotExist:
         return Response({"message": "Curriculum does not exist"}, status=status.HTTP_400_BAD_REQUEST)
     else:
+        prerequisite_data = []
+        incomplete_start_skills = Skillfulness.objects.filter(user_profile=user_profile, skill__in=curriculum.start_skills, skill_level=0).prefetch_related('skill')
+        ancestors = set()
+        for i in incomplete_start_skills:
+            ancestors.update(i.skill.ancestor_ids)
+        ancestors = list(ancestors)
+        incomplete_prerequisites = Skillfulness.objects.filter(user_profile=user_profile, skill__in=ancestors, skill_level=0).prefetch_related('skill__lesson')
+        for i in incomplete_prerequisites:
+            prerequisite_data.append(LessonSerializer(i.skill.lesson).data)
         curriculum_status = user_profile.curriculum_units_completion_percentage(curriculum)
         currently_studying = CurrentlyStudying.objects.filter(user_profile=user_profile, curriculum=curriculum)
         if currently_studying:
-            return Response({"curriculum_status": curriculum_status, "test_date": currently_studying[0].test_date})
+            return Response({"curriculum_status": curriculum_status, "prerequisite_data": prerequisite_data, "test_date": currently_studying[0].test_date})
         else:
-            return Response({"curriculum_status": curriculum_status})
+            return Response({"curriculum_status": curriculum_status, "prerequisite_data": prerequisite_data})
 
 
 # Receives unit pk, returns serialized unit data
@@ -122,42 +130,40 @@ def get_related_questions(request, *args, **kwargs):
 @login_required()
 def get_placement_question_pack(request, *args, **kwargs):
     try:
-        scope_list = ["curriculum", "unit", "refresher"]
-        if kwargs.get('scope') not in scope_list:
-            raise ValidationError("Scope does not exist")
-        obj = None
-        if kwargs.get('scope') == "curriculum":
-            obj = Curriculum.objects.get(id=kwargs.get('pk'))
-        elif kwargs.get('scope') == "unit":
-            obj = Unit.objects.get(id=kwargs.get('pk'))
-    except ValidationError:
-        return Response({"message": "Scope does not exist"}, status=status.HTTP_400_BAD_REQUEST)
+        obj = Curriculum.objects.get(id=kwargs.get('pk'))
     except ObjectDoesNotExist:
         return Response({"message": "Object does not exist"}, status=status.HTTP_400_BAD_REQUEST)
     else:
         start_pack = []
         end_pack = []
-        start_skills_id_list = []
-        end_skills_id_list = []
-        if kwargs.get('scope') == "curriculum" or kwargs.get('scope') == "unit":
-            start_skills_id_list.extend(json.loads(obj.start_skills)["skill_id_list"])
-            end_skills_id_list.extend(json.loads(obj.end_skills)["skill_id_list"])
-        else:
-            end_skills_id_list.extend(request.user.profile.retrieve_terminus_skills())
-        for i in start_skills_id_list:
+        for i in obj.start_skills:
             random_question = Question.objects.random(i)
             serialized_question = QuestionSerializer(random_question).data
             start_pack.append(serialized_question)
-        for i in end_skills_id_list:
+        for i in obj.end_skills:
             random_question = Question.objects.random(i)
             serialized_question = QuestionSerializer(random_question).data
             end_pack.append(serialized_question)
         return Response({"start_skills_questions": start_pack, "end_skills_questions": end_pack})
 
 
+@api_view()
+@login_required()
+def get_unit_review_question_pack(request, *args, **kwargs):
+    question_pack = []
+    user_profile = request.user.profile
+    lessons = Unit.objects.get(id=kwargs.get('pk')).lessons.all()
+    to_be_tested = Skillfulness.objects.filter(user_profile=user_profile, skill__lesson__in=lessons, skill_level__gt=0).prefetch_related('skill')
+    for i in to_be_tested:
+        random_question = Question.objects.random(i.skill.id)
+        serialized_question = QuestionSerializer(random_question).data
+        question_pack.append(serialized_question)
+    return Response(question_pack)
+
+
 # Receives post request with a JSON object {"skill_pk": int, "score": decimal of average correctness of responses}
 # Updates user skill_level for the skill id, as well as its ancestors/descendants based on the user's current score
-@api_view(['POST'])
+@api_view(['PATCH'])
 @login_required()
 def post_test_update(request, *args, **kwargs):
     user_profile = request.user.profile
@@ -184,7 +190,7 @@ def post_test_update(request, *args, **kwargs):
 
 # Receives post request with a JSON object {"confirmed_correct_skill_ids": list}
 # Updates user skill_level all ids in list and their ancestors descendants accordingly
-@api_view(['POST'])
+@api_view(['PATCH'])
 @login_required()
 def post_placement_bulk_update(request, *args, **kwargs):
     user_profile = request.user.profile
@@ -196,7 +202,34 @@ def post_placement_bulk_update(request, *args, **kwargs):
             ancestors = i.ancestor_ids
             to_be_updated.add(i.id)
             to_be_updated.update(set(ancestors))
-        Skillfulness.objects.filter(user_profile=user_profile, skill__id__in=to_be_updated).update(skill_level=1)
+        Skillfulness.objects.filter(user_profile=user_profile, skill__id__in=to_be_updated, skill_level__lt=3).update(skill_level=F('skill_level') + 1)
+        return Response({"message": "success"}, status=status.HTTP_200_OK)
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['PATCH'])
+@login_required()
+def unit_review_update(request, *args, **kwargs):
+    user_profile = request.user.profile
+    serializer = UnitReviewUpdateSerializer(data=request.data)
+    if serializer.is_valid():
+        correct_to_be_updated = set()
+        incorrect_to_be_updated = set()
+        correct_skill_objs = Skill.objects.filter(id__in=request.data["correct_skill_ids"])
+        incorrect_skill_objs = Skill.objects.filter(id__in=request.data["incorrect_skill_ids"])
+        for i in correct_skill_objs:
+            ancestors = i.ancestor_ids
+            correct_to_be_updated.add(i.id)
+            correct_to_be_updated.update(set(ancestors))
+        for i in incorrect_skill_objs:
+            descendants = i.descentant_ids
+            incorrect_skill_objs.add(i.id)
+            incorrect_skill_objs.update(set(descendants))
+        Skillfulness.objects.filter(user_profile=user_profile, skill__id__in=correct_to_be_updated,
+                                        skill_level__lt=3).update(skill_level=F('skill_level') + 1)
+        Skillfulness.objects.filter(user_profile=user_profile, skill__id__in=incorrect_to_be_updated,
+                                        skill_level__gt=0).update(skill_level=F('skill_level') - 1)
         return Response({"message": "success"}, status=status.HTTP_200_OK)
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
