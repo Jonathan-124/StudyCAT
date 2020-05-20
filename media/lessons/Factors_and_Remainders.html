@@ -1,0 +1,117 @@
+<p>
+    Let's try to solve another question of division. Imagine there are 3 people in a room with 15 books in total. If we want to split the books evenly among everyone in the room, how many books should each person get?<br>
+    Because there are 15 books in total to be split among 3 people, the number of books that each person should get is \( 15 \div 3 = 5\).
+    <br><br>
+    However, what if there were 16 books instead of 15? How many books should each person get? Is there a way to split all the books evenly?<br>
+    Unfortunately, there is no way to split the 16 books evenly among 5 people. The best we could do is to give everyone 5 books, but there will be 1 book remaining at the end.
+    <br><br>
+    There are many problems like these in real life, where it is not possible to exactly divide two numbers.<br>
+    One important question to ask is: when is a number <b>divisible</b> by another number? In other words, when can a number be exactly divided by another?<br>
+    To help us understand which circumstances two numbers are divisible, we need to talk a little about <b>remainders</b> and <b>factors</b>, two tools that will help us solve this puzzle!
+    <br><br>
+    When dividing two numbers, the <b>remainder</b> is the remaining number that cannot be further evenly divided.<br>
+    In the second part of the example above, the remainder of \( 16 \div 3 \) is 1, as after dividing 16 books evenly into 3 groups of 5, there is still 1 remaining that cannot be evenly divided.
+    In the first part of the example above, the remainder of \( 15 \div 3 \) is 0, as after dividing 15 books evenly into 3 groups of 5, are no books remaining.
+    <br>
+    Usually if there is a remainder after division, we write three dots to the right of the answer followed by the remainder, like so:
+    $$16 \div 3 = 5 \cdots 1$$
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 1</h5>
+        </div>
+        <div class="card-body">
+            <p>What is the remainder of \( 7 \div 4 \)? Show your work.</p>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex1-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex1-solution">Show solution</a>
+        </div>
+        <div id="ex1-solution" class="collapse hide" aria-labelledby="ex1-solution">
+            <div class="card-footer">
+                The correct answer is \( 3 \).
+                <br><br>
+                \( 7 \div 4 = 1 \cdots 3 \)<br>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 2</h5>
+        </div>
+        <div class="card-body">
+            <p>A teacher gives Mark, Julia and Tom 10 pencils. Mark, Julia and Tom want to share the 10 pencils among themselves. How many pencils should each person get? How many pencils remain that cannot be evenly shared?</p>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex2-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex2-solution">Show solution</a>
+        </div>
+        <div id="ex2-solution" class="collapse hide" aria-labelledby="ex2-solution">
+            <div class="card-footer">
+                Each person should get 3 pencils, and 1 pencil will remain that cannot be shared evenly.
+                <br><br>
+                \( 10 \div 3 = 3 \cdots 1 \). The result is 3, therefore each person should get 3 pencils. The remainder is 1, so there remains 1 pencil that cannot be shared among the three.<br>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 3</h5>
+        </div>
+        <div class="card-body">
+            <p>What is the remainder of \( 5 \div 1 \)? Show your work.</p>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex3-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex3-solution">Show solution</a>
+        </div>
+        <div id="ex3-solution" class="collapse hide" aria-labelledby="ex3-solution">
+            <div class="card-footer">
+                The correct answer is \( 0 \).
+                <br><br>
+                \( 5 \div 1 = 5 \cdots 0 \), as 5 can be divided by 1 with no remainder. When there is no remainder, we can also not write the dots and the remainder, and simply write \( 5 \div 1 = 5 \). <br>
+            </div>
+        </div>
+    </div>
+    <br>
+    The <b>factors</b> of a number are all the numbers that can exactly divide a number. In other words, the factors of a number are all divisors of that number that give a remainder of 0.
+    For example, 1, 2, and 4 are all factors of the number 4, as \( 4 \div 1=4 \cdots 0\), \( 4 \div 2=2 \cdots 0\), and \( 4 \div 4=1 \cdots 0\) respectively.<br>
+    A number like 3, however, is not a factor of the number 4, since \( 4 \div 3=1 \cdots 1\) has a remainder of 1.
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 4</h5>
+        </div>
+        <div class="card-body">
+            <p>Which of the following is not a factor of 6?</p>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="ex4-radio1" name="exercise4" class="custom-control-input">
+                <label class="custom-control-label" for="ex4-radio1">1</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="ex4-radio2" name="exercise4" class="custom-control-input">
+                <label class="custom-control-label" for="ex4-radio2">2</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="ex4-radio3" name="exercise4" class="custom-control-input">
+                <label class="custom-control-label" for="ex4-radio3">3</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="ex4-radio4" name="exercise4" class="custom-control-input">
+                <label class="custom-control-label" for="ex4-radio4">4</label>
+            </div>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex4-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex4-solution">Show solution</a>
+        </div>
+        <div id="ex4-solution" class="collapse hide" aria-labelledby="ex4-solution">
+            <div class="card-footer">
+                The correct answer is \( 4 \).
+                <br><br>
+                \( 6 \div 1=6 \cdots 0\), \( 6 \div 2=3 \cdots 0\), \( 6 \div 3=2 \cdots 0\), and \( 6 \div 4=1 \cdots 2\). Since \(6 \div 4\) is the only option that has a non-zero remainder, out of all the options 4 is the only one that is not a factor of 6.
+            </div>
+        </div>
+    </div>
+    <br><br>
+    Now that we know what remainders and factors are, we can finally revisit the divisibility problem.<br>
+    A number is divisible by another if and only if the remainder is 0. And since a remainder of 0 can only occur when the divisor is a factor of the dividend, we can conclude that <b>a number is only divisible by its factors</b>.
+    <br><br>
+    In our original example, when we tried to divide 15 books among 5 people, we were able to do so exactly. In other words, 15 is divisible by 5 because 5 is a factor of 15, therefore the remainder is 0.<br>
+    When we tried to divide 16 books among 5 people, we were not able to divide the books exactly. In other words, 16 is not divisible by 5, because 5 is not a factor of 16, therefore the remainder is not 0.
+</br>
+</p>

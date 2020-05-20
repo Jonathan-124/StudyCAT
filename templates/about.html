@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+
+{% block title %}About{% endblock title %}
+
+{% block content %}
+
+<h3>How it Works</h3>
+
+<p>StudyCAT helps you learn in the following ways:
+    <ul>
+        <li>Placement tests gauge your personal knowledge level</li>
+        <li>Learning speed/pacing suggestions are given based on various factors such as your current knowledge level, the course you are studying for, and the expected test date of the course</li>
+        <li>Visual guides in each unit that outline the dependencies of learning topics</li>
+        <li>Personal progress is analyzed and updated after each lesson completion test</li>
+    </ul>
+Because the algorithm recommends lessons based on each user's personal knowledge and responses, StudyCAT requires you to create an account to track and save your progress.
+Visitors can still browse the site without logging in. Site features such as the unit knowledge graph and lesson exit tests are available to the visitor, however user progression cannot be saved and lesson recommendations will not be available.
+</p>
+
+<br>
+
+<h3>Motivations of StudyCAT</h3>
+<p>
+The typical classroom has one universal characteristic — one teacher teaches a group of students.
+While this educational model has existed for millennia, there are two inherent problems with this paradigm:
+    <ol>
+        <li>The quality of education heavily depends on the teacher.</li>
+        <li>Each student cannot receive personalized instruction in the classroom.</li>
+    </ol>
+Addressing the first point, although most teachers usually receive higher education prior to teaching, the quality of teaching is still highly variable among teachers.
+This results in the unfortunate case where the students' quality of education is limited by the abilities of the teacher.
+<br><br>
+With regards to the second point, since there is only one teacher among many students, the teacher must teach material at an "average" pace.
+Even though students in a class might have different levels of prior knowledge, the teacher must teach material that is at the "average" level of the class.
+Even though students in a class might learn at different speeds, the teacher must teach each lesson to their class at the same speed.
+<br><br>
+Bearing these two concerns in mind, StudyCAT was created (and is being developed) with these two central tenets in mind:
+    <ol>
+        <li>Every student deserves an education of high quality.</li>
+        <li>Every student deserves personalized instruction.</li>
+    </ol>
+All else follows.
+</p>
+
+<footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <div class="row">
+      <div class="col-6 col-md text-center">
+          <a href="{% url 'about' %}" class="text-secondary">About</a>
+      </div>
+      <div class="col-6 col-md text-center">
+          <a href="{% url 'faq' %}" class="text-secondary">Frequently Asked Questions</a>
+      </div>
+      <div class="col-6 col-md text-center">
+          <a href="{% url 'roadmap' %}" class="text-secondary">Roadmap</a>
+      </div>
+      <div class="col-6 col-md text-center">
+          <a href="{% url 'home' %}">Home</a>
+      </div>
+    </div>
+</footer>
+{% endblock content%}

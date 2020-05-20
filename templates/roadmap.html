@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+
+{% block title %}About{% endblock title %}
+
+{% block content %}
+<h3>A Message from the Developer</h3>
+<p>Thank you very much for visiting StudyCAT!<br><br>
+This has been a personal project of mine since 2018. As the website is still in pre-alpha, there are still a lot of errors, bugs, and missing content, so please use the site at your own discretion.
+If you have any comments, concerns, or bug reports, please do not hesitate to contact me by submitting feedback or via email.<br><br>
+
+<h3>Future Directions</h3>
+In the near future, high-priority tasks include:
+    <ul>
+        <li>Bug fixes</li>
+        <li>UI improvements (answer input fixes, CSS styling, etc.)</li>
+        <li>Database model improvements</li>
+        <li>Algorithm optimization (false positives/negatives, item calibration, placement test optimization etc.)</li>
+        <li>Lesson and question improvements</li>
+    </ul>
+In the long term, future tasks might involve:
+    <ul>
+        <li>Incorporating various math curricula, such as IB, A-levels</li>
+        <li>Support for teachers' ability to model students' progress</li>
+        <li>Including other subjects such as Physics, Chemistry, etc.</li>
+        <li>Localization to other languages</li>
+    </ul>
+Other suggestions are always welcome. Happy learning!
+</p>
+
+<footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <div class="row">
+      <div class="col-6 col-md text-center">
+          <a href="{% url 'about' %}" class="text-secondary">About</a>
+      </div>
+      <div class="col-6 col-md text-center">
+          <a href="{% url 'faq' %}" class="text-secondary">Frequently Asked Questions</a>
+      </div>
+      <div class="col-6 col-md text-center">
+          <a href="{% url 'roadmap' %}" class="text-secondary">Roadmap</a>
+      </div>
+      <div class="col-6 col-md text-center">
+          <a href="{% url 'home' %}">Home</a>
+      </div>
+    </div>
+</footer>
+{% endblock content %}

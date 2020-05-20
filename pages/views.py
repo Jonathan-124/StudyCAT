@@ -9,6 +9,18 @@ class HomePageView(TemplateView):
     template_name = 'home.html'
 
 
+class AboutPageView(TemplateView):
+    template_name = 'about.html'
+
+
+class FAQPageView(TemplateView):
+    template_name = 'faq.html'
+
+
+class RoadmapPageView(TemplateView):
+    template_name = 'roadmap.html'
+
+
 class CreateGeneralBugReportView(LoginRequiredMixin, CreateAPIView):
     queryset = GeneralBugReport.objects.all()
     serializer_class = GeneralBugReportSerializer

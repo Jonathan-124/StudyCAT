@@ -1,0 +1,167 @@
+<p>
+    As always, even though it is easy to divide small numbers in our heads, it is much more difficult to divide big numbers.
+    For example, when we calculate \( 8 \div 4 \), it's easy to figure out that the answer is \(2\).
+    But if we wanted to calculate something like \( 195 \div 3 \), it is much more difficult to do without a calculator, or pencil and paper.
+    <br><br>
+    <b>Long division</b> is the process we use to divide big numbers. Here's how we do it:
+    <ol>
+        <li>Draw a long division symbol (see below). Write the dividend underneath the long division symbol, and write the divisor to the left of the long division sign.</li>
+        <li>Look at the first digit of the dividend. Is it bigger than or equal to the divisor?</li>
+        <ul>
+            <li>If it is bigger than or equal to the divisor: is the divisor a factor of this number?</li>
+            <ul>
+                <li>If the divisor is a factor of this number:</li>
+                    <ol>
+                        <li>Write this number underneath the dividend, matching its places.</li>
+                        <li>Divide this number by the divisor, and write the result above the long division symbol, and match its places with the number inside the dividend you were looking at.</li>
+                    </ol>
+                <li>If the divisor is not a factor of this number:</li>
+                    <ol>
+                        <li>Find the greatest multiple of the divisor that is smaller than the number you are looking at.</li>
+                        <li>Write this greatest multiple underneath the dividend, and match its places with the places of the number inside the dividend you were looking at.</li>
+                        <li>Divide this greatest multiple by the divisor. Write the result above the long division symbol, and match its places with the places of the number inside the dividend you were looking at.</li>
+                    </ol>
+            </ul>
+            <li>If it is smaller than the divisor:</li>
+                <ul>
+                    <li>If there are more digits inside the dividend:</li>
+                    <ol>
+                        <li>Repeat step 2, but now instead look at a new number, which is the original number you were looking at along with the digit to its right.</li>
+                    </ol>
+                    <li>If not:</li>
+                    <ol>
+                        <li>The number on top of the long division symbol is the answer, and the dividend is the remainder.</li>
+                    </ol>
+                </ul>
+        </ul>
+        <li>Using long subtraction, subtract the result you just wrote underneath the dividend from the dividend. If there are white spaces, treat them as zeroes. Is the result underneath the line 0?</li>
+        <ul>
+            <li>If this number underneath the line is 0, the answer is the number on top of the long division symbol with a remainder of 0.</li>
+            <li>If this number underneath the line is not 0, repeat from step 2, but now your new dividend is this number underneath the line.</li>
+        </ul>
+    </ol>
+    Let's look at an example.<br><br>
+    Calculate \( 195 \div 3 \).<br>
+    First, we set the numbers up using the long division symbol in step 1:
+    $$
+    \begin{matrix}
+    3 \ \overline{)195} \\
+    \end{matrix}
+    $$
+    In step two, we compare the first digit of the dividend to the divisor. Since \(1 < 3\) and there are more digits inside the dividend, we repeat step two. However, instead of looking only at the first digit of the dividend \(1\), we look at it together with the digit to its right, \(19\) instead.<br>
+    Repeating step two, we compare \(19\) with the divisor. Since \(19>3\) and \(3\) is not a factor of \(19\), we need to find the greatest multiple of the divisor (\(3\))that is smaller than the number we are looking at (\(19\)).<br>
+    The only number that satisfies this condition is \(18\), and we write it underneath the dividend matching its places with \(19\) like so:
+    $$
+    \begin{matrix}
+    3 \ \overline{)195} \\
+    \ \ 18 \\
+    \end{matrix}
+    $$
+    We divide \(18\) by the divisor \(3\), and write the result of \(6\) above the long division sign matching its places with \(19\) like so:
+    $$
+    \ \ \ \ 6 \\
+    \begin{matrix}
+    3 \ \overline{)195} \\
+    \ \ 18 \\
+    \end{matrix}
+    $$
+    Proceeding to step 3, we subtract \(18\) from the dividend \(19\) like so:
+    $$
+    \begin{matrix}
+    \ \ \ \ 6 \\
+    3 \ \overline{)195} \\
+    - 18 \\ \hline
+    \ \ \ \ \ \ \ 15 \\
+    \end{matrix}
+    $$
+    Since the result underneath the line is not 0, we repeat from step 2, but now treat 15 as the new dividend instead. Since the first digit of the new dividend is less than the divisor (\(1<3\)) and there are more digits inside the dividend, we repeat step two. However, instead of looking only at the first digit of the dividend \(1\), we look at it together with the digit to its right, \(15\) instead. Remember, now we are looking at the new dividend!<br>
+    Repeating step two, we compare \(15\) with the divisor. Since \(15>3\) and \(3\) is a factor of \(15\), we write \(15\) underneath the dividend, matching its places like so:
+    $$
+    \begin{matrix}
+    \ \ \ \ \ 6 \\
+    3 \ \overline{)195} \\
+    - 18 \\ \hline
+    \ \ \ \ \ \ \ 15 \\
+    \ \ \ \ \ \ \ 15 \\
+    \end{matrix}
+    $$
+    We then divide \(15\) by the \(3\), and write the result \(5\) above the long division symbol, matching its places with the number inside the dividend you were looking at, \(15\).
+    $$
+    \begin{matrix}
+    \ \ \ \ \ \ \ 65 \\
+    3 \ \overline{)195} \\
+    - 18 \\ \hline
+    \ \ \ \ \ \ \ 15 \\
+    \ \ \ \ \ \ \ 15 \\
+    \end{matrix}
+    $$
+    Proceeding to step 3, we subtract \(15\) from the dividend \(15\) like so:
+    $$
+    \begin{matrix}
+    \ \ \ \ \ \ \ 65 \\
+    3 \ \overline{)195} \\
+    - 18 \\ \hline
+    \ \ \ \ \ \ \ 15 \\
+    \ \ \ \ - 15 \\ \hline
+    \ \ \ \ \ \ \ \ \ 0
+    \end{matrix}
+    $$
+    Because the result is 0, the answer of \( 195 \div 3 \) is the number on top of the long division symbol, \(65\)! The remainder is 0, so \(195\) is exactly divisible by \(3\).
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 1</h5>
+        </div>
+        <div class="card-body">
+            <p>Calculate \( 1505 \div 5 \).</p>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex1-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex1-solution">Show solution</a>
+        </div>
+        <div id="ex1-solution" class="collapse hide" aria-labelledby="ex1-solution">
+            <div class="card-footer">
+                \( 1505 \div 5 = 301 \)
+                <br><br>
+                $$
+                \begin{matrix}
+                \ \ \ \ \ \ \ \ \ 301 \\
+                5 \ \ \ \overline{)1505} \\
+                -15 \\ \hline
+                \ \ \ \ \ \ \ \ \ \ \ \ \ 5 \\
+                \ \ \ \ \ \ \ \ \ \ - 5 \\ \hline
+                \ \ \ \ \ \ \ \ \ \ \ \ \ 0
+                \end{matrix}
+                $$
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 2</h5>
+        </div>
+        <div class="card-body">
+            <p>Calculate \( 747 \div 4 \).</p>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex2-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex2-solution">Show solution</a>
+        </div>
+        <div id="ex2-solution" class="collapse hide" aria-labelledby="ex2-solution">
+            <div class="card-footer">
+                \( 747 \div 4 = 186 \cdots 3 \)
+                <br><br>
+                $$
+                \begin{matrix}
+                \ \ \ \ \ \ \ \ 186 \\
+                \ \ \ 4 \ \overline{)747} \\
+                -4 \\ \hline
+                \ \ \ \ \ 34 \\
+                \ \ -32 \\ \hline
+                \ \ \ \ \ \ \ \ \ 27 \\
+                \ \ \ \ \ \ -24 \\ \hline
+                \ \ \ \ \ \ \ \ \ \ \ 3
+                \end{matrix}
+                $$
+            </div>
+        </div>
+    </div>
+    <br><br>
+</p>

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+
+{% block title %}FAQ{% endblock title %}
+
+{% block content %}
+<h5>I am a student. How should I use this website?</h5>
+<p>
+Whether you are currently enrolled in a course (e.g. AP calculus AB), studying for a test (e.g. SAT Math I subject test), or just want to learn some math for fun, update your profile with the course you want to study.
+If you have indicated a test date while selecting a course, recommendations on your study pace will be present.
+When you click on the course in the courses menu the first time, take a placement test to see how much of the course you've completed, and what topics you still need work on.
+In each unit, the personalized topic progression graph should indicate to you which lessons to take next.
+Exit tests after each lesson are indications of how well you have grasped the knowledge from each lesson, and the algorithm records your personal knowledge growth.
+Best of luck in your studies!
+</p>
+<br>
+<h5>I am a teacher. How should I use this website?</h5>
+<p>
+The website is well suited for formative assessment. Note that because most answer evaluations are done client-side, the answering process is not secure and therefore should not be used for summative assessment.
+Classroom integration is a future goal that, when implemented, can be used by teachers to see how well their students are grasping material corresponding to learning objectives.
+</p>
+<br>
+<h5>I have spotted an error/a bug/a typo. How can I contact you?</h5>
+<p>
+First of all, sorry! As the developer I write and format all lessons and questions by myself, and often make mistakes.
+Because there are so many lessons/questions/answers on this website, I probably will not notice this error unless a user points it out.
+If you could kindly submit your feedback via the "Report a Bug" button at the bottom of most pages, I would try my best to fix it ASAP.
+</p>
+<br>
+<h5>How can I contribute?</h5>
+<p>
+If you are a user, you can help just by using the site! Data on response patterns is very useful for calibration, and your bug reports and written feedback always help improve the site.
+If you have expertise in computerized adaptive testing or item response theory, please contact me directly as I would immensely appreciate your input.
+</p>
+<br>
+<h5>More details on the algorithm?</h5>
+<p>Concepts/learning topics are arranged in a hierarchical skill tree, where fundamental skills must be learned before more complicated ones.
+These dependencies are modelled using directed graphs, where each node is a concept and directed connections between nodes represent their relationships.
+Each exit test tests the user's proficiency at a certain node, and the user's "knowledge graph" is updated depending on their score on the exit test.
+</p>
+<br>
+<h5>Technical details of the website?</h5>
+<p>The Django and Django REST frameworks along with PostgreSQL are what make the backbone of the website backend.
+Bootstrap, jQuery, the Guppy math editor, and the CytoscapeJS and KaTeX libraries are the cornerstones of the website frontend.
+</p>
+
+<footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <div class="row">
+      <div class="col-6 col-md text-center">
+          <a href="{% url 'about' %}" class="text-secondary">About</a>
+      </div>
+      <div class="col-6 col-md text-center">
+          <a href="{% url 'faq' %}" class="text-secondary">Frequently Asked Questions</a>
+      </div>
+      <div class="col-6 col-md text-center">
+          <a href="{% url 'roadmap' %}" class="text-secondary">Roadmap</a>
+      </div>
+      <div class="col-6 col-md text-center">
+          <a href="{% url 'home' %}">Home</a>
+      </div>
+    </div>
+</footer>
+{% endblock content%}
