@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4f20b07-5da7-447c-bce7-dc551de39b8d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/lessons/Addition_Introduction.html" beforeDir="false" afterPath="$PROJECT_DIR$/media/lessons/Addition_Introduction.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/media/lessons/Division_Introduction.html" beforeDir="false" afterPath="$PROJECT_DIR$/media/lessons/Division_Introduction.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/media/lessons/Multiplication_Introduction.html" beforeDir="false" afterPath="$PROJECT_DIR$/media/lessons/Multiplication_Introduction.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/lessons/Subtraction_Introduction.html" beforeDir="false" afterPath="$PROJECT_DIR$/media/lessons/Subtraction_Introduction.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,11 +18,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="434" selection-start-line="434" selection-end-line="448" selection-end-column="9" />
+            <state relative-caret-position="176">
+              <caret line="421" lean-forward="true" selection-start-line="421" selection-end-line="421" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/Number Line Introduction.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="561">
+              <caret line="33" column="12" lean-forward="true" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/Fractions.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="604">
+              <caret line="71" column="157" selection-start-line="71" selection-start-column="157" selection-end-line="71" selection-end-column="157" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/media/lessons/Comparison_signs.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="22" selection-start-line="22" selection-end-line="52" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -41,8 +66,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>console</find>
-      <find>window</find>
       <find>scope</find>
       <find>start</find>
       <find>skill</find>
@@ -71,6 +94,8 @@
       <find>three st</find>
       <find>currently</find>
       <find>report</find>
+      <find>that is</find>
+      <find>you</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -79,19 +104,15 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/media/lessons/Classifying_2D_Shapes_GTCAwgV.html" />
-        <option value="$PROJECT_DIR$/templates/lesson.html" />
         <option value="$PROJECT_DIR$/media/lessons/Recognizing_Basic_Shapes.html" />
         <option value="$PROJECT_DIR$/templates/Multiplication Introduction.html" />
         <option value="$PROJECT_DIR$/static/dagre.css" />
-        <option value="$PROJECT_DIR$/media/lessons/Addition_Introduction.html" />
         <option value="$PROJECT_DIR$/static/cytoscape-dagre.js" />
         <option value="$PROJECT_DIR$/static/cytoscape.min.js" />
         <option value="$PROJECT_DIR$/static/cytoscape.css" />
         <option value="$PROJECT_DIR$/templates/Long Multiplication.html" />
         <option value="$PROJECT_DIR$/media/lessons/Long_Addition.html" />
         <option value="$PROJECT_DIR$/media/lessons/Long_Multiplication.html" />
-        <option value="$PROJECT_DIR$/media/lessons/Subtraction_Introduction.html" />
         <option value="$PROJECT_DIR$/templates/Division Introduction.html" />
         <option value="$PROJECT_DIR$/skills/models.py" />
         <option value="$PROJECT_DIR$/curricula/models.py" />
@@ -116,9 +137,7 @@
         <option value="$PROJECT_DIR$/templates/unit.html" />
         <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/templates/Operation Reversal.html" />
-        <option value="$PROJECT_DIR$/media/lessons/Multiplication_Introduction.html" />
         <option value="$PROJECT_DIR$/templates/Multiples and Remainders.html" />
-        <option value="$PROJECT_DIR$/media/lessons/Division_Introduction.html" />
         <option value="$PROJECT_DIR$/templates/Long Division.html" />
         <option value="$PROJECT_DIR$/media/lessons/Factors_and_Remainders.html" />
         <option value="$PROJECT_DIR$/media/lessons/Long_Division.html" />
@@ -130,6 +149,12 @@
         <option value="$PROJECT_DIR$/templates/roadmap.html" />
         <option value="$PROJECT_DIR$/templates/faq.html" />
         <option value="$PROJECT_DIR$/templates/about.html" />
+        <option value="$PROJECT_DIR$/media/lessons/Multiplication_Introduction.html" />
+        <option value="$PROJECT_DIR$/media/lessons/Division_Introduction.html" />
+        <option value="$PROJECT_DIR$/media/lessons/Addition_Introduction.html" />
+        <option value="$PROJECT_DIR$/media/lessons/Subtraction_Introduction.html" />
+        <option value="$PROJECT_DIR$/templates/Number Line Introduction.html" />
+        <option value="$PROJECT_DIR$/templates/Fractions.html" />
       </list>
     </option>
   </component>
@@ -152,6 +177,17 @@
             <path>
               <item name="studycat" type="b2602c69:ProjectViewProjectNode" />
               <item name="studycat" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="studycat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="studycat" type="462c0819:PsiDirectoryNode" />
+              <item name="media" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="studycat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="studycat" type="462c0819:PsiDirectoryNode" />
+              <item name="media" type="462c0819:PsiDirectoryNode" />
+              <item name="lessons" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="studycat" type="b2602c69:ProjectViewProjectNode" />
@@ -217,7 +253,7 @@
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="2" />
       <window_info anchor="bottom" id="Message" order="3" />
-      <window_info anchor="bottom" id="Find" order="4" weight="0.32934132" />
+      <window_info anchor="bottom" id="Find" order="4" weight="0.32894737" />
       <window_info anchor="bottom" id="Version Control" order="5" />
       <window_info anchor="bottom" id="Run" order="6" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
@@ -232,39 +268,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/userprofiles/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="57" lean-forward="true" selection-start-line="4" selection-start-column="57" selection-end-line="4" selection-end-column="57" />
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/users/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/tests.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userprofiles/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="166" column="28" lean-forward="true" selection-start-line="166" selection-start-column="28" selection-end-line="166" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/skills/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -451,20 +454,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/media/lessons/Comparison_signs.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="29" column="10" lean-forward="true" selection-start-line="29" selection-start-column="10" selection-end-line="40" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/media/lessons/Multiplication_Introduction.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="111" column="113" selection-start-line="111" selection-start-column="113" selection-end-line="111" selection-end-column="113" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/Operation Reversal.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -474,13 +463,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/manage.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/media/lessons/Division_Introduction.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="607">
-          <caret line="62" column="154" selection-start-line="62" selection-start-column="154" selection-end-line="62" selection-end-column="154" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/Multiples and Remainders.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -503,13 +485,6 @@
           <folding>
             <element signature="e#0#53#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/media/lessons/Long_Division.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="132" column="18" lean-forward="true" selection-start-line="132" selection-start-column="18" selection-end-line="132" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -557,9 +532,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/media/lessons/Recognizing_Basic_Shapes.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/media/lessons/Long_Addition.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1156">
@@ -578,17 +550,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1521" />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/media/lessons/Numbers_and_Digits.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-867" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/media/lessons/Classifying_2D_Shapes_GTCAwgV.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/media/lessons/Comparing_Multi-digit_numbers.html">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/media/lessons/Factors_and_Remainders.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -618,10 +579,86 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/media/lessons/Classifying_2D_Shapes_GTCAwgV.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/lessons/Comparing_Multi-digit_numbers.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="84" column="44" selection-start-line="84" selection-start-column="44" selection-end-line="84" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/lessons/Recognizing_Basic_Shapes.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="434" selection-start-line="434" selection-end-line="448" selection-end-column="9" />
+        <state relative-caret-position="176">
+          <caret line="421" lean-forward="true" selection-start-line="421" selection-end-line="421" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/lessons/Subtraction_Introduction.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/lessons/Numbers_and_Digits.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-909">
+          <caret line="40" column="97" selection-start-line="40" selection-start-column="90" selection-end-line="40" selection-end-column="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/lessons/Multiplication_Introduction.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-875">
+          <caret line="26" selection-start-line="26" selection-end-line="27" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Number Line Introduction.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="12" lean-forward="true" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/lessons/Addition_Introduction.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="63" column="4" lean-forward="true" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/lessons/Long_Division.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1989">
+          <caret line="132" column="18" lean-forward="true" selection-start-line="132" selection-start-column="18" selection-end-line="132" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/lessons/Division_Introduction.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="63" column="205" selection-start-line="63" selection-start-column="205" selection-end-line="63" selection-end-column="205" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/lessons/Comparison_signs.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="22" selection-start-line="22" selection-end-line="52" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Fractions.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="604">
+          <caret line="71" column="157" selection-start-line="71" selection-start-column="157" selection-end-line="71" selection-end-column="157" />
         </state>
       </provider>
     </entry>
