@@ -224,7 +224,7 @@ $(document).ready(function(){
                     label.setAttribute("for", index);
 
                     let answer_image = document.createElement("img");
-                    answer_image.setAttribute("style", "max-width:200px;max-height:200px");
+                    answer_image.setAttribute("style", "max-width:50%");
                     answer_image.setAttribute("src", value.image_url);
                     label.appendChild(answer_image);
 
@@ -281,7 +281,10 @@ $(document).ready(function(){
                     function checkAnswer(value, index, array) {
                         return MathExpression.fromText(attempt).equals(MathExpression.fromText(value.answer_text));
                     }
-                    if (symbols_used.length > 0){
+                    if (symbols_used.length == 1 && symbols_used[0] == "fraction"){
+                        a_correctness = parseFloat(matched.answer_correctness);
+                        feedback_text = matched.answer_explanation;
+                    } else if (symbols_used.length > 0){
                         a_correctness = 0;
                         feedback_text = "The answer should be a number!";
                     } else if (typeof matched === "undefined") {

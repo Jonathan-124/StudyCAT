@@ -93,11 +93,10 @@ $(document).ready(function(){
 
     {% if user.profile.last_lesson_completion %}
     // streak stuff
-    let streak_start = new Date("{{ user.profile.streak_start }}");
-    let last_completion = new Date("{{ user.profile.last_lesson_completion }}");
+    let streak_start = new Date("{{ user.profile.streak_start|date:"Y-m-d" }}");
+    let last_completion = new Date("{{ user.profile.last_lesson_completion|date:"Y-m-d" }}");
     let now = Date.now()
     let streak_length = (last_completion.getTime() - streak_start.getTime()) / (1000*60*60*24)
-    console.log(now);
     if (streak_length > 1){
         if (last_completion.getFullYear() == now.getFullYear() && last_completion.getMonth() == now.getMonth() && last_completion.getDate() == now.getDate()){
             document.getElementById("greeting").innerHTML = `Welcome back {{ user.username }}! You've extended your streak to ${streak_length} days in a row!`
@@ -367,7 +366,6 @@ $(document).ready(function(){
                 dataType: "json",
                 contentType: "application/json",
                 error: function(data){
-                    console.log(data);
                     $("#submission-feedback").text("Oops! It seems like something went wrong when sending your data to the server. Please try again later.")
                 },
                 success: function(data){

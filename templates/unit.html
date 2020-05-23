@@ -96,9 +96,9 @@ $(document).ready(function(){
             let user_skill = user_skill_data.find(function(value){return value[0] == skill_id})[1];
             let href = lessons_url + i.slug + "?unit={{ unit.slug }}";
             for (j of i.skill.parents){
-                let user_parent_skill = user_skill_data.find(function(value){return value[0] == j})[1];
+                let user_parent_skill = user_skill_data.find(function(value){return value[0] == j});
                 if (user_parent_skill != null){
-                    if (user_parent_skill > 0){
+                    if (user_parent_skill[1] > 0){
                         elements.push({data: {id: `${j}-${skill_id}`, source: j, target: skill_id, status: 1}});
                     } else {
                         readiness = false;
