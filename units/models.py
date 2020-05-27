@@ -29,8 +29,7 @@ class Unit(models.Model):
 
     # Populates slug field with slugified unit name after save() is called
     def save(self, *args, **kwargs):
-        if not self.id:
-            self.slug = slugify(self.name)
+        self.slug = slugify(self.name)
         super(Unit, self).save(*args, **kwargs)
 
     # Returns list of topological orders of all lessons in unit

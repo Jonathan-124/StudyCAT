@@ -1,0 +1,96 @@
+<p>
+    Usually, it is pretty easy for us to compare two whole numbers. For example, if Jane has 234 cakes and Michelle has 1950, who has more cakes?
+    Because \(234 < 1950\), we can tell that Michelle has more cakes at first glance.
+    Just like how we can compare whole numbers, we can also compare fractions with one restriction:
+    <br><br>
+    To compare fractions with a common denominator, simply compare their numerators.
+    If two fractions do not have a common denominator, find their equivalent fractions that share a common denominator before comparing the fractions.
+    <br><br>
+    Let's see why this is the case using a couple of examples. A cake is cut into 4 equal slices. If Walter takes 1 slice and Jesse takes 2 slices, who has more cake?
+    Walter takes \(\frac{1}{4}\) of the cake, while Jesse takes \(\frac{2}{4}\) of the cake. Because the denominators in the two fractions are the same, the bigger fraction is the fraction with the bigger numerator.
+    Since \(1 < 2\), \(\frac{1}{4} < \frac{2}{4}\), so Jesse took more cake.
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 1</h5>
+        </div>
+        <div class="card-body">
+            <p>Which fraction is smaller, \(\frac{5}{3}\) or \(\frac{10}{3}\)?</p>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex0-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex0-solution">Show solution</a>
+        </div>
+        <div id="ex0-solution" class="collapse hide" aria-labelledby="ex0-solution">
+            <div class="card-footer">
+                \(\frac{5}{3}\) is smaller than \(\frac{10}{3}\).
+                <br><br>
+                Because the two fractions have the same denominator, we can simply compare their numerators to find the smaller fraction. Since \(5<10\), \(\frac{5}{3} < \frac{10}{3}\).
+            </div>
+        </div>
+    </div>
+    <br>
+
+    However, if two fractions do not have the same denominator, we must first find their equivalent fractions with a common denominator before we can compare them. Using an example to explain why: if Walter cuts a cake into 3 equal pieces and takes 2 slices, but Jesse cuts another cake into 5 slices and takes 3 slices, who took more cake?
+    Even though Jesse took more pieces of cake, we cannot tell for sure who took more cake, because the sizes of their slices are different! In other words, we cannot directly tell whether the fraction \(\frac{2}{3}\) (the amount of cake that Walter took) is greater than or less than \(\frac{3}{5}\) (the amount of cake that Jesse took).
+    <br><br>
+    When we have two fractions with different denominators, it's a short two-step process to find their equivalent fractions with a common denominator:
+    <ol>
+        <li>Find the least common multiple of the denominators (the smallest multiple that exists for both denominators) of the two fractions</li>
+        <li>For each fraction, divide this least common multiple by its denominator, then multiply the numerator and denominator with this number to get a new equivalent fraction</li>
+    </ol>
+    Let's work through our cake example together. Walter took \(\frac{2}{3}\) of his cake, while Jesse took \(\frac{3}{5}\) of another cake. In step 1, we need to find the least common multiple of the denominators 3 and 5.
+    The multiples of 3 are 3, 6, 9, 12, 15,... while the multiples of 5 are 5, 10, 15,... The least common multiple of the denominators (the smallest multiple that exists for both denominators) is therefore 15.
+    In step two, for each fraction, we divide 15 by its denominator, then multiply the numerator and denominator with this number to get an equivalent fraction.
+    For Walter, \(15 \div 3\) is 5, so our new equivalent fraction for Walter's fraction becomes \(\frac{2 \times 5}{3 \times 5} = \frac{10}{15}\).
+    For Jesse, \(15 \div 5\) is 3, so our new equivalent fraction for Jesse's fraction becomes \(\frac{3 \times 3}{5 \times 3} = \frac{9}{15}\).
+    <br><br>
+    Why are we doing this? Because it is difficult to compare who took more cake when the slice sizes are different, we want to make the slice sizes the same so we can compare. In steps 1 and 2, we are finding fractions with common denominators so we are able to compare them!
+    For Walter, cutting the cake into 3 slices and taking 2 (\(\frac{2}{3}\)) is equivalent to cutting the cake into 15 slices and taking 10 (\(\frac{2\times5}{3\times5}\)=\(\frac{10}{15}\)).
+    The reasoning is the same for Jesse. For Jesse, cutting the cake into 5 slices and taking 3 (\(\frac{3}{5}\)) is equivalent to cutting the cake into 15 slices and taking 9 (\(\frac{3\times3}{5\times3}\)=\(\frac{9}{15}\)).
+    The fractions \(\frac{10}{15}\) and \(\frac{9}{15}\) now have a <b>common denominator</b> of 15. This means that we can finally compare these two fractions.
+    <br><br>
+    Now that we have found equivalent fractions to the original ones that share a common denominator, we can finally compare the fractions!
+    Since \(10 > 9\), we know that \(\frac{2}{3} > \frac{3}{5}\). That is, Walter took more cake than Jesse!
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 2</h5>
+        </div>
+        <div class="card-body">
+            <p>Jenn says that a \(\frac{1}{4}\) pound burger is heavier than a \(\frac{1}{3}\) pound burger. Is Jenn correct?</p>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex1-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex1-solution">Show solution</a>
+        </div>
+        <div id="ex1-solution" class="collapse hide" aria-labelledby="ex1-solution">
+            <div class="card-footer">
+                Jenn is incorrect, as \(\frac{1}{4}\) is smaller than \(\frac{1}{3}\).
+                <br><br>
+                First, we find the least common multiple of 4 and 2. The multiples of 4 are 4, 8, 12,... and the multiples of 3 are 3, 6, 9, 12... The least common multiple is therefore 12.
+                For the first fraction, \(12 \div 4 =3\). The new equivalent fraction we get is therefore \(\frac{1 \times 3}{4 \times 3} = \frac{3}{12}\).
+                For the second fraction, \(12 \div 3 =4\). The new equivalent fraction we get is therefore \(\frac{1 \times 4}{3 \times 4} = \frac{4}{12}\).
+                Since \(\frac{3}{12} < \frac{4}{12}\), \(\frac{1}{4} < \frac{1}{3}\).
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 3</h5>
+        </div>
+        <div class="card-body">
+            <p>Which fraction is bigger, \(\frac{2}{7}\) or \(\frac{3}{14}\)?</p>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex2-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex2-solution">Show solution</a>
+        </div>
+        <div id="ex2-solution" class="collapse hide" aria-labelledby="ex2-solution">
+            <div class="card-footer">
+                \(\frac{2}{7}\) is bigger than \(\frac{3}{14}\).
+                <br><br>
+                First, we find the least common multiple of 7 and 14. The multiples of 7 are 7, 14,... and the multiples of 14 are 14,... The least common multiple is therefore 14.
+                For the first fraction, \(14 \div 7 =2\). The new equivalent fraction we get is therefore \(\frac{2 \times 2}{7 \times 2} = \frac{4}{14}\).
+                For the second fraction, \(14 \div 14 =1\). The new equivalent fraction we get is therefore \(\frac{3 \times 1}{14 \times 1} = \frac{3}{14}\).
+                Since \(\frac{4}{14} > \frac{3}{14}\), \(\frac{2}{7} > \frac{3}{14}\).
+            </div>
+        </div>
+    </div>
+    <br>
+</p>

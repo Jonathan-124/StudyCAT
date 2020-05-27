@@ -31,8 +31,7 @@ class Curriculum(models.Model):
 
     # Populates slug field with slugified curriculum name after save() is called
     def save(self, *args, **kwargs):
-        if not self.id:
-            self.slug = slugify(self.name)
+        self.slug = slugify(self.name)
         super(Curriculum, self).save(*args, **kwargs)
 
 

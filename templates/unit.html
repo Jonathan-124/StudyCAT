@@ -340,6 +340,11 @@ $(document).ready(function(){
             $('html,body').css('cursor', 'default');
             this.css({'background-color': '#ffffff'})
         });
+
+        $(window).resize(function(){
+            cy.resize();
+            cy.fit();
+        });
     });
 
     {% if user.is_authenticated %}

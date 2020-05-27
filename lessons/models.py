@@ -34,8 +34,7 @@ class Lesson(models.Model):
 
     # populates slug field with slugified lesson_title after save() is called
     def save(self, *args, **kwargs):
-        if not self.id:
-            self.slug = slugify(self.lesson_title)
+        self.slug = slugify(self.lesson_title)
         super(Lesson, self).save(*args, **kwargs)
 
     def html_filename(self):
