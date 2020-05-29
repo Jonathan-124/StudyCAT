@@ -3,8 +3,6 @@ from django.utils.text import slugify
 from django.contrib.postgres.fields import ArrayField
 from django.db.models.signals import m2m_changed
 from django.dispatch import receiver
-from subjects.models import Subject
-from lessons.models import Lesson
 from skills.models import Skill
 
 
@@ -19,10 +17,14 @@ class Unit(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
     description = models.TextField(max_length=255)
-    lessons = models.ManyToManyField(Lesson, related_name='units')
+    lessons = models.ManyToManyField('lessons.Lesson', related_name='units')
     start_skills = ArrayField(models.PositiveIntegerField(), blank=True, null=True)
     end_skills = ArrayField(models.PositiveIntegerField(), blank=True, null=True)
-    subject = models.OneToOneField(Subject, on_delete=models.PROTECT, null=True, blank=True)
+    topological_average = models.PositiveIntegerField(default=0)
+    subject = models.OneToOneField('subjects.Subject', on_delete=models.PROTECT, null=True, blank=True)
+
+    class Meta:
+        ordering = ['topological_average']
 
     def __str__(self):
         return self.name
@@ -30,6 +32,11 @@ class Unit(models.Model):
     # Populates slug field with slugified unit name after save() is called
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
+        topological_list = self.lessons.all().values_list('skill__topological_order', flat=True)
+        if len(topological_list) == 0:
+            pass
+        else:
+            self.topological_average = sum(topological_list) / len(topological_list)
         super(Unit, self).save(*args, **kwargs)
 
     # Returns list of topological orders of all lessons in unit

@@ -1,6 +1,7 @@
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.utils.text import slugify
+from units.models import Unit
 
 
 # Subject model
@@ -34,3 +35,5 @@ class Subject(models.Model):
             dependency_matrix.append(adjacency_row)
         setattr(self, 'dependencies', dependency_matrix)
         self.save()
+        for unit in Unit.objects.filter(subject=self):
+            unit.save()

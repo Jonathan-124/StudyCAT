@@ -2,7 +2,6 @@ from os.path import basename
 from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
-from skills.models import Skill
 
 
 class LessonManager(models.Manager):
@@ -20,7 +19,7 @@ class Lesson(models.Model):
     lesson_title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
     lesson_text = models.FileField(upload_to='lessons')
-    skill = models.OneToOneField(Skill, on_delete=models.CASCADE, related_name='lesson')
+    skill = models.OneToOneField('skills.Skill', on_delete=models.CASCADE, related_name='lesson')
     objects = LessonManager()
 
     class Meta:

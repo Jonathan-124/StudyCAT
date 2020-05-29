@@ -2,7 +2,6 @@ from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
-from subjects.models import Subject
 
 
 # Additional methods for querying Skill objects
@@ -25,7 +24,7 @@ class SkillManager(models.Manager):
 # related_skills - m2m field relating to other skills; asymmetric/hierarchical relationship, see SkillEdge
 # topological order - numbered topological ordering of the skill DAG, see receiver/signal below
 class Skill(models.Model):
-    subject = models.ForeignKey(Subject, on_delete=models.PROTECT, related_name='skills')
+    subject = models.ForeignKey('subjects.Subject', on_delete=models.PROTECT, related_name='skills')
     name = models.CharField(max_length=100)
     related_skills = models.ManyToManyField("self",
                                             through="SkillEdge",
