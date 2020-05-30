@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import HomePageView, CreateGeneralBugReportView, CreateQuestionBugReportView, CreateLessonBugReportView, \
-    CreateUnitBugReportView, CreateCurriculumBugReportView, AboutPageView, FAQPageView, RoadmapPageView
+    CreateUnitBugReportView, CreateCurriculumBugReportView, AboutPageView, FAQPageView, RoadmapPageView, TermsPageView,\
+    PrivacyPageView
 
 
 urlpatterns = [
@@ -13,4 +14,6 @@ urlpatterns = [
     path('about/', AboutPageView.as_view(), name='about'),
     path('faq/', FAQPageView.as_view(), name='faq'),
     path('roadmap/', RoadmapPageView.as_view(), name='roadmap'),
+    path('terms-and-conditions/', TermsPageView.as_view(), name='terms-and-conditions'),
+    path('privacy-policy/', PrivacyPageView.as_view(), name='privacy-policy'),
 ]

@@ -1,0 +1,473 @@
+[
+{
+    "model": "lessons.lesson",
+    "pk": 1,
+    "fields": {
+        "lesson_title": "Numbers and Digits",
+        "slug": "numbers-and-digits",
+        "lesson_text": "lessons/Numbers_and_Digits.html",
+        "skill": 1,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 2,
+    "fields": {
+        "lesson_title": "Comparison Signs Introduction",
+        "slug": "comparison-signs-introduction",
+        "lesson_text": "lessons/Comparison_signs.html",
+        "skill": 3,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 3,
+    "fields": {
+        "lesson_title": "Place Value",
+        "slug": "place-value",
+        "lesson_text": "lessons/Place_Value.html",
+        "skill": 2,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 4,
+    "fields": {
+        "lesson_title": "Comparing Large Numbers",
+        "slug": "comparing-large-numbers",
+        "lesson_text": "lessons/Comparing_Multi-digit_numbers.html",
+        "skill": 4,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 5,
+    "fields": {
+        "lesson_title": "Addition Introduction",
+        "slug": "addition-introduction",
+        "lesson_text": "lessons/Addition_Introduction.html",
+        "skill": 5,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 6,
+    "fields": {
+        "lesson_title": "Long Addition",
+        "slug": "long-addition",
+        "lesson_text": "lessons/Long_Addition.html",
+        "skill": 6,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 7,
+    "fields": {
+        "lesson_title": "Subtraction Introduction",
+        "slug": "subtraction-introduction",
+        "lesson_text": "lessons/Subtraction_Introduction.html",
+        "skill": 7,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 8,
+    "fields": {
+        "lesson_title": "Recognizing Basic Shapes",
+        "slug": "recognizing-basic-shapes",
+        "lesson_text": "lessons/Recognizing_Basic_Shapes.html",
+        "skill": 8,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 9,
+    "fields": {
+        "lesson_title": "Long Subtraction",
+        "slug": "long-subtraction",
+        "lesson_text": "lessons/Long_Subtraction.html",
+        "skill": 10,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 10,
+    "fields": {
+        "lesson_title": "Classifying 2D Shapes",
+        "slug": "classifying-2d-shapes",
+        "lesson_text": "lessons/Classifying_2D_Shapes_GTCAwgV.html",
+        "skill": 11,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 11,
+    "fields": {
+        "lesson_title": "Multiplication Introduction",
+        "slug": "multiplication-introduction",
+        "lesson_text": "lessons/Multiplication_Introduction.html",
+        "skill": 12,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 12,
+    "fields": {
+        "lesson_title": "Long Multiplication",
+        "slug": "long-multiplication",
+        "lesson_text": "lessons/Long_Multiplication.html",
+        "skill": 13,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 13,
+    "fields": {
+        "lesson_title": "Division Introduction",
+        "slug": "division-introduction",
+        "lesson_text": "lessons/Division_Introduction.html",
+        "skill": 14,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 14,
+    "fields": {
+        "lesson_title": "Factors and Remainders",
+        "slug": "factors-and-remainders",
+        "lesson_text": "lessons/Factors_and_Remainders.html",
+        "skill": 15,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 15,
+    "fields": {
+        "lesson_title": "Long Division",
+        "slug": "long-division",
+        "lesson_text": "lessons/Long_Division.html",
+        "skill": 16,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 16,
+    "fields": {
+        "lesson_title": "Number Line Introduction",
+        "slug": "number-line-introduction",
+        "lesson_text": "lessons/Number_Line_Introduction.html",
+        "skill": 17,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 17,
+    "fields": {
+        "lesson_title": "Fractions Introduction",
+        "slug": "fractions-introduction",
+        "lesson_text": "lessons/Fractions_Introduction.html",
+        "skill": 18,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 19,
+    "fields": {
+        "lesson_title": "Comparing Fractions",
+        "slug": "comparing-fractions",
+        "lesson_text": "lessons/Comparing_Fractions.html",
+        "skill": 20,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 21,
+    "fields": {
+        "lesson_title": "Equivalent Fractions",
+        "slug": "equivalent-fractions",
+        "lesson_text": "lessons/Equivalent_Fractions.html",
+        "skill": 21,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 22,
+    "fields": {
+        "lesson_title": "Fraction Operations II",
+        "slug": "fraction-operations-ii",
+        "lesson_text": "lessons/Fraction_Operations_II.html",
+        "skill": 22,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 23,
+    "fields": {
+        "lesson_title": "Fraction Operations I",
+        "slug": "fraction-operations-i",
+        "lesson_text": "lessons/Fraction_Operations_I.html",
+        "skill": 23,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 24,
+    "fields": {
+        "lesson_title": "Decimals Introduction",
+        "slug": "decimals-introduction",
+        "lesson_text": "lessons/Decimals_Introduction.html",
+        "skill": 24,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 25,
+    "fields": {
+        "lesson_title": "Units Introduction",
+        "slug": "units-introduction",
+        "lesson_text": "lessons/Units_Introduction.html",
+        "skill": 25,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 26,
+    "fields": {
+        "lesson_title": "Rounding Introduction",
+        "slug": "rounding-introduction",
+        "lesson_text": "lessons/Rounding_Introduction.html",
+        "skill": 26,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 2,
+    "fields": {
+        "lesson": 8,
+        "image": "Mathematics/lesson_images/recognizing-basic-shapes/1200px-Square_-_black_simple.svg.png",
+        "caption": "A 2D Shape"
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 5,
+    "fields": {
+        "lesson": 8,
+        "image": "Mathematics/lesson_images/recognizing-basic-shapes/463px-Schr\u00e4gbild_eines_W\u00fcrfels.svg.png",
+        "caption": "A 3D Shape"
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 6,
+    "fields": {
+        "lesson": 10,
+        "image": "Mathematics/lesson_images/classifying-2d-shapes/jGgkv.png",
+        "caption": "The left shape is closed, but the right shape is open"
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 7,
+    "fields": {
+        "lesson": 10,
+        "image": "Mathematics/lesson_images/classifying-2d-shapes/Simple_triangle.svg.png",
+        "caption": "This is a polygon"
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 8,
+    "fields": {
+        "lesson": 10,
+        "image": "Mathematics/lesson_images/classifying-2d-shapes/800px-Circle_-_black_simple.svg.png",
+        "caption": "This is not a polygon"
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 9,
+    "fields": {
+        "lesson": 8,
+        "image": "Mathematics/lesson_images/recognizing-basic-shapes/Parallelepiped_2013-11-29.svg.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 10,
+    "fields": {
+        "lesson": 8,
+        "image": "Mathematics/lesson_images/recognizing-basic-shapes/Isosceles_trapezoid.jpg",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 11,
+    "fields": {
+        "lesson": 16,
+        "image": "Mathematics/lesson_images/number-line-introduction/diagram-20200521_1.png",
+        "caption": "A Number Line"
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 12,
+    "fields": {
+        "lesson": 16,
+        "image": "Mathematics/lesson_images/number-line-introduction/add.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 13,
+    "fields": {
+        "lesson": 16,
+        "image": "Mathematics/lesson_images/number-line-introduction/subt.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 14,
+    "fields": {
+        "lesson": 16,
+        "image": "Mathematics/lesson_images/number-line-introduction/multi.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 15,
+    "fields": {
+        "lesson": 16,
+        "image": "Mathematics/lesson_images/number-line-introduction/div.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 16,
+    "fields": {
+        "lesson": 17,
+        "image": "Mathematics/lesson_images/fractions/diagram-20200523.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 17,
+    "fields": {
+        "lesson": 17,
+        "image": "Mathematics/lesson_images/fractions/diagram-20200523_1.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 18,
+    "fields": {
+        "lesson": 17,
+        "image": "Mathematics/lesson_images/fractions/diagram-20200523_2.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 19,
+    "fields": {
+        "lesson": 17,
+        "image": "Mathematics/lesson_images/fractions/diagram-20200523_4.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 22,
+    "fields": {
+        "lesson": 21,
+        "image": "Mathematics/lesson_images/equivalent-fractions/diagram-20200523_8.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 23,
+    "fields": {
+        "lesson": 21,
+        "image": "Mathematics/lesson_images/equivalent-fractions/diagram-20200523_7.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 24,
+    "fields": {
+        "lesson": 24,
+        "image": "Mathematics/lesson_images/decimals-introduction/diagram-20200527_7.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 25,
+    "fields": {
+        "lesson": 24,
+        "image": "Mathematics/lesson_images/decimals-introduction/diagram-20200527_3.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 26,
+    "fields": {
+        "lesson": 24,
+        "image": "Mathematics/lesson_images/decimals-introduction/diagram-20200527_5.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 27,
+    "fields": {
+        "lesson": 24,
+        "image": "Mathematics/lesson_images/decimals-introduction/diagram-20200527_4.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 28,
+    "fields": {
+        "lesson": 24,
+        "image": "Mathematics/lesson_images/decimals-introduction/diagram-20200527_6.png",
+        "caption": null
+    }
+}
+]

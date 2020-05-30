@@ -1,0 +1,26 @@
+[
+{
+    "model": "pages.generalbugreport",
+    "pk": 1,
+    "fields": {
+        "reporting_user": 1,
+        "report_message": "asd"
+    }
+},
+{
+    "model": "pages.generalbugreport",
+    "pk": 2,
+    "fields": {
+        "reporting_user": 1,
+        "report_message": "awcwarfwe"
+    }
+},
+{
+    "model": "pages.questionbugreport",
+    "pk": 2,
+    "fields": {
+        "question": 5,
+        "reason": "AI"
+    }
+}
+]

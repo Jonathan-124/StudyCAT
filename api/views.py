@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.db.models import F
+from django.utils import timezone
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -175,7 +176,7 @@ def post_test_update(request, *args, **kwargs):
             return Response({"message": "Object does not exist"}, status=status.HTTP_400_BAD_REQUEST)
         else:
             if request.data["score"] > 0.6:
-                user_profile.streak_update()
+                user_profile.last_lesson_completion = timezone.now()
                 skillfulness.skill.ancestor_ids.append(skillfulness.skill.id)
                 Skillfulness.objects.filter(user_profile=user_profile, skill__id__in=skillfulness.skill.ancestor_ids,
                                             skill_level__lt=3).update(skill_level=F('skill_level') + 1)
@@ -226,6 +227,7 @@ def unit_review_update(request, *args, **kwargs):
             descendants = i.descentant_ids
             incorrect_skill_objs.add(i.id)
             incorrect_skill_objs.update(set(descendants))
+        user_profile.last_lesson_completion = timezone.now()
         Skillfulness.objects.filter(user_profile=user_profile, skill__id__in=correct_to_be_updated,
                                         skill_level__lt=3).update(skill_level=F('skill_level') + 1)
         Skillfulness.objects.filter(user_profile=user_profile, skill__id__in=incorrect_to_be_updated,

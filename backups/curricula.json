@@ -5,12 +5,13 @@
     "fields": {
         "name": "Middle School Mathematics",
         "slug": "middle-school-mathematics",
-        "start_skills": null,
-        "end_skills": null,
+        "start_skills": "[\"8\", \"1\"]",
+        "end_skills": "[\"4\", \"11\", \"20\", \"22\", \"23\", \"24\", \"25\", \"26\"]",
         "subject": 1,
         "units": [
+            2,
             1,
-            2
+            3
         ]
     }
 }

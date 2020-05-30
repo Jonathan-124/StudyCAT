@@ -21,6 +21,14 @@ class RoadmapPageView(TemplateView):
     template_name = 'roadmap.html'
 
 
+class TermsPageView(TemplateView):
+    template_name = 'terms_and_conditions.html'
+
+
+class PrivacyPageView(TemplateView):
+    template_name = 'privacy_policy.html'
+
+
 class CreateGeneralBugReportView(LoginRequiredMixin, CreateAPIView):
     queryset = GeneralBugReport.objects.all()
     serializer_class = GeneralBugReportSerializer

@@ -4,7 +4,6 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.utils import timezone
 from skills.models import Skill, SkillEdge
 from users.models import CustomUser
 from curricula.models import Curriculum
@@ -88,38 +87,6 @@ class UserProfile(models.Model):
         for slug in unit_slugs:
             status.append({"slug": slug, "status": self.unit_completion_percentage(slug)})
         return status
-
-    # Called when an exit test is successfully completed, updates streak_start and last_lesson_completion
-    def streak_update(self):
-        if not self.last_lesson_completion:
-            self.streak_start = timezone.now()
-            self.last_lesson_completion = timezone.now()
-            self.save(update_fields=['streak_start', 'last_lesson_completion'])
-        elif self.last_lesson_completion == timezone.now():
-            return
-        else:
-            delta = (self.last_lesson_completion - self.streak_start).days
-            if delta == 1:
-                pass
-            elif delta < 3:
-                self.streak_start = timezone.now()
-            elif delta < 7:
-                self.streak_start = timezone.now()
-                self.depreciate_terminal_skills(1)
-            elif delta < 15:
-                self.streak_start = timezone.now()
-                self.depreciate_terminal_skills(2)
-            elif delta < 30:
-                self.streak_start = timezone.now()
-                self.depreciate_terminal_skills(3)
-            elif delta < 60:
-                self.streak_start = timezone.now()
-                self.depreciate_terminal_skills(4)
-            else:
-                self.streak_start = timezone.now()
-                self.depreciate_terminal_skills(5)
-            self.last_lesson_completion = timezone.now()
-            self.save(update_fields=['streak_start', 'last_lesson_completion'])
 
 
 # Creates UserProfile object when CustomUser is created

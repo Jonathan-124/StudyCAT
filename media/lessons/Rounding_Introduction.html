@@ -1,0 +1,94 @@
+<p>
+    Although numbers can be used to precisely indicate an amount, there are times when it is not necessary or useful to be exact.
+    For example, let's say we want to know roughly the population of Canada. At the time of writing this lesson, there are 37,106,948 people in Canada.
+    However, we did not really have to know exactly how many people there are down to the person, because we only wanted a rough estimate of the population of Canada.
+    In fact, getting a number like 37,106,548 is slightly troublesome — it is difficult to understand the number at first glance, and because the population changes very rapidly, this number would not remain exact for long.
+    This is where rounding comes in.
+    <br><br>
+    We <b>round</b> a number by replacing it with a different number that is approximately equal to the original when an exact number is not required, to make it easier to understand.
+    <br><br>
+    In our example, instead of saying that the population of Canada is <i>exactly</i> 37,106,948 people, we could say that the population is <i>roughly</i> 37,000,000 people.
+    By rounding the number 37,106,948 to 37,000,000, we make the number much easier to comprehend, and also avoid the problem of the exact number changing rapidly.
+    <br><br>
+    When we round a number, we first need to know which place we are rounding the number to, then we follow a simple process to round the number:
+    <ul>
+        <li>Look at the digit immediately to the right of the place we are rounding to.</li>
+        <ul>
+            <li>If this digit is less than or equal to 4:</li>
+                <ul>
+                    <li>Change all digits to the right of the place we are rounding the number to to 0</li>
+                    <li>Keep all digits to the left of the place we are rounding to (including the place itself) the same</li>
+                </ul>
+            <li>If this digit is more than or equal to 5:</li>
+                <ul>
+                    <li>Change all digits to the right of the place we are rounding the number to to 0</li>
+                    <li>Add 1 to the place we are rounding the number to</li>
+                </ul>
+        </ul>
+    </ul>
+    Let's try to round the number 165 to the nearest ten. Because we are rounding to the tens place, we need to look at the digit in the place immediately to the right — the ones place.
+    The digit 5 occupies the ones place. Since 5 fits the second condition above, we need to change all digits to the right of the tens place to 0, and add 1 to the tens place to round the number.
+    After doing this correctly, we get the answer of 170, which is 165 rounded to the nearest ten.
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 1</h5>
+        </div>
+        <div class="card-body">
+            <p>Round 15973 to the nearest hundred.</p>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex1-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex1-solution">Show solution</a>
+        </div>
+        <div id="ex1-solution" class="collapse hide" aria-labelledby="ex1-solution">
+            <div class="card-footer">
+                The correct answer is 16000.
+                <br><br>
+                Because we are rounding to the hundreds place, we need to look at the digit in the place immediately to the right — the tens place.
+                Since the digit 7 in the tens place is greater than 5 (the second condition applies), we need to change all digits to the right of the hundreds place to 0, and add 1 to the hundreds place.
+                16000 is therefore the answer.
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 2</h5>
+        </div>
+        <div class="card-body">
+            <p>Round 9964 to the nearest ten.</p>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex2-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex2-solution">Show solution</a>
+        </div>
+        <div id="ex2-solution" class="collapse hide" aria-labelledby="ex2-solution">
+            <div class="card-footer">
+                The correct answer is 9960.
+                <br><br>
+                Because we are rounding to the tens place, we need to look at the digit in the place immediately to the right — the ones place.
+                Since the digit 4 in the ones place is equal to 4 (the first condition applies), we need to change all digits to the right of the hundreds place to 0, and keep the digits to the left of the tens place and also keep the digits in the tens place itself.
+                9960 is therefore the answer.
+            </div>
+        </div>
+    </div>
+    Note that when the same number is rounded at different places, there might be different results as the level of precision is higher for a number rounded to a place further to the right.
+    <br><br>
+    For example, when rounding the number 37,106,948 to the nearest million, we get the result 37,000,000. When rounding 37,106,948 to the nearest thousand, we get 37,106,000, a different result.
+    Both of these results are estimates of the exact number, but because the original number was round to different places the estimates are different.
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 3</h5>
+        </div>
+        <div class="card-body">
+            <p>Round 1939 in the following ways: to the nearest thousand, to the nearest hundred, and to the nearest ten.</p>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex3-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex3-solution">Show solution</a>
+        </div>
+        <div id="ex3-solution" class="collapse hide" aria-labelledby="ex3-solution">
+            <div class="card-footer">
+                1939 rounded to the nearest thousand: 2000<br>
+                1939 rounded to the nearest hundred: 1900<br>
+                1939 rounded to the nearest ten: 1940<br>
+            </div>
+        </div>
+    </div>
+</p>

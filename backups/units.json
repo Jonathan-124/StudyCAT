@@ -1,0 +1,71 @@
+[
+{
+    "model": "units.unit",
+    "pk": 1,
+    "fields": {
+        "name": "Elementary Operations",
+        "slug": "elementary-operations",
+        "description": "Introduction to numbers and place value. Comparing single-digit and multi-digit numbers. Introduction to the four elementary operations (addition, subtraction, multiplication, subtraction) and their long forms.",
+        "start_skills": "[\"1\"]",
+        "end_skills": "[\"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"10\", \"12\", \"13\", \"14\", \"15\", \"16\", \"25\", \"26\"]",
+        "topological_average": 10,
+        "subject": 1,
+        "lessons": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            9,
+            11,
+            12,
+            13,
+            14,
+            15,
+            25,
+            26
+        ]
+    }
+},
+{
+    "model": "units.unit",
+    "pk": 2,
+    "fields": {
+        "name": "Introduction to Shapes",
+        "slug": "introduction-to-shapes",
+        "description": "An introduction to the most common 2D and 3D shapes.",
+        "start_skills": null,
+        "end_skills": null,
+        "topological_average": 0,
+        "subject": null,
+        "lessons": [
+            8,
+            10
+        ]
+    }
+},
+{
+    "model": "units.unit",
+    "pk": 3,
+    "fields": {
+        "name": "Rational Numbers",
+        "slug": "rational-numbers",
+        "description": "Non-natural numbers such as fractions, decimals, and negative numbers (i.e. all rational numbers) are introduced on the number line. How to add, subtract, multiply and divide these numbers.",
+        "start_skills": "[\"17\", \"20\", \"21\", \"22\", \"23\"]",
+        "end_skills": "[\"24\"]",
+        "topological_average": 15,
+        "subject": null,
+        "lessons": [
+            16,
+            17,
+            19,
+            21,
+            22,
+            23,
+            24
+        ]
+    }
+}
+]
