@@ -1,0 +1,115 @@
+<p>
+    Up until now, we have learned about the some elementary operations: addition (\(+\)), subtraction (\(-\)), multiplication (\(\times\)), division (\(\div\)), and exponents.
+    We have learned how to solve simple problems such as \(2+5\) or \(8 \div 4\). However, many problems are more complicated and involve more than one operation, such as \(3 \times 2 - 5\) or \(8-4\div 2\).
+    The question then becomes, in what order do we solve these equations with more than one operation? The <b>order of operations</b> is a set of rules that we follow to solve equations with more than one operation.
+    <br><br>
+    The order of operations is best remembered by the acronym <b>PEMDAS</b>, where each letter stands for the following operation:
+    <ul>
+        <li>P: Parentheses (\(()\), also known as brackets)</li>
+        <li>E: Exponents</li>
+        <li>M, D: Multiplication and Division</li>
+        <li>A, S: Addition and Subtraction</li>
+    </ul>
+    Precedence (what happens first and what happens later) is determined by the order of appearance in the acronym.
+    In other words, the order in which we solve an equation is to first solve all operations inside parentheses, then solve all exponents, then solve all multiplication and division operations, and finally solve all addition and subtraction operations.
+    <br><br>
+    For example, let's try to solve \(3+5\times 2\). Because there are no parentheses or exponents, we can skip the first two stages. Because multiplication/division takes precedence over addition/subtraction, we first multiply then add.
+    Therefore, \(3+5 \times 2 = 3 + 10 = 13\).
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 1</h5>
+        </div>
+        <div class="card-body">
+            <p>Calculate \((3+5) \times 2\)</p>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex1-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex1-solution">Show solution</a>
+        </div>
+        <div id="ex1-solution" class="collapse hide" aria-labelledby="ex1-solution">
+            <div class="card-footer">
+                The correct answer is \( 16 \).
+                <br><br>
+                Because there are parentheses, we must solve all operations inside the parentheses first. Therefore, \((3+5) \times 2 = 8 \times 2 = 16\).<br>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 2</h5>
+        </div>
+        <div class="card-body">
+            <p>Calculate \(1 + 16 \div 2^3\)</p>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex2-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex2-solution">Show solution</a>
+        </div>
+        <div id="ex2-solution" class="collapse hide" aria-labelledby="ex2-solution">
+            <div class="card-footer">
+                The correct answer is \( 3 \).
+                <br><br>
+                Exponent operations must be done before division, and division operations must be done before addition. Therefore, \(1 + 16 \div 2^3 = 1 + 16 \div 8 = 1 + 2 = 3\).<br>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    One important note to keep in mind is that multiplication and division have the same precedence (in other words, neither operation "overpowers" another), and addition/subtraction also have the same precedence.
+    If multiplication/division or addition/subtraction happen to occur together, we simply do the operations from left to right.
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 3</h5>
+        </div>
+        <div class="card-body">
+            <p>Calculate \(6 \div 2 \times 3\)</p>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex3-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex3-solution">Show solution</a>
+        </div>
+        <div id="ex3-solution" class="collapse hide" aria-labelledby="ex3-solution">
+            <div class="card-footer">
+                The correct answer is \( 9 \).
+                <br><br>
+                Multiplication and division have the same precedence, so we do the operations from left to right. \(6 \div 2 \times 3 = 3 \times 3 = 9\).<br>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 4</h5>
+        </div>
+        <div class="card-body">
+            <p>Calculate \(5 - 1 + 3 \times 2\)</p>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex4-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex4-solution">Show solution</a>
+        </div>
+        <div id="ex4-solution" class="collapse hide" aria-labelledby="ex4-solution">
+            <div class="card-footer">
+                The correct answer is \( 10 \).
+                <br><br>
+                Multiplication happens before subtraction and addition, so we first get \(5 - 1 + 3 \times 2 = 5 - 1 + 6\).
+                Then, because subtraction and addition have the same precedence, we go left to right to get \(5 - 1 + 6 = 4 + 6 = 10\). <br>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 5</h5>
+        </div>
+        <div class="card-body">
+            <p>Calculate \(2^{1+2}+10 - (2+3) \times (2 + 1) \)</p>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex5-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex5-solution">Show solution</a>
+        </div>
+        <div id="ex5-solution" class="collapse hide" aria-labelledby="ex5-solution">
+            <div class="card-footer">
+                The correct answer is \( 3 \).
+                <br><br>
+                First, we start by doing all operations inside parentheses to get \(2^{1+2}+10 - (2+3) \times (2 + 1) = 2^{1+2}+10 - 5 \times 3\).
+                Then, we complete all operations involving exponents to get \(2^{1+2}+10 - 5 \times 3 = 2^3+10 - 5 \times 3 = 8+10-5 \times 3\).
+                Then, we complete all operations involving multiplication/division to get \(8+10-5 \times 3 = 8 +10-15\).
+                Finally, we complete all operations involving addition/subtraction to get \(8 +10-15 = 18-15=3\).<br>
+            </div>
+        </div>
+    </div>
+</p>
