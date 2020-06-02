@@ -197,6 +197,8 @@ $(document).ready(function(){
 
         for (i of data.curriculum_status){
             percentage = i.status[0] / i.status[1] * 100
+            num_completed += i.status[0];
+            num_lessons += i.status[1];
             if (percentage == 100){
                 document.getElementById(i.slug).setAttribute("style", "width: 100%");
                 document.getElementById(i.slug).setAttribute("aria-valuenow", 100);
@@ -209,8 +211,7 @@ $(document).ready(function(){
                 document.getElementById(i.slug).innerHTML = `${Math.round(percentage * 10) / 10}%`;
             }
         }
-
-
+        
         if (data.test_date){
             test_date = new Date(data.test_date);
             days_remaining = Math.floor((test_date - Date.now()) / (1000*60*60*24));
