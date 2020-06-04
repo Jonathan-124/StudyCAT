@@ -208,16 +208,17 @@
                     let attempt = Guppy("guppybox").asciimath();
                     symbols_used = Guppy("guppybox").symbols_used()
                     try {
+                        const used_permitted_symbols = symbols_used.every(val => currentQ.permitted_symbols.includes(val));
                         const parsed_attempt = MathExpression.fromText(attempt);
                         let matched = currentQ.answers.find(checkAnswer);
                         function checkAnswer(value, index, array) {
                             return MathExpression.fromText(attempt).equals(MathExpression.fromText(value.answer_text));
                         }
-                        if (symbols_used.length > 0){
+                        if (typeof matched === "undefined"){
                             a_correctness = 0;
-                            feedback_text = "The answer should be a number!";
-                        } else if (typeof matched === "undefined") {
+                        } else if (!used_permitted_symbols){
                             a_correctness = 0;
+                            feedback_text = "The answer uses non-permitted operations!";
                         } else {
                             a_correctness = parseFloat(matched.answer_correctness);
                             feedback_text = matched.answer_explanation;

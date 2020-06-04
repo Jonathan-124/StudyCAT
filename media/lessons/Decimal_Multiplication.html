@@ -1,0 +1,107 @@
+<p>
+    The process of multiplying decimal numbers is very easy to learn, since it is similar to long multiplication with whole numbers, which we already know how to do!
+    If you need a refresher on long multiplication, check out the prerequisite lessons links above.
+    <br><br>
+    Recall that for long multiplication with only whole numbers, we aligned the digits of each number by their place, then calculated the product.
+    When multiplying decimal numbers, we perform long multiplication by <b>ignoring the decimal points in both numbers</b>, then placing the decimal point in the correct position in the product after everything is done.
+    <ol>
+        <li>Do long multiplication by ignoring the decimal points in both numbers</li>
+        <li>For each of the two numbers we are multiplying, count the number of places the decimal point is from the right side of the right-most digit</li>
+        <li>Find the sum of these two numbers we just counted, and place the decimal point at the place corresponding to this sum in the product</li>
+    </ol>
+    <br>
+    Let's calculate \(14.1 \times 2.3\) by using this process. First, we set up long multiplication by ignoring the decimal points in both numbers and aligning the places as we would multiply whole numbers like so:
+    $$
+    \begin{matrix}
+    &1&4.&1 \\
+    \times&0.&2&3 \\ \hline
+    \end{matrix}
+    $$
+    We perform long multiplication as usual by ignoring the decimal points:
+    $$
+    \begin{matrix}
+    &&1&4.&1 \\
+    &\times &0.&2&3 \\
+    \hline
+    &&4&2&3 \\
+    +&2&8&2& \\
+    \hline
+    &3&2&4&3
+    \end{matrix}
+    $$
+    In step 2, we count the number of places the decimal point is from the right side of the right-most digit for both numbers we are multiplying.
+    The decimal point is 1 place from the right-most digit in 14.1 and 2 places from the right-most digit in 0.23.
+    The position of the decimal point in the product is therefore \(1+2=3\) places from the right most digit, giving us a final result of 3.243.
+    $$
+    \begin{matrix}
+    &&1&4.&1 \\
+    &\times &0.&2&3 \\
+    \hline
+    &&4&2&3 \\
+    +&2&8&2& \\
+    \hline
+    &3.&2&4&3
+    \end{matrix}
+    $$
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 1</h5>
+        </div>
+        <div class="card-body">
+            <p>Calculate \( 5.04 \times 17 \).</p>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex1-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex1-solution">Show solution</a>
+        </div>
+        <div id="ex1-solution" class="collapse hide" aria-labelledby="ex1-solution">
+            <div class="card-footer">
+                The correct answer is \(85.68\).
+                <br><br>
+                $$
+                \begin{matrix}
+                &&5.&0&4 \\
+                &\times &&1&7 \\
+                \hline
+                &3&5&2&8 \\
+                +&5&0&4& \\
+                \hline
+                &8&5.&6&8
+                \end{matrix}
+                $$
+                The decimal point is 2 places from the right-most digit in 5.04 and 0 places from the right-most digit in 17.
+                The position of the decimal point in the product is therefore \(2+0=2\) places from the right most digit, giving us a final result of 85.68.
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 2</h5>
+        </div>
+        <div class="card-body">
+            <p>Calculate \( 58.2 \times 100 \).</p>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex2-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex2-solution">Show solution</a>
+        </div>
+        <div id="ex2-solution" class="collapse hide" aria-labelledby="ex2-solution">
+            <div class="card-footer">
+                The correct answer is \(5820\).
+                <br><br>
+                  $$
+                  \begin{matrix}
+                  &&&5&8.&2 \\
+                  &&\times &1&0&0 \\
+                  \hline
+                  &&&&&0 \\
+                  +&&&&0& \\
+                  +&5&8&2&&& \\
+                  \hline
+                  &5&8&2&0.&0
+                  \end{matrix}
+                  $$
+                The decimal point is 1 place from the right-most digit in 58.2 and 0 places from the right-most digit in 100.
+                The position of the decimal point in the product is therefore \(1+0=1\) place from the right most digit, giving us a final result of 5820.0, which can be simplified to 5820.
+            </div>
+        </div>
+    </div>
+    <br>
+</p>

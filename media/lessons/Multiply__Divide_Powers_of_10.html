@@ -1,0 +1,146 @@
+<p>
+    Powers of 10 are all numbers that can be expressed as an exponent of 10. For example, 10 is a power of 10, since \(10^1 = 10\); 100 is a power of 10, since \(10^2 = 100\); and 1000 is also a power of 10, since \(10^3 = 1000\), and so on.
+    When multiplying or dividing any decimal or whole number by a power of 10, there is a very handy trick we can use to quickly calculate the result:
+    <ol>
+        <li>Count the number of zeroes in the power of 10 we are multiplying/dividing by.</li>
+        <ul>
+            <li>If <b>multiplying a decimal with a power of 10, move the decimal point to the right</b>. The total number of places we move the decimal point is the same as the number of zeroes we counted.</li>
+            <li>If <b>dividing a decimal by a power of 10, move the decimal point to the left</b>. The total number of places we move the decimal point is the same as the number of zeroes we counted.</li>
+        </ul>
+        <li>The result is the new number with the decimal point moved</li>
+    </ol>
+    <br>
+    Here's an example. Let's try to calculate \(175.423 \times 100\).
+    <br><br>
+    Because we are multiplying a decimal by 100, which is a power of 10, we can use the method above.
+    There are 2 zeroes in 100, which is the power of 10 we are multiplying by. Because we are multiplying, we need to move the decimal point to the right by 2 places.
+    After moving the decimal point 2 places to the right, we get the result \(175.423 \times 100 = 17542.3\).
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 1</h5>
+        </div>
+        <div class="card-body">
+            <p>Calculate \( 1000 \times 198.76452 \).</p>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex1-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex1-solution">Show solution</a>
+        </div>
+        <div id="ex1-solution" class="collapse hide" aria-labelledby="ex1-solution">
+            <div class="card-footer">
+                The correct answer is \(198764.52\).
+                <br><br>
+                Because we are multiplying a decimal by a power of 10, we can use the method above. The power of 10 has 3 zeroes, and because we are multiplying, we move the decimal point 3 places to the right in the decimal.
+                The answer is therefore \(198764.52\).
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 2</h5>
+        </div>
+        <div class="card-body">
+            <p>Calculate \( 10.912 \div 10 \).</p>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex2-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex2-solution">Show solution</a>
+        </div>
+        <div id="ex2-solution" class="collapse hide" aria-labelledby="ex2-solution">
+            <div class="card-footer">
+                The correct answer is \(1.0912\).
+                <br><br>
+                Because we are dividing a decimal by a power of 10, we can use the method above. The power of 10 has 1 zero, and because we are dividing, we move the decimal point 1 place to the left in the dividend.
+                The answer is therefore \(1.0912\).
+            </div>
+        </div>
+    </div>
+    <br><br>
+    Important note: this method can only be used for division when the dividend is a decimal and the divisor is a power of 10.
+    In other words, the method cannot be used when trying to divide anything by a number that isn't a power of 10!
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 3</h5>
+        </div>
+        <div class="card-body">
+            <p>In which of the following situations can we NOT use the decimal moving method?</p>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="ex3-radio1" name="exercise3" class="custom-control-input">
+                <label class="custom-control-label" for="ex3-radio1">\( 91.2 \times 10 \)</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="ex3-radio2" name="exercise3" class="custom-control-input">
+                <label class="custom-control-label" for="ex3-radio2">\( 10 \times 91.2 \)</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="ex3-radio3" name="exercise3" class="custom-control-input">
+                <label class="custom-control-label" for="ex3-radio3">\( 91.2 \div 10 \)</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="ex3-radio4" name="exercise3" class="custom-control-input">
+                <label class="custom-control-label" for="ex3-radio4">\( 10 \div 91.2 \)</label>
+            </div>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex3-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex3-solution">Show solution</a>
+        </div>
+        <div id="ex3-solution" class="collapse hide" aria-labelledby="ex3-solution">
+            <div class="card-footer">
+                The correct answer is \( 10 \div 91.2 \).
+                <br><br>
+                The first two choices have a decimal multiplied by a power of 10, so the method is applicable.
+                The third choice has a decimal dividend (91.2) divided by a divisor that is a power of 10, so the method is applicable.
+                As mentioned above, the method is not applicable when the divisor is not a power of 10, and since the fourth choice has a divisor of 91.2 (not a power of 10), we cannot apply the decimal moving method.
+                <br><br>
+                As practice, here are the answers for the first three choices: <br>
+                \( 91.2 \times 10 = 912\)<br>
+                \( 10 \times 91.2 = 912\)<br>
+                \( 91.2 \div 10 = 9.12\)
+            </div>
+        </div>
+    </div>
+    <br>
+    There might be times when it seems like there aren't enough places to move the decimal point. In these cases, we first find an equivalent number that has more leading or trailing zeroes, then perform the calculation.
+    <br><br>
+    For example, if we want to calculate \(1.9 \times 1000\), we have to move the decimal point 3 spots to the right. However, because 1.9 only has one place to the right of the decimal point, we cannot yet perform the calculation.
+    However, because we know that \(1.9 = 1.900\), we know that \(1.9 \times 1000 = 1.900 \times 1000 \), and therefore \(1.9 \times 1000 = 1.900 \times 1000 = 1900\).
+    <br><br>
+    Here's another example: if we want to calculate \(1.9 \div 1000\), we have to move the decimal point 3 spots to the left. However, because 1.9 only has one place to the left of the decimal point, we cannot divide the numbers yet.
+    However, because we know that \(1.9 = 0001.9\), we know that \(1.9 \div 1000 = 0001.9 \div 1000 \), and therefore \(1.9 \div 1000 = 0001.9 \div 1000 = 0.0019\).
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 4</h5>
+        </div>
+        <div class="card-body">
+            <p>Calculate \( 1048 \times 10 \).</p>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex4-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex4-solution">Show solution</a>
+        </div>
+        <div id="ex4-solution" class="collapse hide" aria-labelledby="ex4-solution">
+            <div class="card-footer">
+                The correct answer is \(10480\).
+                <br><br>
+                Because we are multiplying a number by a power of 10, we can use the method of moving decimals. The power of 10 has 1 zero, and because we are multiplying, we move the decimal point 1 place to the right.
+                \(1048 = 1048.0\), therefore \(1048 \times 10 = 1048.0 \times 10 = 10480\).
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            <h5>Exercise 5</h5>
+        </div>
+        <div class="card-body">
+            <p>Calculate \( 1048 \div 100000 \).</p>
+            <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#ex5-solution" onclick="this.innerHTML = (this.innerHTML == 'Show solution' ? 'Hide solution' : 'Show solution');" role="button" aria-expanded="false" aria-controls="ex5-solution">Show solution</a>
+        </div>
+        <div id="ex5-solution" class="collapse hide" aria-labelledby="ex5-solution">
+            <div class="card-footer">
+                The correct answer is \(0.01048\).
+                <br><br>
+                Because we are dividing a number by a power of 10, we can use the method of moving decimals. The power of 100000 has 5 zeroes, and because we are dividing, we move the decimal point 5 places to the left.
+                \(1048 = 001048.0\), therefore \(1048 \div 100000 = 001048.0 \div 100000 = 0.010480 = 0.01048\).
+            </div>
+        </div>
+    </div>
+</p>

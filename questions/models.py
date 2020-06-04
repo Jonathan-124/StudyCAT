@@ -1,7 +1,8 @@
-from django.db import models
-from skills.models import Skill
+from django.contrib.postgres.fields import ArrayField
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.db import models
 from django.db.models.aggregates import Count
+from skills.models import Skill
 from random import sample, randint
 
 
@@ -53,6 +54,10 @@ def answer_image_directory_path(instance, filename):
                                                                instance.question.id, instance.id, filename)
 
 
+def get_default_permitted_fields():
+    return ["fraction"]
+
+
 # Question model
 # skill - question objects have a many-to-one relationship to skill objects
 # question_type - choice of what type of question/what type of input it requires
@@ -83,6 +88,7 @@ class Question(models.Model):
                               related_name='questions')
     question_type = models.CharField(max_length=2, choices=QUESTION_TYPES)
     question_prompt = models.TextField()
+    permitted_symbols = ArrayField(models.CharField(max_length=32), blank=True, null=True, default=get_default_permitted_fields)
     prompt_image = models.ImageField(null=True, blank=True, upload_to=prompt_image_directory_path)
     is_mastery = models.BooleanField(default=False)
     discrimination = models.DecimalField(decimal_places=3,
