@@ -1,3 +1,4 @@
+import random
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.db.models import F
@@ -19,15 +20,14 @@ from questions.serializers import QuestionSerializer
 from .serializers import PostTestUpdateSerializer, PostPlacementBulkUpdateSerializer, UnitReviewUpdateSerializer, CurrentlyStudyingUpdateSerializer
 
 
-# Returns JSON object of list of serialized lessons and one random question that are both at the user's terminus level
+# Returns JSON object of  one random question that at the user's terminus level
 @api_view()
 @login_required()
 def get_homepage_data(request, *args, **kwargs):
-    terminus_data = request.user.profile.retrieve_terminus_lessons()
-    serialized_lessons = LessonSerializer(terminus_data[0], many=True).data
-    random_question = Question.objects.random(terminus_data[1])
+    terminus_data = request.user.profile.retrieve_terminus_skills()
+    random_question = Question.objects.random(random.choice(terminus_data))
     serialized_question = QuestionSerializer(random_question).data
-    return Response({"lessons": serialized_lessons, "question": serialized_question})
+    return Response({"question": serialized_question})
 
 
 # Receives curriculum pk, returns list of JSON objects {"slug": unit slug, "percentage": unit completion percentage}

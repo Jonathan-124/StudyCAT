@@ -26,13 +26,6 @@
     </div>
 </div>
 <br>
-<div class="jumbotron">
-    <h5>Lessons to review...</h5>
-    <br>
-    <div class="card-deck" id="learned">
-    </div>
-</div>
-<br>
 
 <footer class="pt-4 my-md-5 pt-md-5 border-top">
     <div class="row">
@@ -131,34 +124,6 @@ $(document).ready(function(){
     // Retrieves terminus lesson data and random question for one of these lessons for the particular user
     $.get("{% url 'get_homepage_data'%}", function(data, status){
         currentQ = data.question;
-        lessons_data = data.lessons;
-
-        // Setting up DOM learned using data.lessons
-        let learned =  document.getElementById("learned");
-        let lessons_url = "/lessons/"
-        lessons_data.forEach(function(value, index, array){
-            // Initializing card, card_body, link, and title vars
-            let card = document.createElement("div");
-            let card_body = document.createElement("div");
-            let lesson_link = document.createElement("a");
-            let card_title = document.createElement("h5");
-
-            // Setting attributes
-            card_title.setAttribute("class", "card-title");
-            card_title.innerHTML = value.lesson_title;
-            lesson_link.setAttribute("href", lessons_url.concat(value.slug));
-            card_body.setAttribute("class", "card-body");
-            card.setAttribute("id", value.slug);
-            card.setAttribute("data-topological-order", value.topological_order);
-            card.setAttribute("class", "card text-center");
-
-            // Appending children
-            lesson_link.appendChild(card_title);
-            card_body.appendChild(lesson_link);
-            card.appendChild(card_body);
-            learned.appendChild(card);
-        })
-
 
         // Setting up DOM challenge using data.question
         prompt.innerHTML = currentQ.question_prompt;
