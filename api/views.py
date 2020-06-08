@@ -24,10 +24,12 @@ from .serializers import PostTestUpdateSerializer, PostPlacementBulkUpdateSerial
 @api_view()
 @login_required()
 def get_homepage_data(request, *args, **kwargs):
-    terminus_data = request.user.profile.retrieve_terminus_skills()
-    random_question = Question.objects.random(random.choice(terminus_data))
-    serialized_question = QuestionSerializer(random_question).data
-    return Response({"question": serialized_question})
+    try:
+        qotd = Question.objects.get(id=request.user.profile.qotd)
+        serialized_question = QuestionSerializer(qotd).data
+        return Response({"question": serialized_question})
+    except:
+        return Response({"question": None})
 
 
 # Receives curriculum pk, returns list of JSON objects {"slug": unit slug, "percentage": unit completion percentage}

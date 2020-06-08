@@ -13,7 +13,7 @@ from curricula.models import Curriculum
 # user - one-to-one relationship to CustomUser model
 # skills - each UserProfile object has one relationship to every Skill object through the Skillfulness through model
 # currently_studying - one-to-one relationship to Curriculum model, what the user is currently studying
-# test_date - (if exists) what date the user will take their test
+# qotd - integer, id of question of the day
 class UserProfile(models.Model):
     user = models.OneToOneField(
         get_user_model(),
@@ -22,6 +22,7 @@ class UserProfile(models.Model):
     )
     currently_studying = models.ManyToManyField(Curriculum, through='CurrentlyStudying', through_fields=('user_profile', 'curriculum'))
     skills = models.ManyToManyField(Skill, through='Skillfulness', through_fields=('user_profile', 'skill'))
+    qotd = models.IntegerField(null=True, blank=True)
     streak_start = models.DateTimeField(null=True, blank=True)
     last_lesson_completion = models.DateTimeField(null=True, blank=True)
 
@@ -45,6 +46,7 @@ class UserProfile(models.Model):
         return terminus_skill_ids
 
     # Returns queryset of terminus lessons and random skill id of one of these lessons
+    # defunct
     def retrieve_terminus_lessons(self):
         lessons = set()
         passed_skills = Skillfulness.objects.filter(user_profile=self).filter(skill_level__gte=1)
@@ -64,12 +66,12 @@ class UserProfile(models.Model):
                 lessons.add(skilledge.parent_skill.lesson)
             return lessons, random.choice(terminus_skills).parent_skill.id
 
-    # Receives num [1, 5], depreciates user skillfulness of the terminal-most skills
+    # Receives num [1, 5] and list of skill ids, depreciates user skillfulness of the terminal-most skills
     # 1 - two days+; depreciate terminal skills slightly
     # 2 - one week+; depreciate terminal skills slightly more and and parents slightly
     # 3 - two weeks+; 4 - one month +; 5 - two months +;
-    def depreciate_terminal_skills(self, num):
-        terminus_skills = self.retrieve_terminus_skills()
+    def depreciate_terminal_skills(self, num, id_list):
+        terminus_skills = id_list
         while num > 0:
             Skillfulness.objects.filter(user_profile=self).filter(skill__id__in=terminus_skills).update(skill_level=models.F('skill_level') - 1)
             terminus_skills = self.retrieve_terminus_skills()
