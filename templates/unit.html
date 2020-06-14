@@ -8,11 +8,11 @@
     <div class="col-md-6 text-center">
         <span class="float-md-left"><h2>{{ unit.name }}</h2></span>
     </div>
-    {% if user.is_authenticated %}
-    <div id="review-unit" class="col-md-6 text-center d-none">
-        <span class="float-md-right"><a class="btn btn-outline-primary" href="{% url 'units:unit_review' unit.slug %}">Review completed lessons</a></span>
+    <div class="col-md-6 text-center">
+        <span class="float-md-right">
+            <a class="btn btn-link" href="{% url 'curriculum' unit.curriculum.slug %}">Return to curriculum page</a>
+        </span>
     </div>
-    {% endif %}
 </div>
 
 {% if not user.is_authenticated %}
@@ -26,6 +26,9 @@
 <div id="cy" class="jumbotron"></div>
 
 {% if user.is_authenticated %}
+<br>
+<a id="review-completed-lessons" class="btn btn-primary btn-lg btn-block" href="{% url 'units:unit_review' unit.slug %}">Review Completed Lessons</a>
+
 <!-- Modal -->
 <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

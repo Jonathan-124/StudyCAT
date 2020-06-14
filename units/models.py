@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.contrib.postgres.fields import ArrayField
-from django.db.models.signals import m2m_changed, post_save
+from django.db.models.signals import m2m_changed
 from django.dispatch import receiver
 from skills.models import Skill
 
@@ -17,6 +17,7 @@ class Unit(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
     description = models.TextField(max_length=255)
+    curriculum = models.ForeignKey('curricula.Curriculum', on_delete=models.PROTECT, related_name='units')
     lessons = models.ManyToManyField('lessons.Lesson', related_name='units')
     start_skills = ArrayField(models.PositiveIntegerField(), blank=True, null=True)
     end_skills = ArrayField(models.PositiveIntegerField(), blank=True, null=True)

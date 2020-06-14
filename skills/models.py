@@ -77,12 +77,6 @@ class SkillEdge(models.Model):
     parent_skill = models.ForeignKey(Skill, on_delete=models.CASCADE, related_name="parent_skills")
     child_skill = models.ForeignKey(Skill, on_delete=models.CASCADE, related_name="children_skills")
     same_subject = models.BooleanField(default=True)
-    ''' Currently defunct, to add this in later...
-    relatedness = models.DecimalField(decimal_places=2,
-                                      max_digits=3,
-                                      default=1,
-                                      validators=[MaxValueValidator(1), MinValueValidator(0)])
-    '''
 
     def __str__(self):
         return self.parent_skill.name + " -> " + self.child_skill.name
@@ -134,9 +128,6 @@ def update_topological_order(sender, instance, **kwargs):
                 if not edges_with_child:
                     root_nodes.append(child)
 
-    # Calls subject method that repopulates the topological dependency matrix
-    subject.repopulate_dependency_matrix()
-
     # Updates topological orders if skilledge changed when same_subject=False
     # Same code, but updates other_subject dependency matrix and skill topological orders
     if not instance.same_subject:
@@ -165,4 +156,3 @@ def update_topological_order(sender, instance, **kwargs):
                     edges_with_child = parent_edges_of_child(child, edges)
                     if not edges_with_child:
                         root_nodes.append(child)
-        other_subject.repopulate_dependency_matrix()
