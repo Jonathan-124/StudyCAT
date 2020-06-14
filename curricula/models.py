@@ -19,6 +19,7 @@ class Curriculum(models.Model):
     slug = models.SlugField(unique=True)
     start_skills = ArrayField(models.PositiveIntegerField(), blank=True, null=True)
     end_skills = ArrayField(models.PositiveIntegerField(), blank=True, null=True)
+    prerequisite_skills = ArrayField(models.PositiveIntegerField(), blank=True, null=True)
     subject = models.OneToOneField(Subject, on_delete=models.PROTECT, null=True, blank=True)
 
     class Meta:
@@ -41,6 +42,7 @@ def curriculum_unit_saved(sender, instance, **kwargs):
     curriculum = instance.curriculum
     start_skill_set = set()
     end_skill_set = set()
+    prerequisite_skill_set = set()
     skills = Skill.objects.filter(lesson__units__curriculum=curriculum)
     for i in skills:
         # Retrieve parents and children Skill objects for each i in skills object list
@@ -50,14 +52,17 @@ def curriculum_unit_saved(sender, instance, **kwargs):
         children = i.get_children_skills()
         if not parents or parents.difference(skills):
             start_skill_set.add(i.id)
+            prerequisite_skill_set.update(set(parents.difference(skills).values_list('id', flat=True)))
         if not children or children.difference(skills):
             end_skill_set.add(i.id)
     # If a skill_id is in both the start and end skill sets, only include it in the start skill set
     # Add both lists into start_skill_dict and end_skill_dict, change to JSON, set model field attributes and save
     start_skill_list = list(start_skill_set)
     end_skill_list = list(end_skill_set.difference(start_skill_set))
+    prerequisite_skill_list = list(prerequisite_skill_set)
     setattr(curriculum, 'start_skills', start_skill_list)
     setattr(curriculum, 'end_skills', end_skill_list)
+    setattr(curriculum, 'prerequisite_skills', prerequisite_skill_list)
     curriculum.save()
 
 # Called when Unit-Lesson m2m relationship added or removed
@@ -70,16 +75,20 @@ def curriculum_lesson_relation_changed(sender, instance, action, reverse, **kwar
         curriculum = instance.curriculum
         start_skill_set = set()
         end_skill_set = set()
+        prerequisite_skill_set = set()
         skills = Skill.objects.filter(lesson__units__curriculum=curriculum)
         for i in skills:
             parents = i.get_parent_skills()
             children = i.get_children_skills()
             if not parents or parents.difference(skills):
                 start_skill_set.add(i.id)
+                prerequisite_skill_set.update(set(parents.difference(skills).values_list('id', flat=True)))
             if not children or children.difference(skills):
                 end_skill_set.add(i.id)
         start_skill_list = list(start_skill_set)
         end_skill_list = list(end_skill_set.difference(start_skill_set))
+        prerequisite_skill_list = list(prerequisite_skill_set)
         setattr(curriculum, 'start_skills', start_skill_list)
         setattr(curriculum, 'end_skills', end_skill_list)
+        setattr(curriculum, 'prerequisite_skills', prerequisite_skill_list)
         curriculum.save()

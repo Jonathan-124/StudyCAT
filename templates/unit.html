@@ -80,14 +80,16 @@
 $(document).ready(function(){
     // Initializing variables
     const lessons_url = "/lessons/";
-    let user_skill_data;
     let num_complete = 0;
     let lessons_data;
+    let user_skill_data;
+    let incomplete_prerequisites;
     let elements = [];
 
     $.when(
         $.get("{% url 'get_unit_data' unit.id %}", function(data, status){
             // Retrieves and stores serialized lesson objects for lessons in unit
+            incomplete_prerequisites = data.incomplete_prerequisites;
             lessons_data = data.unit_data.lessons;
             user_skill_data = data.user_skill_levels;
         })
@@ -107,6 +109,10 @@ $(document).ready(function(){
                         readiness = false;
                         elements.push({data: {id: `${j}-${skill_id}`, source: j, target: skill_id, status: 0}});
                     }
+                } else if (incomplete_prerequisites.includes(j)){
+                    readiness = false;
+                } else {
+                    // pass
                 }
             }
             if (user_skill > 0){

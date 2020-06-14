@@ -127,6 +127,7 @@ def create_user_skill(sender, instance, created, **kwargs):
         all_user_profiles = UserProfile.objects.all()
         for oneuser in all_user_profiles:
             Skillfulness.objects.get_or_create(user_profile=oneuser, skill=instance)
+    # do sth about default readiness and skill_level
 
 # Creates all Skillfulness objects for a new UserProfile that connects to all existing Skill objects
 @receiver(post_save, sender=UserProfile, dispatch_uid='create_all_skills')

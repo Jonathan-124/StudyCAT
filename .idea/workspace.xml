@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4f20b07-5da7-447c-bce7-dc551de39b8d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/curricula/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/curricula/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/curricula/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/curricula/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/skills/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/skills/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/subjects/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/subjects/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/subjects/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/subjects/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Comparison Signs Extended.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/unit.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/unit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/unit_review.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/unit_review.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/units/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/units/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/units/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/units/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userprofiles/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/userprofiles/models.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,10 +24,13 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/Comparison Signs Extended.html">
+        <entry file="file://$PROJECT_DIR$/skills/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="3" selection-start-column="3" selection-end-column="3" />
+            <state relative-caret-position="499">
+              <caret line="126" column="34" lean-forward="true" selection-start-line="126" selection-start-column="34" selection-end-line="126" selection-end-column="34" />
+              <folding>
+                <element signature="e#0#53#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -32,17 +38,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/unit.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="82" selection-start-line="12" selection-start-column="82" selection-end-line="12" selection-end-column="82" />
+            <state relative-caret-position="221">
+              <caret line="100" column="19" lean-forward="true" selection-start-line="100" selection-start-column="19" selection-end-line="100" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/lesson.html">
+        <entry file="file://$PROJECT_DIR$/api/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" selection-start-line="9" selection-end-line="15" selection-end-column="10" />
+            <state relative-caret-position="354">
+              <caret line="56" column="11" lean-forward="true" selection-start-line="56" selection-start-column="11" selection-end-line="56" selection-end-column="11" />
+              <folding>
+                <element signature="e#0#57#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -59,9 +68,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>subject</find>
-      <find>skill</find>
-      <find>Skill</find>
       <find>timezone</find>
       <find>asd</find>
       <find>roadma</find>
@@ -89,6 +95,9 @@
       <find>curriculum</find>
       <find>exit-</find>
       <find>review completed</find>
+      <find>{%</find>
+      <find>start</find>
+      <find>values</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -97,16 +106,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/media/lessons/Decimal_Operations_II.html" />
         <option value="$PROJECT_DIR$/media/lessons/Decimal_Multiplication.html" />
         <option value="$PROJECT_DIR$/questions/models.py" />
         <option value="$PROJECT_DIR$/questions/serializers.py" />
-        <option value="$PROJECT_DIR$/templates/unit_review.html" />
         <option value="$PROJECT_DIR$/media/lessons/Decimal_Division.html" />
         <option value="$PROJECT_DIR$/templates/Fraction Decimal Conversion.html" />
         <option value="$PROJECT_DIR$/templates/Negative Numbers Introduction.html" />
         <option value="$PROJECT_DIR$/media/lessons/Negative_Numbers_Introduction.html" />
-        <option value="$PROJECT_DIR$/userprofiles/models.py" />
         <option value="$PROJECT_DIR$/users/models.py" />
         <option value="$PROJECT_DIR$/media/lessons/Number_Line_Introduction.html" />
         <option value="$PROJECT_DIR$/templates/Negative Numbers Operations I.html" />
@@ -125,8 +131,6 @@
         <option value="$PROJECT_DIR$/media/lessons/Consolidated_Arithmetic_I.html" />
         <option value="$PROJECT_DIR$/media/lessons/Multiplication_Introduction.html" />
         <option value="$PROJECT_DIR$/templates/Roots Introduction.html" />
-        <option value="$PROJECT_DIR$/api/views.py" />
-        <option value="$PROJECT_DIR$/templates/lesson.html" />
         <option value="$PROJECT_DIR$/templates/Consolidated Arithmetic Extended.html" />
         <option value="$PROJECT_DIR$/media/lessons/Exponents_Introduction.html" />
         <option value="$PROJECT_DIR$/templates/Exponents Extended.html" />
@@ -138,22 +142,27 @@
         <option value="$PROJECT_DIR$/templates/Order of Operations III.html" />
         <option value="$PROJECT_DIR$/templates/Absolute Value.html" />
         <option value="$PROJECT_DIR$/media/lessons/Absolute_Value.html" />
-        <option value="$PROJECT_DIR$/units/admin.py" />
         <option value="$PROJECT_DIR$/templates/Inequalities Introduction.html" />
         <option value="$PROJECT_DIR$/templates/Comparison Signs Extended.html" />
-        <option value="$PROJECT_DIR$/curricula/models.py" />
-        <option value="$PROJECT_DIR$/units/models.py" />
         <option value="$PROJECT_DIR$/templates/curriculum.html" />
         <option value="$PROJECT_DIR$/skills/models.py" />
         <option value="$PROJECT_DIR$/subjects/admin.py" />
         <option value="$PROJECT_DIR$/subjects/models.py" />
+        <option value="$PROJECT_DIR$/templates/lesson.html" />
+        <option value="$PROJECT_DIR$/userprofiles/models.py" />
+        <option value="$PROJECT_DIR$/templates/unit_review.html" />
+        <option value="$PROJECT_DIR$/curricula/admin.py" />
+        <option value="$PROJECT_DIR$/units/admin.py" />
+        <option value="$PROJECT_DIR$/curricula/models.py" />
+        <option value="$PROJECT_DIR$/units/models.py" />
+        <option value="$PROJECT_DIR$/api/views.py" />
         <option value="$PROJECT_DIR$/templates/unit.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="220" />
-    <option name="y" value="35" />
+    <option name="x" value="190" />
+    <option name="y" value="44" />
     <option name="width" value="1380" />
     <option name="height" value="969" />
   </component>
@@ -173,12 +182,17 @@
             <path>
               <item name="studycat" type="b2602c69:ProjectViewProjectNode" />
               <item name="studycat" type="462c0819:PsiDirectoryNode" />
-              <item name="curricula" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="studycat" type="b2602c69:ProjectViewProjectNode" />
               <item name="studycat" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="studycat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="studycat" type="462c0819:PsiDirectoryNode" />
+              <item name="units" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -231,7 +245,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="220" y="35" width="1380" height="969" extended-state="0" />
+    <frame x="190" y="44" width="1380" height="969" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" sideWeight="0.50119907" side_tool="true" weight="0.24412434" />
@@ -256,14 +270,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/media/lessons/Negative_Number_Operations_I.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2142">
-          <caret line="126" column="56" selection-start-line="126" selection-start-column="56" selection-end-line="126" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Negative Number Operations II.html" />
     <entry file="file://$PROJECT_DIR$/media/lessons/Fraction_Decimal_Conversion.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-501">
@@ -301,9 +307,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/Roots Introduction.html" />
-    <entry file="file://$PROJECT_DIR$/api/models.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/lessons/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -402,16 +405,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/units/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="65" lean-forward="true" selection-start-line="7" selection-start-column="65" selection-end-line="7" selection-end-column="65" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/Inequalities Introduction.html">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -449,46 +442,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="52" column="68" selection-start-line="52" selection-start-column="58" selection-end-line="52" selection-end-column="68" />
-          <folding>
-            <element signature="e#0#57#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/curricula/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1445">
-          <caret line="85" selection-start-line="85" selection-end-line="85" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/curricula/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="11" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/skills/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1655">
-          <caret line="128" column="44" selection-start-line="128" selection-start-column="44" selection-end-line="128" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#53#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/subjects/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -504,23 +457,6 @@
         <state>
           <folding>
             <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/units/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-504">
-          <caret line="1" column="37" lean-forward="true" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userprofiles/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="553">
-          <caret line="141" column="14" selection-start-line="141" selection-start-column="4" selection-end-line="141" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -544,27 +480,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/curriculum.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="35" selection-start-line="2" selection-start-column="35" selection-end-line="2" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Comparison Signs Extended.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="3" selection-start-column="3" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/lesson.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" selection-start-line="9" selection-end-line="15" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/studycat/urls.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -577,10 +492,120 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/lesson.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="37" lean-forward="true" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/curriculum.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1700">
+          <caret line="2" column="35" selection-start-line="2" selection-start-column="35" selection-end-line="2" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/userprofiles/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/userprofiles/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="126" column="39" selection-start-line="126" selection-start-column="28" selection-end-line="126" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/unit_review.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="88" column="155" lean-forward="true" selection-start-line="88" selection-start-column="155" selection-end-line="88" selection-end-column="155" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Comparison Signs Extended.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="3" selection-start-column="3" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/curricula/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="85" selection-start-line="7" selection-start-column="62" selection-end-line="7" selection-end-column="85" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/units/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/models.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/curricula/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="601">
+          <caret line="89" column="61" selection-start-line="89" selection-start-column="61" selection-end-line="89" selection-end-column="61" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skills/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="126" column="34" lean-forward="true" selection-start-line="126" selection-start-column="34" selection-end-line="126" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/units/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="777">
+          <caret line="65" selection-start-line="65" selection-end-line="65" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="56" column="11" lean-forward="true" selection-start-line="56" selection-start-column="11" selection-end-line="56" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/unit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="82" selection-start-line="12" selection-start-column="82" selection-end-line="12" selection-end-column="82" />
+        <state relative-caret-position="221">
+          <caret line="100" column="19" lean-forward="true" selection-start-line="100" selection-start-column="19" selection-end-line="100" selection-end-column="19" />
         </state>
       </provider>
     </entry>

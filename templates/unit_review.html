@@ -85,7 +85,11 @@
         $.get("{% url 'get_unit_review_question_pack' unit.id %}", function(data, status){
             question_pack = data;
             num_questions = question_pack.length;
-            tester();
+            if (num_questions == 0){
+                prompt.innerHTML = "It seems like you haven't completed any lessons in the unit yet! <a href=\"{% url 'units:unit' unit.slug %}\">Return to the unit</a> and complete a few lessons before you come back here to review!";
+            } else {
+                tester();
+            }
         });
 
         function tester() {

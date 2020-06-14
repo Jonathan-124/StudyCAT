@@ -42,12 +42,7 @@ def get_curriculum_completion_status(request, *args, **kwargs):
         return Response({"message": "Curriculum does not exist"}, status=status.HTTP_400_BAD_REQUEST)
     else:
         prerequisite_data = []
-        incomplete_start_skills = Skillfulness.objects.filter(user_profile=user_profile, skill__in=curriculum.start_skills, skill_level=0).prefetch_related('skill')
-        ancestors = set()
-        for i in incomplete_start_skills:
-            ancestors.update(i.skill.ancestor_ids)
-        ancestors = list(ancestors)
-        incomplete_prerequisites = Skillfulness.objects.filter(user_profile=user_profile, skill__in=ancestors, skill_level=0).prefetch_related('skill__lesson')
+        incomplete_prerequisites = Skillfulness.objects.filter(user_profile=user_profile, skill__in=curriculum.prerequisite_skills, skill_level=0).prefetch_related('skill__lesson')
         for i in incomplete_prerequisites:
             prerequisite_data.append(LessonSerializer(i.skill.lesson).data)
         curriculum_status = user_profile.curriculum_units_completion_percentage(curriculum)
@@ -66,7 +61,8 @@ def get_unit_data(request, *args, **kwargs):
     if request.user.is_authenticated:
         skill_ids = unit.lessons.all().values_list('skill__id', flat=True)
         user_skill_levels = Skillfulness.objects.filter(user_profile=request.user.profile, skill__id__in=skill_ids).values_list('skill', 'skill_level')
-        return Response({"unit_data": unit_data, "user_skill_levels": user_skill_levels})
+        incomplete_prerequisites = Skillfulness.objects.filter(user_profile=request.user.profile, skill__id__in=unit.prerequisite_skills, skill_level=0).values_list('skill')
+        return Response({"unit_data": unit_data, "user_skill_levels": user_skill_levels, "incomplete_prerequisites": incomplete_prerequisites})
     else:
         return Response({"unit_data": unit_data})
 

@@ -21,6 +21,7 @@ class Unit(models.Model):
     lessons = models.ManyToManyField('lessons.Lesson', related_name='units')
     start_skills = ArrayField(models.PositiveIntegerField(), blank=True, null=True)
     end_skills = ArrayField(models.PositiveIntegerField(), blank=True, null=True)
+    prerequisite_skills = ArrayField(models.PositiveIntegerField(), blank=True, null=True)
     precedence = models.PositiveIntegerField(default=0)
     subject = models.OneToOneField('subjects.Subject', on_delete=models.PROTECT, null=True, blank=True)
 
@@ -51,6 +52,7 @@ def lesson_unit_relation_changed(sender, instance, action, reverse, **kwargs):
         # skills - list of all Skill objects associated with the lessons
         start_skill_set = set()
         end_skill_set = set()
+        prerequisite_skill_set = set()
         skills = Skill.objects.filter(lesson__units=instance)
         for i in skills:
             # Retrieve parents and children Skill objects for each i in skills object list
@@ -60,12 +62,15 @@ def lesson_unit_relation_changed(sender, instance, action, reverse, **kwargs):
             children = i.get_children_skills()
             if not parents or parents.difference(skills):
                 start_skill_set.add(i.id)
+                prerequisite_skill_set.update(set(parents.difference(skills).values_list('id', flat=True)))
             if not children or children.difference(skills):
                 end_skill_set.add(i.id)
         # If a skill_id is in both the start and end skill sets, only include it in the start skill set
         # Add both lists into start_skill_dict and end_skill_dict, change to JSON, set model field attributes and save
         start_skill_list = list(start_skill_set)
         end_skill_list = list(end_skill_set.difference(start_skill_set))
+        prerequisite_skill_list = list(prerequisite_skill_set)
         setattr(instance, 'start_skills', start_skill_list)
         setattr(instance, 'end_skills', end_skill_list)
+        setattr(instance, 'prerequisite_skills', prerequisite_skill_list)
         instance.save()
