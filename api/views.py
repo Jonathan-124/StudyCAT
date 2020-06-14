@@ -1,4 +1,3 @@
-import random
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.db.models import F
@@ -76,7 +75,7 @@ def get_unit_data(request, *args, **kwargs):
 @api_view()
 def get_parent_lessons_data(request, *args, **kwargs):
     parents = Skill.objects.get(id=kwargs.get('pk')).get_parent_skills()
-    lessons = Lesson.objects.filter(skill__in=parents)
+    lessons = Lesson.objects.filter(skill__in=parents).order_by('lesson_title')
     serialized_lessons = LessonSerializer(lessons, many=True).data
     if request.user.is_authenticated:
         user_skill_levels = Skillfulness.objects.filter(user_profile=request.user.profile, skill__in=parents).values_list('skill', 'skill_level')

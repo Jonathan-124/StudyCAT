@@ -128,27 +128,26 @@ $(document).ready(function(){
         const lessons_url = "/lessons/";
         const prerequisites = document.getElementById("prerequisite-lessons");
         let readiness = true;
-        for (i of data.user_skill_levels){
-            let parent_lesson_data = data.lessons_data.find(function(value){return i[0] == value.skill.id});
+        for (i of data.lessons_data){
+            let user_skill_level = data.user_skill_levels.find(function(value){return i.skill.id == value[0]});
             item = document.createElement("a");
-            item.setAttribute("href", lessons_url + parent_lesson_data.slug);
-            if (i[1] > 0){
+            item.setAttribute("href", lessons_url + i.slug);
+            if (user_skill_level[1] > 0){
                 item.setAttribute("class", "list-group-item list-group-item-action");
-                item.innerHTML = parent_lesson_data.lesson_title;
+                item.innerHTML = i.lesson_title;
             } else {
                 readiness = false;
                 item.setAttribute("class", "list-group-item list-group-item-action list-group-item-secondary");
-                item.innerHTML = "(Incomplete) " + parent_lesson_data.lesson_title;
-
+                item.innerHTML = "(Incomplete) " + i.lesson_title;
             }
             prerequisites.appendChild(item);
-            if (readiness){
-                $("#prerequisite-lessons-button").attr("class", "btn btn-light btn-lg btn-block");
-                $("#prerequisite-lessons-button").text("Prerequisite Lessons - Complete!");
-            } else {
-                $("#prerequisite-lessons-button").attr("class", "btn btn-secondary btn-lg btn-block");
-                $("#prerequisite-lessons-button").text("Prerequisite Lessons - Incomplete");
-            }
+        }
+        if (readiness){
+            $("#prerequisite-lessons-button").attr("class", "btn btn-light btn-lg btn-block");
+            $("#prerequisite-lessons-button").text("Prerequisite Lessons - Complete!");
+        } else {
+            $("#prerequisite-lessons-button").attr("class", "btn btn-secondary btn-lg btn-block");
+            $("#prerequisite-lessons-button").text("Prerequisite Lessons - Incomplete");
         }
     });
 

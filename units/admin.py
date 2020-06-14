@@ -5,7 +5,7 @@ from .models import Unit
 class UnitAdmin(admin.ModelAdmin):
     model = Unit
     exclude = ('slug', )
-    readonly_fields = ('subject', 'start_skills', 'end_skills', 'topological_average')
+    readonly_fields = ('subject', 'start_skills', 'end_skills', )
 
 
 admin.site.register(Unit, UnitAdmin)
