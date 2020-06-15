@@ -127,7 +127,7 @@ def create_user_skill(sender, instance, created, **kwargs):
         all_user_profiles = UserProfile.objects.all()
         for oneuser in all_user_profiles:
             Skillfulness.objects.get_or_create(user_profile=oneuser, skill=instance)
-    # do sth about default readiness and skill_level
+
 
 # Creates all Skillfulness objects for a new UserProfile that connects to all existing Skill objects
 @receiver(post_save, sender=UserProfile, dispatch_uid='create_all_skills')
@@ -136,6 +136,15 @@ def create_all_skills(sender, instance, created, **kwargs):
         all_skills = Skill.objects.all()
         for i in all_skills:
             Skillfulness.objects.get_or_create(user_profile=instance, skill=i)
+
+
+# On new skilledge creation, update all user skillfulnesses of child skill based on the parent skill skillfulness
+@receiver(post_save, sender=SkillEdge, dispatch_uid='skilledge_creation_update_skillfulness')
+def update_user_skillfulness(sender, instance, created, **kwargs):
+    if created and not Skillfulness.objects.exists(skill_level__gt=0, skill=instance.child_skill):
+        for i in range(1, 4):
+            users_with_i_skillfulness = Skillfulness.objects.filter(skill_level=i, skill=instance.parent_skill).values_list('user_profile__id', flat=True)
+            Skillfulness.objects.filter(user_profile__id__in=users_with_i_skillfulness, skill=instance.child_skill).update(skill_level=i)
 
 
 class CurrentlyStudying(models.Model):

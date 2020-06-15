@@ -15,10 +15,10 @@
         {% endif %}
     </div>
 </div>
-{% if not user.is_authenticated %}
-<p><a href="{% url 'login' %}">Log in</a> to see your progress!</p>
-{% endif %}
 <br>
+{% if not user.is_authenticated %}
+<div class="alert alert-primary text-center" role="alert"><a href="{% url 'login' %}">Log in</a> to see your progress!</div>
+{% endif %}
 <a id="prerequisite-lessons-button" class="btn btn-lg btn-block d-none" data-toggle="collapse" href="#parentCollapse" role="button" aria-expanded="false" aria-controls="parentCollapse"></a>
 <div class="collapse" id="parentCollapse">
     <div id="prerequisite-lessons" class="list-group">
@@ -28,7 +28,7 @@
 {% include lesson.html_filename %}
 <br>
 <a id="exit-test" class="btn btn-primary btn-lg btn-block">Exit Test</a>
-
+<br>
 {% if user.is_authenticated %}
 <!-- Modal -->
 <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
@@ -127,6 +127,7 @@ $(document).ready(function(){
     $.get("{% url 'get_parent_lessons_data' lesson.skill.id %}", function(data, status){
         const lessons_url = "/lessons/";
         const prerequisites = document.getElementById("prerequisite-lessons");
+        {% if user.is_authenticated %}
         let readiness = true;
         for (i of data.lessons_data){
             let user_skill_level = data.user_skill_levels.find(function(value){return i.skill.id == value[0]});
@@ -149,6 +150,17 @@ $(document).ready(function(){
             $("#prerequisite-lessons-button").attr("class", "btn btn-secondary btn-lg btn-block");
             $("#prerequisite-lessons-button").text("Prerequisite Lessons - Incomplete");
         }
+        {% else %}
+        for (i of data.lessons_data){
+            item = document.createElement("a");
+            item.setAttribute("href", lessons_url + i.slug);
+            item.setAttribute("class", "list-group-item list-group-item-action");
+            item.innerHTML = i.lesson_title;
+            prerequisites.appendChild(item);
+        }
+        $("#prerequisite-lessons-button").attr("class", "btn btn-light btn-lg btn-block");
+        $("#prerequisite-lessons-button").text("Prerequisite Lessons");
+        {% endif %}
     });
 
     {% if user.is_authenticated %}

@@ -15,7 +15,7 @@
 </div>
 <br>
 {% if not user.is_authenticated %}
-<p><a href="{% url 'login' %}">Log in</a> to see your progress!</p>
+<div class="alert alert-primary text-center" role="alert"><a href="{% url 'login' %}">Log in</a> to see your progress!</div>
 {% else %}
 <div id="progress-message" class="alert alert-primary text-center d-none" role="alert"></div>
 <div id="cy" class="jumbotron d-none"></div>
