@@ -135,6 +135,39 @@
                     }
                     renderKatex(mc_inputbox);
                     break;
+                case "MS":
+                    // Multiple Select case
+                    // Similar to multiple choice case
+                    // Create mc_inputbox form element, append to inputbox as child
+                    let ms_inputbox = document.createElement("form");
+                    ms_inputbox.setAttribute("id", "ms_inputbox");
+                    inputbox.appendChild(ms_inputbox);
+
+                    // For each answer choice, create choicebox, append radio input and label to choicebox
+                    // Append each choicebox to ms_inputbox
+                    currentQ.answers.forEach(function(value, index, array){
+                        let choicebox = document.createElement("div");
+                        choicebox.setAttribute("class", "custom-control custom-checkbox");
+
+                        let input = document.createElement("input");
+                        input.setAttribute("type", "checkbox");
+                        input.setAttribute("id", index);
+                        input.setAttribute("name", "answer_choice");
+                        input.setAttribute("value", value.answer_correctness);
+                        input.setAttribute("class", "custom-control-input");
+                        choicebox.appendChild(input);
+
+                        let label = document.createElement("label");
+                        label.setAttribute("class", "custom-control-label");
+                        label.setAttribute("for", index);
+                        label.innerHTML = value.answer_text;
+                        choicebox.appendChild(label);
+
+                        ms_inputbox.appendChild(choicebox);
+                    });
+
+                    renderKatex(ms_inputbox);
+                    break;
                 case "IC":
                     // Image Choice case
                     // Create ic_inputbox form element, append to inputbox as child
@@ -204,6 +237,29 @@
                     a_correctness = parseFloat($('input[name="answer_choice"]:checked', '#mc_inputbox').val());
                     feedback_text = currentQ.answers[$('input[name="answer_choice"]:checked', '#mc_inputbox').attr('id')].answer_explanation
                     break;
+                case "MS":
+                    let all_correct = true;
+                    $('input[name="answer_choice"]', '#ms_inputbox').each(function(){
+                        if ($(this).is(':checked')){
+                            if (parseFloat($(this).val()) == 1){
+                                // pass
+                            } else {
+                                all_correct = false;
+                            }
+                        } else {
+                            if (parseFloat($(this).val()) < 1){
+                                // pass
+                            } else {
+                                all_correct = false;
+                            }
+                        }
+                    });
+                    if (all_correct){
+                        a_correctness = 1;
+                    } else {
+                        a_correctness = 0;
+                    }
+                    break;
                 case "IC":
                     a_correctness = parseFloat($('input[name="answer_choice"]:checked', '#ic_inputbox').val());
                     feedback_text = currentQ.answers[$('input[name="answer_choice"]:checked', '#ic_inputbox').attr('id')].answer_explanation
@@ -235,23 +291,38 @@
                     break;
             }
 
-            if (a_correctness == 1){
-                $("#feedback-text").text("Correct!");
-                $("#feedback-text").attr("class", "alert alert-success");
-                correct_skill_ids.push(currentQ.skill);
-            } else if (a_correctness > 0.5) {
-                correct_answer = currentQ.answers.find(function(value, index, array){
-                    return value.answer_correctness == 1
-                });
-                $("#feedback-text").text("Close! " + feedback_text + " The correct answer is " + correct_answer.answer_text + ".");
-                $("#feedback-text").attr("class", "alert alert-warning");
+            if (currentQ.question_type == "MS"){
+                if (a_correctness == 1){
+                    $("#feedback-text").text("Correct!");
+                    $("#feedback-text").attr("class", "alert alert-success");
+                } else {
+                    let feedback_str = "Incorrect. The correct answers are "
+                    let correct_answers = currentQ.answers.filter(function(value, index, array){
+                        return value.answer_correctness == 1
+                    });
+                    for (i of correct_answers){
+                        feedback_str += i.answer_text + ", "
+                    }
+                    $("#feedback-text").text(feedback_str.substring(0, feedback_str.length - 2));
+                    $("#feedback-text").attr("class", "alert alert-danger");
+                }
             } else {
-                correct_answer = currentQ.answers.find(function(value, index, array){
-                    return value.answer_correctness == 1
-                });
-                $("#feedback-text").text("Incorrect. " + feedback_text + " The correct answer is " + correct_answer.answer_text + ".");
-                $("#feedback-text").attr("class", "alert alert-danger");
-                incorrect_skill_ids.push(currentQ.skill);
+                if (a_correctness == 1){
+                    $("#feedback-text").text("Correct!");
+                    $("#feedback-text").attr("class", "alert alert-success");
+                } else if (a_correctness > 0.5) {
+                    correct_answer = currentQ.answers.find(function(value, index, array){
+                        return value.answer_correctness == 1
+                    });
+                    $("#feedback-text").text("Close! " + feedback_text + " The correct answer is " + correct_answer.answer_text + ".");
+                    $("#feedback-text").attr("class", "alert alert-warning");
+                } else {
+                    correct_answer = currentQ.answers.find(function(value, index, array){
+                        return value.answer_correctness == 1
+                    });
+                    $("#feedback-text").text("Incorrect. " + feedback_text + " The correct answer is " + correct_answer.answer_text + ".");
+                    $("#feedback-text").attr("class", "alert alert-danger");
+                }
             }
             renderKatex(feedbackbox);
 

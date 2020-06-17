@@ -6,26 +6,29 @@
         "name": "Elementary Operations",
         "slug": "elementary-operations",
         "description": "Introduction to numbers and place value. Comparing single-digit and multi-digit numbers. Introduction to the four elementary operations (addition, subtraction, multiplication, subtraction) and their long forms.",
+        "curriculum": 1,
         "start_skills": "[\"1\"]",
-        "end_skills": "[\"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"10\", \"12\", \"13\", \"14\", \"15\", \"16\", \"25\", \"26\"]",
-        "topological_average": 10,
+        "end_skills": "[\"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"10\", \"43\", \"12\", \"13\", \"14\", \"15\", \"16\", \"25\", \"26\"]",
+        "prerequisite_skills": "[]",
+        "precedence": 1,
         "subject": 1,
         "lessons": [
             1,
-            2,
             3,
             4,
-            5,
             6,
-            7,
             9,
-            11,
             12,
-            13,
             14,
             15,
-            25,
-            26
+            43,
+            5,
+            13,
+            2,
+            11,
+            26,
+            7,
+            25
         ]
     }
 },
@@ -36,13 +39,15 @@
         "name": "Introduction to Shapes",
         "slug": "introduction-to-shapes",
         "description": "An introduction to the most common 2D and 3D shapes.",
-        "start_skills": null,
-        "end_skills": null,
-        "topological_average": 0,
+        "curriculum": 1,
+        "start_skills": "[\"8\"]",
+        "end_skills": "[\"11\"]",
+        "prerequisite_skills": "[]",
+        "precedence": 4,
         "subject": null,
         "lessons": [
-            8,
-            10
+            10,
+            8
         ]
     }
 },
@@ -53,18 +58,52 @@
         "name": "Rational Numbers",
         "slug": "rational-numbers",
         "description": "Non-natural numbers such as fractions, decimals, and negative numbers (i.e. all rational numbers) are introduced on the number line. How to add, subtract, multiply and divide these numbers.",
-        "start_skills": "[\"17\", \"20\", \"21\", \"22\", \"23\"]",
-        "end_skills": "[\"24\"]",
-        "topological_average": 15,
+        "curriculum": 1,
+        "start_skills": "[\"32\", \"33\", \"34\", \"35\", \"42\", \"17\", \"20\", \"21\", \"22\", \"23\", \"24\", \"29\"]",
+        "end_skills": "[\"36\", \"37\"]",
+        "prerequisite_skills": "[\"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"10\", \"12\", \"13\", \"14\", \"15\", \"16\"]",
+        "precedence": 2,
         "subject": null,
         "lessons": [
-            16,
-            17,
-            19,
-            21,
             22,
             23,
-            24
+            37,
+            19,
+            42,
+            21,
+            29,
+            30,
+            32,
+            33,
+            34,
+            36,
+            24,
+            17,
+            35,
+            16
+        ]
+    }
+},
+{
+    "model": "units.unit",
+    "pk": 8,
+    "fields": {
+        "name": "Exponents, Radicals, Order of Operations",
+        "slug": "exponents-radicals-order-of-operations",
+        "description": "Introduction to exponents and radicals of integers, fractions, and decimals. PEMDAS order of operations (including roots).",
+        "curriculum": 1,
+        "start_skills": "[\"40\", \"27\", \"28\", \"38\"]",
+        "end_skills": "[\"41\"]",
+        "prerequisite_skills": "[\"32\", \"34\", \"37\", \"5\", \"7\", \"12\", \"14\", \"22\", \"23\", \"29\"]",
+        "precedence": 3,
+        "subject": null,
+        "lessons": [
+            40,
+            41,
+            27,
+            39,
+            28,
+            38
         ]
     }
 }

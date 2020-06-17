@@ -68,6 +68,7 @@ def get_default_permitted_fields():
 # pseudochance - how likely the user is able to guess the correct answer to the question (current defaults for choice questions)
 class Question(models.Model):
     MULTIPLE_CHOICE = 'MC'
+    MULTIPLE_SELECTION = 'MS'
     IMAGE_CHOICE = 'IC'
     NUMERICAL_INPUT = 'NI'
     FUNCTION_INPUT = 'FI'
@@ -76,6 +77,7 @@ class Question(models.Model):
 
     QUESTION_TYPES = [
         (MULTIPLE_CHOICE, 'Multiple Choice'),
+        (MULTIPLE_SELECTION, 'Multiple Selection'),
         (IMAGE_CHOICE, 'Image Choice'),
         (NUMERICAL_INPUT, 'Numerical Input'),
         (FUNCTION_INPUT, 'Function Input'),

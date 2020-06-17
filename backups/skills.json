@@ -9,7 +9,7 @@
         "ancestor_ids": "[]",
         "parents": "[]",
         "children": "[\"3\", \"2\", \"25\"]",
-        "descendant_ids": "[\"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"10\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\", \"18\", \"20\", \"21\", \"22\", \"23\", \"24\", \"25\", \"26\"]"
+        "descendant_ids": "[\"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"10\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\", \"18\", \"20\", \"21\", \"22\", \"23\", \"24\", \"25\", \"26\", \"27\", \"28\", \"29\", \"30\", \"32\", \"33\", \"34\", \"35\", \"36\", \"37\", \"38\", \"39\", \"40\", \"41\", \"42\", \"43\"]"
     }
 },
 {
@@ -18,11 +18,11 @@
     "fields": {
         "subject": 1,
         "name": "Place Value",
-        "topological_order": 5,
+        "topological_order": 6,
         "ancestor_ids": "[\"1\"]",
         "parents": "[\"1\"]",
-        "children": "[\"5\", \"4\", \"24\", \"14\", \"12\", \"7\"]",
-        "descendant_ids": "[\"4\", \"5\", \"6\", \"7\", \"10\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\", \"18\", \"20\", \"21\", \"22\", \"23\", \"24\", \"26\"]"
+        "children": "[\"5\", \"4\", \"24\", \"14\", \"12\", \"26\", \"7\"]",
+        "descendant_ids": "[\"4\", \"5\", \"6\", \"7\", \"10\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\", \"18\", \"20\", \"21\", \"22\", \"23\", \"24\", \"26\", \"27\", \"28\", \"29\", \"30\", \"32\", \"33\", \"34\", \"35\", \"36\", \"37\", \"38\", \"39\", \"40\", \"41\", \"42\"]"
     }
 },
 {
@@ -34,8 +34,8 @@
         "topological_order": 4,
         "ancestor_ids": "[\"1\"]",
         "parents": "[\"1\"]",
-        "children": "[\"20\", \"4\", \"10\"]",
-        "descendant_ids": "[\"4\", \"10\", \"16\", \"20\", \"22\", \"23\"]"
+        "children": "[\"42\", \"20\", \"4\", \"43\"]",
+        "descendant_ids": "[\"35\", \"4\", \"36\", \"37\", \"40\", \"41\", \"42\", \"43\", \"20\"]"
     }
 },
 {
@@ -44,11 +44,11 @@
     "fields": {
         "subject": 1,
         "name": "Comparing Multi-digit Numbers",
-        "topological_order": 23,
+        "topological_order": 33,
         "ancestor_ids": "[\"1\", \"2\", \"3\"]",
         "parents": "[\"3\", \"2\"]",
-        "children": "[]",
-        "descendant_ids": "[]"
+        "children": "[\"35\"]",
+        "descendant_ids": "[\"35\", \"36\", \"37\", \"40\", \"41\", \"42\"]"
     }
 },
 {
@@ -57,11 +57,11 @@
     "fields": {
         "subject": 1,
         "name": "Addition Introduction",
-        "topological_order": 8,
+        "topological_order": 10,
         "ancestor_ids": "[\"1\", \"2\"]",
         "parents": "[\"2\"]",
-        "children": "[\"6\", \"12\", \"17\"]",
-        "descendant_ids": "[\"6\", \"12\", \"13\", \"16\", \"17\", \"18\", \"20\", \"21\", \"22\", \"23\", \"24\", \"26\"]"
+        "children": "[\"6\", \"12\", \"17\", \"28\"]",
+        "descendant_ids": "[\"6\", \"12\", \"13\", \"16\", \"17\", \"18\", \"20\", \"21\", \"22\", \"23\", \"24\", \"27\", \"28\", \"29\", \"30\", \"32\", \"33\", \"34\", \"35\", \"36\", \"37\", \"38\", \"39\", \"40\", \"41\", \"42\"]"
     }
 },
 {
@@ -70,11 +70,11 @@
     "fields": {
         "subject": 1,
         "name": "Long Addition",
-        "topological_order": 10,
+        "topological_order": 12,
         "ancestor_ids": "[\"1\", \"2\", \"5\"]",
         "parents": "[\"5\"]",
-        "children": "[\"22\", \"13\", \"26\"]",
-        "descendant_ids": "[\"26\", \"13\", \"22\", \"23\"]"
+        "children": "[\"29\", \"22\", \"13\"]",
+        "descendant_ids": "[\"32\", \"38\", \"39\", \"40\", \"41\", \"13\", \"22\", \"23\", \"27\", \"28\", \"29\"]"
     }
 },
 {
@@ -83,11 +83,11 @@
     "fields": {
         "subject": 1,
         "name": "Subtraction Introduction",
-        "topological_order": 6,
+        "topological_order": 8,
         "ancestor_ids": "[\"1\", \"2\"]",
         "parents": "[\"2\"]",
-        "children": "[\"10\", \"17\"]",
-        "descendant_ids": "[\"10\", \"16\", \"17\", \"18\", \"20\", \"21\", \"22\", \"23\", \"24\"]"
+        "children": "[\"10\", \"17\", \"28\"]",
+        "descendant_ids": "[\"10\", \"16\", \"17\", \"18\", \"20\", \"21\", \"22\", \"23\", \"24\", \"27\", \"28\", \"29\", \"30\", \"32\", \"33\", \"34\", \"35\", \"36\", \"37\", \"38\", \"39\", \"40\", \"41\", \"42\"]"
     }
 },
 {
@@ -109,11 +109,11 @@
     "fields": {
         "subject": 1,
         "name": "Long Subtraction",
-        "topological_order": 7,
-        "ancestor_ids": "[\"1\", \"2\", \"3\", \"7\"]",
-        "parents": "[\"3\", \"7\"]",
-        "children": "[\"22\", \"16\"]",
-        "descendant_ids": "[\"16\", \"22\", \"23\"]"
+        "topological_order": 9,
+        "ancestor_ids": "[\"1\", \"2\", \"7\"]",
+        "parents": "[\"7\"]",
+        "children": "[\"29\", \"22\", \"16\"]",
+        "descendant_ids": "[\"33\", \"34\", \"38\", \"40\", \"41\", \"16\", \"22\", \"23\", \"29\"]"
     }
 },
 {
@@ -135,11 +135,11 @@
     "fields": {
         "subject": 1,
         "name": "Multiplication Introduction",
-        "topological_order": 9,
+        "topological_order": 11,
         "ancestor_ids": "[\"1\", \"2\", \"5\"]",
         "parents": "[\"5\", \"2\"]",
-        "children": "[\"16\", \"13\", \"17\"]",
-        "descendant_ids": "[\"13\", \"16\", \"17\", \"18\", \"20\", \"21\", \"22\", \"23\", \"24\"]"
+        "children": "[\"27\", \"16\", \"13\", \"17\", \"28\"]",
+        "descendant_ids": "[\"13\", \"16\", \"17\", \"18\", \"20\", \"21\", \"22\", \"23\", \"24\", \"27\", \"28\", \"29\", \"30\", \"32\", \"33\", \"34\", \"35\", \"36\", \"37\", \"38\", \"39\", \"40\", \"41\", \"42\"]"
     }
 },
 {
@@ -148,11 +148,11 @@
     "fields": {
         "subject": 1,
         "name": "Long Multiplication",
-        "topological_order": 12,
+        "topological_order": 13,
         "ancestor_ids": "[\"1\", \"2\", \"5\", \"6\", \"12\"]",
         "parents": "[\"6\", \"12\"]",
-        "children": "[\"23\"]",
-        "descendant_ids": "[\"23\"]"
+        "children": "[\"32\", \"23\"]",
+        "descendant_ids": "[\"32\", \"38\", \"39\", \"40\", \"41\", \"23\", \"27\", \"28\"]"
     }
 },
 {
@@ -161,11 +161,11 @@
     "fields": {
         "subject": 1,
         "name": "Division Introduction",
-        "topological_order": 13,
+        "topological_order": 14,
         "ancestor_ids": "[\"1\", \"2\"]",
         "parents": "[\"2\"]",
-        "children": "[\"15\", \"17\"]",
-        "descendant_ids": "[\"15\", \"16\", \"17\", \"18\", \"20\", \"21\", \"22\", \"23\", \"24\"]"
+        "children": "[\"15\", \"17\", \"28\"]",
+        "descendant_ids": "[\"15\", \"16\", \"17\", \"18\", \"20\", \"21\", \"22\", \"23\", \"24\", \"27\", \"28\", \"29\", \"30\", \"32\", \"33\", \"34\", \"35\", \"36\", \"37\", \"38\", \"39\", \"40\", \"41\", \"42\"]"
     }
 },
 {
@@ -174,11 +174,11 @@
     "fields": {
         "subject": 1,
         "name": "Factors and Remainders",
-        "topological_order": 17,
+        "topological_order": 24,
         "ancestor_ids": "[\"1\", \"2\", \"14\"]",
         "parents": "[\"14\"]",
         "children": "[\"21\", \"16\"]",
-        "descendant_ids": "[\"16\", \"20\", \"21\", \"22\", \"23\"]"
+        "descendant_ids": "[\"33\", \"34\", \"38\", \"40\", \"41\", \"16\", \"20\", \"21\", \"22\", \"23\"]"
     }
 },
 {
@@ -187,11 +187,11 @@
     "fields": {
         "subject": 1,
         "name": "Long Division",
-        "topological_order": 21,
-        "ancestor_ids": "[\"1\", \"2\", \"3\", \"5\", \"7\", \"10\", \"12\", \"14\", \"15\"]",
+        "topological_order": 28,
+        "ancestor_ids": "[\"1\", \"2\", \"5\", \"7\", \"10\", \"12\", \"14\", \"15\"]",
         "parents": "[\"15\", \"10\", \"12\"]",
-        "children": "[\"23\"]",
-        "descendant_ids": "[\"23\"]"
+        "children": "[\"33\", \"34\", \"23\"]",
+        "descendant_ids": "[\"33\", \"34\", \"38\", \"40\", \"41\", \"23\"]"
     }
 },
 {
@@ -200,11 +200,11 @@
     "fields": {
         "subject": 1,
         "name": "Number Line Introduction",
-        "topological_order": 14,
+        "topological_order": 15,
         "ancestor_ids": "[\"1\", \"2\", \"5\", \"7\", \"12\", \"14\"]",
         "parents": "[\"5\", \"14\", \"12\", \"7\"]",
-        "children": "[\"24\", \"18\"]",
-        "descendant_ids": "[\"18\", \"20\", \"21\", \"22\", \"23\", \"24\"]"
+        "children": "[\"24\", \"18\", \"35\"]",
+        "descendant_ids": "[\"18\", \"20\", \"21\", \"22\", \"23\", \"24\", \"27\", \"28\", \"29\", \"30\", \"32\", \"33\", \"34\", \"35\", \"36\", \"37\", \"38\", \"39\", \"40\", \"41\", \"42\"]"
     }
 },
 {
@@ -213,11 +213,11 @@
     "fields": {
         "subject": 1,
         "name": "Fractions Introduction",
-        "topological_order": 16,
+        "topological_order": 23,
         "ancestor_ids": "[\"1\", \"2\", \"5\", \"7\", \"12\", \"14\", \"17\"]",
         "parents": "[\"17\"]",
         "children": "[\"21\"]",
-        "descendant_ids": "[\"20\", \"21\", \"22\", \"23\"]"
+        "descendant_ids": "[\"34\", \"38\", \"40\", \"41\", \"20\", \"21\", \"22\", \"23\"]"
     }
 },
 {
@@ -226,7 +226,7 @@
     "fields": {
         "subject": 1,
         "name": "Comparing Fractions",
-        "topological_order": 20,
+        "topological_order": 27,
         "ancestor_ids": "[\"1\", \"2\", \"3\", \"5\", \"7\", \"12\", \"14\", \"15\", \"17\", \"18\", \"21\"]",
         "parents": "[\"3\", \"21\"]",
         "children": "[]",
@@ -239,11 +239,11 @@
     "fields": {
         "subject": 1,
         "name": "Equivalent Fractions",
-        "topological_order": 18,
+        "topological_order": 25,
         "ancestor_ids": "[\"1\", \"2\", \"5\", \"7\", \"12\", \"14\", \"15\", \"17\", \"18\"]",
         "parents": "[\"15\", \"18\"]",
-        "children": "[\"20\", \"23\", \"22\"]",
-        "descendant_ids": "[\"20\", \"22\", \"23\"]"
+        "children": "[\"20\", \"34\", \"22\", \"23\"]",
+        "descendant_ids": "[\"34\", \"38\", \"40\", \"41\", \"20\", \"22\", \"23\"]"
     }
 },
 {
@@ -251,12 +251,12 @@
     "pk": 22,
     "fields": {
         "subject": 1,
-        "name": "Fraction Operations II",
-        "topological_order": 19,
-        "ancestor_ids": "[\"1\", \"2\", \"3\", \"5\", \"6\", \"7\", \"10\", \"12\", \"14\", \"15\", \"17\", \"18\", \"21\"]",
+        "name": "Fraction Operations I",
+        "topological_order": 26,
+        "ancestor_ids": "[\"1\", \"2\", \"5\", \"6\", \"7\", \"10\", \"12\", \"14\", \"15\", \"17\", \"18\", \"21\"]",
         "parents": "[\"21\", \"6\", \"10\"]",
-        "children": "[]",
-        "descendant_ids": "[]"
+        "children": "[\"38\"]",
+        "descendant_ids": "[\"38\"]"
     }
 },
 {
@@ -264,12 +264,12 @@
     "pk": 23,
     "fields": {
         "subject": 1,
-        "name": "Fraction Operations I",
-        "topological_order": 22,
-        "ancestor_ids": "[\"1\", \"2\", \"3\", \"5\", \"6\", \"7\", \"10\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\", \"18\", \"21\"]",
+        "name": "Fraction Operations II",
+        "topological_order": 31,
+        "ancestor_ids": "[\"1\", \"2\", \"5\", \"6\", \"7\", \"10\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\", \"18\", \"21\"]",
         "parents": "[\"21\", \"16\", \"13\"]",
-        "children": "[]",
-        "descendant_ids": "[]"
+        "children": "[\"40\", \"38\"]",
+        "descendant_ids": "[\"40\", \"41\", \"38\"]"
     }
 },
 {
@@ -278,11 +278,11 @@
     "fields": {
         "subject": 1,
         "name": "Decimals Introduction",
-        "topological_order": 15,
+        "topological_order": 16,
         "ancestor_ids": "[\"1\", \"2\", \"5\", \"7\", \"12\", \"14\", \"17\"]",
         "parents": "[\"17\", \"2\"]",
-        "children": "[]",
-        "descendant_ids": "[]"
+        "children": "[\"29\", \"30\"]",
+        "descendant_ids": "[\"32\", \"33\", \"34\", \"38\", \"39\", \"40\", \"41\", \"27\", \"28\", \"29\", \"30\"]"
     }
 },
 {
@@ -304,9 +304,217 @@
     "fields": {
         "subject": 1,
         "name": "Rounding Introduction",
-        "topological_order": 11,
-        "ancestor_ids": "[\"1\", \"2\", \"5\", \"6\"]",
-        "parents": "[\"6\"]",
+        "topological_order": 7,
+        "ancestor_ids": "[\"1\", \"2\"]",
+        "parents": "[\"2\"]",
+        "children": "[]",
+        "descendant_ids": "[]"
+    }
+},
+{
+    "model": "skills.skill",
+    "pk": 27,
+    "fields": {
+        "subject": 1,
+        "name": "Exponents Introduction",
+        "topological_order": 19,
+        "ancestor_ids": "[\"32\", \"1\", \"2\", \"5\", \"6\", \"7\", \"12\", \"13\", \"14\", \"17\", \"24\", \"30\"]",
+        "parents": "[\"32\", \"12\"]",
+        "children": "[\"40\", \"28\", \"39\"]",
+        "descendant_ids": "[\"38\", \"39\", \"40\", \"41\", \"28\"]"
+    }
+},
+{
+    "model": "skills.skill",
+    "pk": 28,
+    "fields": {
+        "subject": 1,
+        "name": "Order of Operations I",
+        "topological_order": 21,
+        "ancestor_ids": "[\"32\", \"1\", \"2\", \"5\", \"6\", \"7\", \"12\", \"13\", \"14\", \"17\", \"24\", \"27\", \"30\"]",
+        "parents": "[\"5\", \"14\", \"27\", \"12\", \"7\"]",
+        "children": "[\"38\"]",
+        "descendant_ids": "[\"38\"]"
+    }
+},
+{
+    "model": "skills.skill",
+    "pk": 29,
+    "fields": {
+        "subject": 1,
+        "name": "Decimal Operations I",
+        "topological_order": 22,
+        "ancestor_ids": "[\"1\", \"2\", \"5\", \"6\", \"7\", \"10\", \"12\", \"14\", \"17\", \"24\"]",
+        "parents": "[\"24\", \"6\", \"10\"]",
+        "children": "[\"38\"]",
+        "descendant_ids": "[\"38\"]"
+    }
+},
+{
+    "model": "skills.skill",
+    "pk": 30,
+    "fields": {
+        "subject": 1,
+        "name": "Multiply & Divide Powers of 10",
+        "topological_order": 17,
+        "ancestor_ids": "[\"1\", \"2\", \"5\", \"7\", \"12\", \"14\", \"17\", \"24\"]",
+        "parents": "[\"24\"]",
+        "children": "[\"33\", \"32\"]",
+        "descendant_ids": "[\"32\", \"33\", \"34\", \"38\", \"39\", \"40\", \"41\", \"27\", \"28\"]"
+    }
+},
+{
+    "model": "skills.skill",
+    "pk": 32,
+    "fields": {
+        "subject": 1,
+        "name": "Decimal Multiplication",
+        "topological_order": 18,
+        "ancestor_ids": "[\"1\", \"2\", \"5\", \"6\", \"7\", \"12\", \"13\", \"14\", \"17\", \"24\", \"30\"]",
+        "parents": "[\"13\", \"30\"]",
+        "children": "[\"27\", \"38\"]",
+        "descendant_ids": "[\"38\", \"39\", \"40\", \"41\", \"27\", \"28\"]"
+    }
+},
+{
+    "model": "skills.skill",
+    "pk": 33,
+    "fields": {
+        "subject": 1,
+        "name": "Decimal Division",
+        "topological_order": 29,
+        "ancestor_ids": "[\"1\", \"2\", \"5\", \"7\", \"10\", \"12\", \"14\", \"15\", \"16\", \"17\", \"24\", \"30\"]",
+        "parents": "[\"16\", \"30\"]",
+        "children": "[\"34\"]",
+        "descendant_ids": "[\"34\", \"38\"]"
+    }
+},
+{
+    "model": "skills.skill",
+    "pk": 34,
+    "fields": {
+        "subject": 1,
+        "name": "Fraction Decimal Conversion",
+        "topological_order": 30,
+        "ancestor_ids": "[\"33\", \"2\", \"1\", \"5\", \"7\", \"10\", \"12\", \"14\", \"15\", \"16\", \"17\", \"18\", \"21\", \"24\", \"30\"]",
+        "parents": "[\"33\", \"21\", \"16\"]",
+        "children": "[\"38\"]",
+        "descendant_ids": "[\"38\"]"
+    }
+},
+{
+    "model": "skills.skill",
+    "pk": 35,
+    "fields": {
+        "subject": 1,
+        "name": "Negative Numbers Introduction",
+        "topological_order": 34,
+        "ancestor_ids": "[\"1\", \"2\", \"3\", \"4\", \"5\", \"7\", \"12\", \"14\", \"17\"]",
+        "parents": "[\"4\", \"17\"]",
+        "children": "[\"42\", \"36\", \"37\"]",
+        "descendant_ids": "[\"36\", \"37\", \"40\", \"41\", \"42\"]"
+    }
+},
+{
+    "model": "skills.skill",
+    "pk": 36,
+    "fields": {
+        "subject": 1,
+        "name": "Negative Number Operations I",
+        "topological_order": 39,
+        "ancestor_ids": "[\"1\", \"2\", \"3\", \"35\", \"4\", \"5\", \"7\", \"12\", \"14\", \"17\"]",
+        "parents": "[\"35\"]",
+        "children": "[]",
+        "descendant_ids": "[]"
+    }
+},
+{
+    "model": "skills.skill",
+    "pk": 37,
+    "fields": {
+        "subject": 1,
+        "name": "Negative Number Operations II",
+        "topological_order": 36,
+        "ancestor_ids": "[\"1\", \"2\", \"3\", \"35\", \"4\", \"5\", \"7\", \"12\", \"14\", \"17\"]",
+        "parents": "[\"35\"]",
+        "children": "[\"40\"]",
+        "descendant_ids": "[\"40\", \"41\"]"
+    }
+},
+{
+    "model": "skills.skill",
+    "pk": 38,
+    "fields": {
+        "subject": 1,
+        "name": "Order of Operations II",
+        "topological_order": 32,
+        "ancestor_ids": "[\"1\", \"2\", \"5\", \"6\", \"7\", \"10\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\", \"18\", \"21\", \"22\", \"23\", \"24\", \"27\", \"28\", \"29\", \"30\", \"32\", \"33\", \"34\"]",
+        "parents": "[\"32\", \"29\", \"34\", \"22\", \"23\", \"28\"]",
+        "children": "[]",
+        "descendant_ids": "[]"
+    }
+},
+{
+    "model": "skills.skill",
+    "pk": 39,
+    "fields": {
+        "subject": 1,
+        "name": "Radicals Introduction",
+        "topological_order": 20,
+        "ancestor_ids": "[\"32\", \"1\", \"2\", \"5\", \"6\", \"7\", \"12\", \"13\", \"14\", \"17\", \"24\", \"27\", \"30\"]",
+        "parents": "[\"27\"]",
+        "children": "[\"41\"]",
+        "descendant_ids": "[\"41\"]"
+    }
+},
+{
+    "model": "skills.skill",
+    "pk": 40,
+    "fields": {
+        "subject": 1,
+        "name": "Exponents Extended",
+        "topological_order": 37,
+        "ancestor_ids": "[\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"10\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\", \"18\", \"21\", \"23\", \"24\", \"27\", \"30\", \"32\", \"35\", \"37\"]",
+        "parents": "[\"27\", \"23\", \"37\"]",
+        "children": "[\"41\"]",
+        "descendant_ids": "[\"41\"]"
+    }
+},
+{
+    "model": "skills.skill",
+    "pk": 41,
+    "fields": {
+        "subject": 1,
+        "name": "Radicals Extended",
+        "topological_order": 38,
+        "ancestor_ids": "[\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"10\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\", \"18\", \"21\", \"23\", \"24\", \"27\", \"30\", \"32\", \"35\", \"37\", \"39\", \"40\"]",
+        "parents": "[\"40\", \"39\"]",
+        "children": "[]",
+        "descendant_ids": "[]"
+    }
+},
+{
+    "model": "skills.skill",
+    "pk": 42,
+    "fields": {
+        "subject": 1,
+        "name": "Absolute Value Introduction",
+        "topological_order": 35,
+        "ancestor_ids": "[\"1\", \"2\", \"3\", \"35\", \"4\", \"5\", \"7\", \"12\", \"14\", \"17\"]",
+        "parents": "[\"3\", \"35\"]",
+        "children": "[]",
+        "descendant_ids": "[]"
+    }
+},
+{
+    "model": "skills.skill",
+    "pk": 43,
+    "fields": {
+        "subject": 1,
+        "name": "Comparison Signs Extended",
+        "topological_order": 5,
+        "ancestor_ids": "[\"1\", \"3\"]",
+        "parents": "[\"3\"]",
         "children": "[]",
         "descendant_ids": "[]"
     }
@@ -379,15 +587,6 @@
     "pk": 15,
     "fields": {
         "parent_skill": 7,
-        "child_skill": 10,
-        "same_subject": true
-    }
-},
-{
-    "model": "skills.skilledge",
-    "pk": 17,
-    "fields": {
-        "parent_skill": 3,
         "child_skill": 10,
         "same_subject": true
     }
@@ -648,8 +847,341 @@
     "model": "skills.skilledge",
     "pk": 58,
     "fields": {
-        "parent_skill": 6,
+        "parent_skill": 2,
         "child_skill": 26,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 59,
+    "fields": {
+        "parent_skill": 12,
+        "child_skill": 27,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 60,
+    "fields": {
+        "parent_skill": 5,
+        "child_skill": 28,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 61,
+    "fields": {
+        "parent_skill": 7,
+        "child_skill": 28,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 62,
+    "fields": {
+        "parent_skill": 12,
+        "child_skill": 28,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 63,
+    "fields": {
+        "parent_skill": 14,
+        "child_skill": 28,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 64,
+    "fields": {
+        "parent_skill": 27,
+        "child_skill": 28,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 65,
+    "fields": {
+        "parent_skill": 24,
+        "child_skill": 29,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 66,
+    "fields": {
+        "parent_skill": 24,
+        "child_skill": 30,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 67,
+    "fields": {
+        "parent_skill": 6,
+        "child_skill": 29,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 68,
+    "fields": {
+        "parent_skill": 10,
+        "child_skill": 29,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 72,
+    "fields": {
+        "parent_skill": 30,
+        "child_skill": 32,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 73,
+    "fields": {
+        "parent_skill": 13,
+        "child_skill": 32,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 74,
+    "fields": {
+        "parent_skill": 30,
+        "child_skill": 33,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 75,
+    "fields": {
+        "parent_skill": 16,
+        "child_skill": 33,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 76,
+    "fields": {
+        "parent_skill": 21,
+        "child_skill": 34,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 77,
+    "fields": {
+        "parent_skill": 33,
+        "child_skill": 34,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 78,
+    "fields": {
+        "parent_skill": 16,
+        "child_skill": 34,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 79,
+    "fields": {
+        "parent_skill": 17,
+        "child_skill": 35,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 80,
+    "fields": {
+        "parent_skill": 4,
+        "child_skill": 35,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 81,
+    "fields": {
+        "parent_skill": 35,
+        "child_skill": 36,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 82,
+    "fields": {
+        "parent_skill": 35,
+        "child_skill": 37,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 83,
+    "fields": {
+        "parent_skill": 22,
+        "child_skill": 38,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 84,
+    "fields": {
+        "parent_skill": 23,
+        "child_skill": 38,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 85,
+    "fields": {
+        "parent_skill": 29,
+        "child_skill": 38,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 86,
+    "fields": {
+        "parent_skill": 32,
+        "child_skill": 38,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 87,
+    "fields": {
+        "parent_skill": 34,
+        "child_skill": 38,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 88,
+    "fields": {
+        "parent_skill": 28,
+        "child_skill": 38,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 89,
+    "fields": {
+        "parent_skill": 32,
+        "child_skill": 27,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 90,
+    "fields": {
+        "parent_skill": 27,
+        "child_skill": 39,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 91,
+    "fields": {
+        "parent_skill": 27,
+        "child_skill": 40,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 92,
+    "fields": {
+        "parent_skill": 23,
+        "child_skill": 40,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 93,
+    "fields": {
+        "parent_skill": 37,
+        "child_skill": 40,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 95,
+    "fields": {
+        "parent_skill": 39,
+        "child_skill": 41,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 96,
+    "fields": {
+        "parent_skill": 40,
+        "child_skill": 41,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 97,
+    "fields": {
+        "parent_skill": 35,
+        "child_skill": 42,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 98,
+    "fields": {
+        "parent_skill": 3,
+        "child_skill": 42,
+        "same_subject": true
+    }
+},
+{
+    "model": "skills.skilledge",
+    "pk": 99,
+    "fields": {
+        "parent_skill": 3,
+        "child_skill": 43,
         "same_subject": true
     }
 }

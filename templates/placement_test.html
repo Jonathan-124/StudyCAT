@@ -249,6 +249,39 @@
                     }
                     renderKatex(mc_inputbox);
                     break;
+                case "MS":
+                    // Multiple Select case
+                    // Similar to multiple choice case
+                    // Create mc_inputbox form element, append to inputbox as child
+                    let ms_inputbox = document.createElement("form");
+                    ms_inputbox.setAttribute("id", "ms_inputbox");
+                    inputbox.appendChild(ms_inputbox);
+
+                    // For each answer choice, create choicebox, append radio input and label to choicebox
+                    // Append each choicebox to ms_inputbox
+                    currentQ.answers.forEach(function(value, index, array){
+                        let choicebox = document.createElement("div");
+                        choicebox.setAttribute("class", "custom-control custom-checkbox");
+
+                        let input = document.createElement("input");
+                        input.setAttribute("type", "checkbox");
+                        input.setAttribute("id", index);
+                        input.setAttribute("name", "answer_choice");
+                        input.setAttribute("value", value.answer_correctness);
+                        input.setAttribute("class", "custom-control-input");
+                        choicebox.appendChild(input);
+
+                        let label = document.createElement("label");
+                        label.setAttribute("class", "custom-control-label");
+                        label.setAttribute("for", index);
+                        label.innerHTML = value.answer_text;
+                        choicebox.appendChild(label);
+
+                        ms_inputbox.appendChild(choicebox);
+                    });
+
+                    renderKatex(ms_inputbox);
+                    break;
                 case "IC":
                     // Image Choice case
                     // Create ic_inputbox form element, append to inputbox as child
@@ -309,6 +342,29 @@
                     break;
                 case "IC":
                     a_correctness = parseFloat($('input[name="answer_choice"]:checked', '#ic_inputbox').val());
+                    break;
+                case "MS":
+                    let all_correct = true;
+                    $('input[name="answer_choice"]', '#ms_inputbox').each(function(){
+                        if ($(this).is(':checked')){
+                            if (parseFloat($(this).val()) == 1){
+                                // pass
+                            } else {
+                                all_correct = false;
+                            }
+                        } else {
+                            if (parseFloat($(this).val()) < 1){
+                                // pass
+                            } else {
+                                all_correct = false;
+                            }
+                        }
+                    });
+                    if (all_correct){
+                        a_correctness = 1;
+                    } else {
+                        a_correctness = 0;
+                    }
                     break;
                 case "NI":
                     let attempt = Guppy("guppybox").asciimath();

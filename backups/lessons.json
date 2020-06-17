@@ -14,8 +14,8 @@
     "model": "lessons.lesson",
     "pk": 2,
     "fields": {
-        "lesson_title": "Comparison Signs Introduction",
-        "slug": "comparison-signs-introduction",
+        "lesson_title": "Comparison Signs",
+        "slug": "comparison-signs",
         "lesson_text": "lessons/Comparison_signs.html",
         "skill": 3,
         "_order": 0
@@ -47,8 +47,8 @@
     "model": "lessons.lesson",
     "pk": 5,
     "fields": {
-        "lesson_title": "Addition Introduction",
-        "slug": "addition-introduction",
+        "lesson_title": "Addition",
+        "slug": "addition",
         "lesson_text": "lessons/Addition_Introduction.html",
         "skill": 5,
         "_order": 0
@@ -69,8 +69,8 @@
     "model": "lessons.lesson",
     "pk": 7,
     "fields": {
-        "lesson_title": "Subtraction Introduction",
-        "slug": "subtraction-introduction",
+        "lesson_title": "Subtraction",
+        "slug": "subtraction",
         "lesson_text": "lessons/Subtraction_Introduction.html",
         "skill": 7,
         "_order": 0
@@ -113,8 +113,8 @@
     "model": "lessons.lesson",
     "pk": 11,
     "fields": {
-        "lesson_title": "Multiplication Introduction",
-        "slug": "multiplication-introduction",
+        "lesson_title": "Multiplication",
+        "slug": "multiplication",
         "lesson_text": "lessons/Multiplication_Introduction.html",
         "skill": 12,
         "_order": 0
@@ -135,8 +135,8 @@
     "model": "lessons.lesson",
     "pk": 13,
     "fields": {
-        "lesson_title": "Division Introduction",
-        "slug": "division-introduction",
+        "lesson_title": "Division",
+        "slug": "division",
         "lesson_text": "lessons/Division_Introduction.html",
         "skill": 14,
         "_order": 0
@@ -168,8 +168,8 @@
     "model": "lessons.lesson",
     "pk": 16,
     "fields": {
-        "lesson_title": "Number Line Introduction",
-        "slug": "number-line-introduction",
+        "lesson_title": "The Number Line",
+        "slug": "the-number-line",
         "lesson_text": "lessons/Number_Line_Introduction.html",
         "skill": 17,
         "_order": 0
@@ -179,8 +179,8 @@
     "model": "lessons.lesson",
     "pk": 17,
     "fields": {
-        "lesson_title": "Fractions Introduction",
-        "slug": "fractions-introduction",
+        "lesson_title": "Fractions",
+        "slug": "fractions",
         "lesson_text": "lessons/Fractions_Introduction.html",
         "skill": 18,
         "_order": 0
@@ -212,8 +212,8 @@
     "model": "lessons.lesson",
     "pk": 22,
     "fields": {
-        "lesson_title": "Fraction Operations II",
-        "slug": "fraction-operations-ii",
+        "lesson_title": "Fraction Operations I",
+        "slug": "fraction-operations-i",
         "lesson_text": "lessons/Fraction_Operations_II.html",
         "skill": 22,
         "_order": 0
@@ -223,8 +223,8 @@
     "model": "lessons.lesson",
     "pk": 23,
     "fields": {
-        "lesson_title": "Fraction Operations I",
-        "slug": "fraction-operations-i",
+        "lesson_title": "Fraction Operations II",
+        "slug": "fraction-operations-ii",
         "lesson_text": "lessons/Fraction_Operations_I.html",
         "skill": 23,
         "_order": 0
@@ -234,8 +234,8 @@
     "model": "lessons.lesson",
     "pk": 24,
     "fields": {
-        "lesson_title": "Decimals Introduction",
-        "slug": "decimals-introduction",
+        "lesson_title": "Decimals",
+        "slug": "decimals",
         "lesson_text": "lessons/Decimals_Introduction.html",
         "skill": 24,
         "_order": 0
@@ -245,8 +245,8 @@
     "model": "lessons.lesson",
     "pk": 25,
     "fields": {
-        "lesson_title": "Units Introduction",
-        "slug": "units-introduction",
+        "lesson_title": "Units",
+        "slug": "units",
         "lesson_text": "lessons/Units_Introduction.html",
         "skill": 25,
         "_order": 0
@@ -256,10 +256,186 @@
     "model": "lessons.lesson",
     "pk": 26,
     "fields": {
-        "lesson_title": "Rounding Introduction",
-        "slug": "rounding-introduction",
+        "lesson_title": "Rounding",
+        "slug": "rounding",
         "lesson_text": "lessons/Rounding_Introduction.html",
         "skill": 26,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 27,
+    "fields": {
+        "lesson_title": "Exponents",
+        "slug": "exponents",
+        "lesson_text": "lessons/Exponents_Introduction.html",
+        "skill": 27,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 28,
+    "fields": {
+        "lesson_title": "Order of Operations",
+        "slug": "order-of-operations",
+        "lesson_text": "lessons/Order_of_Operations.html",
+        "skill": 28,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 29,
+    "fields": {
+        "lesson_title": "Decimal Operations I",
+        "slug": "decimal-operations-i",
+        "lesson_text": "lessons/Decimal_Operations_I.html",
+        "skill": 29,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 30,
+    "fields": {
+        "lesson_title": "Multiply & Divide Powers of 10",
+        "slug": "multiply-divide-powers-of-10",
+        "lesson_text": "lessons/Multiply__Divide_Powers_of_10.html",
+        "skill": 30,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 32,
+    "fields": {
+        "lesson_title": "Decimal Multiplication",
+        "slug": "decimal-multiplication",
+        "lesson_text": "lessons/Decimal_Multiplication.html",
+        "skill": 32,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 33,
+    "fields": {
+        "lesson_title": "Decimal Division",
+        "slug": "decimal-division",
+        "lesson_text": "lessons/Decimal_Division.html",
+        "skill": 33,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 34,
+    "fields": {
+        "lesson_title": "Fraction Decimal Conversion",
+        "slug": "fraction-decimal-conversion",
+        "lesson_text": "lessons/Fraction_Decimal_Conversion.html",
+        "skill": 34,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 35,
+    "fields": {
+        "lesson_title": "Negative Numbers",
+        "slug": "negative-numbers",
+        "lesson_text": "lessons/Negative_Numbers_Introduction.html",
+        "skill": 35,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 36,
+    "fields": {
+        "lesson_title": "Negative Number Operations I",
+        "slug": "negative-number-operations-i",
+        "lesson_text": "lessons/Negative_Number_Operations_I.html",
+        "skill": 36,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 37,
+    "fields": {
+        "lesson_title": "Negative Number Operations II",
+        "slug": "negative-number-operations-ii",
+        "lesson_text": "lessons/Negative_Number_Operations_II.html",
+        "skill": 37,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 38,
+    "fields": {
+        "lesson_title": "Order of Operations Extended",
+        "slug": "order-of-operations-extended",
+        "lesson_text": "lessons/Consolidated_Arithmetic_I.html",
+        "skill": 38,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 39,
+    "fields": {
+        "lesson_title": "Radicals",
+        "slug": "radicals",
+        "lesson_text": "lessons/Radicals_Introduction.html",
+        "skill": 39,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 40,
+    "fields": {
+        "lesson_title": "Exponents Extended",
+        "slug": "exponents-extended",
+        "lesson_text": "lessons/Exponents_Extended.html",
+        "skill": 40,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 41,
+    "fields": {
+        "lesson_title": "Radicals Extended",
+        "slug": "radicals-extended",
+        "lesson_text": "lessons/Radicals_Extended.html",
+        "skill": 41,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 42,
+    "fields": {
+        "lesson_title": "Absolute Value",
+        "slug": "absolute-value",
+        "lesson_text": "lessons/Absolute_Value.html",
+        "skill": 42,
+        "_order": 0
+    }
+},
+{
+    "model": "lessons.lesson",
+    "pk": 43,
+    "fields": {
+        "lesson_title": "Comparison Signs Extended",
+        "slug": "comparison-signs-extended",
+        "lesson_text": "lessons/Comparison_Signs_Extended.html",
+        "skill": 43,
         "_order": 0
     }
 },
@@ -467,6 +643,114 @@
     "fields": {
         "lesson": 24,
         "image": "Mathematics/lesson_images/decimals-introduction/diagram-20200527_6.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 29,
+    "fields": {
+        "lesson": 34,
+        "image": "Mathematics/lesson_images/fraction-decimal-conversion/diagram-20200605.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 30,
+    "fields": {
+        "lesson": 34,
+        "image": "Mathematics/lesson_images/fraction-decimal-conversion/diagram-20200605_1.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 31,
+    "fields": {
+        "lesson": 35,
+        "image": "Mathematics/lesson_images/negative-numbers-introduction/diagram-20200607_1.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 32,
+    "fields": {
+        "lesson": 35,
+        "image": "Mathematics/lesson_images/negative-numbers-introduction/diagram-20200607.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 33,
+    "fields": {
+        "lesson": 36,
+        "image": "Mathematics/lesson_images/negative-number-operations-i/add.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 34,
+    "fields": {
+        "lesson": 36,
+        "image": "Mathematics/lesson_images/negative-number-operations-i/diagram-20200608.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 35,
+    "fields": {
+        "lesson": 36,
+        "image": "Mathematics/lesson_images/negative-number-operations-i/diagram-20200608_1.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 36,
+    "fields": {
+        "lesson": 36,
+        "image": "Mathematics/lesson_images/negative-number-operations-i/subt.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 37,
+    "fields": {
+        "lesson": 36,
+        "image": "Mathematics/lesson_images/negative-number-operations-i/diagram-20200608_2.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 38,
+    "fields": {
+        "lesson": 36,
+        "image": "Mathematics/lesson_images/negative-number-operations-i/diagram-20200608_3.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 39,
+    "fields": {
+        "lesson": 42,
+        "image": "Mathematics/lesson_images/absolute-value-introduction/diagram-20200613.png",
+        "caption": null
+    }
+},
+{
+    "model": "lessons.lessonimage",
+    "pk": 40,
+    "fields": {
+        "lesson": 42,
+        "image": "Mathematics/lesson_images/absolute-value-introduction/diagram-20200613_1.png",
         "caption": null
     }
 }

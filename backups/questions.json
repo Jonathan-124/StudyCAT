@@ -6,6 +6,7 @@
         "skill": 1,
         "question_type": "MC",
         "question_prompt": "Which of the following is a number?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -19,6 +20,7 @@
         "skill": 1,
         "question_type": "MC",
         "question_prompt": "Which of the following is a number?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -32,6 +34,7 @@
         "skill": 1,
         "question_type": "MC",
         "question_prompt": "Which of the following is NOT a number?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -45,6 +48,7 @@
         "skill": 1,
         "question_type": "MC",
         "question_prompt": "Which of the following is NOT a number?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -58,6 +62,7 @@
         "skill": 1,
         "question_type": "MC",
         "question_prompt": "Select the digit that represents the number eight.",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -71,6 +76,7 @@
         "skill": 1,
         "question_type": "MC",
         "question_prompt": "Select the digit that represents the number four.",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -84,6 +90,7 @@
         "skill": 1,
         "question_type": "MC",
         "question_prompt": "Select the number that corresponds to the digit 3.",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -97,6 +104,7 @@
         "skill": 1,
         "question_type": "MC",
         "question_prompt": "Select the number that corresponds to the digit 6.",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -110,10 +118,11 @@
         "skill": 1,
         "question_type": "NI",
         "question_prompt": "Write the digit that corresponds to the number three.",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -123,10 +132,11 @@
         "skill": 1,
         "question_type": "NI",
         "question_prompt": "Write the digit that corresponds to the number nine.",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -136,10 +146,11 @@
         "skill": 1,
         "question_type": "NI",
         "question_prompt": "Write the digit that corresponds to the number two.",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -149,10 +160,11 @@
         "skill": 2,
         "question_type": "NI",
         "question_prompt": "Write the number twelve using digits.",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -162,10 +174,11 @@
         "skill": 2,
         "question_type": "NI",
         "question_prompt": "Write the number thirteen using digits",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -175,10 +188,11 @@
         "skill": 2,
         "question_type": "NI",
         "question_prompt": "Write the number twenty-three using digits.",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -188,10 +202,11 @@
         "skill": 2,
         "question_type": "NI",
         "question_prompt": "Write the number seventy-four using digits.",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -201,10 +216,11 @@
         "skill": 2,
         "question_type": "NI",
         "question_prompt": "Write the number two-hundred seventy using digits.",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -214,10 +230,11 @@
         "skill": 2,
         "question_type": "NI",
         "question_prompt": "Write the number three-thousand nineteen using digits.",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -227,10 +244,11 @@
         "skill": 2,
         "question_type": "NI",
         "question_prompt": "What is the digit in the ones' place in 42?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -240,10 +258,11 @@
         "skill": 2,
         "question_type": "NI",
         "question_prompt": "What is the digit in the tens' place in 90?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -253,10 +272,11 @@
         "skill": 2,
         "question_type": "NI",
         "question_prompt": "What is the digit in the hundreds' place in 1945?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -266,10 +286,11 @@
         "skill": 2,
         "question_type": "NI",
         "question_prompt": "A two-digit number has the digit 2 in its tens' place and the digit 7 in its ones' place. Write down this number using digits.",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -279,10 +300,11 @@
         "skill": 2,
         "question_type": "NI",
         "question_prompt": "A three-digit number has the digit 2 in its hundreds' place, the digit 5 in its tens' place, and the digit 3 in its ones' place. Write down this number using digits.",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -292,10 +314,11 @@
         "skill": 2,
         "question_type": "NI",
         "question_prompt": "A three-digit number has the digit 4 in its ones' place, the digit 0 in its tens' place, and the digit 1 in its hundreds' place. Write down this number using digits.",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": true,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -305,6 +328,7 @@
         "skill": 3,
         "question_type": "MC",
         "question_prompt": "Which number below is greater than 6?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -318,6 +342,7 @@
         "skill": 3,
         "question_type": "MC",
         "question_prompt": "Which number below is less than 7?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -331,6 +356,7 @@
         "skill": 3,
         "question_type": "MC",
         "question_prompt": "Which sign should go in the box below?\r\n$$ 5 \\square 5 $$",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -344,6 +370,7 @@
         "skill": 3,
         "question_type": "MC",
         "question_prompt": "Which sign should go in the box below?\r\n$$ 6 \\square 0 $$",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -357,6 +384,7 @@
         "skill": 5,
         "question_type": "MC",
         "question_prompt": "Which of the following is the plus sign?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -370,10 +398,11 @@
         "skill": 5,
         "question_type": "NI",
         "question_prompt": "Fill in the blank.\r\n$$ 6 + 2 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -383,10 +412,11 @@
         "skill": 5,
         "question_type": "NI",
         "question_prompt": "Fill in the blank.\r\n$$ 1 + 6 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -396,10 +426,11 @@
         "skill": 5,
         "question_type": "NI",
         "question_prompt": "Fill in the blank.\r\n$$ 2 + 1 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -409,10 +440,11 @@
         "skill": 5,
         "question_type": "NI",
         "question_prompt": "Fill in the blank.\r\n$$ 3 + \\square = 5 $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -422,10 +454,11 @@
         "skill": 5,
         "question_type": "NI",
         "question_prompt": "Fill in the blank.\r\n$$ 1 + \\square = 5 $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -435,10 +468,11 @@
         "skill": 5,
         "question_type": "NI",
         "question_prompt": "Fill in the blank.\r\n$$ 9 + \\square = 9 $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -448,10 +482,11 @@
         "skill": 5,
         "question_type": "NI",
         "question_prompt": "Fill in the blank.\r\n$$ 2 + 2 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -461,10 +496,11 @@
         "skill": 6,
         "question_type": "NI",
         "question_prompt": "Fill in the blank:\r\n$$ 18 + 10 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -474,10 +510,11 @@
         "skill": 6,
         "question_type": "NI",
         "question_prompt": "Fill in the blank:\r\n$$ 19 + 23 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -487,10 +524,11 @@
         "skill": 6,
         "question_type": "NI",
         "question_prompt": "Fill in the blank:\r\n$$ 182 + 34 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -500,10 +538,11 @@
         "skill": 6,
         "question_type": "NI",
         "question_prompt": "Fill in the blank:\r\n$$ 695 + 26 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -513,10 +552,11 @@
         "skill": 6,
         "question_type": "NI",
         "question_prompt": "Fill in the blank:\r\n$$ 55 + 155 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -526,10 +566,11 @@
         "skill": 6,
         "question_type": "NI",
         "question_prompt": "Fill in the blank:\r\n$$ 369 + 1024 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": true,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -539,10 +580,11 @@
         "skill": 6,
         "question_type": "NI",
         "question_prompt": "Fill in the blank:\r\n$$ 93545 + 256= \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": true,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -552,10 +594,11 @@
         "skill": 6,
         "question_type": "NI",
         "question_prompt": "Fill in the blank:\r\n$$ 6812 + 10248 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": true,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -565,6 +608,7 @@
         "skill": 4,
         "question_type": "MC",
         "question_prompt": "Which of the following numbers is greater than 1854?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -578,6 +622,7 @@
         "skill": 4,
         "question_type": "MC",
         "question_prompt": "Which of the following numbers is less than 4723?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -591,6 +636,7 @@
         "skill": 4,
         "question_type": "MC",
         "question_prompt": "Which of the following numbers is greater than 29371?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -604,6 +650,7 @@
         "skill": 4,
         "question_type": "MC",
         "question_prompt": "Which of the following numbers is less than 87412?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -617,6 +664,7 @@
         "skill": 4,
         "question_type": "MC",
         "question_prompt": "Which sign should go in the box below?\r\n$$ 55420 \\square 55420 $$",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -630,6 +678,7 @@
         "skill": 4,
         "question_type": "MC",
         "question_prompt": "Which sign should go in the box below?\r\n$$ 84804 \\square 84740 $$",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -643,6 +692,7 @@
         "skill": 4,
         "question_type": "MC",
         "question_prompt": "Which sign should go in the box below?\r\n$$ 1648 \\square 1800 $$",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -656,6 +706,7 @@
         "skill": 3,
         "question_type": "MC",
         "question_prompt": "Which sign should go in the box below?\r\n$$ 4 \\square 1$$",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -669,6 +720,7 @@
         "skill": 3,
         "question_type": "MC",
         "question_prompt": "Which sign should go in the box below?\r\n$$ 8 \\square 9$$",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -682,6 +734,7 @@
         "skill": 7,
         "question_type": "MC",
         "question_prompt": "Which of the following is the minus sign?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -695,6 +748,7 @@
         "skill": 7,
         "question_type": "NI",
         "question_prompt": "Fill in the blank.\r\n$$ 9 - 4 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -708,10 +762,11 @@
         "skill": 7,
         "question_type": "NI",
         "question_prompt": "Fill in the blank.\r\n$$ 6-3 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -721,6 +776,7 @@
         "skill": 7,
         "question_type": "NI",
         "question_prompt": "Fill in the blank.\r\n$$ 7 - 1 =  \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -734,10 +790,11 @@
         "skill": 7,
         "question_type": "NI",
         "question_prompt": "Charlie has 4 pieces of candy. He gives 2 pieces to Harry. How many pieces of candy does Charlie have left?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -747,10 +804,11 @@
         "skill": 7,
         "question_type": "NI",
         "question_prompt": "Charlie has six socks. He loses one sock after doing laundry. How many socks does Charlie have left?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.000"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -760,6 +818,7 @@
         "skill": 8,
         "question_type": "IC",
         "question_prompt": "Which of the following shapes is a 3D shape?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -773,10 +832,11 @@
         "skill": 10,
         "question_type": "NI",
         "question_prompt": "Fill in the blank:\r\n$$ 195 - 64 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -786,6 +846,7 @@
         "skill": 11,
         "question_type": "IC",
         "question_prompt": "Which of these shapes is not a polygon?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -799,6 +860,7 @@
         "skill": 3,
         "question_type": "MC",
         "question_prompt": "Which sign should go in the box below?\r\n$$ 6 \\square 2 $$",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -812,6 +874,7 @@
         "skill": 3,
         "question_type": "MC",
         "question_prompt": "Which sign should go in the box below?\r\n$$ 3 \\square 9 $$",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -825,6 +888,7 @@
         "skill": 3,
         "question_type": "MC",
         "question_prompt": "Which sign should go in the box below? $$ 4 \\square 5 $$",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -838,6 +902,7 @@
         "skill": 4,
         "question_type": "MC",
         "question_prompt": "Which sign should go in the box below?\r\n$$ 64985 \\square 116499 $$",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -851,10 +916,11 @@
         "skill": 5,
         "question_type": "NI",
         "question_prompt": "Fill in the blank. $$ 9+2 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -864,10 +930,11 @@
         "skill": 5,
         "question_type": "NI",
         "question_prompt": "Fill in the blank. $$ 6+8 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -877,10 +944,11 @@
         "skill": 7,
         "question_type": "NI",
         "question_prompt": "Fill in the blank. $$ 12- 5 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -890,10 +958,11 @@
         "skill": 7,
         "question_type": "NI",
         "question_prompt": "Fill in the blank. $$ 13-4= \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -903,10 +972,11 @@
         "skill": 5,
         "question_type": "NI",
         "question_prompt": "Tonya has 8 plushies and Jack has 5 plushies. How many plushies do they have in total?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -916,10 +986,11 @@
         "skill": 5,
         "question_type": "NI",
         "question_prompt": "Kenneth has 6 cookies and Tommy has 4. How many cookies do they have in total?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -929,10 +1000,11 @@
         "skill": 14,
         "question_type": "NI",
         "question_prompt": "Fill in the blank: $$ 5 \\div 1 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -942,6 +1014,7 @@
         "skill": 14,
         "question_type": "NI",
         "question_prompt": "Fill in the blank: $$ 18 \\div 3 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -955,10 +1028,11 @@
         "skill": 14,
         "question_type": "NI",
         "question_prompt": "Fill in the blank: $$ 4 \\div 2 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -968,10 +1042,11 @@
         "skill": 14,
         "question_type": "NI",
         "question_prompt": "Fill in the blank: $$ 14 \\div 7 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -981,10 +1056,11 @@
         "skill": 14,
         "question_type": "NI",
         "question_prompt": "Fill in the blank: $$ 24 \\div 3 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -994,10 +1070,11 @@
         "skill": 14,
         "question_type": "NI",
         "question_prompt": "There are twelve donuts and six people. If we evenly distribute the donuts, how many donuts would each person get?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1007,10 +1084,11 @@
         "skill": 14,
         "question_type": "NI",
         "question_prompt": "There are 40 people in a class. If the teacher wants to split the class into 8 groups of equal sizes, how many people should be in each group?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1020,10 +1098,11 @@
         "skill": 10,
         "question_type": "NI",
         "question_prompt": "Fill in the blank: \r\n$$ 461-270=\\square$$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1033,10 +1112,11 @@
         "skill": 10,
         "question_type": "NI",
         "question_prompt": "Fill in the blank: \r\n$$ 963-69=\\square$$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1046,10 +1126,11 @@
         "skill": 10,
         "question_type": "NI",
         "question_prompt": "Fill in the blank: \r\n$$ 1097-652=\\square$$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1059,10 +1140,11 @@
         "skill": 10,
         "question_type": "NI",
         "question_prompt": "Fill in the blank: \r\n$$ 6498-1609=\\square$$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1072,10 +1154,11 @@
         "skill": 10,
         "question_type": "NI",
         "question_prompt": "There are 250 people at a concert. 126 people left before the concert ended. How many people remain at the end of the concert?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1085,10 +1168,11 @@
         "skill": 12,
         "question_type": "NI",
         "question_prompt": "Fill in the blank: $$6 \\times 7 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1098,10 +1182,11 @@
         "skill": 12,
         "question_type": "NI",
         "question_prompt": "Fill in the blank: $$3 \\times 9 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1111,10 +1196,11 @@
         "skill": 12,
         "question_type": "NI",
         "question_prompt": "Fill in the blank: $$5 \\times 9= \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1124,10 +1210,11 @@
         "skill": 12,
         "question_type": "NI",
         "question_prompt": "Fill in the blank: $$8 \\times 9 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1137,10 +1224,11 @@
         "skill": 12,
         "question_type": "NI",
         "question_prompt": "Fill in the blank: $$7 \\times 8 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1150,10 +1238,11 @@
         "skill": 12,
         "question_type": "NI",
         "question_prompt": "Fill in the blank: $$6 \\times 4 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1163,10 +1252,11 @@
         "skill": 12,
         "question_type": "NI",
         "question_prompt": "A bakery sells boxes of cookies that have 6 cookies in each box. If Jack buys 8 boxes, how many cookies would he have in total?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1176,10 +1266,11 @@
         "skill": 12,
         "question_type": "NI",
         "question_prompt": "Each basketball team has 5 players. If there are 6 basketball teams in total,  how many basketball players are there in total?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1189,10 +1280,11 @@
         "skill": 13,
         "question_type": "NI",
         "question_prompt": "Fill in the blank:\r\n$$ 173 \\times 23 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1202,10 +1294,11 @@
         "skill": 13,
         "question_type": "NI",
         "question_prompt": "Fill in the blank:\r\n$$ 984\\times 2= \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1215,10 +1308,11 @@
         "skill": 13,
         "question_type": "NI",
         "question_prompt": "Fill in the blank:\r\n$$ 97 \\times 528= \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1228,10 +1322,11 @@
         "skill": 13,
         "question_type": "NI",
         "question_prompt": "Fill in the blank:\r\n$$ 20 \\times 342 = \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1241,10 +1336,11 @@
         "skill": 13,
         "question_type": "NI",
         "question_prompt": "Fill in the blank:\r\n$$ 7 \\times 24= \\square $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1254,10 +1350,11 @@
         "skill": 13,
         "question_type": "NI",
         "question_prompt": "A school has 11 classrooms. If there are 32 chairs in each classroom, how many chairs are there in all of the classrooms?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1267,6 +1364,7 @@
         "skill": 15,
         "question_type": "MC",
         "question_prompt": "Which of the following is a factor of 8?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1280,6 +1378,7 @@
         "skill": 15,
         "question_type": "MC",
         "question_prompt": "Which of the following is not a factor of 10?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1293,6 +1392,7 @@
         "skill": 15,
         "question_type": "MC",
         "question_prompt": "Which of the following is a factor of 63?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1306,6 +1406,7 @@
         "skill": 15,
         "question_type": "MC",
         "question_prompt": "Which of the following is not a factor of 42?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1319,10 +1420,11 @@
         "skill": 15,
         "question_type": "NI",
         "question_prompt": "What is the remainder of \\(12 \\div 6\\)?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1332,10 +1434,11 @@
         "skill": 15,
         "question_type": "NI",
         "question_prompt": "What is the remainder of \\(15 \\div 4\\)?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1345,10 +1448,11 @@
         "skill": 15,
         "question_type": "NI",
         "question_prompt": "What is the remainder of \\(29 \\div 7 \\)?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1358,6 +1462,7 @@
         "skill": 15,
         "question_type": "MC",
         "question_prompt": "Choose the correct answer.",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1371,10 +1476,11 @@
         "skill": 16,
         "question_type": "NI",
         "question_prompt": "Calculate \\(156 \\div 12\\)",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1384,10 +1490,11 @@
         "skill": 16,
         "question_type": "NI",
         "question_prompt": "Calculate \\(1575 \\div 9\\)",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1397,10 +1504,11 @@
         "skill": 16,
         "question_type": "NI",
         "question_prompt": "Calculate \\(787 \\div 11\\)",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1410,10 +1518,11 @@
         "skill": 16,
         "question_type": "NI",
         "question_prompt": "What is the remainder of \\(2020 \\div 4\\)?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1423,10 +1532,11 @@
         "skill": 16,
         "question_type": "NI",
         "question_prompt": "What is the remainder of \\(672 \\div 5\\)?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1436,10 +1546,11 @@
         "skill": 16,
         "question_type": "NI",
         "question_prompt": "What is the remainder of \\(77 \\div 24\\)?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1449,10 +1560,11 @@
         "skill": 16,
         "question_type": "NI",
         "question_prompt": "Calculate  \\(625 \\div 25\\)?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1462,10 +1574,11 @@
         "skill": 16,
         "question_type": "NI",
         "question_prompt": "Calculate  \\(648 \\div 72\\).",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1475,10 +1588,11 @@
         "skill": 14,
         "question_type": "NI",
         "question_prompt": "Calculate \\(0 \\div 6 \\)",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1488,10 +1602,11 @@
         "skill": 15,
         "question_type": "NI",
         "question_prompt": "What is the remainder of \\(8 \\div 9\\)?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -1501,6 +1616,7 @@
         "skill": 17,
         "question_type": "IC",
         "question_prompt": "Which of the following is a number line?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1514,6 +1630,7 @@
         "skill": 17,
         "question_type": "IC",
         "question_prompt": "Which of the following is not a number line?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1527,6 +1644,7 @@
         "skill": 17,
         "question_type": "IC",
         "question_prompt": "Choose the correct image that indicates the position of 5 on the number line.",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1540,6 +1658,7 @@
         "skill": 17,
         "question_type": "IC",
         "question_prompt": "The following image depicts \\( 2 \\times 4\\). Choose the image that depicts \\( 4 \\times 2\\).",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "mathematics/question_images/None/diagram-20200522_9.png",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1553,6 +1672,7 @@
         "skill": 17,
         "question_type": "IC",
         "question_prompt": "The following image depicts \\( 10 \\div 5 \\). Choose the image that depicts \\( 10 \\div 2\\).",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "mathematics/question_images/None/diagram-20200522_14.png",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1566,6 +1686,7 @@
         "skill": 8,
         "question_type": "IC",
         "question_prompt": "Which of the following is not a 3D shape?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1579,6 +1700,7 @@
         "skill": 8,
         "question_type": "IC",
         "question_prompt": "Which of the following is not a 2D shape?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1592,6 +1714,7 @@
         "skill": 8,
         "question_type": "MC",
         "question_prompt": "Which statement best describes the two shapes below?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "mathematics/question_images/None/diagram-20200522_26.png",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1605,6 +1728,7 @@
         "skill": 8,
         "question_type": "MC",
         "question_prompt": "Which statement best describes the two shapes below?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "mathematics/question_images/None/diagram-20200522_27.png",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1618,6 +1742,7 @@
         "skill": 11,
         "question_type": "IC",
         "question_prompt": "Which of the following shapes is not a closed shape?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1631,6 +1756,7 @@
         "skill": 11,
         "question_type": "IC",
         "question_prompt": "Which of the following shapes is not a polygon?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1644,6 +1770,7 @@
         "skill": 11,
         "question_type": "IC",
         "question_prompt": "Which of the following shapes is a polygon?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1657,6 +1784,7 @@
         "skill": 11,
         "question_type": "MC",
         "question_prompt": "Select the description that fits the shape below.",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "mathematics/question_images/None/diagram-20200522_33.png",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1670,6 +1798,7 @@
         "skill": 18,
         "question_type": "NI",
         "question_prompt": "There are 7 boys and 13 girls in a class. What fraction of the class is boys?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1683,6 +1812,7 @@
         "skill": 18,
         "question_type": "NI",
         "question_prompt": "A pizza shop cuts each pizza into 6 pieces, and sells pizza by the slice. If Elmo buys 7 slices of pizza, what fraction of a pizza would he have?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1696,6 +1826,7 @@
         "skill": 18,
         "question_type": "NI",
         "question_prompt": "What number is located at the indicated position below? Write your answer as a fraction.",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "mathematics/question_images/None/diagram-20200523_5.png",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1709,6 +1840,7 @@
         "skill": 18,
         "question_type": "MC",
         "question_prompt": "Which of the choices is the mixed number indicated at the position below?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "mathematics/question_images/None/diagram-20200523_6.png",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1722,6 +1854,7 @@
         "skill": 18,
         "question_type": "NI",
         "question_prompt": "What fraction has a denominator of 8 and a numerator of 9?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1735,6 +1868,7 @@
         "skill": 21,
         "question_type": "NI",
         "question_prompt": "What is the numerator of the simplified form of the fraction \\(\\frac{10}{25}\\)?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1748,6 +1882,7 @@
         "skill": 21,
         "question_type": "MC",
         "question_prompt": "Which of the following fractions is equivalent to \\(\\frac{3}{7}\\)?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1761,6 +1896,7 @@
         "skill": 21,
         "question_type": "MC",
         "question_prompt": "Which of the following fractions is not equivalent to \\(\\frac{6}{15}\\)?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1774,6 +1910,7 @@
         "skill": 21,
         "question_type": "NI",
         "question_prompt": "What is the denominator of the simplified form of the fraction \\(\\frac{15}{13}\\)?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1787,6 +1924,7 @@
         "skill": 21,
         "question_type": "NI",
         "question_prompt": "What is the numerator of the simplified form of the fraction \\(\\frac{21}{24}\\)?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1800,6 +1938,7 @@
         "skill": 20,
         "question_type": "MC",
         "question_prompt": "Which of the following fractions is greater than \\(\\frac{5}{3}\\)?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1813,6 +1952,7 @@
         "skill": 20,
         "question_type": "MC",
         "question_prompt": "Which of the following fractions is less than \\(\\frac{7}{9}\\)?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1826,6 +1966,7 @@
         "skill": 20,
         "question_type": "MC",
         "question_prompt": "Which of the following fractions is less than \\(\\frac{4}{12}\\)?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1839,6 +1980,7 @@
         "skill": 20,
         "question_type": "MC",
         "question_prompt": "Which of the following fractions is greater than \\(\\frac{3}{10}\\)?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1850,12 +1992,13 @@
     "pk": 145,
     "fields": {
         "skill": 20,
-        "question_type": "NI",
+        "question_type": "MC",
         "question_prompt": "Fill in the blank. \r\n$$\\frac{7}{2} \\square \\frac{8}{3} $$",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "0.333"
     }
 },
 {
@@ -1865,6 +2008,7 @@
         "skill": 20,
         "question_type": "MC",
         "question_prompt": "Fill in the blank. \r\n$$\\frac{1}{2} \\square \\frac{3}{6} $$",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1878,6 +2022,7 @@
         "skill": 20,
         "question_type": "MC",
         "question_prompt": "Fill in the blank. \r\n$$\\frac{5}{6} \\square \\frac{8}{9} $$",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1891,6 +2036,7 @@
         "skill": 21,
         "question_type": "MC",
         "question_prompt": "What is the simplified form of the fraction \\(\\frac{12}{14}\\)?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1904,6 +2050,7 @@
         "skill": 21,
         "question_type": "MC",
         "question_prompt": "What is the simplified form of the fraction \\(\\frac{10}{21}\\)?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1917,6 +2064,7 @@
         "skill": 22,
         "question_type": "NI",
         "question_prompt": "Calculate \\(\\frac{1}{9} + \\frac{3}{9}\\)",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1930,6 +2078,7 @@
         "skill": 22,
         "question_type": "NI",
         "question_prompt": "Calculate \\(\\frac{5}{11} + \\frac{7}{11}\\).",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1943,6 +2092,7 @@
         "skill": 22,
         "question_type": "NI",
         "question_prompt": "Calculate \\(\\frac{12}{5} - \\frac{1}{5}\\).",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1956,6 +2106,7 @@
         "skill": 22,
         "question_type": "NI",
         "question_prompt": "Calculate \\(\\frac{123}{145} + \\frac{25}{145}\\).",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1969,6 +2120,7 @@
         "skill": 22,
         "question_type": "NI",
         "question_prompt": "Calculate \\(\\frac{5}{3} + \\frac{5}{2}\\).",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1982,6 +2134,7 @@
         "skill": 22,
         "question_type": "NI",
         "question_prompt": "Calculate \\(\\frac{1}{3} + \\frac{1}{2}\\).",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -1995,6 +2148,7 @@
         "skill": 22,
         "question_type": "NI",
         "question_prompt": "Calculate \\(\\frac{5}{4} - \\frac{5}{7}\\).",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -2008,6 +2162,7 @@
         "skill": 22,
         "question_type": "NI",
         "question_prompt": "Calculate \\(\\frac{4}{5} - \\frac{1}{2}\\).",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -2021,10 +2176,11 @@
         "skill": 24,
         "question_type": "NI",
         "question_prompt": "Write the number thirty-two point one three using digits.",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -2034,10 +2190,11 @@
         "skill": 24,
         "question_type": "NI",
         "question_prompt": "Write the number one hundred point zero four using digits.",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -2047,10 +2204,11 @@
         "skill": 24,
         "question_type": "NI",
         "question_prompt": "Write the number zero point two three five using digits.",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -2060,10 +2218,11 @@
         "skill": 24,
         "question_type": "NI",
         "question_prompt": "Write the number two-thousand twenty point six four using digits.",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -2073,10 +2232,11 @@
         "skill": 24,
         "question_type": "NI",
         "question_prompt": "What is the digit in the tenths place in 90.15?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -2086,10 +2246,11 @@
         "skill": 24,
         "question_type": "NI",
         "question_prompt": "What is the digit in the hundredths place in 120.6798?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -2099,10 +2260,11 @@
         "skill": 24,
         "question_type": "NI",
         "question_prompt": "What is the digit in the thousandths place in 0.167982?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -2112,10 +2274,11 @@
         "skill": 24,
         "question_type": "NI",
         "question_prompt": "What is the digit in the tenths place in 15.013?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -2125,10 +2288,11 @@
         "skill": 24,
         "question_type": "NI",
         "question_prompt": "A decimal number has the digit 2 in its tens' place, 7 in its ones' place, a 9 in its tenths place, and zeroes in all other places. Write down this number using digits.",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -2138,10 +2302,11 @@
         "skill": 24,
         "question_type": "NI",
         "question_prompt": "A decimal number has the digit 3 in its hundredths place, 2 in its ones' place, a 9 in its tens' place, and zeroes in all other places. Write down this number using digits.",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -2151,6 +2316,7 @@
         "skill": 25,
         "question_type": "MC",
         "question_prompt": "Which of the following choices is not a unit of measurement?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -2164,6 +2330,7 @@
         "skill": 25,
         "question_type": "MC",
         "question_prompt": "Which of the following is not a unit for mass (weight)?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -2177,6 +2344,7 @@
         "skill": 25,
         "question_type": "MC",
         "question_prompt": "Which of the following is a unit for temperature?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -2190,6 +2358,7 @@
         "skill": 25,
         "question_type": "MC",
         "question_prompt": "Which of the following is not a unit for money?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -2203,6 +2372,7 @@
         "skill": 25,
         "question_type": "MC",
         "question_prompt": "Fill in the blank: \"The runner took 9 _______ to finish the race.\"",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -2216,6 +2386,7 @@
         "skill": 25,
         "question_type": "MC",
         "question_prompt": "Fill in the blank with the correct unit: \"There are 6 _______ in the box.\"",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -2229,10 +2400,11 @@
         "skill": 26,
         "question_type": "NI",
         "question_prompt": "What is 58461 rounded to the nearest thousand?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -2242,10 +2414,11 @@
         "skill": 26,
         "question_type": "NI",
         "question_prompt": "What is 5140 rounded to the nearest ten?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -2255,10 +2428,11 @@
         "skill": 26,
         "question_type": "NI",
         "question_prompt": "What is 1263 rounded to the nearest hundred?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -2268,10 +2442,11 @@
         "skill": 26,
         "question_type": "NI",
         "question_prompt": "What is 894065 rounded to the nearest hundred ?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -2281,10 +2456,11 @@
         "skill": 26,
         "question_type": "NI",
         "question_prompt": "There are 519670 seats in a soccer stadium. Roughly how many seats are there, rounded to the nearest ten thousand?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -2294,10 +2470,11 @@
         "skill": 26,
         "question_type": "NI",
         "question_prompt": "There are 604800 seconds in a week. Roughly how many seconds are there in a week, rounded to the nearest hundred thousand?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -2307,10 +2484,11 @@
         "skill": 26,
         "question_type": "NI",
         "question_prompt": "There are 448 cookies in a bakery. Roughly how many cookies are there, rounded to the closest hundred?",
+        "permitted_symbols": "[]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
-        "pseudochance": "0.250"
+        "pseudochance": "1.000"
     }
 },
 {
@@ -2320,6 +2498,7 @@
         "skill": 26,
         "question_type": "MC",
         "question_prompt": "Which of the following numbers can be rounded to 1000?",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -2333,6 +2512,2247 @@
         "skill": 26,
         "question_type": "MC",
         "question_prompt": "Which of the following numbers cannot be rounded to 3500?",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 183,
+    "fields": {
+        "skill": 27,
+        "question_type": "NI",
+        "question_prompt": "Simplify \\(2^5\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 184,
+    "fields": {
+        "skill": 27,
+        "question_type": "NI",
+        "question_prompt": "Simplify \\(3^3\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 185,
+    "fields": {
+        "skill": 27,
+        "question_type": "NI",
+        "question_prompt": "Simplify \\(4^3\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 186,
+    "fields": {
+        "skill": 27,
+        "question_type": "NI",
+        "question_prompt": "Simplify \\(8^2\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 187,
+    "fields": {
+        "skill": 27,
+        "question_type": "NI",
+        "question_prompt": "Simplify \\(5^3\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 188,
+    "fields": {
+        "skill": 27,
+        "question_type": "MC",
+        "question_prompt": "Which of the following choices is the same as \\(3^4\\)?",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 189,
+    "fields": {
+        "skill": 27,
+        "question_type": "MC",
+        "question_prompt": "Which of the following choices is the same as \\(4^2\\)?",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 190,
+    "fields": {
+        "skill": 27,
+        "question_type": "MC",
+        "question_prompt": "Which of the following choices is the same as \\(7^2\\)?",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 191,
+    "fields": {
+        "skill": 27,
+        "question_type": "MC",
+        "question_prompt": "Which of the following choices is the same as \\(5^4\\)?",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 192,
+    "fields": {
+        "skill": 28,
+        "question_type": "NI",
+        "question_prompt": "Simplify \\(11-2^{8\\div 4}\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 193,
+    "fields": {
+        "skill": 28,
+        "question_type": "NI",
+        "question_prompt": "Simplify \\(13-14 \\div 2\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 194,
+    "fields": {
+        "skill": 28,
+        "question_type": "NI",
+        "question_prompt": "Simplify \\(64-7 \\times 9 + 1\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 195,
+    "fields": {
+        "skill": 28,
+        "question_type": "NI",
+        "question_prompt": "Simplify \\((7 \\times 5) - (4 \\times 6)\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 196,
+    "fields": {
+        "skill": 28,
+        "question_type": "NI",
+        "question_prompt": "Simplify \\(42 \\div 7 \\times 2\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 197,
+    "fields": {
+        "skill": 28,
+        "question_type": "NI",
+        "question_prompt": "Simplify \\(14 + 9 \\times 2\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 198,
+    "fields": {
+        "skill": 28,
+        "question_type": "NI",
+        "question_prompt": "Simplify \\(24 \\div 2^{1+2}\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 199,
+    "fields": {
+        "skill": 28,
+        "question_type": "NI",
+        "question_prompt": "Simplify \\(63 \\div 3^2 \\div 7\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 200,
+    "fields": {
+        "skill": 28,
+        "question_type": "NI",
+        "question_prompt": "Simplify \\(5 \\times (2 + 6 \\div 2)\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 201,
+    "fields": {
+        "skill": 29,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(12+1.49\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 202,
+    "fields": {
+        "skill": 29,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(1.54+29.19\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 203,
+    "fields": {
+        "skill": 29,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(17.532+8.509\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 204,
+    "fields": {
+        "skill": 29,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(1.03+27.17\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 205,
+    "fields": {
+        "skill": 29,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(39.31+290.14\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 206,
+    "fields": {
+        "skill": 29,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(19+0.025\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 207,
+    "fields": {
+        "skill": 29,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(10.1-0.12\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 208,
+    "fields": {
+        "skill": 29,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(102.5-25.15\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 209,
+    "fields": {
+        "skill": 29,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(12.59-9\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 210,
+    "fields": {
+        "skill": 29,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(18.509-7.051\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 211,
+    "fields": {
+        "skill": 29,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(48.37-37.47\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 212,
+    "fields": {
+        "skill": 29,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(49.4-27.3\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 213,
+    "fields": {
+        "skill": 30,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(10 \\times 1.928\\)",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 214,
+    "fields": {
+        "skill": 30,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(17.1984 \\times 100\\)",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 215,
+    "fields": {
+        "skill": 30,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(1000 \\times 27.15\\)",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 216,
+    "fields": {
+        "skill": 30,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(0.00154 \\times 10 \\)",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 217,
+    "fields": {
+        "skill": 30,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(154 \\times 100\\)",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 218,
+    "fields": {
+        "skill": 30,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(54 \\div 100\\)",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 219,
+    "fields": {
+        "skill": 30,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(0.2547 \\div 1000 \\)",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 220,
+    "fields": {
+        "skill": 30,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(99.1802 \\div 10\\)",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 221,
+    "fields": {
+        "skill": 30,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(180 \\div 100\\)",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 222,
+    "fields": {
+        "skill": 30,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(109.58 \\div 10000\\)",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 223,
+    "fields": {
+        "skill": 32,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(1.24 \\times 203\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 224,
+    "fields": {
+        "skill": 32,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(10.5 \\times 2.34\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 225,
+    "fields": {
+        "skill": 32,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(2.6 \\times 4.9\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 226,
+    "fields": {
+        "skill": 32,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(0.05 \\times 154\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 227,
+    "fields": {
+        "skill": 32,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(0.054 \\times 0.93\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 228,
+    "fields": {
+        "skill": 33,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(88.2 \\div 63\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 229,
+    "fields": {
+        "skill": 33,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(100 \\div 0.2\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 230,
+    "fields": {
+        "skill": 33,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(32.2 \\div 2.3\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 231,
+    "fields": {
+        "skill": 33,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(2 \\div 25\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 232,
+    "fields": {
+        "skill": 33,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(6.3 \\div 7\\).",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 233,
+    "fields": {
+        "skill": 23,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(\\frac{4}{5} \\times \\frac{1}{2}\\).",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 234,
+    "fields": {
+        "skill": 23,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(\\frac{5}{4} \\div \\frac{5}{7}\\).",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 235,
+    "fields": {
+        "skill": 23,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(\\frac{1}{3} \\times \\frac{1}{2}\\).",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 236,
+    "fields": {
+        "skill": 23,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(\\frac{5}{3} \\times \\frac{5}{2}\\).",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 237,
+    "fields": {
+        "skill": 23,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(\\frac{9}{5} \\div \\frac{1}{2}\\).",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 238,
+    "fields": {
+        "skill": 23,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(\\frac{2}{3} \\div \\frac{3}{2}\\).",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 239,
+    "fields": {
+        "skill": 23,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(\\frac{1}{2} \\times \\frac{2}{3}\\).",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 240,
+    "fields": {
+        "skill": 23,
+        "question_type": "NI",
+        "question_prompt": "A bus has a maximum capacity of 27 people. If the bus is at \\(\\frac{2}{3}\\) of its maximum capacity, how many people are in the bus?",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 241,
+    "fields": {
+        "skill": 23,
+        "question_type": "NI",
+        "question_prompt": "\\(\\frac{1}{2}\\) of all employees in a company are female. If \\(\\frac{1}{3}\\) of all female employees at the company wear glasses, what fraction of the company's employees are females who wear glasses?",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 242,
+    "fields": {
+        "skill": 34,
+        "question_type": "NI",
+        "question_prompt": "Express \\(\\frac{1}{8}\\) as a decimal.",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 243,
+    "fields": {
+        "skill": 34,
+        "question_type": "NI",
+        "question_prompt": "Express \\(\\frac{5}{2}\\) as a decimal.",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 244,
+    "fields": {
+        "skill": 34,
+        "question_type": "NI",
+        "question_prompt": "Express \\(\\frac{7}{4}\\) as a decimal.",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 245,
+    "fields": {
+        "skill": 34,
+        "question_type": "NI",
+        "question_prompt": "Express \\(\\frac{3}{10}\\) as a decimal.",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 246,
+    "fields": {
+        "skill": 34,
+        "question_type": "NI",
+        "question_prompt": "Express \\(\\frac{2}{25}\\) as a decimal.",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 247,
+    "fields": {
+        "skill": 34,
+        "question_type": "MC",
+        "question_prompt": "Which of the following fractions is equivalent to 0.375?",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 248,
+    "fields": {
+        "skill": 34,
+        "question_type": "MC",
+        "question_prompt": "Which of the following fractions is equivalent to 0.2?",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 249,
+    "fields": {
+        "skill": 34,
+        "question_type": "MC",
+        "question_prompt": "Which of the following fractions is equivalent to 1.7?",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 250,
+    "fields": {
+        "skill": 34,
+        "question_type": "MC",
+        "question_prompt": "Which of the following fractions is equivalent to 0.5?",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 251,
+    "fields": {
+        "skill": 34,
+        "question_type": "MC",
+        "question_prompt": "Which of the following fractions is NOT equivalent to 0.2?",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 252,
+    "fields": {
+        "skill": 34,
+        "question_type": "MC",
+        "question_prompt": "Which of the following fractions is NOT equivalent to 1.5?",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 253,
+    "fields": {
+        "skill": 35,
+        "question_type": "MC",
+        "question_prompt": "Which of the following is NOT a negative number?",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 254,
+    "fields": {
+        "skill": 35,
+        "question_type": "MC",
+        "question_prompt": "Which of the following is NOT a negative number?",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 255,
+    "fields": {
+        "skill": 35,
+        "question_type": "MC",
+        "question_prompt": "Which of the following is a negative number?",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 256,
+    "fields": {
+        "skill": 35,
+        "question_type": "MC",
+        "question_prompt": "Fill in the blank:\r\n$$ -4 \\square -7 $$",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 257,
+    "fields": {
+        "skill": 35,
+        "question_type": "MC",
+        "question_prompt": "Fill in the blank: $$ -24 \\square -5 $$",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 258,
+    "fields": {
+        "skill": 35,
+        "question_type": "MC",
+        "question_prompt": "Fill in the blank: $$ -10 \\square 0 $$",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 259,
+    "fields": {
+        "skill": 35,
+        "question_type": "MC",
+        "question_prompt": "Fill in the blank: $$ 2 \\square -5 $$",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 260,
+    "fields": {
+        "skill": 35,
+        "question_type": "MC",
+        "question_prompt": "Fill in the blank: $$ -172  \\square 23 $$",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 261,
+    "fields": {
+        "skill": 35,
+        "question_type": "MC",
+        "question_prompt": "Fill in the blank: $$ -9 \\square 9 $$",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 262,
+    "fields": {
+        "skill": 36,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(4+ \\scriptsize  - \\normalsize 5\\)",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 263,
+    "fields": {
+        "skill": 36,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(-4 + 11\\)",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 264,
+    "fields": {
+        "skill": 36,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(-13+ \\scriptsize  - \\normalsize 7\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 265,
+    "fields": {
+        "skill": 36,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(14- \\scriptsize  - \\normalsize 2\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 266,
+    "fields": {
+        "skill": 36,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(6- 11\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 267,
+    "fields": {
+        "skill": 36,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(-9 - 5\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 268,
+    "fields": {
+        "skill": 37,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(\\scriptsize - \\normalsize 7  \\times \\scriptsize - \\normalsize 2\\)",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 269,
+    "fields": {
+        "skill": 37,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(\\scriptsize - \\normalsize 5  \\times 4\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 270,
+    "fields": {
+        "skill": 37,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(\\scriptsize - \\normalsize 1 \\times \\scriptsize - \\normalsize 179 \\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 271,
+    "fields": {
+        "skill": 37,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(14  \\times \\scriptsize - \\normalsize 3\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 272,
+    "fields": {
+        "skill": 37,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(\\scriptsize - \\normalsize 9  \\div \\scriptsize - \\normalsize 3\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 273,
+    "fields": {
+        "skill": 37,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(16 \\div \\scriptsize - \\normalsize 2\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 274,
+    "fields": {
+        "skill": 37,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(14 \\div \\scriptsize - \\normalsize 7\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 275,
+    "fields": {
+        "skill": 37,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(\\scriptsize - \\normalsize 21 \\div 3\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 276,
+    "fields": {
+        "skill": 38,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(\\frac{1}{4} + 0.7 \\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 277,
+    "fields": {
+        "skill": 38,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(\\frac{1}{3} +0.3 \\), expressing your answer as a fraction.",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 278,
+    "fields": {
+        "skill": 38,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(3 \\times (\\frac{1}{2} \\div 0.25)\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 279,
+    "fields": {
+        "skill": 38,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(\\frac{1}{8} + 0.15  \\times 2\\), expressing your answer as a decimal.",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 280,
+    "fields": {
+        "skill": 38,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(\\frac{7}{2} + 10.8 \\div 3 \\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 281,
+    "fields": {
+        "skill": 38,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\((\\frac{1}{2})^2 + 9.3\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 282,
+    "fields": {
+        "skill": 38,
+        "question_type": "NI",
+        "question_prompt": "Calculate \\(2 - (\\frac{2+3 \\times 2}{8^2})\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 283,
+    "fields": {
+        "skill": 39,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\(\\sqrt[3]{-1}\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 284,
+    "fields": {
+        "skill": 39,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\(\\sqrt[3]{37}\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 285,
+    "fields": {
+        "skill": 39,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\(\\sqrt[5]{32}\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 286,
+    "fields": {
+        "skill": 39,
+        "question_type": "NI",
+        "question_prompt": "Give one solution to \\(\\sqrt{4}\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 287,
+    "fields": {
+        "skill": 39,
+        "question_type": "NI",
+        "question_prompt": "Give one solution to \\(\\sqrt{36}\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 288,
+    "fields": {
+        "skill": 39,
+        "question_type": "NI",
+        "question_prompt": "Give one solution to \\(\\sqrt[4]{16}\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 289,
+    "fields": {
+        "skill": 39,
+        "question_type": "MC",
+        "question_prompt": "Which of the following choices list all solutions to \\(\\sqrt{16}\\)?",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 290,
+    "fields": {
+        "skill": 39,
+        "question_type": "MC",
+        "question_prompt": "Which of the following choices list all solutions to \\(\\sqrt[3]{125}\\)?",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 291,
+    "fields": {
+        "skill": 39,
+        "question_type": "MC",
+        "question_prompt": "Which of the following choices list all solutions to \\(\\sqrt{-25}\\)?",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 292,
+    "fields": {
+        "skill": 39,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\(\\sqrt[133]{1}\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 293,
+    "fields": {
+        "skill": 39,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\(\\sqrt{0}\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 294,
+    "fields": {
+        "skill": 39,
+        "question_type": "MC",
+        "question_prompt": "How many solutions are there to \\(\\sqrt[21]{2097152}\\)?",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 295,
+    "fields": {
+        "skill": 39,
+        "question_type": "NI",
+        "question_prompt": "How many solutions are there to \\(\\sqrt[5]{7776}\\)?",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 296,
+    "fields": {
+        "skill": 39,
+        "question_type": "NI",
+        "question_prompt": "How many solutions are there to \\(\\sqrt[4]{-2401}\\)?",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 297,
+    "fields": {
+        "skill": 27,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\(0.9^2\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 298,
+    "fields": {
+        "skill": 27,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\(1.3^2\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 299,
+    "fields": {
+        "skill": 27,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\(0.2^3\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 300,
+    "fields": {
+        "skill": 27,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\(2.13^2\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 301,
+    "fields": {
+        "skill": 40,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\((-1)^97\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 302,
+    "fields": {
+        "skill": 40,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\((-3)^3\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 303,
+    "fields": {
+        "skill": 40,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\((-2)^4\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 304,
+    "fields": {
+        "skill": 40,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\((\\frac{4}{5})^2\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 305,
+    "fields": {
+        "skill": 40,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\((\\frac{7}{4})^2\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 306,
+    "fields": {
+        "skill": 40,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\((\\frac{2}{3})^3\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 307,
+    "fields": {
+        "skill": 40,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\((- \\frac{1}{3})^3\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 308,
+    "fields": {
+        "skill": 40,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\((- \\frac{5}{2})^2\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 309,
+    "fields": {
+        "skill": 40,
+        "question_type": "NI",
+        "question_prompt": "\\(0^23\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 310,
+    "fields": {
+        "skill": 40,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\((-2)^5\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 311,
+    "fields": {
+        "skill": 40,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\((\\frac{3^2}{7})\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 312,
+    "fields": {
+        "skill": 41,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\(\\sqrt[3]{0.027}\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 313,
+    "fields": {
+        "skill": 41,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\(\\sqrt[3]{-0.729}\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 314,
+    "fields": {
+        "skill": 41,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\(\\sqrt[5]{0.00001}\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 315,
+    "fields": {
+        "skill": 41,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\(\\sqrt[3]{\\frac{8}{125}}\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "1.000"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 316,
+    "fields": {
+        "skill": 41,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\(\\sqrt[5]{-\\frac{1}{32}}\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 317,
+    "fields": {
+        "skill": 41,
+        "question_type": "NI",
+        "question_prompt": "Give one solution to \\(\\sqrt{\\frac{9}{16}}\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 318,
+    "fields": {
+        "skill": 41,
+        "question_type": "NI",
+        "question_prompt": "Give one solution to \\(\\sqrt{1.69}\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 319,
+    "fields": {
+        "skill": 41,
+        "question_type": "NI",
+        "question_prompt": "Give one solution to \\(\\frac{\\sqrt{4}}{25}\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 320,
+    "fields": {
+        "skill": 41,
+        "question_type": "MC",
+        "question_prompt": "Which of the following choices list all solutions to \\(\\sqrt{5.76}\\)?",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 321,
+    "fields": {
+        "skill": 41,
+        "question_type": "MC",
+        "question_prompt": "Which of the following choices lists all solutions to \\(\\sqrt[3]{- \\frac{1}{8}}\\)?",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 322,
+    "fields": {
+        "skill": 41,
+        "question_type": "MC",
+        "question_prompt": "Which of the following choices lists all solutions to \\(\\sqrt{-0.16\\)?",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 323,
+    "fields": {
+        "skill": 41,
+        "question_type": "NI",
+        "question_prompt": "How many solutions are there to \\(\\sqrt[3]{-0.021952}\\)?",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 324,
+    "fields": {
+        "skill": 41,
+        "question_type": "NI",
+        "question_prompt": "How many solutions are there to \\(\\sqrt[4]{\\frac{14641}{2401}}\\)?",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 325,
+    "fields": {
+        "skill": 41,
+        "question_type": "NI",
+        "question_prompt": "How many solutions are there to \\(\\sqrt{- \\frac{361}{121}}\\)?",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 326,
+    "fields": {
+        "skill": 42,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\(|-12|\\)",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 327,
+    "fields": {
+        "skill": 42,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\(|-8|\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 328,
+    "fields": {
+        "skill": 42,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\(|4|\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 329,
+    "fields": {
+        "skill": 42,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\(|8|\\)",
+        "permitted_symbols": "[]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 330,
+    "fields": {
+        "skill": 42,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\(-|4|\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 331,
+    "fields": {
+        "skill": 42,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\(-|-5|\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 332,
+    "fields": {
+        "skill": 42,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\(-|10|\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 333,
+    "fields": {
+        "skill": 42,
+        "question_type": "NI",
+        "question_prompt": "Evaluate \\(-|-2|\\)",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 334,
+    "fields": {
+        "skill": 42,
+        "question_type": "MC",
+        "question_prompt": "Which sign should go in the box below? $$|-3| \\ \\square \\ |7|$$",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 335,
+    "fields": {
+        "skill": 42,
+        "question_type": "MC",
+        "question_prompt": "Which sign should go in the box below? $$|-1| \\ \\square \\ -|4|$$",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 336,
+    "fields": {
+        "skill": 42,
+        "question_type": "MC",
+        "question_prompt": "Which sign should go in the box below? $$ -5 \\ \\square \\ -|-3|$$",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 337,
+    "fields": {
+        "skill": 43,
+        "question_type": "MS",
+        "question_prompt": "Select all choices that can fill in the blank: $$7 \\ \\square \\ 0$$",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.167"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 338,
+    "fields": {
+        "skill": 43,
+        "question_type": "MS",
+        "question_prompt": "Select all choices that can fill in the blank: $$6 \\ \\square \\ 4$$",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.167"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 339,
+    "fields": {
+        "skill": 43,
+        "question_type": "MS",
+        "question_prompt": "Select all choices that can fill in the blank: $$2 \\ \\square \\ 3$$",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 340,
+    "fields": {
+        "skill": 43,
+        "question_type": "MS",
+        "question_prompt": "Select all choices that can fill in the blank: $$4 \\ \\square \\ 11$$",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 341,
+    "fields": {
+        "skill": 43,
+        "question_type": "MS",
+        "question_prompt": "Select all choices that can fill in the blank: $$1 \\ \\square \\ 1$$",
+        "permitted_symbols": "[\"fraction\"]",
+        "prompt_image": "",
+        "is_mastery": false,
+        "discrimination": "1.000",
+        "pseudochance": "0.250"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 342,
+    "fields": {
+        "skill": 43,
+        "question_type": "MS",
+        "question_prompt": "Select all choices that can fill in the blank: $$0 \\ \\square \\ 0$$",
+        "permitted_symbols": "[\"fraction\"]",
         "prompt_image": "",
         "is_mastery": false,
         "discrimination": "1.000",
@@ -6526,6 +8946,3086 @@
         "answer_text": "3449",
         "answer_image": "",
         "question": 182,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 390,
+    "fields": {
+        "answer_text": "32",
+        "answer_image": "",
+        "question": 183,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 391,
+    "fields": {
+        "answer_text": "27",
+        "answer_image": "",
+        "question": 184,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 392,
+    "fields": {
+        "answer_text": "64",
+        "answer_image": "",
+        "question": 185,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 393,
+    "fields": {
+        "answer_text": "64",
+        "answer_image": "",
+        "question": 186,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 394,
+    "fields": {
+        "answer_text": "125",
+        "answer_image": "",
+        "question": 187,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 395,
+    "fields": {
+        "answer_text": "3 \\times 3 \\times 3 \\times 3 \\times 3",
+        "answer_image": "",
+        "question": 188,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 396,
+    "fields": {
+        "answer_text": "3 \\times 3 \\times 3 \\times 3",
+        "answer_image": "",
+        "question": 188,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 397,
+    "fields": {
+        "answer_text": "4 \\times 4 \\times 4 \\times 4",
+        "answer_image": "",
+        "question": 188,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 398,
+    "fields": {
+        "answer_text": "4 \\times 4 \\times 4",
+        "answer_image": "",
+        "question": 188,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 399,
+    "fields": {
+        "answer_text": "\\(4 \\times 4 \\times 4\\)",
+        "answer_image": "",
+        "question": 189,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 400,
+    "fields": {
+        "answer_text": "\\(4 \\times 4\\)",
+        "answer_image": "",
+        "question": 189,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 401,
+    "fields": {
+        "answer_text": "\\(2 \\times 2 \\times 2 \\times 2 \\times 2\\)",
+        "answer_image": "",
+        "question": 189,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 402,
+    "fields": {
+        "answer_text": "\\(2 \\times 2 \\times 2 \\times 2\\)",
+        "answer_image": "",
+        "question": 189,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 403,
+    "fields": {
+        "answer_text": "\\(2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2\\)",
+        "answer_image": "",
+        "question": 190,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 404,
+    "fields": {
+        "answer_text": "\\(2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2\\)",
+        "answer_image": "",
+        "question": 190,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 405,
+    "fields": {
+        "answer_text": "\\(7 \\times 7 \\times 7\\)",
+        "answer_image": "",
+        "question": 190,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 406,
+    "fields": {
+        "answer_text": "\\(7 \\times 7\\)",
+        "answer_image": "",
+        "question": 190,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 407,
+    "fields": {
+        "answer_text": "\\(4 \\times 4 \\times 4 \\times 4 \\times 4 \\times 4\\)",
+        "answer_image": "",
+        "question": 191,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 408,
+    "fields": {
+        "answer_text": "\\(4 \\times 4 \\times 4 \\times 4 \\times 4\\)",
+        "answer_image": "",
+        "question": 191,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 409,
+    "fields": {
+        "answer_text": "\\(5 \\times 5 \\times 5 \\times 5 \\times 5\\)",
+        "answer_image": "",
+        "question": 191,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 410,
+    "fields": {
+        "answer_text": "\\(5 \\times 5 \\times 5 \\times 5\\)",
+        "answer_image": "",
+        "question": 191,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 411,
+    "fields": {
+        "answer_text": "7",
+        "answer_image": "",
+        "question": 192,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 412,
+    "fields": {
+        "answer_text": "6",
+        "answer_image": "",
+        "question": 193,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 413,
+    "fields": {
+        "answer_text": "2",
+        "answer_image": "",
+        "question": 194,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 414,
+    "fields": {
+        "answer_text": "11",
+        "answer_image": "",
+        "question": 195,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 415,
+    "fields": {
+        "answer_text": "12",
+        "answer_image": "",
+        "question": 196,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 416,
+    "fields": {
+        "answer_text": "32",
+        "answer_image": "",
+        "question": 197,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 417,
+    "fields": {
+        "answer_text": "3",
+        "answer_image": "",
+        "question": 198,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 418,
+    "fields": {
+        "answer_text": "1",
+        "answer_image": "",
+        "question": 199,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 419,
+    "fields": {
+        "answer_text": "25",
+        "answer_image": "",
+        "question": 200,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 420,
+    "fields": {
+        "answer_text": "13.49",
+        "answer_image": "",
+        "question": 201,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 421,
+    "fields": {
+        "answer_text": "30.73",
+        "answer_image": "",
+        "question": 202,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 422,
+    "fields": {
+        "answer_text": "26.041",
+        "answer_image": "",
+        "question": 203,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 423,
+    "fields": {
+        "answer_text": "28.2",
+        "answer_image": "",
+        "question": 204,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 424,
+    "fields": {
+        "answer_text": "329.45",
+        "answer_image": "",
+        "question": 205,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 425,
+    "fields": {
+        "answer_text": "19.025",
+        "answer_image": "",
+        "question": 206,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 426,
+    "fields": {
+        "answer_text": "9.98",
+        "answer_image": "",
+        "question": 207,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 427,
+    "fields": {
+        "answer_text": "77.35",
+        "answer_image": "",
+        "question": 208,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 428,
+    "fields": {
+        "answer_text": "3.59",
+        "answer_image": "",
+        "question": 209,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 429,
+    "fields": {
+        "answer_text": "11.458",
+        "answer_image": "",
+        "question": 210,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 430,
+    "fields": {
+        "answer_text": "10.9",
+        "answer_image": "",
+        "question": 211,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 431,
+    "fields": {
+        "answer_text": "22.1",
+        "answer_image": "",
+        "question": 212,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 432,
+    "fields": {
+        "answer_text": "19.28",
+        "answer_image": "",
+        "question": 213,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 433,
+    "fields": {
+        "answer_text": "1719.84",
+        "answer_image": "",
+        "question": 214,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 434,
+    "fields": {
+        "answer_text": "27150",
+        "answer_image": "",
+        "question": 215,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 435,
+    "fields": {
+        "answer_text": "0.0154",
+        "answer_image": "",
+        "question": 216,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 436,
+    "fields": {
+        "answer_text": "15400",
+        "answer_image": "",
+        "question": 217,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 437,
+    "fields": {
+        "answer_text": "0.54",
+        "answer_image": "",
+        "question": 218,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 438,
+    "fields": {
+        "answer_text": "0.0002547",
+        "answer_image": "",
+        "question": 219,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 439,
+    "fields": {
+        "answer_text": "9.91802",
+        "answer_image": "",
+        "question": 220,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 440,
+    "fields": {
+        "answer_text": "1.8",
+        "answer_image": "",
+        "question": 221,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 441,
+    "fields": {
+        "answer_text": "0.010958",
+        "answer_image": "",
+        "question": 222,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 442,
+    "fields": {
+        "answer_text": "251.72",
+        "answer_image": "",
+        "question": 223,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 443,
+    "fields": {
+        "answer_text": "24.57",
+        "answer_image": "",
+        "question": 224,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 444,
+    "fields": {
+        "answer_text": "12.74",
+        "answer_image": "",
+        "question": 225,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 445,
+    "fields": {
+        "answer_text": "7.7",
+        "answer_image": "",
+        "question": 226,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 446,
+    "fields": {
+        "answer_text": "0.05022",
+        "answer_image": "",
+        "question": 227,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 447,
+    "fields": {
+        "answer_text": "1.4",
+        "answer_image": "",
+        "question": 228,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 448,
+    "fields": {
+        "answer_text": "500",
+        "answer_image": "",
+        "question": 229,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 449,
+    "fields": {
+        "answer_text": "14",
+        "answer_image": "",
+        "question": 230,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 450,
+    "fields": {
+        "answer_text": "0.08",
+        "answer_image": "",
+        "question": 231,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 451,
+    "fields": {
+        "answer_text": "0.9",
+        "answer_image": "",
+        "question": 232,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 452,
+    "fields": {
+        "answer_text": "2/5",
+        "answer_image": "",
+        "question": 233,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 453,
+    "fields": {
+        "answer_text": "7/4",
+        "answer_image": "",
+        "question": 234,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 454,
+    "fields": {
+        "answer_text": "1/6",
+        "answer_image": "",
+        "question": 235,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 455,
+    "fields": {
+        "answer_text": "25/6",
+        "answer_image": "",
+        "question": 236,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 456,
+    "fields": {
+        "answer_text": "18/5",
+        "answer_image": "",
+        "question": 237,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 457,
+    "fields": {
+        "answer_text": "4/9",
+        "answer_image": "",
+        "question": 238,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 458,
+    "fields": {
+        "answer_text": "1/3",
+        "answer_image": "",
+        "question": 239,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 459,
+    "fields": {
+        "answer_text": "18",
+        "answer_image": "",
+        "question": 240,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 460,
+    "fields": {
+        "answer_text": "1/6",
+        "answer_image": "",
+        "question": 241,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 461,
+    "fields": {
+        "answer_text": "0.125",
+        "answer_image": "",
+        "question": 242,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 462,
+    "fields": {
+        "answer_text": "2.5",
+        "answer_image": "",
+        "question": 243,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 463,
+    "fields": {
+        "answer_text": "1.75",
+        "answer_image": "",
+        "question": 244,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 464,
+    "fields": {
+        "answer_text": "0.3",
+        "answer_image": "",
+        "question": 245,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 465,
+    "fields": {
+        "answer_text": "0.08",
+        "answer_image": "",
+        "question": 246,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 466,
+    "fields": {
+        "answer_text": "\\(\\frac{1}{3}\\)",
+        "answer_image": "",
+        "question": 247,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 467,
+    "fields": {
+        "answer_text": "\\(\\frac{2}{5}\\)",
+        "answer_image": "",
+        "question": 247,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 468,
+    "fields": {
+        "answer_text": "\\(\\frac{3}{7}\\)",
+        "answer_image": "",
+        "question": 247,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 469,
+    "fields": {
+        "answer_text": "\\(\\frac{3}{8}\\)",
+        "answer_image": "",
+        "question": 247,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 470,
+    "fields": {
+        "answer_text": "\\(\\frac{1}{3}\\)",
+        "answer_image": "",
+        "question": 248,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 471,
+    "fields": {
+        "answer_text": "\\(\\frac{1}{4}\\)",
+        "answer_image": "",
+        "question": 248,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 472,
+    "fields": {
+        "answer_text": "\\(\\frac{1}{5}\\)",
+        "answer_image": "",
+        "question": 248,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 473,
+    "fields": {
+        "answer_text": "\\(\\frac{1}{6}\\)",
+        "answer_image": "",
+        "question": 248,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 474,
+    "fields": {
+        "answer_text": "\\(\\frac{14}{7}\\)",
+        "answer_image": "",
+        "question": 249,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 475,
+    "fields": {
+        "answer_text": "\\(\\frac{15}{8}\\)",
+        "answer_image": "",
+        "question": 249,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 476,
+    "fields": {
+        "answer_text": "\\(\\frac{16}{9}\\)",
+        "answer_image": "",
+        "question": 249,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 477,
+    "fields": {
+        "answer_text": "\\(\\frac{17}{10}\\)",
+        "answer_image": "",
+        "question": 249,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 478,
+    "fields": {
+        "answer_text": "\\(\\frac{1}{3}\\)",
+        "answer_image": "",
+        "question": 250,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 479,
+    "fields": {
+        "answer_text": "\\(\\frac{1}{4}\\)",
+        "answer_image": "",
+        "question": 250,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 480,
+    "fields": {
+        "answer_text": "\\(\\frac{2}{3}\\)",
+        "answer_image": "",
+        "question": 250,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 481,
+    "fields": {
+        "answer_text": "\\(\\frac{2}{4}\\)",
+        "answer_image": "",
+        "question": 250,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 482,
+    "fields": {
+        "answer_text": "\\(\\frac{1}{5}\\)",
+        "answer_image": "",
+        "question": 251,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 483,
+    "fields": {
+        "answer_text": "\\(\\frac{2}{10}\\)",
+        "answer_image": "",
+        "question": 251,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 484,
+    "fields": {
+        "answer_text": "\\(\\frac{3}{15}\\)",
+        "answer_image": "",
+        "question": 251,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 485,
+    "fields": {
+        "answer_text": "\\(\\frac{4}{18}\\)",
+        "answer_image": "",
+        "question": 251,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 486,
+    "fields": {
+        "answer_text": "\\(\\frac{3}{2}\\)",
+        "answer_image": "",
+        "question": 252,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 487,
+    "fields": {
+        "answer_text": "\\(\\frac{4}{3}\\)",
+        "answer_image": "",
+        "question": 252,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 488,
+    "fields": {
+        "answer_text": "\\(\\frac{6}{4}\\)",
+        "answer_image": "",
+        "question": 252,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 489,
+    "fields": {
+        "answer_text": "\\(\\frac{9}{6}\\)",
+        "answer_image": "",
+        "question": 252,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 490,
+    "fields": {
+        "answer_text": "\\(-10\\)",
+        "answer_image": "",
+        "question": 253,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 491,
+    "fields": {
+        "answer_text": "\\(-7\\)",
+        "answer_image": "",
+        "question": 253,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 492,
+    "fields": {
+        "answer_text": "\\(0\\)",
+        "answer_image": "",
+        "question": 253,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 493,
+    "fields": {
+        "answer_text": "\\(-9821\\)",
+        "answer_image": "",
+        "question": 253,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 494,
+    "fields": {
+        "answer_text": "\\(1\\)",
+        "answer_image": "",
+        "question": 254,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 495,
+    "fields": {
+        "answer_text": "\\(-1\\)",
+        "answer_image": "",
+        "question": 254,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 496,
+    "fields": {
+        "answer_text": "\\(-2\\)",
+        "answer_image": "",
+        "question": 254,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 497,
+    "fields": {
+        "answer_text": "\\(-3\\)",
+        "answer_image": "",
+        "question": 254,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 498,
+    "fields": {
+        "answer_text": "\\(0\\)",
+        "answer_image": "",
+        "question": 255,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 499,
+    "fields": {
+        "answer_text": "\\(-2\\)",
+        "answer_image": "",
+        "question": 255,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 500,
+    "fields": {
+        "answer_text": "\\(1\\)",
+        "answer_image": "",
+        "question": 255,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 501,
+    "fields": {
+        "answer_text": "\\(10\\)",
+        "answer_image": "",
+        "question": 255,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 502,
+    "fields": {
+        "answer_text": "\\(<\\)",
+        "answer_image": "",
+        "question": 256,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 503,
+    "fields": {
+        "answer_text": "\\(>\\)",
+        "answer_image": "",
+        "question": 256,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 504,
+    "fields": {
+        "answer_text": "\\(=\\)",
+        "answer_image": "",
+        "question": 256,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 505,
+    "fields": {
+        "answer_text": "None of the above",
+        "answer_image": "",
+        "question": 256,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 506,
+    "fields": {
+        "answer_text": "\\(<\\)",
+        "answer_image": "",
+        "question": 257,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 507,
+    "fields": {
+        "answer_text": "\\(>\\)",
+        "answer_image": "",
+        "question": 257,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 508,
+    "fields": {
+        "answer_text": "\\(=\\)",
+        "answer_image": "",
+        "question": 257,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 509,
+    "fields": {
+        "answer_text": "None of the above",
+        "answer_image": "",
+        "question": 257,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 510,
+    "fields": {
+        "answer_text": "\\(<\\)",
+        "answer_image": "",
+        "question": 258,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 511,
+    "fields": {
+        "answer_text": "\\(>\\)",
+        "answer_image": "",
+        "question": 258,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 512,
+    "fields": {
+        "answer_text": "\\(=\\)",
+        "answer_image": "",
+        "question": 258,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 513,
+    "fields": {
+        "answer_text": "None of the above",
+        "answer_image": "",
+        "question": 258,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 514,
+    "fields": {
+        "answer_text": "\\(<\\)",
+        "answer_image": "",
+        "question": 259,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 515,
+    "fields": {
+        "answer_text": "\\(>\\)",
+        "answer_image": "",
+        "question": 259,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 516,
+    "fields": {
+        "answer_text": "\\(=\\)",
+        "answer_image": "",
+        "question": 259,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 517,
+    "fields": {
+        "answer_text": "None of the above",
+        "answer_image": "",
+        "question": 259,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 518,
+    "fields": {
+        "answer_text": "\\(<\\)",
+        "answer_image": "",
+        "question": 260,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 519,
+    "fields": {
+        "answer_text": "\\(>\\)",
+        "answer_image": "",
+        "question": 260,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 520,
+    "fields": {
+        "answer_text": "\\(=\\)",
+        "answer_image": "",
+        "question": 260,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 521,
+    "fields": {
+        "answer_text": "None of the above",
+        "answer_image": "",
+        "question": 260,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 522,
+    "fields": {
+        "answer_text": "\\(<\\)",
+        "answer_image": "",
+        "question": 261,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 523,
+    "fields": {
+        "answer_text": "\\(>\\)",
+        "answer_image": "",
+        "question": 261,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 524,
+    "fields": {
+        "answer_text": "\\(=\\)",
+        "answer_image": "",
+        "question": 261,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 525,
+    "fields": {
+        "answer_text": "None of the above",
+        "answer_image": "",
+        "question": 261,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 526,
+    "fields": {
+        "answer_text": "-1",
+        "answer_image": "",
+        "question": 262,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 527,
+    "fields": {
+        "answer_text": "7",
+        "answer_image": "",
+        "question": 263,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 528,
+    "fields": {
+        "answer_text": "-20",
+        "answer_image": "",
+        "question": 264,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 529,
+    "fields": {
+        "answer_text": "16",
+        "answer_image": "",
+        "question": 265,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 530,
+    "fields": {
+        "answer_text": "-5",
+        "answer_image": "",
+        "question": 266,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 531,
+    "fields": {
+        "answer_text": "-14",
+        "answer_image": "",
+        "question": 267,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 532,
+    "fields": {
+        "answer_text": "14",
+        "answer_image": "",
+        "question": 268,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 533,
+    "fields": {
+        "answer_text": "-20",
+        "answer_image": "",
+        "question": 269,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 534,
+    "fields": {
+        "answer_text": "179",
+        "answer_image": "",
+        "question": 270,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 535,
+    "fields": {
+        "answer_text": "-42",
+        "answer_image": "",
+        "question": 271,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 536,
+    "fields": {
+        "answer_text": "3",
+        "answer_image": "",
+        "question": 272,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 537,
+    "fields": {
+        "answer_text": "-8",
+        "answer_image": "",
+        "question": 273,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 538,
+    "fields": {
+        "answer_text": "-2",
+        "answer_image": "",
+        "question": 274,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 539,
+    "fields": {
+        "answer_text": "-7",
+        "answer_image": "",
+        "question": 275,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 540,
+    "fields": {
+        "answer_text": "0.95",
+        "answer_image": "",
+        "question": 276,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 541,
+    "fields": {
+        "answer_text": "19/30",
+        "answer_image": "",
+        "question": 277,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 542,
+    "fields": {
+        "answer_text": "6",
+        "answer_image": "",
+        "question": 278,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 543,
+    "fields": {
+        "answer_text": "0.425",
+        "answer_image": "",
+        "question": 279,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 544,
+    "fields": {
+        "answer_text": "7.1",
+        "answer_image": "",
+        "question": 280,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 545,
+    "fields": {
+        "answer_text": "9.25",
+        "answer_image": "",
+        "question": 281,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 546,
+    "fields": {
+        "answer_text": "1.875",
+        "answer_image": "",
+        "question": 282,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 547,
+    "fields": {
+        "answer_text": "-1",
+        "answer_image": "",
+        "question": 283,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 548,
+    "fields": {
+        "answer_text": "9",
+        "answer_image": "",
+        "question": 284,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 549,
+    "fields": {
+        "answer_text": "2",
+        "answer_image": "",
+        "question": 285,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 550,
+    "fields": {
+        "answer_text": "2",
+        "answer_image": "",
+        "question": 286,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 551,
+    "fields": {
+        "answer_text": "-2",
+        "answer_image": "",
+        "question": 286,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 552,
+    "fields": {
+        "answer_text": "6",
+        "answer_image": "",
+        "question": 287,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 553,
+    "fields": {
+        "answer_text": "-6",
+        "answer_image": "",
+        "question": 287,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 554,
+    "fields": {
+        "answer_text": "2",
+        "answer_image": "",
+        "question": 288,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 555,
+    "fields": {
+        "answer_text": "-2",
+        "answer_image": "",
+        "question": 288,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 556,
+    "fields": {
+        "answer_text": "\\(4\\)",
+        "answer_image": "",
+        "question": 289,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 557,
+    "fields": {
+        "answer_text": "\\(-4\\)",
+        "answer_image": "",
+        "question": 289,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 558,
+    "fields": {
+        "answer_text": "\\(4, -4\\)",
+        "answer_image": "",
+        "question": 289,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 559,
+    "fields": {
+        "answer_text": "There are no solutions to \\(\\sqrt{16}\\)",
+        "answer_image": "",
+        "question": 289,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 560,
+    "fields": {
+        "answer_text": "\\(5\\)",
+        "answer_image": "",
+        "question": 290,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 561,
+    "fields": {
+        "answer_text": "\\(-5\\)",
+        "answer_image": "",
+        "question": 290,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 562,
+    "fields": {
+        "answer_text": "\\(-5, 5\\)",
+        "answer_image": "",
+        "question": 290,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 563,
+    "fields": {
+        "answer_text": "There are no solutions to \\(\\sqrt[3]{125}\\)",
+        "answer_image": "",
+        "question": 290,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 564,
+    "fields": {
+        "answer_text": "\\(5\\)",
+        "answer_image": "",
+        "question": 291,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 565,
+    "fields": {
+        "answer_text": "\\(-5\\)",
+        "answer_image": "",
+        "question": 291,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 566,
+    "fields": {
+        "answer_text": "\\(-5, 5\\)",
+        "answer_image": "",
+        "question": 291,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 567,
+    "fields": {
+        "answer_text": "There are no solutions to \\(\\sqrt{-25}\\)",
+        "answer_image": "",
+        "question": 291,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 568,
+    "fields": {
+        "answer_text": "1",
+        "answer_image": "",
+        "question": 292,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 569,
+    "fields": {
+        "answer_text": "0",
+        "answer_image": "",
+        "question": 293,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 570,
+    "fields": {
+        "answer_text": "1",
+        "answer_image": "",
+        "question": 294,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 571,
+    "fields": {
+        "answer_text": "2",
+        "answer_image": "",
+        "question": 295,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 572,
+    "fields": {
+        "answer_text": "0",
+        "answer_image": "",
+        "question": 296,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 573,
+    "fields": {
+        "answer_text": "0.81",
+        "answer_image": "",
+        "question": 297,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 574,
+    "fields": {
+        "answer_text": "1.69",
+        "answer_image": "",
+        "question": 298,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 575,
+    "fields": {
+        "answer_text": "0.008",
+        "answer_image": "",
+        "question": 299,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 576,
+    "fields": {
+        "answer_text": "4.5369",
+        "answer_image": "",
+        "question": 300,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 577,
+    "fields": {
+        "answer_text": "-1",
+        "answer_image": "",
+        "question": 301,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 578,
+    "fields": {
+        "answer_text": "-27",
+        "answer_image": "",
+        "question": 302,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 579,
+    "fields": {
+        "answer_text": "16",
+        "answer_image": "",
+        "question": 303,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 580,
+    "fields": {
+        "answer_text": "16/25",
+        "answer_image": "",
+        "question": 304,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 581,
+    "fields": {
+        "answer_text": "49/16",
+        "answer_image": "",
+        "question": 305,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 582,
+    "fields": {
+        "answer_text": "8/27",
+        "answer_image": "",
+        "question": 306,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 583,
+    "fields": {
+        "answer_text": "-1/27",
+        "answer_image": "",
+        "question": 307,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 584,
+    "fields": {
+        "answer_text": "25/4",
+        "answer_image": "",
+        "question": 308,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 585,
+    "fields": {
+        "answer_text": "0",
+        "answer_image": "",
+        "question": 309,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 586,
+    "fields": {
+        "answer_text": "-32",
+        "answer_image": "",
+        "question": 310,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 587,
+    "fields": {
+        "answer_text": "9/7",
+        "answer_image": "",
+        "question": 311,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 588,
+    "fields": {
+        "answer_text": "0.3",
+        "answer_image": "",
+        "question": 312,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 589,
+    "fields": {
+        "answer_text": "-0.9",
+        "answer_image": "",
+        "question": 313,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 590,
+    "fields": {
+        "answer_text": "0.1",
+        "answer_image": "",
+        "question": 314,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 591,
+    "fields": {
+        "answer_text": "2/5",
+        "answer_image": "",
+        "question": 315,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 592,
+    "fields": {
+        "answer_text": "-0.5",
+        "answer_image": "",
+        "question": 316,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 593,
+    "fields": {
+        "answer_text": "3/4",
+        "answer_image": "",
+        "question": 317,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 594,
+    "fields": {
+        "answer_text": "-3/4",
+        "answer_image": "",
+        "question": 317,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 595,
+    "fields": {
+        "answer_text": "1.3",
+        "answer_image": "",
+        "question": 318,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 596,
+    "fields": {
+        "answer_text": "-1.3",
+        "answer_image": "",
+        "question": 318,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 597,
+    "fields": {
+        "answer_text": "2/25",
+        "answer_image": "",
+        "question": 319,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 598,
+    "fields": {
+        "answer_text": "-2/25",
+        "answer_image": "",
+        "question": 319,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 599,
+    "fields": {
+        "answer_text": "\\(2.4\\)",
+        "answer_image": "",
+        "question": 320,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 600,
+    "fields": {
+        "answer_text": "\\(-2.4\\)",
+        "answer_image": "",
+        "question": 320,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 601,
+    "fields": {
+        "answer_text": "\\(-2.4, 2.4\\)",
+        "answer_image": "",
+        "question": 320,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 602,
+    "fields": {
+        "answer_text": "There are no solutions to \\(\\sqrt{5.76}\\)",
+        "answer_image": "",
+        "question": 320,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 603,
+    "fields": {
+        "answer_text": "\\(\\frac{1}{2}\\)",
+        "answer_image": "",
+        "question": 321,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 604,
+    "fields": {
+        "answer_text": "\\(\\frac{-1}{2}\\)",
+        "answer_image": "",
+        "question": 321,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 605,
+    "fields": {
+        "answer_text": "\\(\\frac{-1}{2}, \\frac{1}{2}\\)",
+        "answer_image": "",
+        "question": 321,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 606,
+    "fields": {
+        "answer_text": "There are no solutions to \\(\\sqrt[3]{- \\frac{1}{8}}\\)",
+        "answer_image": "",
+        "question": 321,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 607,
+    "fields": {
+        "answer_text": "\\(0.4\\)",
+        "answer_image": "",
+        "question": 322,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 608,
+    "fields": {
+        "answer_text": "\\(-0.4\\)",
+        "answer_image": "",
+        "question": 322,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 609,
+    "fields": {
+        "answer_text": "\\(-0.4, 0.4\\)",
+        "answer_image": "",
+        "question": 322,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 610,
+    "fields": {
+        "answer_text": "There are no solutions to \\(\\sqrt{-0.16\\)",
+        "answer_image": "",
+        "question": 322,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 611,
+    "fields": {
+        "answer_text": "1",
+        "answer_image": "",
+        "question": 323,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 612,
+    "fields": {
+        "answer_text": "2",
+        "answer_image": "",
+        "question": 324,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 613,
+    "fields": {
+        "answer_text": "0",
+        "answer_image": "",
+        "question": 325,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 614,
+    "fields": {
+        "answer_text": "12",
+        "answer_image": "",
+        "question": 326,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 615,
+    "fields": {
+        "answer_text": "8",
+        "answer_image": "",
+        "question": 327,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 616,
+    "fields": {
+        "answer_text": "4",
+        "answer_image": "",
+        "question": 328,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 617,
+    "fields": {
+        "answer_text": "8",
+        "answer_image": "",
+        "question": 329,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 618,
+    "fields": {
+        "answer_text": "-4",
+        "answer_image": "",
+        "question": 330,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 619,
+    "fields": {
+        "answer_text": "-5",
+        "answer_image": "",
+        "question": 331,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 620,
+    "fields": {
+        "answer_text": "-10",
+        "answer_image": "",
+        "question": 332,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 621,
+    "fields": {
+        "answer_text": "-2",
+        "answer_image": "",
+        "question": 333,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 622,
+    "fields": {
+        "answer_text": "\\(<\\)",
+        "answer_image": "",
+        "question": 334,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 623,
+    "fields": {
+        "answer_text": "\\(>\\)",
+        "answer_image": "",
+        "question": 334,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 624,
+    "fields": {
+        "answer_text": "\\(=\\)",
+        "answer_image": "",
+        "question": 334,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 625,
+    "fields": {
+        "answer_text": "None of the above",
+        "answer_image": "",
+        "question": 334,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 626,
+    "fields": {
+        "answer_text": "\\(<\\)",
+        "answer_image": "",
+        "question": 335,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 627,
+    "fields": {
+        "answer_text": "\\(>\\)",
+        "answer_image": "",
+        "question": 335,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 628,
+    "fields": {
+        "answer_text": "\\(=\\)",
+        "answer_image": "",
+        "question": 335,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 629,
+    "fields": {
+        "answer_text": "None of the above",
+        "answer_image": "",
+        "question": 335,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 630,
+    "fields": {
+        "answer_text": "\\(<\\)",
+        "answer_image": "",
+        "question": 336,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 631,
+    "fields": {
+        "answer_text": "\\(>\\)",
+        "answer_image": "",
+        "question": 336,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 632,
+    "fields": {
+        "answer_text": "\\(=\\)",
+        "answer_image": "",
+        "question": 336,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 633,
+    "fields": {
+        "answer_text": "None of the above",
+        "answer_image": "",
+        "question": 336,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 634,
+    "fields": {
+        "answer_text": "\\(<\\)",
+        "answer_image": "",
+        "question": 337,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 635,
+    "fields": {
+        "answer_text": "\\(\\leq\\)",
+        "answer_image": "",
+        "question": 337,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 636,
+    "fields": {
+        "answer_text": "\\(>\\)",
+        "answer_image": "",
+        "question": 337,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 637,
+    "fields": {
+        "answer_text": "\\(\\geq\\)",
+        "answer_image": "",
+        "question": 337,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 638,
+    "fields": {
+        "answer_text": "\\(=\\)",
+        "answer_image": "",
+        "question": 337,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 639,
+    "fields": {
+        "answer_text": "\\(\\not =\\)",
+        "answer_image": "",
+        "question": 337,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 640,
+    "fields": {
+        "answer_text": "\\(<\\)",
+        "answer_image": "",
+        "question": 338,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 641,
+    "fields": {
+        "answer_text": "\\(\\leq\\)",
+        "answer_image": "",
+        "question": 338,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 642,
+    "fields": {
+        "answer_text": "\\(>\\)",
+        "answer_image": "",
+        "question": 338,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 643,
+    "fields": {
+        "answer_text": "\\(\\geq\\)",
+        "answer_image": "",
+        "question": 338,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 644,
+    "fields": {
+        "answer_text": "\\(=\\)",
+        "answer_image": "",
+        "question": 338,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 645,
+    "fields": {
+        "answer_text": "\\(\\not =\\)",
+        "answer_image": "",
+        "question": 338,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 646,
+    "fields": {
+        "answer_text": "\\(<\\)",
+        "answer_image": "",
+        "question": 339,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 647,
+    "fields": {
+        "answer_text": "\\(\\leq\\)",
+        "answer_image": "",
+        "question": 339,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 648,
+    "fields": {
+        "answer_text": "\\(>\\)",
+        "answer_image": "",
+        "question": 339,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 649,
+    "fields": {
+        "answer_text": "\\(\\geq\\)",
+        "answer_image": "",
+        "question": 339,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 650,
+    "fields": {
+        "answer_text": "\\(=\\)",
+        "answer_image": "",
+        "question": 339,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 651,
+    "fields": {
+        "answer_text": "\\(\\not =\\)",
+        "answer_image": "",
+        "question": 339,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 652,
+    "fields": {
+        "answer_text": "\\(<\\)",
+        "answer_image": "",
+        "question": 340,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 653,
+    "fields": {
+        "answer_text": "\\(\\leq\\)",
+        "answer_image": "",
+        "question": 340,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 654,
+    "fields": {
+        "answer_text": "\\(>\\)",
+        "answer_image": "",
+        "question": 340,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 655,
+    "fields": {
+        "answer_text": "\\(\\geq\\)",
+        "answer_image": "",
+        "question": 340,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 656,
+    "fields": {
+        "answer_text": "\\(=\\)",
+        "answer_image": "",
+        "question": 340,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 657,
+    "fields": {
+        "answer_text": "\\(\\not =\\)",
+        "answer_image": "",
+        "question": 340,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 658,
+    "fields": {
+        "answer_text": "\\(<\\)",
+        "answer_image": "",
+        "question": 341,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 659,
+    "fields": {
+        "answer_text": "\\(\\leq\\)",
+        "answer_image": "",
+        "question": 341,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 660,
+    "fields": {
+        "answer_text": "\\(>\\)",
+        "answer_image": "",
+        "question": 341,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 661,
+    "fields": {
+        "answer_text": "\\(\\geq\\)",
+        "answer_image": "",
+        "question": 341,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 662,
+    "fields": {
+        "answer_text": "\\(=\\)",
+        "answer_image": "",
+        "question": 341,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 663,
+    "fields": {
+        "answer_text": "\\(\\not =\\)",
+        "answer_image": "",
+        "question": 341,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 664,
+    "fields": {
+        "answer_text": "\\(<\\)",
+        "answer_image": "",
+        "question": 342,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 665,
+    "fields": {
+        "answer_text": "\\(\\leq\\)",
+        "answer_image": "",
+        "question": 342,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 666,
+    "fields": {
+        "answer_text": "\\(=\\)",
+        "answer_image": "",
+        "question": 342,
+        "answer_explanation": "",
+        "answer_correctness": "1.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 667,
+    "fields": {
+        "answer_text": "\\(\\not =\\)",
+        "answer_image": "",
+        "question": 342,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 668,
+    "fields": {
+        "answer_text": "\\(>\\)",
+        "answer_image": "",
+        "question": 342,
+        "answer_explanation": "",
+        "answer_correctness": "0.000"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 669,
+    "fields": {
+        "answer_text": "\\(\\geq\\)",
+        "answer_image": "",
+        "question": 342,
         "answer_explanation": "",
         "answer_correctness": "1.000"
     }
