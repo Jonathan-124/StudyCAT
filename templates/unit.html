@@ -22,7 +22,7 @@
   <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
 {% endif %}
-
+<br>
 <div id="cy" class="jumbotron"></div>
 
 {% if user.is_authenticated %}
@@ -269,11 +269,12 @@ $(document).ready(function(){
         {% else %}
 
         for (i of lessons_data){
-            let readiness = true;
             let skill_id = i.skill.id;
             href = lessons_url + i.slug + "?unit={{ unit.slug }}";
             for (j of i.skill.parents){
-                elements.push({data: {id: `${j}-${skill_id}`, source: j, target: skill_id}});
+                if (user_skill_data.includes(j)){
+                    elements.push({data: {id: `${j}-${skill_id}`, source: j, target: skill_id}});
+                }
             }
             elements.push({data: {
                     id: skill_id,

@@ -64,7 +64,8 @@ def get_unit_data(request, *args, **kwargs):
         incomplete_prerequisites = Skillfulness.objects.filter(user_profile=request.user.profile, skill__id__in=unit.prerequisite_skills, skill_level=0).values_list('skill')
         return Response({"unit_data": unit_data, "user_skill_levels": user_skill_levels, "incomplete_prerequisites": incomplete_prerequisites})
     else:
-        return Response({"unit_data": unit_data})
+        skill_ids = unit.lessons.all().values_list('skill__id', flat=True)
+        return Response({"unit_data": unit_data, "user_skill_levels": skill_ids})
 
 
 # Receives skill pk, returns serialized parent lesson data
