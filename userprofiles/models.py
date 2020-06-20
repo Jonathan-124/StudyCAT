@@ -2,7 +2,7 @@ import random
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from skills.models import Skill, SkillEdge
 from users.models import CustomUser
@@ -97,10 +97,21 @@ def create_user_profile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.get_or_create(user=instance)
 
+
 # Saves UserProfile object when CustomUser is saved
 @receiver(post_save, sender=CustomUser, dispatch_uid='save_user_profile')
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+
+
+class SkillfulnessManager(models.Manager):
+    def update_skillfulness_on_new_skilledge(self, parent_skill, child_skill):
+        if not self.filter(skill_level__gt=0, skill=child_skill).exists():
+            for i in range(1, 4):
+                users_with_i_skillfulness = self.filter(skill_level=i, skill=parent_skill).values_list('user_profile__id', flat=True)
+                self.filter(user_profile__id__in=users_with_i_skillfulness, skill__id__in=child_skill.ancestor_ids, skill_level__lt=i).update(skill_level=i)
+        else:
+            pass
 
 
 # Custom through model that connects one UserProfile object to one Skill object
@@ -112,6 +123,7 @@ class Skillfulness(models.Model):
     user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='user_skillfulness')
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE, related_name='user_skillfulness')
     skill_level = models.SmallIntegerField(default=0)
+    objects = SkillfulnessManager()
 
     class Meta:
         order_with_respect_to = 'skill'
@@ -138,13 +150,142 @@ def create_all_skills(sender, instance, created, **kwargs):
             Skillfulness.objects.get_or_create(user_profile=instance, skill=i)
 
 
-# On new skilledge creation, update all user skillfulnesses of child skill based on the parent skill skillfulness
-@receiver(post_save, sender=SkillEdge, dispatch_uid='skilledge_creation_update_skillfulness')
-def update_user_skillfulness(sender, instance, created, **kwargs):
-    if created and not Skillfulness.objects.filter(skill_level__gt=0, skill=instance.child_skill).exists():
-        for i in range(1, 4):
-            users_with_i_skillfulness = Skillfulness.objects.filter(skill_level=i, skill=instance.parent_skill).values_list('user_profile__id', flat=True)
-            Skillfulness.objects.filter(user_profile__id__in=users_with_i_skillfulness, skill=instance.child_skill).update(skill_level=i)
+# Kahn's algorithm, updates topological order of skills in each skill tree after Skilledge save or delete
+@receiver(post_save, sender=SkillEdge, dispatch_uid='save_update_topological_order')
+def save_update_topological_order(sender, instance, created, **kwargs):
+    def parent_edges_of_child(skill_obj, edge_list):
+        # Receives Skill object and list of SkillEdge objects
+        # Returns list of SkillEdge objects that are parent edges of the skill_obj argument
+        filtered = list(filter(lambda x: x.child_skill == skill_obj, edge_list))
+        return filtered
+
+    # subject - subject area of the graph being topologically sorted
+    # edges - all SkillEdge objects connecting to skills with parent_skill__subject=child_skill__subject=subject
+    # root_nodes - all Skill objects in the subject area with no parents
+    subject = instance.parent_skill.subject
+    edges = list(SkillEdge.objects.filter(parent_skill__subject=subject, same_subject=True))
+    root_nodes = []
+    for i in Skill.objects.filter(subject=subject):
+        if not i.get_parent_skills():
+            root_nodes.append(i)
+    j = 0
+
+    # Assigning topological order
+    while root_nodes:
+        node = root_nodes.pop()
+        setattr(node, 'topological_order', j)
+        setattr(node, 'ancestor_ids', node.get_preceding_skill_ids())
+        setattr(node, 'parents', list(node.get_parent_skills().values_list('id', flat=True)))
+        setattr(node, 'children', list(node.get_children_skills().values_list('id', flat=True)))
+        setattr(node, 'descendant_ids', node.get_descendant_skill_ids())
+        node.save()
+        j += 1
+        for edge in edges[:]:
+            if edge.parent_skill == node:
+                child = edge.child_skill
+                edges.remove(edge)
+                edges_with_child = parent_edges_of_child(child, edges)
+                if not edges_with_child:
+                    root_nodes.append(child)
+
+    # Updates topological orders if skilledge changed when same_subject=False
+    # Same code, but updates other_subject dependency matrix and skill topological orders
+    if not instance.same_subject:
+        other_subject = instance.child.subject
+        edges = list(SkillEdge.objects.filter(parent_skill__subject=other_subject, same_subject=True))
+        root_nodes = []
+        for i in Skill.objects.filter(subject=other_subject):
+            if not i.get_parent_skills():
+                root_nodes.append(i)
+        j = 0
+
+        # Assigning topological order
+        while root_nodes:
+            node = root_nodes.pop()
+            setattr(node, 'topological_order', j)
+            setattr(node, 'ancestor_ids', node.get_preceding_skill_ids())
+            setattr(node, 'parents', list(node.get_parent_skills().values_list('id', flat=True)))
+            setattr(node, 'children', list(node.get_children_skills().values_list('id', flat=True)))
+            setattr(node, 'descendant_ids', node.get_descendant_skill_ids())
+            node.save()
+            j += 1
+            for edge in edges[:]:
+                if edge.parent_skill == node:
+                    child = edge.child_skill
+                    edges.remove(edge)
+                    edges_with_child = parent_edges_of_child(child, edges)
+                    if not edges_with_child:
+                        root_nodes.append(child)
+
+    if created:
+        Skillfulness.objects.update_skillfulness_on_new_skilledge(instance.parent_skill, instance.child_skill)
+
+
+@receiver(post_delete, sender=SkillEdge, dispatch_uid='delete_update_topological_order')
+def delete_update_topological_order(sender, instance, **kwargs):
+    def parent_edges_of_child(skill_obj, edge_list):
+        # Receives Skill object and list of SkillEdge objects
+        # Returns list of SkillEdge objects that are parent edges of the skill_obj argument
+        filtered = list(filter(lambda x: x.child_skill == skill_obj, edge_list))
+        return filtered
+
+    # subject - subject area of the graph being topologically sorted
+    # edges - all SkillEdge objects connecting to skills with parent_skill__subject=child_skill__subject=subject
+    # root_nodes - all Skill objects in the subject area with no parents
+    subject = instance.parent_skill.subject
+    edges = list(SkillEdge.objects.filter(parent_skill__subject=subject, same_subject=True))
+    root_nodes = []
+    for i in Skill.objects.filter(subject=subject):
+        if not i.get_parent_skills():
+            root_nodes.append(i)
+    j = 0
+
+    # Assigning topological order
+    while root_nodes:
+        node = root_nodes.pop()
+        setattr(node, 'topological_order', j)
+        setattr(node, 'ancestor_ids', node.get_preceding_skill_ids())
+        setattr(node, 'parents', list(node.get_parent_skills().values_list('id', flat=True)))
+        setattr(node, 'children', list(node.get_children_skills().values_list('id', flat=True)))
+        setattr(node, 'descendant_ids', node.get_descendant_skill_ids())
+        node.save()
+        j += 1
+        for edge in edges[:]:
+            if edge.parent_skill == node:
+                child = edge.child_skill
+                edges.remove(edge)
+                edges_with_child = parent_edges_of_child(child, edges)
+                if not edges_with_child:
+                    root_nodes.append(child)
+
+    # Updates topological orders if skilledge changed when same_subject=False
+    # Same code, but updates other_subject dependency matrix and skill topological orders
+    if not instance.same_subject:
+        other_subject = instance.child.subject
+        edges = list(SkillEdge.objects.filter(parent_skill__subject=other_subject, same_subject=True))
+        root_nodes = []
+        for i in Skill.objects.filter(subject=other_subject):
+            if not i.get_parent_skills():
+                root_nodes.append(i)
+        j = 0
+
+        # Assigning topological order
+        while root_nodes:
+            node = root_nodes.pop()
+            setattr(node, 'topological_order', j)
+            setattr(node, 'ancestor_ids', node.get_preceding_skill_ids())
+            setattr(node, 'parents', list(node.get_parent_skills().values_list('id', flat=True)))
+            setattr(node, 'children', list(node.get_children_skills().values_list('id', flat=True)))
+            setattr(node, 'descendant_ids', node.get_descendant_skill_ids())
+            node.save()
+            j += 1
+            for edge in edges[:]:
+                if edge.parent_skill == node:
+                    child = edge.child_skill
+                    edges.remove(edge)
+                    edges_with_child = parent_edges_of_child(child, edges)
+                    if not edges_with_child:
+                        root_nodes.append(child)
 
 
 class CurrentlyStudying(models.Model):

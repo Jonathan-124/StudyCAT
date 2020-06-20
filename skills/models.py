@@ -1,7 +1,5 @@
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
-from django.db.models.signals import post_save, post_delete
-from django.dispatch import receiver
 
 
 # Additional methods for querying Skill objects
@@ -87,72 +85,3 @@ class SkillEdge(models.Model):
         else:
             setattr(self, 'same_subject', False)
         super(SkillEdge, self).save(*args, **kwargs)
-
-
-# Kahn's algorithm, updates topological order of skills in each skill tree after Skilledge save or delete
-@receiver(post_save, sender=SkillEdge, dispatch_uid='save_update_topological_order')
-@receiver(post_delete, sender=SkillEdge, dispatch_uid='delete_update_topological_order')
-def update_topological_order(sender, instance, **kwargs):
-    def parent_edges_of_child(skill_obj, edge_list):
-        # Receives Skill object and list of SkillEdge objects
-        # Returns list of SkillEdge objects that are parent edges of the skill_obj argument
-        filtered = list(filter(lambda x: x.child_skill == skill_obj, edge_list))
-        return filtered
-
-    # subject - subject area of the graph being topologically sorted
-    # edges - all SkillEdge objects connecting to skills with parent_skill__subject=child_skill__subject=subject
-    # root_nodes - all Skill objects in the subject area with no parents
-    subject = instance.parent_skill.subject
-    edges = list(SkillEdge.objects.filter(parent_skill__subject=subject, same_subject=True))
-    root_nodes = []
-    for i in Skill.objects.filter(subject=subject):
-        if not i.get_parent_skills():
-            root_nodes.append(i)
-    j = 0
-
-    # Assigning topological order
-    while root_nodes:
-        node = root_nodes.pop()
-        setattr(node, 'topological_order', j)
-        setattr(node, 'ancestor_ids', node.get_preceding_skill_ids())
-        setattr(node, 'parents', list(node.get_parent_skills().values_list('id', flat=True)))
-        setattr(node, 'children', list(node.get_children_skills().values_list('id', flat=True)))
-        setattr(node, 'descendant_ids', node.get_descendant_skill_ids())
-        node.save()
-        j += 1
-        for edge in edges[:]:
-            if edge.parent_skill == node:
-                child = edge.child_skill
-                edges.remove(edge)
-                edges_with_child = parent_edges_of_child(child, edges)
-                if not edges_with_child:
-                    root_nodes.append(child)
-
-    # Updates topological orders if skilledge changed when same_subject=False
-    # Same code, but updates other_subject dependency matrix and skill topological orders
-    if not instance.same_subject:
-        other_subject = instance.child.subject
-        edges = list(SkillEdge.objects.filter(parent_skill__subject=other_subject, same_subject=True))
-        root_nodes = []
-        for i in Skill.objects.filter(subject=other_subject):
-            if not i.get_parent_skills():
-                root_nodes.append(i)
-        j = 0
-
-        # Assigning topological order
-        while root_nodes:
-            node = root_nodes.pop()
-            setattr(node, 'topological_order', j)
-            setattr(node, 'ancestor_ids', node.get_preceding_skill_ids())
-            setattr(node, 'parents', list(node.get_parent_skills().values_list('id', flat=True)))
-            setattr(node, 'children', list(node.get_children_skills().values_list('id', flat=True)))
-            setattr(node, 'descendant_ids', node.get_descendant_skill_ids())
-            node.save()
-            j += 1
-            for edge in edges[:]:
-                if edge.parent_skill == node:
-                    child = edge.child_skill
-                    edges.remove(edge)
-                    edges_with_child = parent_edges_of_child(child, edges)
-                    if not edges_with_child:
-                        root_nodes.append(child)
