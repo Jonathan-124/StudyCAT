@@ -5,7 +5,7 @@
 
 {% block content %}
 
-{% if user.is_authenticated and user.profile.currently_studying %}
+{% if user.is_authenticated %}
 <div id="greeting" class="alert alert-primary text-center" role="alert"></div>
 <br>
 <div id="challenge" class="jumbotron">
@@ -89,8 +89,9 @@ $(document).ready(function(){
                     ]
         });
     }
-
-    {% if user.profile.last_lesson_completion %}
+    {% if not user.profile.currently_studying.exists %}
+    document.getElementById("greeting").innerHTML = `Welcome {{ user.username }}! <a href="{% url 'userprofiles:profile_update' %}">Update your courses</a> to get started!`
+    {% elif user.profile.last_lesson_completion %}
     // streak stuff
     let streak_start = new Date("{{ user.profile.streak_start|date:"Y-m-d" }}");
     let last_completion = new Date("{{ user.profile.last_lesson_completion|date:"Y-m-d" }}");
@@ -109,7 +110,7 @@ $(document).ready(function(){
         document.getElementById("greeting").innerHTML = `Welcome back {{ user.username }}!`
     }
     {% else %}
-    document.getElementById("greeting").innerHTML = `Welcome back {{ user.username }}!`
+    document.getElementById("greeting").innerHTML = `Welcome {{ user.username }}!`
     {% endif %}
 
     // storing DOM elements for manipulation
@@ -124,135 +125,138 @@ $(document).ready(function(){
     // Retrieves terminus lesson data and random question for one of these lessons for the particular user
     $.get("{% url 'get_homepage_data'%}", function(data, status){
         currentQ = data.question;
+        if (currentQ != null){
+            // Setting up DOM challenge using data.question
+            prompt.innerHTML = currentQ.question_prompt;
+            renderKatex(prompt);
 
-        // Setting up DOM challenge using data.question
-        prompt.innerHTML = currentQ.question_prompt;
-        renderKatex(prompt);
+            // displays question prompt image if present
+            if (currentQ.image_url){
+                let prompt_image = document.createElement("img");
+                prompt_image.setAttribute("class", "img-fluid");
+                prompt_image.setAttribute("src", currentQ.image_url);
+                document.getElementById("questionbox").appendChild(prompt_image);
+            }
 
-        // displays question prompt image if present
-        if (currentQ.image_url){
-            let prompt_image = document.createElement("img");
-            prompt_image.setAttribute("class", "img-fluid");
-            prompt_image.setAttribute("src", currentQ.image_url);
-            document.getElementById("questionbox").appendChild(prompt_image);
+            // depending on question type, different execution
+            switch (currentQ.question_type){
+                case "MC":
+                    // Multiple Choice case
+                    // Create mc_inputbox form element, append to inputbox as child
+                    let mc_inputbox = document.createElement("form");
+                    mc_inputbox.setAttribute("id", "mc_inputbox");
+                    inputbox.appendChild(mc_inputbox);
+
+                    // For each answer choice, create choicebox, append radio input and label to choicebox
+                    // Append each choicebox to mc_inputbox
+                    currentQ.answers.forEach(function(value, index, array){
+                        let choicebox = document.createElement("div");
+                        choicebox.setAttribute("class", "custom-control custom-radio");
+
+                        let input = document.createElement("input");
+                        input.setAttribute("type", "radio");
+                        input.setAttribute("id", index);
+                        input.setAttribute("name", "answer_choice");
+                        input.setAttribute("value", value.answer_correctness);
+                        input.setAttribute("class", "custom-control-input");
+                        choicebox.appendChild(input);
+
+                        let label = document.createElement("label");
+                        label.setAttribute("class", "custom-control-label");
+                        label.setAttribute("for", index);
+                        label.innerHTML = value.answer_text;
+                        choicebox.appendChild(label);
+
+                        mc_inputbox.appendChild(choicebox);
+                    });
+
+                    renderKatex(mc_inputbox);
+                    break;
+                case "MS":
+                    // Multiple Select case
+                    // Similar to multiple choice case
+                    // Create mc_inputbox form element, append to inputbox as child
+                    let ms_inputbox = document.createElement("form");
+                    ms_inputbox.setAttribute("id", "ms_inputbox");
+                    inputbox.appendChild(ms_inputbox);
+
+                    // For each answer choice, create choicebox, append radio input and label to choicebox
+                    // Append each choicebox to ms_inputbox
+                    currentQ.answers.forEach(function(value, index, array){
+                        let choicebox = document.createElement("div");
+                        choicebox.setAttribute("class", "custom-control custom-checkbox");
+
+                        let input = document.createElement("input");
+                        input.setAttribute("type", "checkbox");
+                        input.setAttribute("id", index);
+                        input.setAttribute("name", "answer_choice");
+                        input.setAttribute("value", value.answer_correctness);
+                        input.setAttribute("class", "custom-control-input");
+                        choicebox.appendChild(input);
+
+                        let label = document.createElement("label");
+                        label.setAttribute("class", "custom-control-label");
+                        label.setAttribute("for", index);
+                        label.innerHTML = value.answer_text;
+                        choicebox.appendChild(label);
+
+                        ms_inputbox.appendChild(choicebox);
+                    });
+
+                    renderKatex(ms_inputbox);
+                    break;
+                case "IC":
+                    // Image Choice case
+                    // Create ic_inputbox form element, append to inputbox as child
+                    let ic_inputbox = document.createElement("form");
+                    ic_inputbox.setAttribute("id", "ic_inputbox");
+                    inputbox.appendChild(ic_inputbox);
+
+                    // For each answer choice, create choicebox, append radio input and label to choicebox
+                    // Append each choicebox to ic_inputbox
+                    currentQ.answers.forEach(function(value, index, array){
+                        let choicebox = document.createElement("div");
+                        choicebox.setAttribute("class", "custom-control custom-radio custom-control-inline");
+
+                        let input = document.createElement("input");
+                        input.setAttribute("type", "radio");
+                        input.setAttribute("id", index);
+                        input.setAttribute("name", "answer_choice");
+                        input.setAttribute("value", value.answer_correctness);
+                        input.setAttribute("class", "custom-control-input");
+                        choicebox.appendChild(input);
+
+                        let label = document.createElement("label");
+                        label.setAttribute("class", "custom-control-label");
+                        label.setAttribute("for", index);
+
+                        let answer_image = document.createElement("img");
+                        answer_image.setAttribute("style", "max-width:200px;max-height:200px");
+                        answer_image.setAttribute("src", value.image_url);
+                        label.appendChild(answer_image);
+
+                        choicebox.appendChild(label);
+                        ic_inputbox.appendChild(choicebox);
+                    });
+
+                    renderKatex(ic_inputbox);
+                    break;
+                case "NI":
+                    // Numerical Input case
+                    // Create guppy isntance with id "guppybox", append to inputbox
+                    let guppybox = document.createElement("div");
+                    guppybox.setAttribute("id", "guppybox");
+                    inputbox.appendChild(guppybox);
+                    new Guppy("guppybox");
+                    break;
+                default:
+                    $("#inputbox").text("No such question type found.");
+            }
+            // Displays "submit answer" button
+            $("button[name='submit_answer']").attr("class", "btn btn-primary float-right");
+        } else {
+            prompt.innerHTML = "Hmm... it seems like you haven't completed any lessons yet! Complete a lesson to receive your personalized questions of the day!"
         }
-
-        // depending on question type, different execution
-        switch (currentQ.question_type){
-            case "MC":
-                // Multiple Choice case
-                // Create mc_inputbox form element, append to inputbox as child
-                let mc_inputbox = document.createElement("form");
-                mc_inputbox.setAttribute("id", "mc_inputbox");
-                inputbox.appendChild(mc_inputbox);
-
-                // For each answer choice, create choicebox, append radio input and label to choicebox
-                // Append each choicebox to mc_inputbox
-                currentQ.answers.forEach(function(value, index, array){
-                    let choicebox = document.createElement("div");
-                    choicebox.setAttribute("class", "custom-control custom-radio");
-
-                    let input = document.createElement("input");
-                    input.setAttribute("type", "radio");
-                    input.setAttribute("id", index);
-                    input.setAttribute("name", "answer_choice");
-                    input.setAttribute("value", value.answer_correctness);
-                    input.setAttribute("class", "custom-control-input");
-                    choicebox.appendChild(input);
-
-                    let label = document.createElement("label");
-                    label.setAttribute("class", "custom-control-label");
-                    label.setAttribute("for", index);
-                    label.innerHTML = value.answer_text;
-                    choicebox.appendChild(label);
-
-                    mc_inputbox.appendChild(choicebox);
-                });
-
-                renderKatex(mc_inputbox);
-                break;
-            case "MS":
-                // Multiple Select case
-                // Similar to multiple choice case
-                // Create mc_inputbox form element, append to inputbox as child
-                let ms_inputbox = document.createElement("form");
-                ms_inputbox.setAttribute("id", "ms_inputbox");
-                inputbox.appendChild(ms_inputbox);
-
-                // For each answer choice, create choicebox, append radio input and label to choicebox
-                // Append each choicebox to ms_inputbox
-                currentQ.answers.forEach(function(value, index, array){
-                    let choicebox = document.createElement("div");
-                    choicebox.setAttribute("class", "custom-control custom-checkbox");
-
-                    let input = document.createElement("input");
-                    input.setAttribute("type", "checkbox");
-                    input.setAttribute("id", index);
-                    input.setAttribute("name", "answer_choice");
-                    input.setAttribute("value", value.answer_correctness);
-                    input.setAttribute("class", "custom-control-input");
-                    choicebox.appendChild(input);
-
-                    let label = document.createElement("label");
-                    label.setAttribute("class", "custom-control-label");
-                    label.setAttribute("for", index);
-                    label.innerHTML = value.answer_text;
-                    choicebox.appendChild(label);
-
-                    ms_inputbox.appendChild(choicebox);
-                });
-
-                renderKatex(ms_inputbox);
-                break;
-            case "IC":
-                // Image Choice case
-                // Create ic_inputbox form element, append to inputbox as child
-                let ic_inputbox = document.createElement("form");
-                ic_inputbox.setAttribute("id", "ic_inputbox");
-                inputbox.appendChild(ic_inputbox);
-
-                // For each answer choice, create choicebox, append radio input and label to choicebox
-                // Append each choicebox to ic_inputbox
-                currentQ.answers.forEach(function(value, index, array){
-                    let choicebox = document.createElement("div");
-                    choicebox.setAttribute("class", "custom-control custom-radio custom-control-inline");
-
-                    let input = document.createElement("input");
-                    input.setAttribute("type", "radio");
-                    input.setAttribute("id", index);
-                    input.setAttribute("name", "answer_choice");
-                    input.setAttribute("value", value.answer_correctness);
-                    input.setAttribute("class", "custom-control-input");
-                    choicebox.appendChild(input);
-
-                    let label = document.createElement("label");
-                    label.setAttribute("class", "custom-control-label");
-                    label.setAttribute("for", index);
-
-                    let answer_image = document.createElement("img");
-                    answer_image.setAttribute("style", "max-width:200px;max-height:200px");
-                    answer_image.setAttribute("src", value.image_url);
-                    label.appendChild(answer_image);
-
-                    choicebox.appendChild(label);
-                    ic_inputbox.appendChild(choicebox);
-                });
-
-                renderKatex(ic_inputbox);
-                break;
-            case "NI":
-                // Numerical Input case
-                // Create guppy isntance with id "guppybox", append to inputbox
-                let guppybox = document.createElement("div");
-                guppybox.setAttribute("id", "guppybox");
-                inputbox.appendChild(guppybox);
-                new Guppy("guppybox");
-                break;
-            default:
-                $("#inputbox").text("No such question type found.");
-        }
-        // Displays "submit answer" button
-        $("button[name='submit_answer']").attr("class", "btn btn-primary float-right");
     });
 
     // On "submit_answer" button click
@@ -267,9 +271,14 @@ $(document).ready(function(){
         // Different feedback text depending on answer correctness and whether feedback supplied for given answer in currentQ
         switch(currentQ.question_type) {
             case "MC":
-                a_correctness = parseFloat($('input[name="answer_choice"]:checked', '#mc_inputbox').val());
-                feedback_text = currentQ.answers[$('input[name="answer_choice"]:checked', '#mc_inputbox').attr('id')].answer_explanation
-                break;
+                try {
+                    a_correctness = parseFloat($('input[name="answer_choice"]:checked', '#mc_inputbox').val());
+                    feedback_text = currentQ.answers[$('input[name="answer_choice"]:checked', '#mc_inputbox').attr('id')].answer_explanation
+                } catch(err){
+                    a_correctness = 0
+                } finally {
+                    break;
+                }
             case "MS":
                 let all_correct = true;
                 $('input[name="answer_choice"]', '#ms_inputbox').each(function(){

@@ -141,7 +141,7 @@ def create_all_skills(sender, instance, created, **kwargs):
 # On new skilledge creation, update all user skillfulnesses of child skill based on the parent skill skillfulness
 @receiver(post_save, sender=SkillEdge, dispatch_uid='skilledge_creation_update_skillfulness')
 def update_user_skillfulness(sender, instance, created, **kwargs):
-    if created and not Skillfulness.objects.exists(skill_level__gt=0, skill=instance.child_skill):
+    if created and not Skillfulness.objects.filter(skill_level__gt=0, skill=instance.child_skill).exists():
         for i in range(1, 4):
             users_with_i_skillfulness = Skillfulness.objects.filter(skill_level=i, skill=instance.parent_skill).values_list('user_profile__id', flat=True)
             Skillfulness.objects.filter(user_profile__id__in=users_with_i_skillfulness, skill=instance.child_skill).update(skill_level=i)

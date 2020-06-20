@@ -298,9 +298,14 @@ $(document).ready(function(){
         // Different feedback text depending on answer correctness and whether feedback supplied for given answer in currentQ
         switch(currentQ.question_type) {
             case "MC":
-                a_correctness = parseFloat($('input[name="answer_choice"]:checked', '#mc_inputbox').val());
-                feedback_text = currentQ.answers[$('input[name="answer_choice"]:checked', '#mc_inputbox').attr('id')].answer_explanation
-                break;
+                try {
+                    a_correctness = parseFloat($('input[name="answer_choice"]:checked', '#mc_inputbox').val());
+                    feedback_text = currentQ.answers[$('input[name="answer_choice"]:checked', '#mc_inputbox').attr('id')].answer_explanation
+                } catch(err){
+                    a_correctness = 0
+                } finally {
+                    break;
+                }
             case "MS":
                 let all_correct = true;
                 $('input[name="answer_choice"]', '#ms_inputbox').each(function(){
@@ -332,7 +337,6 @@ $(document).ready(function(){
                 let attempt = Guppy("guppybox").asciimath();
                 symbols_used = Guppy("guppybox").symbols_used()
                 try {
-                    console.log(symbols_used);
                     const used_permitted_symbols = symbols_used.every(val => currentQ.permitted_symbols.includes(val));
                     const parsed_attempt = MathExpression.fromText(attempt);
                     let matched = currentQ.answers.find(checkAnswer);
